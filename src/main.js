@@ -282,6 +282,7 @@ initRouter({
     state.lastFeatures = fallback;
     renderFacilities(fallback);
     renderList(fallback);
+    renderStats(fallback);
     scheduleMapBrowseUpdate();
     statusEl.innerHTML = `<strong>${fallback.length.toLocaleString()}</strong> facilities (loading interactive query…)`;
   } catch (e) {
