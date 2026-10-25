@@ -31,6 +31,7 @@ let _cached = null;
 let _type = 'all';
 let _api = 'all';
 let _license = 'all';
+let _access = 'all';
 let _qFilter = '';
 
 // archive_types vocab labels (schema/vocab/archive_types.csv). Fallback
@@ -73,6 +74,9 @@ const API_COLORS = {
   'http-files'    : '#94a3b8',
   'https-listing' : '#94a3b8',
   'file-download' : '#94a3b8',
+  sparql          : '#be185d',
+  csw             : '#9333ea',
+  webdav          : '#475569',
 };
 
 // An api_type a pipeline can query programmatically. Plain file listings
@@ -85,6 +89,7 @@ const MACHINE_APIS = new Set([
   // OGC services: per-layer WMS/WFS (EnviroData-NM) and OGC API
   // Features / EDR (Arizona Water Observatory).
   'ogc-wms-wfs', 'ogc-api',
+  'sparql', 'csw', 'webdav',
 ]);
 
 // cloud_buckets.provider → badge color (S3 amber like upstream's s3).
@@ -130,56 +135,51 @@ function fmtInt(n) {
 
 // ── Endpoint health dots ─────────────────────────────────────────────
 //
-// url_health.parquet is the weekly HEAD sweep (scripts/check_url_health.py):
-// one row per distinct URL with a coarse status verdict. Fetched whole and
-// joined client-side — the table stays well under 500 rows, and a separate
-// try/catch query means an absent or zero-row parquet costs the dots, never
-// the catalogue (a SQL-level JOIN would fail the whole fetch if the
-// url_health view didn't register).
-//
-// Dot colours: ok/redirect green; client-error amber, not red — many hosts
-// 403/405 a scripted HEAD yet serve browsers fine; server-error/timeout red.
-// Unchecked and template-skipped URLs get no dot at all.
-let _health = null;   // Map url → {status, http_code, checked_at}; null until loaded
+// From scripts/check_endpoints.py, whose verdict the loader writes on
+// every archive, endpoint and bucket row (check_verdict, checked_at): ok
+// and alive green; auth amber (the service is there and wants an account
+// or a licence); error red. 'gone' rows are never loaded; unchecked URLs
+// get no dot.
+let _health = null;   // Map url → {status, checked_at}; null until loaded
 
-const HEALTH_DOT = {
-  'ok'           : 'ok',
-  'redirect'     : 'ok',
-  'client-error' : 'warn',
-  'server-error' : 'err',
-  'timeout'      : 'err',
+const HEALTH_DOT = { ok: 'ok', alive: 'ok', auth: 'warn', error: 'err' };
+const VERDICT_TEXT = {
+  ok: 'answered', alive: 'server answers (needs a full request)',
+  auth: 'answers; needs an account or licence acceptance', error: 'server error or timeout',
 };
 
-async function fetchHealth(conn) {
+function healthFromRows(rows) {
   const map = new Map();
-  try {
-    // checked_at is VARCHAR today; the CAST guards against a future export
-    // typing it DATE (Arrow hands DATE to JS as epoch millis).
-    const res = await conn.query(`
-      SELECT url, status, http_code, CAST(checked_at AS VARCHAR) AS checked_at
-      FROM url_health`);
-    for (const row of res.toArray()) {
-      const r = unwrapRow(row.toJSON());
-      if (r.url) map.set(r.url, r);
-    }
-  } catch (e) {
-    // View missing (parquet 404'd at init) — degrade to no dots.
-    console.warn('[datasets] url_health unavailable, skipping health dots:', e.message);
+  for (const r of rows) {
+    if (r.base_url && r.check_verdict) map.set(r.base_url, { status: r.check_verdict, checked_at: r.checked_at });
+    for (const e of r.endpoints) if (e.verdict) map.set(e.url, { status: e.verdict, checked_at: e.checked });
+    for (const b of r.buckets) if (b.verdict && b.docs) map.set(b.docs, { status: b.verdict, checked_at: b.checked });
   }
   return map;
 }
+
+// data_archives / api_endpoints access_mode → short label.
+const ACCESS_LABELS = {
+  'public-read'        : 'Public',
+  'public-anon-egress' : 'Public',
+  'registered-users'   : 'Account required',
+  'license-required'   : 'Licence acceptance',
+  'api-key'            : 'API key',
+  'requester-pays'     : 'Requester pays',
+  'embargoed'          : 'Embargoed',
+  'restricted'         : 'Restricted',
+};
+const RESTRICTED_ACCESS = new Set(['registered-users', 'license-required', 'api-key',
+  'requester-pays', 'embargoed', 'restricted']);
 
 function healthDot(url) {
   const h = (_health && url) ? _health.get(url) : null;
   const cls = h && HEALTH_DOT[h.status];
   if (!cls) return '';
   const bits = [
-    h.http_code != null ? `HTTP ${h.http_code}` : h.status,
+    VERDICT_TEXT[h.status] || h.status,
     h.checked_at ? `checked ${h.checked_at}` : null,
   ];
-  if (h.status === 'client-error') {
-    bits.push('may be HEAD-hostile — some servers block automated checks but serve browsers fine');
-  }
   return `<span class="ds-health ds-health-${cls}"
     title="${esc(bits.filter(Boolean).join(' · '))}"></span>`;
 }
@@ -217,8 +217,11 @@ async function fetchArchives() {
                purpose := purpose,
                fmt     := response_format,
                docs    := schema_url,
-               example := example_call
-             ) ORDER BY purpose) AS endpoints
+               example := example_call,
+               access  := access_mode,
+               verdict := check_verdict,
+               checked := CAST(checked_at AS VARCHAR)
+             ) ORDER BY purpose, path_or_url) AS endpoints
       FROM api_endpoints
       GROUP BY archive_id
     ),
@@ -230,7 +233,9 @@ async function fetchArchives() {
                region   := region,
                mode     := access_mode,
                docs     := documentation_url,
-               prefix   := sample_prefix
+               prefix   := sample_prefix,
+               verdict  := check_verdict,
+               checked  := CAST(checked_at AS VARCHAR)
              ) ORDER BY provider, bucket_name) AS buckets
       FROM cloud_buckets
       GROUP BY archive_id
@@ -245,7 +250,7 @@ async function fetchArchives() {
       WHERE archive_id IS NOT NULL
       GROUP BY archive_id
     )
-    SELECT a.*,
+    SELECT a.* EXCLUDE (checked_at), CAST(a.checked_at AS VARCHAR) AS checked_at,
            fac.facilities   AS facilities,
            eps.endpoints    AS endpoints,
            cbs.buckets      AS buckets,
@@ -259,8 +264,7 @@ async function fetchArchives() {
     LEFT JOIN cbs   ON cbs.archive_id   = a.archive_id
     LEFT JOIN prods ON prods.archive_id = a.archive_id
     ORDER BY a.name`);
-  _health = await fetchHealth(conn);
-  return res.toArray().map((row) => {
+  const rows = res.toArray().map((row) => {
     const r = unwrapRow(row.toJSON());
     r.facilities = Array.isArray(r.facilities) ? r.facilities : [];
     r.endpoints = Array.isArray(r.endpoints) ? r.endpoints : [];
@@ -271,6 +275,8 @@ async function fetchArchives() {
     r.machine = MACHINE_APIS.has(r.api_type);
     return r;
   });
+  _health = healthFromRows(rows);
+  return rows;
 }
 
 // Access badges: the archive-level API root first (colored by api_type),
@@ -309,16 +315,18 @@ function accessBadges(row) {
       .replace('tab-separated-values', 'tsv')
       .replace('octet-stream', 'binary') || 'call';
     const color = API_COLORS[row.api_type] || '#64748b';
+    const locked = RESTRICTED_ACCESS.has(ep.access);
     const title = [
       ep.purpose,
       `${ep.method || 'GET'} — ${ep.fmt || 'format unrecorded'}`,
+      ep.access ? `access: ${ACCESS_LABELS[ep.access] || ep.access}` : null,
       ep.example ? `example: ${ep.example}` : null,
       ep.url,
     ].filter(Boolean).join(' — ');
     parts.push(`
       <span class="ds-ep ds-ep-machine" style="--ep:${color}">
         ${healthDot(ep.url)}<a class="ds-ep-link" href="${esc(ep.url)}" target="_blank" rel="noopener"
-           title="${esc(title)}">${esc(fmt)}</a>
+           title="${esc(title)}">${esc(fmt)}${locked ? ' 🔒' : ''}</a>
         <button class="ds-ep-copy" data-url="${esc(ep.url)}"
                 title="Copy ${esc(ep.url)}" aria-label="Copy endpoint URL">${COPY_ICON}</button>
       </span>`);
@@ -453,6 +461,9 @@ function cardHtml(row) {
       ${facilityBlock(row)}
       ${accessBadges(row)}
       ${productLine(row)}
+      ${row.access_mode ? `<p class="ds-access${RESTRICTED_ACCESS.has(row.access_mode) ? ' ds-access-restricted' : ''}"
+           title="${esc(row.source_url ? `access read from ${row.source_url}` : 'access mode')}">${
+    RESTRICTED_ACCESS.has(row.access_mode) ? '🔒 ' : ''}${esc(ACCESS_LABELS[row.access_mode] || row.access_mode)}</p>` : ''}
       ${row.license_slug ? `<p class="ds-license" title="License vocabulary slug — see schema/vocab/data_licenses.csv">${esc(row.license_slug)}</p>` : ''}
       ${row.notes ? `<p class="ds-note">${esc(row.notes)}</p>` : ''}
       ${footer.length ? `<footer class="ds-links">${footer.join(' · ')}</footer>` : ''}
@@ -468,6 +479,10 @@ function applyFilter(rows) {
     else out = out.filter((r) => r.api_type === _api);
   }
   if (_license !== 'all') out = out.filter((r) => (r.license_slug || '—') === _license);
+  if (_access !== 'all') {
+    out = out.filter((r) => (_access === 'restricted'
+      ? RESTRICTED_ACCESS.has(r.access_mode) : !RESTRICTED_ACCESS.has(r.access_mode)));
+  }
   const q = _qFilter.trim().toLowerCase();
   if (q) {
     out = out.filter((r) => [
@@ -609,6 +624,15 @@ async function renderArchives(targetId) {
     esc(l)} (${_cached.filter((r) => (r.license_slug || '—') === l).length})</option>`).join('')}
             </select>
           </label>
+          <label>Access:
+            <select id="ds-access">
+              <option value="all">All</option>
+              <option value="public"${_access === 'public' ? ' selected' : ''}>Public (${
+    _cached.filter((r) => !RESTRICTED_ACCESS.has(r.access_mode)).length})</option>
+              <option value="restricted"${_access === 'restricted' ? ' selected' : ''}>Account or licence (${
+    _cached.filter((r) => RESTRICTED_ACCESS.has(r.access_mode)).length})</option>
+            </select>
+          </label>
           <input id="ds-q" type="search"
                  placeholder="Search archive, organization, facility, endpoint, bucket…"
                  value="${esc(_qFilter)}">
@@ -631,6 +655,10 @@ async function renderArchives(targetId) {
   });
   _container.querySelector('#ds-license').addEventListener('change', (ev) => {
     _license = ev.target.value;
+    renderArchives(null);
+  });
+  _container.querySelector('#ds-access').addEventListener('change', (ev) => {
+    _access = ev.target.value;
     renderArchives(null);
   });
   _container.querySelector('#ds-q').addEventListener('input', (ev) => {

@@ -32,7 +32,9 @@ python scripts/fetch_geri_datastore.py        # GERI Data Store (anonymous WebDA
 python scripts/summarize_harmonized.py --download   # harmonized parquet (~1 GB, data/cache/) → committed harmonized_summary.csv; only when the products change
 python scripts/load_geri_sites.py             # data/raw/R-GERI-* → lake (owns every R-GERI-* facility; assigns harmonized ids)
 python scripts/apply_facility_fixes.py        # data/seed/facility_fixes.csv — ALWAYS after load_geri_sites
-python scripts/load_geri_archives.py          # Data Store pointer archives/products + harmonized_coverage — after load_geri_sites
+python scripts/import_lto_archives.py         # lto's records for archives that serve GERI sites → data/raw/J-LTO/ (rarely)
+python scripts/check_endpoints.py             # request every archive / endpoint / bucket URL → data/seed/endpoint_checks.csv
+python scripts/load_geri_archives.py          # data-access layer (J-LTO + J-GERI, checks applied, site links) + harmonized products/coverage — after load_geri_sites
 python scripts/qa.py                          # the correctness gate (non-zero on failure)
 python scripts/export_parquet.py              # lake → public/parquet/, public/facilities.geojson
 python scripts/export_view_caches.py          # → public/cache/browse_cards.json
@@ -92,6 +94,13 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 - **Timezones.** `summarize_harmonized.py` and `load_geri_archives.py` set DuckDB's `TimeZone` to UTC. Without it, timestamps print in the machine's zone and committed files differ by machine.
 - **Nothing from recall.** Every site, coordinate and id comes from a fetched registry response or a cited page. Vocabulary URLs were checked by fetching them.
 - **DEIMS network ids** are hard-coded in `fetch_deims.NETWORKS` and `load_geri_sites.DEIMS_NETWORK` (keep them equal), as read from `https://deims.org/api/networks`.
+
+### Data-access layer
+
+- **Two sources.** `data/raw/J-GERI/{archives,api_endpoints}.json` is curated, and every row cites its `source_url`; `archive_overrides` corrects imported archives (e.g. NEON's token requirement). `data/raw/J-LTO/` is a faithful copy of lto's rows for the GERI-relevant archives. The loader reads J-LTO, then J-GERI; the same archive and URL means J-GERI wins.
+- **Checks decide what loads.** `check_endpoints.py` writes `data/seed/endpoint_checks.csv`, and the loader skips rows whose verdict is `gone`. An endpoint's `access_mode` is the curated one, else follows from its check (auth → registered-users, ok → public-read). A bucket's access is what an anonymous listing showed, overriding lto's claim, with a note saying so. An archive with no stated access takes the strictest of its checked endpoints.
+- **Don't trust lto's bucket table.** Four of its five buckets for these archives did not exist (2026-10-25). The same check should be run on lto itself.
+- **Site links:** `SITE_LINKS` / `NETWORK_LINKS` in `load_geri_archives.py` map identifier schemes to archives and entry-URL templates.
 
 ### Known gaps (next waves)
 

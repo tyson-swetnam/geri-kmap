@@ -2392,6 +2392,8 @@ footer a:hover { color: var(--c-primary); }
   vertical-align: middle; cursor: help;
 }
 .ds-health-ok   { background: #16a34a; }
+.ds-access { font-size: .8rem; margin: 4px 0 0; color: #166534; font-weight: 600; }
+.ds-access-restricted { color: #92400e; }
 .ds-health-warn { background: #d97706; }
 .ds-health-err  { background: #dc2626; }
 .ds-empty {

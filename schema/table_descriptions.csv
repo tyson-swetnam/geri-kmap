@@ -1,20 +1,20 @@
 table,kind,generator,description
 access_modes,vocabulary,schema/vocab/access_modes.csv,"How a cloud bucket or archive can be reached: public, registered users, requester-pays and similar."
-api_endpoints,entity,(none yet in geri-kmap),"Empty in geri-kmap so far. Documented machine calls for each data archive: path or URL, purpose, response format and an example call."
+api_endpoints,entity,scripts/load_geri_archives.py,"Documented machine calls for each archive (REST, SPARQL, CSW, OPeNDAP, WebDAV): URL template, method, format, example, access mode (public, account, licence) and the result of the last check."
 archive_types,vocabulary,schema/vocab/archive_types.csv,"Kinds of data archive: repository, data portal, ERDDAP server, aggregator and others."
 area_links,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Which research areas each facility works in.
 authorship,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Which catalogued person authored which publication.
-cloud_buckets,entity,(none yet in geri-kmap),"Empty in geri-kmap so far. Public cloud storage buckets that hold an archive or facility data: provider, bucket, region and access mode."
+cloud_buckets,entity,scripts/load_geri_archives.py,"Cloud object-storage buckets that hold archive data, with the access an anonymous listing showed."
 coauthor_candidates,registry,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). People seen as co-authors of registry members in the OpenAlex harvest who are not yet in the registry.
 coauthor_edges,registry,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Co-authorship between pairs of registry members, with an exemplar work and provenance for each edge."
 collaborations,derived,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Co-publication counts between pairs of catalogued people, with first and last year."
-data_archives,entity,scripts/load_geri_archives.py,Data archives and portals where site data live: the GERI collection on the CyVerse Data Store and the GERI DataONE portal.
+data_archives,entity,scripts/load_geri_archives.py,"Data archives and services that hold GERI site data: RI portals and APIs (NEON, ICOS, DEIMS-SDR, eLTER DAR, TERN, OzFlux, SAEON, CNERN), global services and the GERI Data Store, each with its access mode and last check."
 data_formats,vocabulary,schema/vocab/data_formats.csv,File and service formats used by data products.
 data_licenses,vocabulary,schema/vocab/data_licenses.csv,Licences and data-use policies that apply to archives and products.
 data_products,entity,scripts/load_geri_archives.py,"GERI harmonized datasets on the CyVerse Data Store, one row per file, with period and variables. Metadata and links only."
 ecosystem_types,vocabulary,schema/vocab/ecosystem_types.csv,Ecosystem-type facet for facilities.
 facilities,entity,scripts/load_geri_sites.py; scripts/apply_facility_fixes.py,"Sites of the GERI research infrastructures (NEON, eLTER, ICOS, TERN, SAEON/EFTEON, CERN): one row per site with type, country (where the site is), point and year established."
-facility_archives,link,scripts/load_geri_archives.py,"Which archives hold data for each site: today, the GERI Data Store collection for every site in the harmonized products."
+facility_archives,link,scripts/load_geri_archives.py,"Which archives hold data for each site, with a per-site entry URL (NEON explorer, ICOS station page, DEIMS record, OzFlux THREDDS catalog, SAEON landing page)."
 facility_ecosystems,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Ecosystem types assigned to each facility.
 facility_life_zones,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Holdridge life zones assigned to each facility.
 facility_personnel,link,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Roles people hold at facilities, with title, dates and the source page."

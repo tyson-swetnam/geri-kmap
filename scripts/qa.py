@@ -421,6 +421,12 @@ def check_geri(conn, failures: list[str]) -> None:
                             "WHERE facility_id IN (SELECT unnest(?::VARCHAR[]))", [dups]).fetchall()
         assert_true(not back, f"{len(back)} facilities merged away in {merge_seed.name} are back: "
                               f"{back[:5]}", failures)
+    # Nothing check_endpoints.py found gone may be loaded.
+    for t in ("data_archives", "api_endpoints", "cloud_buckets"):
+        if table_rows(conn, t) > 0:
+            gone = conn.execute(f"SELECT count(*) FROM {t} WHERE check_verdict = 'gone'").fetchone()[0]
+            assert_true(gone == 0, f"{gone} {t} rows were found gone by check_endpoints.py "
+                                   "but are loaded", failures)
     orphan_parent = conn.execute(
         """SELECT network_id FROM networks c WHERE parent_id IS NOT NULL
              AND NOT EXISTS (SELECT 1 FROM networks p WHERE p.network_id = c.parent_id)""").fetchall()

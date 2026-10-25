@@ -56,6 +56,7 @@ python scripts/fetch_ozflux.py && python scripts/fetch_saeon_stations.py && pyth
 python scripts/summarize_harmonized.py --download   # only when the harmonized products change (~1 GB)
 python scripts/load_geri_sites.py
 python scripts/apply_facility_fixes.py
+python scripts/check_endpoints.py                    # requests every data-access URL (after import_lto_archives.py if lto changed)
 python scripts/load_geri_archives.py
 python scripts/qa.py
 python scripts/export_parquet.py && python scripts/export_view_caches.py

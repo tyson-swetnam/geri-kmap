@@ -299,7 +299,13 @@ CREATE OR REPLACE TABLE data_archives (
     license_slug  VARCHAR REFERENCES data_licenses(slug),
     doi_prefix    VARCHAR,                            -- e.g. '10.6073' for EDI
     notes         VARCHAR,
-    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- geri-kmap: how the data can be reached, where that was read, and what
+    -- check_endpoints.py found when it requested base_url.
+    access_mode   VARCHAR REFERENCES access_modes(slug),
+    source_url    VARCHAR,
+    check_verdict VARCHAR,                            -- ok|auth|alive|gone|error|unchecked
+    checked_at    DATE
 );
 
 CREATE OR REPLACE TABLE facility_archives (
@@ -354,7 +360,11 @@ CREATE OR REPLACE TABLE api_endpoints (
     response_format VARCHAR,
     schema_url      VARCHAR,                          -- OpenAPI / JSON-Schema / DCAT
     example_call    VARCHAR,
-    notes           VARCHAR
+    notes           VARCHAR,
+    access_mode     VARCHAR REFERENCES access_modes(slug),  -- public-read, registered-users, license-required, ...
+    source_url      VARCHAR,                          -- page or response the endpoint was read from
+    check_verdict   VARCHAR,                          -- check_endpoints.py: ok|auth|alive|error|unchecked
+    checked_at      DATE
 );
 
 CREATE OR REPLACE TABLE cloud_buckets (
@@ -367,7 +377,10 @@ CREATE OR REPLACE TABLE cloud_buckets (
     access_mode        VARCHAR REFERENCES access_modes(slug),
     documentation_url  VARCHAR,
     sample_prefix      VARCHAR,                       -- one representative object key prefix
-    notes              VARCHAR
+    notes              VARCHAR,
+    source_url         VARCHAR,
+    check_verdict      VARCHAR,                       -- anonymous listing: ok (allowed) | auth (denied)
+    checked_at         DATE
 );
 
 -------------------------------------------------------------------------------
