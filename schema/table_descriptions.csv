@@ -14,7 +14,7 @@ data_licenses,vocabulary,schema/vocab/data_licenses.csv,Licences and data-use po
 data_products,entity,scripts/load_geri_archives.py,"GERI harmonized datasets on the CyVerse Data Store, one row per file, with period and variables. Metadata and links only."
 ecosystem_types,vocabulary,schema/vocab/ecosystem_types.csv,Ecosystem-type facet for facilities.
 facilities,entity,scripts/load_geri_sites.py; scripts/apply_facility_fixes.py,"Sites of the GERI research infrastructures (NEON, eLTER, ICOS, TERN, SAEON/EFTEON, CERN): one row per site with type, country (where the site is), point and year established."
-facility_archives,link,scripts/load_geri_archives.py,"Which archives hold data for each site, with a per-site entry URL (NEON explorer, ICOS station page, DEIMS record, OzFlux THREDDS catalog, SAEON landing page)."
+facility_archives,link,scripts/load_geri_archives.py,"Which archives hold data for each site, with a per-site entry URL (NEON explorer, ICOS station page, DEIMS record, OzFlux THREDDS catalog, SAEON landing page, eLTER Digital Asset Register search with record count and a sample DOI)."
 facility_ecosystems,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Ecosystem types assigned to each facility.
 facility_life_zones,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Holdridge life zones assigned to each facility.
 facility_personnel,link,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Roles people hold at facilities, with title, dates and the source page."
