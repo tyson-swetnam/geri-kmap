@@ -292,7 +292,7 @@ def upload(staging: Path, freeze: bool, manifest: dict) -> None:
             "(https://github.com/cyverse/gocommands), run `gocmd init` once, and "
             f"re-run. Staged files are in {staging}.")
     subprocess.run(
-        ["gocmd", "sync", str(staging), IRODS_DEST, "--no_root", "--no_hash"],
+        ["gocmd", "sync", str(staging), IRODS_DEST, "--no_root"],
         check=True,
     )
     print(f"[upload] synced → {IRODS_DEST[2:]}")
@@ -301,7 +301,7 @@ def upload(staging: Path, freeze: bool, manifest: dict) -> None:
                  + "-" + manifest["git_commit"][:7])
         subprocess.run(
             ["gocmd", "sync", str(staging), f"{IRODS_DEST}/snapshots/{stamp}",
-             "--no_root", "--no_hash"],
+             "--no_root"],
             check=True,
         )
         print(f"[upload] frozen milestone copy → snapshots/{stamp}/")
