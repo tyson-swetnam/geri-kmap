@@ -1,0 +1,85 @@
+{
+ "source": "https://github.com/tyson-swetnam/lto (public/parquet)",
+ "lto_commit": "64166cf",
+ "imported_at": "2026-10-25",
+ "archives": [
+  {
+   "archive_id": "gbif",
+   "name": "Global Biodiversity Information Facility",
+   "organization": "GBIF Secretariat (Copenhagen)",
+   "archive_type": "aggregator",
+   "base_url": "https://www.gbif.org/",
+   "api_url": "https://api.gbif.org/v1/",
+   "api_doc_url": "https://techdocs.gbif.org/en/openapi/",
+   "api_type": "rest",
+   "license_slug": "cc-by-4.0",
+   "doi_prefix": "10.15468",
+   "notes": "Intergovernmental biodiversity data network. Occurrence + checklist + sampling-event datasets in Darwin Core Archive. Licenses are dataset-specific: CC0, CC-BY-4.0, or CC-BY-NC-4.0. Download DOIs minted under 10.15468/dl.<id>. retrieved_at=2026-05-06; agent=J-A-OCEAN-AGGS [via J-A-OCEAN-AGGS]"
+  },
+  {
+   "archive_id": "knb",
+   "name": "KNB — Knowledge Network for Biocomplexity",
+   "organization": "NCEAS (UC Santa Barbara) / DataONE",
+   "archive_type": "repository",
+   "base_url": "https://knb.ecoinformatics.org/",
+   "api_url": "https://knb.ecoinformatics.org/knb/d1/mn/v2/",
+   "api_doc_url": "https://knb.ecoinformatics.org/api",
+   "api_type": "dataone",
+   "license_slug": "cc0",
+   "doi_prefix": "10.5063",
+   "notes": "International ecology/biocomplexity repository run by NCEAS; the original DataONE Member Node ('urn:node:KNB'). Metacat backend, EML metadata, mixed payloads. DOIs 10.5063/<6-7 char checksum>. CC0 default. Used as overflow / non-LTER ecology archive complementary to EDI. retrieved_at=2026-05-06; agent=J-A-ESS-DIVE-DOE [via J-A-ESS-DIVE-DOE]"
+  },
+  {
+   "archive_id": "nasa-earthdata",
+   "name": "NASA Earthdata Search / Common Metadata Repository",
+   "organization": "NASA Earth Science Data Systems",
+   "archive_type": "federation",
+   "base_url": "https://search.earthdata.nasa.gov/",
+   "api_url": "https://cmr.earthdata.nasa.gov/search/",
+   "api_doc_url": "https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html",
+   "api_type": "rest",
+   "license_slug": "nasa-public",
+   "doi_prefix": "10.5067",
+   "notes": "Cross-DAAC search & catalog (CMR). Federates NSIDC, ASF, GES DISC, LP DAAC, OB.DAAC, ORNL DAAC, PO.DAAC, SEDAC, etc. UMM-G/UMM-C JSON. Earthdata Login for downloads; Harmony service for subset/transform. retrieved_at=2026-05-06; agent=J-A-NSIDC-CRY [via J-A-NSIDC-CRY]"
+  },
+  {
+   "archive_id": "neon-data-portal",
+   "name": "NEON Data Portal",
+   "organization": "Battelle / National Ecological Observatory Network (NSF)",
+   "archive_type": "repository",
+   "base_url": "https://data.neonscience.org/",
+   "api_url": "https://data.neonscience.org/api/v0/",
+   "api_doc_url": "https://data.neonscience.org/data-api",
+   "api_type": "rest",
+   "license_slug": "neon-data-policy",
+   "doi_prefix": "10.48443",
+   "notes": "NEON publishes ~180 standardized data products (DPID format DP[1-4].YYYYY.NNN) across 81 field sites in 20 domains. Bulk downloads via REST API; AOP rasters in s3://neon-aop-products. Annual RELEASE-YYYY tags issued for citable, versioned data. [via J-A-NEON]"
+  },
+  {
+   "archive_id": "obis",
+   "name": "Ocean Biodiversity Information System",
+   "organization": "IOC-UNESCO / IODE",
+   "archive_type": "aggregator",
+   "base_url": "https://obis.org/",
+   "api_url": "https://api.obis.org/v3",
+   "api_doc_url": "https://api.obis.org/",
+   "api_type": "rest",
+   "license_slug": "cc0",
+   "doi_prefix": null,
+   "notes": "Global aggregator of marine species occurrence records (Darwin Core), >120M records from >4000 datasets. CC0 default. JSON REST API supports area/taxon/depth/time queries; bulk Darwin Core Archive ZIPs per dataset. retrieved_at=2026-05-06; agent=J-A-OCEAN-AGGS [via J-A-OCEAN-AGGS]"
+  },
+  {
+   "archive_id": "ornl-daac",
+   "name": "ORNL DAAC — Oak Ridge National Laboratory Distributed Active Archive Center for Biogeochemical Dynamics",
+   "organization": "Oak Ridge National Laboratory / NASA Earth Science Data and Information System (ESDIS)",
+   "archive_type": "repository",
+   "base_url": "https://daac.ornl.gov/",
+   "api_url": "https://cmr.earthdata.nasa.gov/search/",
+   "api_doc_url": "https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html",
+   "api_type": "rest",
+   "license_slug": "nasa-public",
+   "doi_prefix": "10.3334",
+   "notes": "NASA DAAC for terrestrial ecology and biogeochemistry. Holds ABoVE, CMS, GEDI L4, MODIS-derived products, FLUXNET site files, soil moisture, vegetation indices. DOIs 10.3334/ORNLDAAC/<numeric_id>. CSV + NetCDF + GeoTIFF. Some products require NASA Earthdata Login; bulk objects on s3://ornldaac-cumulus-prod-public-data (us-west-2). Discovery via NASA CMR + native dataset DOI landing pages. retrieved_at=2026-05-06; agent=J-A-ESS-DIVE-DOE [via J-A-ESS-DIVE-DOE]"
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "source": "https://github.com/tyson-swetnam/lto (public/parquet)",
+ "lto_commit": "64166cf",
+ "imported_at": "2026-10-25",
+ "cloud_buckets": [
+  {
+   "bucket_id": "2005860f9e008a9e",
+   "archive_id": "neon-data-portal",
+   "facility_id": null,
+   "provider": "s3",
+   "bucket_name": "neon-prod-pub-1",
+   "region": "us-west-2",
+   "access_mode": "public-read",
+   "documentation_url": "https://data.neonscience.org/data-products/explore",
+   "sample_prefix": null,
+   "notes": "NEON IS/OS data product staging bucket fronting the API at data.neonscience.org/api/v0/data; verify access mode in CI (anonymous HTTPS works for documented file URLs) [via J-A-CLOUD]"
+  },
+  {
+   "bucket_id": "21351859398935f0",
+   "archive_id": "neon-data-portal",
+   "facility_id": null,
+   "provider": "s3",
+   "bucket_name": "neon-aop-products",
+   "region": "us-west-2",
+   "access_mode": "public-read",
+   "documentation_url": "https://www.neonscience.org/data-collection/airborne-remote-sensing",
+   "sample_prefix": "2019/FullSite/D14/2019_JORN_3/L3/DiscreteLidar/CanopyHeightModelGtif/",
+   "notes": "Sample prefix for JORN (Jornada Experimental Range) AOP LiDAR canopy-height GeoTIFFs (DP3.30015.001 mirror) in the 2019 visit. 1m-resolution UTM tiles. [via J-A-NEON]"
+  },
+  {
+   "bucket_id": "644c7453e918ee4b",
+   "archive_id": "nasa-earthdata",
+   "facility_id": null,
+   "provider": "s3",
+   "bucket_name": "asf-cumulus-prod-s1-slc",
+   "region": "us-west-2",
+   "access_mode": "registered-users",
+   "documentation_url": "https://asf.alaska.edu/datasets/daac/sentinel-1/",
+   "sample_prefix": "S1A_IW_SLC__1SDV_20240101/",
+   "notes": "Alaska Satellite Facility DAAC; Sentinel-1 SAR holdings used for sea-ice and glacier-velocity work. Earthdata Login required. retrieved_at=2026-05-06; agent=J-A-NSIDC-CRY [via J-A-NSIDC-CRY]"
+  },
+  {
+   "bucket_id": "906c818d7b9c7ed8",
+   "archive_id": "nasa-earthdata",
+   "facility_id": null,
+   "provider": "s3",
+   "bucket_name": "podaac-ops-cumulus-public",
+   "region": "us-west-2",
+   "access_mode": "public-anon-egress",
+   "documentation_url": "https://podaac.jpl.nasa.gov/CloudFAQ",
+   "sample_prefix": "L2/SWOT_KARIN/",
+   "notes": "PO.DAAC Cumulus bucket; hosts SWOT, MEaSUREs sea-surface, GRACE/GRACE-FO products that include cryosphere mass-loss signal. retrieved_at=2026-05-06; agent=J-A-NSIDC-CRY [via J-A-NSIDC-CRY]"
+  },
+  {
+   "bucket_id": "ad89a96775972392",
+   "archive_id": "nasa-earthdata",
+   "facility_id": null,
+   "provider": "s3",
+   "bucket_name": "ornldaac-cumulus-prod-public",
+   "region": "us-west-2",
+   "access_mode": "public-anon-egress",
+   "documentation_url": "https://daac.ornl.gov/cgi-bin/dsviewer.pl",
+   "sample_prefix": "above/ABoVE_AirSWOT/",
+   "notes": "ORNL DAAC Earthdata Cloud bucket; hosts ABoVE airborne campaign products including snow + permafrost-relevant Arctic Boreal layers. retrieved_at=2026-05-06; agent=J-A-NSIDC-CRY [via J-A-NSIDC-CRY]"
+  }
+ ]
+}
