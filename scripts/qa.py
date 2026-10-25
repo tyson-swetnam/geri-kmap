@@ -411,6 +411,16 @@ def check_geri(conn, failures: list[str]) -> None:
         if pending:
             print(f"[qa] WARNING: {len(pending)} harmonized site ids acknowledged as unresolved: "
                   f"{', '.join(pending)}", file=sys.stderr)
+    # A duplicate merged by load_geri_sites.py (data/seed/facility_merge_seed.csv)
+    # must not come back as a facility of its own.
+    merge_seed = root / "data" / "seed" / "facility_merge_seed.csv"
+    if merge_seed.exists():
+        with merge_seed.open(newline="", encoding="utf-8") as fh:
+            dups = sorted({r["duplicate_id"].strip() for r in _csv.DictReader(fh) if r.get("duplicate_id")})
+        back = conn.execute("SELECT facility_id, canonical_name FROM facilities "
+                            "WHERE facility_id IN (SELECT unnest(?::VARCHAR[]))", [dups]).fetchall()
+        assert_true(not back, f"{len(back)} facilities merged away in {merge_seed.name} are back: "
+                              f"{back[:5]}", failures)
     orphan_parent = conn.execute(
         """SELECT network_id FROM networks c WHERE parent_id IS NOT NULL
              AND NOT EXISTS (SELECT 1 FROM networks p WHERE p.network_id = c.parent_id)""").fetchall()

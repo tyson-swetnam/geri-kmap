@@ -21,9 +21,9 @@ The catalogue answers the questions the harmonization work keeps asking:
 
 | | |
 |---|---:|
-| Sites (facilities) | 1,036 |
+| Sites (facilities) | 1,019 |
 | Countries | 51 |
-| Sites covered by the GERI harmonized products | 116 (117 ids) |
+| Sites covered by the GERI harmonized products | 115 (117 ids) |
 
 Every site comes from an RI's own registry or from the GERI products themselves: DEIMS-SDR, the NEON Data API, the ICOS Carbon Portal, TERN's OzFlux server, SAEON's DataCite records and the GERI Data Store. Each site keeps every identifier it carries in those sources. See [Sources](sources.md) for the endpoints, [Networks](networks.md) for the counts per RI, and [Harmonized](harmonized.md) for the harmonized products. The Harmonized page includes the problems found in the products' site list.
 

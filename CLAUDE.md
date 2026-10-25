@@ -72,7 +72,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 
 ## GERI site layer
 
-- **Identity.** One facility per DEIMS-SDR site, `sha1("deims:" + uuid)[:16]`. NEON joins DEIMS through the `deimsId` NEON publishes. ICOS stations join through the station URI DEIMS records in the site's ICOS affiliation, normalised to `ES_FR-Lus`. An unmatched ICOS station becomes `sha1("icos:" + key)[:16]`. Nothing is matched by distance; co-located stations that are really one site go through `merge_facilities.py` with a reviewed `data/seed/facility_merge_seed.csv` row.
+- **Identity.** One facility per DEIMS-SDR site, `sha1("deims:" + uuid)[:16]`. NEON joins DEIMS through the `deimsId` NEON publishes. ICOS stations join through the station URI DEIMS records in the site's ICOS affiliation, normalised to `ES_FR-Lus`. An unmatched ICOS station becomes `sha1("icos:" + key)[:16]`. DEIMS station codes are canonicalised to Carbon Portal keys (`icos_canonicalizer`: case-insensitive, prefix optional). Nothing is matched by distance alone. One field site recorded twice is joined by a reviewed `data/seed/facility_merge_seed.csv` row (survivor_id, duplicate_id, evidence), which **`load_geri_sites.py` applies itself** (`merge_sites`). `merge_facilities.py` (lto) would be undone by the next load, because the loader rebuilds every site from the raw sources. A seed row naming an id no source produces stops the load. QA fails if a merged id is back.
 - **Umbrella sites.** When several DEIMS sites name one ICOS station (an LTSER platform and the plot inside it), the station id goes to the most specific one: not a platform, then the closest name. The loader prints each decision.
 - **Precedence.** RI-native values (NEON coordinates, name, habitat; ICOS coordinates) win over DEIMS. `facilities.country` is where the site is, not the operating country. DEIMS gives a list; the loader picks the listed country whose box holds the point. Corrections go in `data/seed/facility_fixes.csv` with a source per row.
 - **More sources.**
@@ -92,7 +92,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 
 ### Known gaps (next waves)
 
-- **Duplicates across registries** that don't name each other (ICOS Hyytiälä vs eLTER SMEAR II) need reviewed `data/seed/facility_merge_seed.csv` rows (`merge_facilities.py`).
+- **More duplicates** may surface as sources grow. Find candidates by same name within about 10 km across sources; a reviewed seed row merges them.
 - **EFTEON / CERN completeness:** only six SAEON/EFTEON eddy-covariance stations have DataCite records on the Data Store; CERN's list is DEIMS's 42.
 - **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. Browse cards and popups don't yet show `site_identifiers` or `harmonized_coverage`; that needs `BROWSE_SQL` and `list.js` changed together.
 

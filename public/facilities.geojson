@@ -62,34 +62,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-19.775,
-64.256
-]
-},
-"properties": {
-"id": "00965087e46906c1",
-"name": "Svartberget",
-"acronym": "SVB",
-"type": "icos-atmosphere-station",
-"country": "SE",
-"url": "http://meta.icos-cp.eu/resources/stations/AS_SVB",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "atmosphere",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 103.883,
 31.6833
 ]
@@ -210,7 +182,7 @@
 "id": "01f2bd454dfbb3d3",
 "name": "Leam West",
 "acronym": null,
-"type": "ri-site",
+"type": "icos-ecosystem-station",
 "country": "IE",
 "url": "https://deims.org/b8e50ad8-f7a6-40ba-8c0e-d9ec124e004d",
 "parent_org": "ICOS",
@@ -671,34 +643,6 @@
 ],
 "geri_harmonized": false,
 "deims_id": "12c79ecb-7890-4b75-9655-0883dacd8a29"
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-24.29477,
-61.84741
-]
-},
-"properties": {
-"id": "04e7baccd714fe0f",
-"name": "Hyytiala",
-"acronym": "FI-Hyy",
-"type": "icos-ecosystem-station",
-"country": "FI",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_FI-Hyy",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"icos"
-],
-"geri_harmonized": true,
-"deims_id": null
 }
 },
 {
@@ -2771,62 +2715,6 @@
 ],
 "geri_harmonized": true,
 "deims_id": "7b37ec94-7b2e-4122-b3fc-8583d0f3e978"
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-29.25184,
--28.99356
-]
-},
-"properties": {
-"id": "17838c8e5b599f82",
-"name": "Cathedral Peak Grassland Eddy Covariance",
-"acronym": null,
-"type": "flux-tower",
-"country": "ZA",
-"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.69963566",
-"parent_org": "SAEON",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"saeon"
-],
-"geri_harmonized": true,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-18.98415,
-57.4301
-]
-},
-"properties": {
-"id": "17bed45dd628a8c7",
-"name": "Ostergarnsholm",
-"acronym": "SE-Oes",
-"type": "icos-ecosystem-station",
-"country": "SE",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_SE-Oes",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
 }
 },
 {
@@ -5594,7 +5482,7 @@
 "ris": [
 "saeon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "276274c0-e5f4-4f51-aa12-c5008f6e401e"
 }
 },
@@ -6061,7 +5949,7 @@
 "id": "34ee29a593e8bf73",
 "name": "Norunda",
 "acronym": null,
-"type": "icos-ecosystem-station",
+"type": "icos-atmosphere-station",
 "country": "SE",
 "url": "https://deims.org/459284f2-c7cd-4bb1-96c3-2b38c338ff4a",
 "parent_org": "ICOS",
@@ -6212,7 +6100,7 @@
 "ris": [
 "saeon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "495a527c-4b57-4daa-b783-9b1e016dbaec"
 }
 },
@@ -7090,34 +6978,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-24.2947,
-61.8474
-]
-},
-"properties": {
-"id": "410e93790898534b",
-"name": "Hyyti\u00e4l\u00e4",
-"acronym": "SMR",
-"type": "icos-atmosphere-station",
-"country": "FI",
-"url": "http://meta.icos-cp.eu/resources/stations/AS_SMR",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "atmosphere",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 17.965833,
 -29.688333
 ]
@@ -7332,7 +7192,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "663dac80-211d-4c19-a356-04ee0da0f0eb"
 }
 },
@@ -8573,35 +8433,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-24.86112,
--28.8906
-]
-},
-"properties": {
-"id": "4d3b3068d1fbf392",
-"name": "Benfontein Savanna Eddy Covariance",
-"acronym": null,
-"type": "flux-tower",
-"country": "ZA",
-"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.90686782",
-"parent_org": "EFTEON",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"efteon",
-"saeon"
-],
-"geri_harmonized": true,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 11.8083,
 50.03
 ]
@@ -8638,15 +8469,17 @@
 "id": "4db00eaed0911142",
 "name": "Oulanka Research Station (Oulanka LTER)",
 "acronym": "Oulanka LTER",
-"type": "lter-site",
+"type": "icos-ecosystem-station",
 "country": "FI",
 "url": "https://deims.org/f81f30bb-6e2b-4a11-9b65-266fee2ae330",
-"parent_org": null,
+"parent_org": "ICOS",
 "established": 1966,
 "record_length_years": 60,
 "long_term_threshold_met": true,
 "primary_sphere": "terrestrial",
-"ris": [],
+"ris": [
+"icos"
+],
 "geri_harmonized": false,
 "deims_id": "f81f30bb-6e2b-4a11-9b65-266fee2ae330"
 }
@@ -9271,34 +9104,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-13.4189,
-56.0976
-]
-},
-"properties": {
-"id": "51bf5fc852332503",
-"name": "Hyltemossa",
-"acronym": "HTM",
-"type": "icos-atmosphere-station",
-"country": "SE",
-"url": "http://meta.icos-cp.eu/resources/stations/AS_HTM",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "atmosphere",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 25.98722,
 -33.88177
 ]
@@ -9511,34 +9316,6 @@
 "record_length_years": null,
 "long_term_threshold_met": null,
 "primary_sphere": "atmosphere",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-14.77035,
-49.02465
-]
-},
-"properties": {
-"id": "53d9e96369fcaec3",
-"name": "Trebon",
-"acronym": "CZ-wet",
-"type": "icos-ecosystem-station",
-"country": "CZ",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_CZ-wet",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
 "ris": [
 "icos"
 ],
@@ -11366,34 +11143,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-29.30768,
-66.37752
-]
-},
-"properties": {
-"id": "64a05f3839e7eb82",
-"name": "Oulanka",
-"acronym": "FI-Ouk",
-"type": "icos-ecosystem-station",
-"country": "FI",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_FI-Ouk",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 7.69194,
 45.7825
 ]
@@ -12773,13 +12522,14 @@
 "type": "lter-site",
 "country": "IT",
 "url": "https://deims.org/4312983f-c36a-4b46-b10a-a9dea2172849",
-"parent_org": "eLTER",
+"parent_org": "ICOS",
 "established": 2005,
 "record_length_years": 21,
 "long_term_threshold_met": true,
 "primary_sphere": "terrestrial",
 "ris": [
-"elter"
+"elter",
+"icos"
 ],
 "geri_harmonized": false,
 "deims_id": "4312983f-c36a-4b46-b10a-a9dea2172849"
@@ -12979,35 +12729,6 @@
 ],
 "geri_harmonized": false,
 "deims_id": "3bb4e99f-dc55-4a6b-819d-9081247d8201"
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-24.83985,
--28.85648
-]
-},
-"properties": {
-"id": "7345af2da46b1ce7",
-"name": "Benfontein Karoo Eddy Covariance",
-"acronym": null,
-"type": "flux-tower",
-"country": "ZA",
-"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.88212042",
-"parent_org": "EFTEON",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"efteon",
-"saeon"
-],
-"geri_harmonized": true,
-"deims_id": null
 }
 },
 {
@@ -18333,34 +18054,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-7.56089,
-45.82376
-]
-},
-"properties": {
-"id": "a1b3c90f781f54a2",
-"name": "Torgnon-LD",
-"acronym": "IT-TrF",
-"type": "icos-ecosystem-station",
-"country": "IT",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_IT-TrF",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 130.794355,
 -13.179121
 ]
@@ -18397,7 +18090,7 @@
 "id": "a1ef52530c538c33",
 "name": "Osservatorio Ximeniano Firenze",
 "acronym": null,
-"type": "ri-site",
+"type": "icos-ecosystem-station",
 "country": "IT",
 "url": "https://deims.org/7025fbc2-ff84-45e6-b2ff-c073513d3370",
 "parent_org": "ICOS",
@@ -19107,34 +18800,6 @@
 ],
 "geri_harmonized": false,
 "deims_id": "67d34e08-c377-4b1c-b6b8-14a7e47f717e"
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
--9.89284,
-53.45647
-]
-},
-"properties": {
-"id": "a9f3fd2a01510458",
-"name": "Leam West",
-"acronym": "IE-LmW",
-"type": "icos-ecosystem-station",
-"country": "IE",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_IE-LmW",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
 }
 },
 {
@@ -20743,7 +20408,7 @@
 "id": "b8c0cbc91cfdb848",
 "name": "SE-MFT-\u00d6stergarnsholm",
 "acronym": null,
-"type": "ri-site",
+"type": "icos-ocean-station",
 "country": "SE",
 "url": "https://deims.org/95ff1dea-6314-4ae9-a62e-852030789f06",
 "parent_org": "ICOS",
@@ -21314,34 +20979,6 @@
 ],
 "geri_harmonized": false,
 "deims_id": "3f02d3de-a233-41c0-b6fb-5f02c6c15ba5"
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-18.95543,
--33.99029
-]
-},
-"properties": {
-"id": "bd238909221c383c",
-"name": "Jonkershoek Fynbos Eddy Covariance",
-"acronym": null,
-"type": "flux-tower",
-"country": "ZA",
-"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.67986839",
-"parent_org": "SAEON",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"saeon"
-],
-"geri_harmonized": true,
-"deims_id": null
 }
 },
 {
@@ -23451,34 +23088,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-24.1157,
-67.9733
-]
-},
-"properties": {
-"id": "cfa5230dc8fee916",
-"name": "Pallas",
-"acronym": "PAL",
-"type": "icos-atmosphere-station",
-"country": "FI",
-"url": "http://meta.icos-cp.eu/resources/stations/AS_PAL",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "atmosphere",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 13.833911,
 52.878038
 ]
@@ -25197,15 +24806,16 @@
 "type": "ltser-platform",
 "country": "ZA",
 "url": "https://deims.org/7c252a07-91d9-49e7-96e5-d64d254dd056",
-"parent_org": "SAEON",
+"parent_org": "EFTEON",
 "established": 2018,
 "record_length_years": 8,
 "long_term_threshold_met": false,
 "primary_sphere": "terrestrial",
 "ris": [
+"efteon",
 "saeon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "7c252a07-91d9-49e7-96e5-d64d254dd056"
 }
 },
@@ -26921,34 +26531,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-17.4794,
-60.0864
-]
-},
-"properties": {
-"id": "f0e30320b1d8bb89",
-"name": "Norunda",
-"acronym": "NOR",
-"type": "icos-atmosphere-station",
-"country": "SE",
-"url": "http://meta.icos-cp.eu/resources/stations/AS_NOR",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "atmosphere",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 148.43585,
 -36.375649
 ]
@@ -27284,34 +26866,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-11.255111,
-43.774464
-]
-},
-"properties": {
-"id": "f43c9494e0aac5b4",
-"name": "Osservatorio Ximeniano Firenze",
-"acronym": "IT-OXm",
-"type": "icos-ecosystem-station",
-"country": "IT",
-"url": "http://meta.icos-cp.eu/resources/stations/ES_IT-OXm",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 11.309,
 47.122
 ]
@@ -27573,7 +27127,7 @@
 "id": "f6d5bf9c632e69c6",
 "name": "Hyltemossa",
 "acronym": null,
-"type": "icos-ecosystem-station",
+"type": "icos-atmosphere-station",
 "country": "SE",
 "url": "https://deims.org/b27549de-1e6f-4f3e-9e22-4d4f3dec61e3",
 "parent_org": "ICOS",
@@ -27895,34 +27449,6 @@
 ],
 "geri_harmonized": false,
 "deims_id": "13359776-ca92-4667-a2ba-587edbefce3e"
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
-18.995,
-57.423
-]
-},
-"properties": {
-"id": "f9078cc2352f4f8f",
-"name": "\u00d6stergarnsholm",
-"acronym": "SE-FOS-\u00d6stergarnsholm",
-"type": "icos-ocean-station",
-"country": "SE",
-"url": "http://meta.icos-cp.eu/resources/stations/OS_SE-FOS-%C3%96stergarnsholm",
-"parent_org": "ICOS",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "ocean-estuarine",
-"ris": [
-"icos"
-],
-"geri_harmonized": false,
-"deims_id": null
 }
 },
 {

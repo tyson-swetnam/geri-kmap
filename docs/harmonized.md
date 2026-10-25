@@ -10,22 +10,26 @@ Choose **Harmonized sites** in the Scope lens to see them on the map.
 
 | Product | Sites | Values |
 |---|---:|---:|
-| Air temperature, 30-minute | 116 | 15,009,008 |
-| Precipitation, hourly | 116 | 7,092,660 |
-| Soil moisture, 30-minute | 116 | 12,579,845 |
-| Soil temperature, 30-minute | 116 | 13,753,413 |
+| Air temperature, 30-minute | 115 | 15,009,008 |
+| Precipitation, hourly | 115 | 7,092,660 |
+| Soil moisture, 30-minute | 115 | 12,579,845 |
+| Soil temperature, 30-minute | 115 | 13,753,413 |
 | Soil texture, static | 82 | 2,082 |
 
-The products name **117 site ids**, and all of them resolve. Two ids are the same place: DE-HoH-E and DE-HoH-I are the eLTER and ICOS series of TERENO Hohes Holz. So 116 catalogue sites carry them:
+The products name **117 site ids**, and all of them resolve. Two pairs share a site, so 115 catalogue sites carry them:
+- DE-HoH-E and DE-HoH-I are the eLTER and ICOS series of TERENO Hohes Holz.
+- ZA-BfK and ZA-BfS are the Karoo and Savanna towers on Benfontein Private Nature Reserve.
 
 | RI | Sites |
 |---|---:|
 | NEON | 46 |
 | ICOS | 33 |
 | TERN | 27 |
-| eLTER | 13 |
-| SAEON | 8 |
-| EFTEON | 5 |
+| eLTER | 14 |
+| SAEON | 7 |
+| EFTEON | 4 |
+
+Coverage rows for a site with two series are added together: earliest first value, latest last value, summed counts.
 
 ## How ids are resolved
 

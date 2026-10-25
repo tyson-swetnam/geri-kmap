@@ -60,6 +60,7 @@ HARM_CSV = HARM_DIR / "geri_harmonized_sites.csv"
 HARM_URL = "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv"
 HARM_MAP = ROOT / "data" / "seed" / "geri_harmonized_site_map.csv"
 HARM_SUMMARY = HARM_DIR / "harmonized_summary.csv"
+MERGE_SEED = ROOT / "data" / "seed" / "facility_merge_seed.csv"
 COUNTRY_NAMES = ROOT / "schema" / "vocab" / "country_names.csv"
 COUNTRY_BBOX = ROOT / "schema" / "vocab" / "country_bbox.csv"
 
@@ -107,6 +108,64 @@ def fid(key: str) -> str:
 def icos_key(uri: str) -> str:
     """'https://meta.icos-cp.eu/resources/stations/ES_FR-Lus' -> 'ES_FR-Lus'."""
     return uri.rstrip("/").rsplit("/", 1)[-1]
+
+
+def icos_canonicalizer(stations: list[dict]):
+    """DEIMS writes ICOS station codes loosely: 'ES_IT-Oxm' for ES_IT-OXm,
+    'ES_CZ-Wet' for ES_CZ-wet, 'SE-OES' (no ES_/AS_/OS_ prefix) for
+    ES_SE-Oes. Map a code to the Carbon Portal's key: exact, else
+    case-insensitive, else (no prefix) the one station whose key without
+    its prefix matches. Returns None when nothing matches."""
+    keys = [icos_key(st["s"]) for st in stations]
+    exact = set(keys)
+    lower = {k.lower(): k for k in keys}
+    by_suffix: dict[str, list[str]] = {}
+    for k in keys:
+        by_suffix.setdefault(k.split("_", 1)[-1].lower(), []).append(k)
+
+    def canon(code: str) -> str | None:
+        if code in exact:
+            return code
+        if code.lower() in lower:
+            return lower[code.lower()]
+        hits = by_suffix.get(code.lower(), [])
+        return hits[0] if len(hits) == 1 else None
+    return canon
+
+
+def read_merge_seed() -> list[dict]:
+    """Reviewed pairs: one field site that two records describe."""
+    if not MERGE_SEED.exists():
+        return []
+    with MERGE_SEED.open(newline="", encoding="utf-8") as fh:
+        return [r for r in csv.DictReader(fh) if r.get("survivor_id")]
+
+
+def merge_sites(sites: dict[str, "Site"], pairs: list[dict]) -> int:
+    """Fold each duplicate into its survivor: every identifier, network,
+    sphere, point and provenance row moves; the survivor keeps its name,
+    country, point and primary sphere, and takes the duplicate's type only
+    when its own is the generic 'ri-site'. A pair naming an id that no
+    source produced stops the load (the seed has drifted from the data)."""
+    for r in pairs:
+        sid, did = r["survivor_id"].strip(), r["duplicate_id"].strip()
+        if sid not in sites or did not in sites:
+            missing = [x for x in (sid, did) if x not in sites]
+            raise SystemExit(f"[merge] {MERGE_SEED.name}: no facility {missing} "
+                             f"(pair {sid} <- {did}); review the seed")
+        s, d = sites[sid], sites.pop(did)
+        s.ids.update({k: v for k, v in d.ids.items() if k not in s.ids})
+        s.networks |= d.networks
+        s.ris |= d.ris
+        s.spheres |= d.spheres
+        s.locations += d.locations
+        s.prov += d.prov
+        if s.ftype == "ri-site" and d.ftype:
+            s.ftype = d.ftype
+        if s.established is None:
+            s.established, s.retrieved_year = d.established, s.retrieved_year or d.retrieved_year
+        print(f"[merge] '{d.name}' -> '{s.name}'")
+    return len(pairs)
 
 
 def country_lookup() -> dict[str, str]:
@@ -447,10 +506,15 @@ def build_sites() -> tuple[list[Site], dict]:
     sites: dict[str, Site] = {}
     by_deims: dict[str, Site] = {}
     claims: dict[str, list[Site]] = {}
+    canon = icos_canonicalizer(json.loads(ICOS_JSON.read_text())["stations"])
     for rec in deims["sites"]:
         s = from_deims(rec, deims["retrieved_at"], countries, boxes)
         sites[s.facility_id] = s
         by_deims[rec["deims_id"]] = s
+        for (scheme, value), src in list(s.ids.items()):
+            if scheme == "icos-station" and canon(value) not in (None, value):
+                del s.ids[(scheme, value)]
+                s.ids[(scheme, canon(value))] = src
         for scheme, value in s.ids:
             if scheme == "icos-station":
                 claims.setdefault(value, []).append(s)
@@ -525,6 +589,10 @@ def build_sites() -> tuple[list[Site], dict]:
         s = from_saeon(st, sa["retrieved_at"])
         sites[s.facility_id] = s
     stats["saeon_stations"] = len(sa["stations"])
+
+    # Reviewed merges: one field site recorded twice (an ICOS station and
+    # the DEIMS site that hosts it, ICOS ES and AS stations at one site).
+    stats["merged"] = merge_sites(sites, read_merge_seed())
 
     # GERI harmonized-product site ids. Sites no registry knows are built
     # from the harmonized list itself first, so the resolver finds them.
@@ -629,6 +697,10 @@ def main() -> int:
                     "AND record_id IN (SELECT facility_id FROM s_touched)")
         if stale:
             stage(con, "s_stale", ["facility_id VARCHAR"], [(f,) for f in stale])
+            # Rows load_geri_archives.py derives for a facility go with it;
+            # that script rebuilds them for the survivor on its next run.
+            for t in ("harmonized_coverage", "facility_archives"):
+                con.execute(f"DELETE FROM {t} WHERE facility_id IN (SELECT facility_id FROM s_stale)")
             con.execute("DELETE FROM facilities WHERE facility_id IN (SELECT facility_id FROM s_stale)")
         res = geri_db.merge_upsert(con, "facilities", ["facility_id"], "s_fac")
         stage(con, "s_loc", ["location_id VARCHAR", "facility_id VARCHAR", "label VARCHAR",
