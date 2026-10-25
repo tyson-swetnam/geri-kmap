@@ -123,8 +123,11 @@ function featureIds(features) {
 let _allCardsPromise = null;
 function loadAllCardsOnce() {
   if (_allCardsPromise) return _allCardsPromise;
-  _allCardsPromise = fetch(`${DATA_BASE}cache/browse_cards.json`,
-    { cache: 'force-cache' })
+  // Default caching, not 'force-cache': force-cache reuses a stored copy
+  // however old, so a returning visitor kept the cards from before a data
+  // update (and only the ids both versions share). The default honours
+  // Pages' max-age and then revalidates by ETag.
+  _allCardsPromise = fetch(`${DATA_BASE}cache/browse_cards.json`)
     .then((r) => r.ok ? r.json() : Promise.reject(new Error(`cache ${r.status}`)))
     .catch((err) => {
       // Reset so a future call can retry; don't let one failed fetch

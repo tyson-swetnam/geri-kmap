@@ -25,7 +25,7 @@ export function loadRoleLabels() {
   if (_loading) return _loading;
   _loading = (async () => {
     try {
-      const res = await fetch(`${DATA_BASE}vocab/personnel_roles.csv`, { cache: 'force-cache' });
+      const res = await fetch(`${DATA_BASE}vocab/personnel_roles.csv`);
       if (!res.ok) return;
       const lines = (await res.text()).split(/\r?\n/).slice(1);
       for (const line of lines) {
