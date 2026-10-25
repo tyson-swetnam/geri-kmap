@@ -43,6 +43,7 @@ endpoint,deims-sdr,https://deims.org/api/sites,https://deims.org/api/sites,200,o
 endpoint,deims-sdr,https://deims.org/api/sites/{deims_id},https://deims.org/api/sites/663dac80-211d-4c19-a356-04ee0da0f0eb,200,ok,,2026-10-25
 endpoint,elter-dar,https://dar.elter-ri.eu/api/external-datasets,https://dar.elter-ri.eu/api/external-datasets?size=1,200,ok,,2026-10-25
 endpoint,elter-dar,https://dar.elter-ri.eu/api/records,https://dar.elter-ri.eu/api/records?size=1,200,ok,,2026-10-25
+endpoint,elter-dar,"https://dar.elter-ri.eu/api/records?q=metadata.siteReferences.siteID:""{deims-uuid}""",https://dar.elter-ri.eu/api/records?size=1&q=metadata.siteReferences.siteID:%22f30007c4-8a6e-4f11-ab87-569db54638fe%22,200,ok,,2026-10-25
 endpoint,gbif,https://api.gbif.org/v1/dataset/{uuid},https://api.gbif.org/v1/dataset/7175660d-a6a4-4ecd-91fd-d3d86515c5c3,200,ok,,2026-10-25
 endpoint,gbif,https://api.gbif.org/v1/occurrence/download/request,,,unchecked,POST call; not sent,2026-10-25
 endpoint,gbif,https://api.gbif.org/v1/occurrence/search,https://api.gbif.org/v1/occurrence/search?taxonKey=2476674&limit=20,200,ok,,2026-10-25

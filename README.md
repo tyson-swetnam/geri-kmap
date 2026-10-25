@@ -53,6 +53,7 @@ Refresh from the registries:
 ```bash
 python scripts/fetch_deims.py && python scripts/fetch_neon.py && python scripts/fetch_icos.py
 python scripts/fetch_ozflux.py && python scripts/fetch_saeon_stations.py && python scripts/fetch_geri_datastore.py
+python scripts/fetch_elter_dar.py
 python scripts/summarize_harmonized.py --download   # only when the harmonized products change (~1 GB)
 python scripts/load_geri_sites.py
 python scripts/apply_facility_fixes.py

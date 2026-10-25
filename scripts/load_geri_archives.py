@@ -22,7 +22,10 @@ facility_archives links every site to its research infrastructure's
 archive with a per-site entry URL: NEON site -> the NEON explorer, ICOS
 station -> its landing page, DEIMS site -> its DEIMS record, OzFlux tower
 -> its THREDDS catalog, SAEON station -> its ODP landing page, CERN
-station -> CNERN.
+station -> CNERN. A site with records in the eLTER Digital Asset Register
+(data/raw/J-GERI/dar_site_records.json, fetch_elter_dar.py) links to the
+DAR's search for its DEIMS id, with the record count and a sample DOI:
+primary for eLTER sites, secondary for the rest.
 
 It also writes one data_products row per GERI harmonized file under
 ``geri-harmonized/`` (from
@@ -82,6 +85,9 @@ SITE_LINKS = [
     ("deims-id", "deims-sdr", "secondary", "https://deims.org/{value}"),
 ]
 NETWORK_LINKS = [("cern", "cnern", "primary")]           # no per-station page
+# The DAR's per-site search; the API (/api/records) takes the same q.
+DAR_SITES = RAW / "J-GERI" / "dar_site_records.json"
+DAR_SEARCH = 'https://dar.elter-ri.eu/search/?q=metadata.siteReferences.siteID:%22{value}%22'
 
 
 def sha16(s: str) -> str:
@@ -301,6 +307,28 @@ def main() -> int:
                            WHERE scheme = ? AND facility_id NOT IN (
                                  SELECT facility_id FROM facility_archives WHERE archive_id = ?)
                            GROUP BY facility_id""", [archive, role, tmpl, tmpl, scheme, archive])
+        if DAR_SITES.exists():
+            dar = json.loads(DAR_SITES.read_text())
+            con.execute("CREATE OR REPLACE TEMP TABLE s_dar (site_id VARCHAR, n_records INTEGER, "
+                        "sample_doi VARCHAR)")
+            con.executemany("INSERT INTO s_dar VALUES (?, ?, ?)",
+                            [[x["site_id"], x["n_records"], x["sample_doi"]] for x in dar["sites"]])
+            # A merged facility can hold two DEIMS ids: link the one with
+            # the most records, count both (a record naming both counts twice).
+            con.execute("""INSERT INTO facility_archives BY NAME
+                           SELECT si.facility_id, 'elter-dar' AS archive_id,
+                                  CASE WHEN si.facility_id IN (SELECT facility_id FROM network_membership
+                                                               WHERE network_id = 'elter')
+                                       THEN 'primary' ELSE 'secondary' END AS role,
+                                  replace(?, '{value}', arg_max(d.site_id, (d.n_records, d.site_id))) AS scope_url,
+                                  string_agg(d.site_id, ' ' ORDER BY d.site_id) AS scope_id,
+                                  arg_max(d.sample_doi, (d.n_records, d.site_id)) AS sample_doi,
+                                  sum(d.n_records) || ' records in the eLTER DAR (as of ' || ? || ')' AS notes
+                           FROM site_identifiers si JOIN s_dar d ON d.site_id = si.value
+                           WHERE si.scheme = 'deims-id'
+                           GROUP BY si.facility_id""", [DAR_SEARCH, dar["retrieved_at"]])
+            print(f"[dar] {geri_db.scalar(con, "SELECT count(*) FROM facility_archives WHERE archive_id = 'elter-dar'")}"
+                  f" sites linked to the eLTER DAR ({len(dar['sites'])} DEIMS sites have records)")
         for network, archive, role in NETWORK_LINKS:
             con.execute("""INSERT INTO facility_archives BY NAME
                            SELECT facility_id, ? AS archive_id, ? AS role

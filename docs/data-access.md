@@ -14,7 +14,7 @@ Every site links to its research infrastructure's archive, with a per-site entry
 | NEON Data Portal | NEON products, 81 sites | REST (`data.neonscience.org/api/v0`) | Catalog calls public; **data calls need a NEON API token** (403 without one) |
 | ICOS Carbon Portal | ICOS stations and data objects | SPARQL, station/object JSON, `icoscp` library | Metadata public; **downloads need acceptance of the ICOS CC BY 4.0 licence** |
 | DEIMS-SDR | Site records of eLTER, ICOS, NEON, TERN, SAEON, CERN | REST (OpenAPI at `deims.org/api`) | Public (metadata CC BY-NC 4.0) |
-| eLTER Digital Asset Register | eLTER datasets | REST (`dar.elter-ri.eu/api`) | Public |
+| eLTER Digital Asset Register | eLTER datasets, 3,330 records naming 674 DEIMS sites | REST (`dar.elter-ri.eu/api`) | Public |
 | TERN Data Access Platform | OzFlux and other TERN netCDF | THREDDS, OPeNDAP, HTTP download | Public (CC BY 4.0) |
 | TERN Data Discovery Portal | TERN metadata | OGC CSW 2.0.2 (XML) | Public |
 | SAEON Open Data Platform | SAEON / EFTEON station records | REST (ODP API 2.4) | **API needs an ODP client (OAuth2)**; landing pages public |
@@ -32,6 +32,7 @@ Each archive and endpoint row carries `access_mode` (from `schema/vocab/access_m
 - **NEON site:** the data-product explorer for its site code.
 - **ICOS station:** its Carbon Portal landing page (the ecosystem station when a site has several).
 - **DEIMS-SDR site:** its DEIMS record. Every DEIMS site; this is a secondary link when the site's RI has its own archive.
+- **eLTER Digital Asset Register:** a search for the site's DEIMS id (`q=metadata.siteReferences.siteID:"<uuid>"`), with the record count and a sample DOI. 558 sites have records: 531 eLTER sites (primary link) and 27 others, mostly ICOS stations (secondary). `scripts/fetch_elter_dar.py` reads every DAR record and counts them per site, into `data/raw/J-GERI/dar_site_records.json`. The DAR also names 116 DEIMS sites outside the six networks (ICP Forests, national LTER networks, sites with no network); those aren't in geri-kmap.
 - **OzFlux tower:** its THREDDS catalog.
 - **SAEON/EFTEON station:** its ODP landing page (the URL DataCite holds for its DOI).
 - **CERN station:** CNERN, which has no per-station page.

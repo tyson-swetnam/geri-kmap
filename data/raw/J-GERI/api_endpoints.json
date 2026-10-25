@@ -158,6 +158,20 @@
   },
   {
    "archive_id": "elter-dar",
+   "path_or_url": "https://dar.elter-ri.eu/api/records?q=metadata.siteReferences.siteID:\"{deims-uuid}\"",
+   "method": "GET",
+   "purpose": "Records for one site, by its DEIMS-SDR id",
+   "response_format": "application/json",
+   "schema_url": null,
+   "example_call": "curl \"https://dar.elter-ri.eu/api/records?size=10&q=metadata.siteReferences.siteID:%22f30007c4-8a6e-4f11-ab87-569db54638fe%22\"",
+   "check_url": "https://dar.elter-ri.eu/api/records?size=1&q=metadata.siteReferences.siteID:%22f30007c4-8a6e-4f11-ab87-569db54638fe%22",
+   "notes": "Each record lists its sites in metadata.siteReferences[] (siteID = DEIMS uuid). Returned 11 of 3,330 records for Lago Maggiore (f30007c4-…) on 2026-10-25; the web search takes the same q at https://dar.elter-ri.eu/search/.",
+   "access_mode": "public-read",
+   "source_url": "https://dar.elter-ri.eu/api/records?size=1&q=metadata.siteReferences.siteID:%22f30007c4-8a6e-4f11-ab87-569db54638fe%22",
+   "retrieved_at": "2026-10-25"
+  },
+  {
+   "archive_id": "elter-dar",
    "path_or_url": "https://dar.elter-ri.eu/api/external-datasets",
    "method": "GET",
    "purpose": "search",

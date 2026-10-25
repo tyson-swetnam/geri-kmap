@@ -28,6 +28,7 @@ python scripts/fetch_neon.py                  # NEON sites + habitat / field-sit
 python scripts/fetch_icos.py                  # ICOS ES/AS/OS stations with a station class
 python scripts/fetch_ozflux.py                # OzFlux towers from TERN THREDDS (L3 global attributes via .das)
 python scripts/fetch_saeon_stations.py        # every SAEON / EFTEON Observations Monitor station (DataCite, prefix 10.15493)
+python scripts/fetch_elter_dar.py             # eLTER DAR records counted per DEIMS site → data/raw/J-GERI/dar_site_records.json
 python scripts/fetch_geri_datastore.py        # GERI Data Store (anonymous WebDAV): harmonized site list, eLTER/SAEON metadata, file listing
 python scripts/summarize_harmonized.py --download   # harmonized parquet (~1 GB, data/cache/) → committed harmonized_summary.csv; only when the products change
 python scripts/load_geri_sites.py             # data/raw/R-GERI-* → lake (owns every R-GERI-* facility; assigns harmonized ids)
@@ -100,7 +101,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 - **Two sources.** `data/raw/J-GERI/{archives,api_endpoints}.json` is curated, and every row cites its `source_url`; `archive_overrides` corrects imported archives (e.g. NEON's token requirement). `data/raw/J-LTO/` is a faithful copy of lto's rows for the GERI-relevant archives. The loader reads J-LTO, then J-GERI; the same archive and URL means J-GERI wins.
 - **Checks decide what loads.** `check_endpoints.py` writes `data/seed/endpoint_checks.csv`, and the loader skips rows whose verdict is `gone`. An endpoint's `access_mode` is the curated one, else follows from its check (auth → registered-users, ok → public-read). A bucket's access is what an anonymous listing showed, overriding lto's claim, with a note saying so. An archive with no stated access takes the strictest of its checked endpoints.
 - **lto's bucket table was fixed at source.** Four of its five buckets for these archives did not exist (2026-10-25). lto#26 (`f08a3d3`) added `scripts/check_cloud_buckets.py` there and corrected the table. Re-import with `import_lto_archives.py --lto <a checkout of lto main>`: `../lto` may be on another branch. The loader still drops anything `check_endpoints.py` finds gone.
-- **Site links:** `SITE_LINKS` / `NETWORK_LINKS` in `load_geri_archives.py` map identifier schemes to archives and entry-URL templates.
+- **Site links:** `SITE_LINKS` / `NETWORK_LINKS` in `load_geri_archives.py` map identifier schemes to archives and entry-URL templates. eLTER DAR links come from `dar_site_records.json` (`DAR_SEARCH`): only sites with records are linked, primary for eLTER members. The DAR's `siteReferences[].siteID` is the DEIMS uuid.
 
 ### Known gaps (next waves)
 
