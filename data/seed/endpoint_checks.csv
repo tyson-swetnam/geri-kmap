@@ -31,11 +31,8 @@ archive,tern-dap,api_url:https://dap.tern.org.au/thredds/,https://dap.tern.org.a
 archive,tern-dap,base_url:https://dap.tern.org.au/thredds/catalog.html,https://dap.tern.org.au/thredds/catalog.html,200,ok,,2026-10-25
 archive,tern-portal,api_url:https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,200,ok,,2026-10-25
 archive,tern-portal,base_url:https://portal.tern.org.au/,https://portal.tern.org.au/,200,ok,,2026-10-25
-bucket,nasa-earthdata,s3:asf-cumulus-prod-s1-slc,https://asf-cumulus-prod-s1-slc.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,404,gone,no such bucket,2026-10-25
-bucket,nasa-earthdata,s3:ornldaac-cumulus-prod-public,https://ornldaac-cumulus-prod-public.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,404,gone,no such bucket,2026-10-25
+bucket,nasa-earthdata,s3:asf-ngap2w-p-s1-slc-7b420b89,https://asf-ngap2w-p-s1-slc-7b420b89.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,403,auth,anonymous listing denied,2026-10-25
 bucket,nasa-earthdata,s3:podaac-ops-cumulus-public,https://podaac-ops-cumulus-public.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,403,auth,anonymous listing denied,2026-10-25
-bucket,neon-data-portal,s3:neon-aop-products,https://neon-aop-products.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,404,gone,no such bucket,2026-10-25
-bucket,neon-data-portal,s3:neon-prod-pub-1,https://neon-prod-pub-1.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,404,gone,no such bucket,2026-10-25
 endpoint,cnern,http://passport2.cern.ac.cn/reg,http://passport2.cern.ac.cn/reg,200,ok,,2026-10-25
 endpoint,cnern,http://www.cnern.org.cn/data/initDRsearch,http://www.cnern.org.cn/data/initDRsearch,200,ok,,2026-10-25
 endpoint,datacite,https://api.datacite.org/dois,https://api.datacite.org/dois?prefix=10.15493&page[size]=1,200,ok,,2026-10-25

@@ -99,7 +99,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 
 - **Two sources.** `data/raw/J-GERI/{archives,api_endpoints}.json` is curated, and every row cites its `source_url`; `archive_overrides` corrects imported archives (e.g. NEON's token requirement). `data/raw/J-LTO/` is a faithful copy of lto's rows for the GERI-relevant archives. The loader reads J-LTO, then J-GERI; the same archive and URL means J-GERI wins.
 - **Checks decide what loads.** `check_endpoints.py` writes `data/seed/endpoint_checks.csv`, and the loader skips rows whose verdict is `gone`. An endpoint's `access_mode` is the curated one, else follows from its check (auth → registered-users, ok → public-read). A bucket's access is what an anonymous listing showed, overriding lto's claim, with a note saying so. An archive with no stated access takes the strictest of its checked endpoints.
-- **Don't trust lto's bucket table.** Four of its five buckets for these archives did not exist (2026-10-25). The same check should be run on lto itself.
+- **lto's bucket table was fixed at source.** Four of its five buckets for these archives did not exist (2026-10-25). lto#26 (`f08a3d3`) added `scripts/check_cloud_buckets.py` there and corrected the table. Re-import with `import_lto_archives.py --lto <a checkout of lto main>`: `../lto` may be on another branch. The loader still drops anything `check_endpoints.py` finds gone.
 - **Site links:** `SITE_LINKS` / `NETWORK_LINKS` in `load_geri_archives.py` map identifier schemes to archives and entry-URL templates.
 
 ### Known gaps (next waves)

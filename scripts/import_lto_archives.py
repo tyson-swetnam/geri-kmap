@@ -15,7 +15,8 @@ data/raw/J-LTO/{archives,api_endpoints,cloud_buckets}.json with the lto
 commit they came from. It does not judge them: check_endpoints.py
 requests every URL, and load_geri_archives.py loads only rows whose check
 did not find them gone. (On 2026-10-25 four of lto's five bucket records
-for these archives named buckets that do not exist.)
+for these archives named buckets that do not exist; lto#26 fixed them.)
+Pass --lto a checkout of lto's main: ../lto may be on a work branch.
 
 Usage::
 

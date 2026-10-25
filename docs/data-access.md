@@ -43,6 +43,6 @@ Each archive and endpoint row carries `access_mode` (from `schema/vocab/access_m
 - **`data/raw/J-LTO/`:** records copied from [lto](https://github.com/tyson-swetnam/lto) for the archives that serve GERI sites: NEON, GBIF, OBIS, KNB, NASA Earthdata, ORNL DAAC (`scripts/import_lto_archives.py`).
 - **`data/seed/endpoint_checks.csv`:** `scripts/check_endpoints.py` requests every URL and records what answered: ok, auth, alive, gone or error. A row found **gone** is not loaded.
 
-On 2026-10-25 the check found four of lto's five bucket records naming buckets that do not exist: `neon-prod-pub-1`, `neon-aop-products`, `asf-cumulus-prod-s1-slc` and `ornldaac-cumulus-prod-public`. The fifth, `podaac-ops-cumulus-public`, exists but refuses anonymous listing, so it is recorded as account-only.
+On 2026-10-25 the check found four of lto's five bucket records for these archives naming buckets that do not exist (`neon-prod-pub-1`, `neon-aop-products`, `asf-cumulus-prod-s1-slc`, `ornldaac-cumulus-prod-public`). The fifth, `podaac-ops-cumulus-public`, refused anonymous access. lto fixed its bucket table the same day ([lto#26](https://github.com/tyson-swetnam/lto/pull/26), `scripts/check_cloud_buckets.py`), checking every bucket against the storage service and the AWS Open Data Registry. The import now carries two buckets, both needing an Earthdata login: `podaac-ops-cumulus-public` and ASF's Sentinel-1 SLC bucket `asf-ngap2w-p-s1-slc-7b420b89`.
 
 NEON serves files through pre-signed URLs from its token-protected data API, not through a public bucket.
