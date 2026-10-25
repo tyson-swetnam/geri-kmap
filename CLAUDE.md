@@ -65,6 +65,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 - **Browser SQL is DuckDB 1.5 SQL** (`@duckdb/duckdb-wasm@1.33.1-dev65.0`). Anything in `src/` must run on 1.5.
 - **Views live in two places.** A view the frontend needs goes in **both** `schema/schema.sql` and `helperViews` in `src/db.js`. `v_facility_geri` is the GERI one.
 - **The table lists must agree.** They are `TABLES` in `scripts/export_parquet.py` and the `tables` / `lazyTables` arrays in `src/db.js`. A new table also needs a row in `schema/table_descriptions.csv`, or the MESA publish preflight fails.
+- **Never `cache: 'force-cache'` a data fetch.** It served returning visitors pre-update cards. Default caching honours Pages' 10-minute max-age.
 - **The Browse cache bypasses DuckDB.** `src/views/list.js` reads `public/cache/browse_cards.json` first. Keep `BROWSE_SQL` in `scripts/export_view_caches.py` and the fallback SQL in `list.js` identical.
 - **Vocabularies are duplicated** in `schema/vocab/` (canonical) and `public/vocab/` (served). One mapping, `scripts/load_vocab.py`, is used by the loaders and by QA's vocab-sync check.
 - **The scope lens is defined twice.** `SCOPES` in `src/filters.js` has `sql` for DuckDB and `test` over the GeoJSON properties (`ris`, `geri_harmonized`) that `export_parquet.py` writes. Keep them in step.
@@ -94,7 +95,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 
 - **More duplicates** may surface as sources grow. Find candidates by same name within about 10 km across sources; a reviewed seed row merges them.
 - **EFTEON / CERN completeness:** only six SAEON/EFTEON eddy-covariance stations have DataCite records on the Data Store; CERN's list is DEIMS's 42.
-- **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. Browse cards and popups don't yet show `site_identifiers` or `harmonized_coverage`; that needs `BROWSE_SQL` and `list.js` changed together.
+- **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. Browse cards show registry ids and harmonized coverage (the `ids` / `cov` CTEs in both `BROWSE_SQL` and `list.js`); map popups don't yet.
 
 ## MESA project on the CyVerse Data Store
 
