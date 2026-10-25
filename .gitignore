@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+.vite/
+
+# Data artifacts (regenerable — do not commit large binaries)
+data/raw/**/*.json
+data/raw/**/*.csv
+data/processed/*.parquet
+data/processed/*.csv
+db/*.duckdb
+db/parquet/*.parquet
+# public/parquet/*.parquet IS COMMITTED — the static GitHub Pages site
+# loads these via DuckDB-Wasm HTTP-range reads, so they need to be in
+# the deployed artifact. The refresh-data.yml workflow opens a PR
+# to update them weekly. Total size ~500KB across ~32 parquet files.
+
+# Exception: the GERI fetchers commit what each registry returned, so the
+# lake can be re-loaded from a clean clone and a registry change shows up
+# as a diff. Fetch caches (data/cache/) stay ignored.
+!data/raw/R-GERI-*/
+!data/raw/R-GERI-*/*.json
+!data/raw/R-GERI-*/*.csv
+data/cache/
+
+# Large raster deliverables — too big for GitHub without LFS.
+# Use `git add -f path.img` only after `git lfs install` has been run.
+*.img
+*.tif
+*.tiff
+
+# Geocoder cache
+.geocode_cache.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# DuckDB write-ahead log sidecar (regenerated on every open).
+db/*.duckdb.wal
+db/*.duckdb.tmp
+db/*.duckdb.bak
+
+# Cowork-mode helper scripts emitted alongside batches of work. They are
+# one-shot commit drivers, not source. Keep on disk for reference; don't
+# track or push.
+COMMIT_*.sh
+
+# DuckLake store of record (scripts/geri_db.py): SQLite catalog + data files.
+# Local working state, rebuilt from public/parquet by
+# scripts/rebuild_lake_from_parquet.py; public/parquet stays canonical.
+db/geri_catalog.sqlite
+db/geri_catalog.sqlite-*
+db/geri_catalog.sqlite.lock
+*.sqlite.lock
+db/lake/
+
+# MESA publish staging, and the retired publish-time lake
+# (publish_to_mesa.py no longer builds it; ignored so old copies stay out).
+.mesa_publish/
+.mesa_publish_avus.json
+db/*.ducklake
+db/*.ducklake.wal
+db/ducklake_data/
+

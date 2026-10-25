@@ -1,0 +1,543 @@
+// docs.js — Docs view: tabbed reader for the repo's human-authored
+// markdown under /docs/, with a per-doc auto-generated table of
+// contents in the right rail.
+//
+// NOTE on path resolution
+// -----------------------
+// docs are fetched from a DIFFERENT base than the rest of the app's
+// data. config.js's DATA_BASE points at /<repo>/public/ (where parquet
+// + json data live), but the human-authored markdown lives in
+// /<repo>/docs/ at the repo root. Using DATA_BASE here produced a 404
+// on "public/docs/cod_purpose_and_msi_handout.md" — that path doesn't
+// exist on GitHub Pages. Resolving relative to document.baseURI (the
+// directory of index.html, which IS the repo root on GitHub Pages)
+// fixes it. The deploy workflow (.github/workflows/deploy.yml) stages
+// /docs/ alongside /public/ so these paths resolve to
+// /<repo>/docs/<file>.md on the live site.
+//
+// Routing
+// -------
+// Top-level route '/docs' renders the first tab. Sub-routes like
+// '/docs/methods' switch to the matching slug. Slugs are derived from
+// the filename (stem, lower-cased, dashes for underscores) so links
+// stay stable: e.g. 'docs/cod_purpose_and_msi_handout.md' →
+// '#/docs/cod-purpose-and-msi-handout'.
+
+const BASE = new URL('./', document.baseURI).href;
+
+// One entry per markdown file under /docs/. Order = tab order in the
+// UI. The first entry is the default tab when no slug is in the URL.
+const DOC_PAGES = [
+  { title: 'Overview',   path: 'docs/index.md' },
+  { title: 'Networks',   path: 'docs/networks.md' },
+  { title: 'Data Model', path: 'docs/data-model.md' },
+  { title: 'Sources',    path: 'docs/sources.md' },
+];
+
+// Compute slug once per page. Filename stem with underscores → dashes,
+// lower-cased; e.g. 'docs/orcid_enrichment_plan.md' → 'orcid-enrichment-plan'.
+DOC_PAGES.forEach((p) => {
+  p.slug = p.path.replace(/^docs\//, '').replace(/\.md$/, '')
+            .toLowerCase().replace(/_/g, '-');
+});
+
+let _container = null;
+const _docCache = new Map();   // slug → { html, toc }
+let _activeSlug = null;
+
+
+// ── Markdown → HTML (with id-anchored headings for TOC links) ───────
+function escHtml(s) {
+  return String(s).replace(/[&<>"]/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function rewriteHref(href) {
+  // Internal cross-doc link, e.g. './spheres.md' or 'spheres.md' → SPA hash route.
+  // Strip a leading './', drop any trailing '#anchor' if present (we let the
+  // browser handle it after the route resolves), then convert filename stem
+  // (underscores → dashes, lower-cased) to the same slug DOC_PAGES uses.
+  //
+  // Paths may contain '/' (the OKF bundle lives under docs/okf/). A leading
+  // '/' is docs-root-relative; anything else resolves against the ACTIVE
+  // doc's directory, so './access-erddap.md' inside 'okf/index' lands on
+  // 'okf/access-erddap'. '..' segments are resolved, never emitted.
+  const m = String(href).match(/^(\.?\.?\/?[\w./_-]+)\.md(#.*)?$/i);
+  if (m) {
+    let raw = m[1].toLowerCase().replace(/_/g, '-');
+    const anchor = m[2] || '';
+    if (raw.startsWith('/')) {
+      raw = raw.slice(1);
+    } else {
+      const dir = (_activeSlug || '').includes('/')
+        ? _activeSlug.slice(0, _activeSlug.lastIndexOf('/') + 1) : '';
+      raw = dir + raw.replace(/^\.\//, '');
+    }
+    const parts = [];
+    for (const seg of raw.split('/')) {
+      if (seg === '..') parts.pop();
+      else if (seg !== '.' && seg !== '') parts.push(seg);
+    }
+    return { href: `#/docs/${parts.join('/')}${anchor}`, external: false };
+  }
+  // Bare in-page anchor.
+  if (String(href).startsWith('#')) return { href, external: false };
+  // Everything else is external.
+  return { href, external: true };
+}
+
+function inlinesMd(s) {
+  return escHtml(s)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // <https://…> autolink; escHtml has already turned the brackets into &lt; &gt;.
+    .replace(/&lt;(https?:\/\/[^\s]+?)&gt;/g,
+      (_m, url) => `<a href="${url}" target="_blank" rel="noopener">${url}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, text, href) => {
+      const { href: out, external } = rewriteHref(href);
+      const attrs = external
+        ? ` href="${out}" target="_blank" rel="noopener"`
+        : ` href="${out}"`;
+      return `<a${attrs}>${text}</a>`;
+    });
+}
+
+function slugify(text) {
+  return String(text || '')
+    .replace(/<[^>]+>/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80) || 'h';
+}
+
+function parseCells(line) {
+  return line.replace(/^\||\|$/g, '').split('|').map((s) => s.trim());
+}
+
+function renderTable(lines) {
+  const rows = lines.filter((l) => !/^\|[-| ]+\|/.test(l));
+  if (!rows.length) return '';
+  const [head, ...body] = rows;
+  const thCells = parseCells(head).map((c) => `<th>${inlinesMd(c)}</th>`).join('');
+  const tbRows = body.map((r) => {
+    const tds = parseCells(r).map((c) => `<td>${inlinesMd(c)}</td>`).join('');
+    return `<tr>${tds}</tr>`;
+  }).join('');
+  return `<table class="md-table"><thead><tr>${thCells}</tr></thead><tbody>${tbRows}</tbody></table>`;
+}
+
+// Render markdown → { html, toc }. The TOC is a list of
+// { level, text, id } extracted from h1/h2/h3 headings; each heading
+// in the rendered HTML carries the matching `id` attribute so TOC
+// links work as in-page anchors.
+function mdToHtml(md) {
+  const lines = md.split('\n');
+  const out = [];
+  const toc = [];
+  const seenIds = new Set();
+  let inCode = false, codeLines = [];           // ```fenced``` code
+  let inIndentCode = false, indentLines = [];   // 4-space-indented code
+  let inTable = false, tableLines = [];
+  let inBQ = false, bqLines = [];
+  let inHtml = false, htmlLines = [];
+  // Consecutive prose lines form one paragraph (markdown soft wrap), so
+  // inline markup that spans a line break — **bold**, [links](…) — renders.
+  let paraLines = [];
+  // Raw text of the open <li>, re-rendered whole when a continuation line
+  // arrives, for the same reason.
+  let liRaw = null;
+
+  // Stack of `<ul>`/`<ol>` indents currently open.
+  // Each entry = { indent: number-of-leading-spaces, kind: 'ul'|'ol' }
+  const listStack = [];
+  const closeListsTo = (targetIndent) => {
+    while (listStack.length && listStack[listStack.length - 1].indent >= targetIndent) {
+      out.push(`</${listStack.pop().kind}>`);
+    }
+  };
+  const closeAllLists = () => closeListsTo(-1);
+
+  const flushTable = () => {
+    if (inTable) { out.push(renderTable(tableLines)); tableLines = []; inTable = false; }
+  };
+  const flushIndentCode = () => {
+    if (inIndentCode) {
+      // Strip the 4-space indent before emitting.
+      out.push('<pre><code>' + indentLines.map((l) => escHtml(l.replace(/^ {4}/, ''))).join('\n') + '</code></pre>');
+      indentLines = [];
+      inIndentCode = false;
+    }
+  };
+  const flushPara = () => {
+    if (paraLines.length) {
+      out.push(`<p>${inlinesMd(paraLines.join(' '))}</p>`);
+      paraLines = [];
+    }
+  };
+  const flushBQ = () => {
+    if (inBQ) {
+      // Blank '>' lines separate paragraphs inside the quote.
+      const paras = bqLines.join('\n').split(/\n\s*\n/)
+        .map((p) => p.split('\n').map((l) => l.trim()).join(' ').trim())
+        .filter(Boolean);
+      out.push('<blockquote>' + paras.map((p) => `<p>${inlinesMd(p)}</p>`).join('') + '</blockquote>');
+      bqLines = [];
+      inBQ = false;
+    }
+  };
+  const flushHtml = () => {
+    if (inHtml) { out.push(htmlLines.join('\n')); htmlLines = []; inHtml = false; }
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Fenced code block — highest precedence.
+    if (line.startsWith('```')) {
+      if (inCode) {
+        out.push('<pre><code>' + codeLines.map(escHtml).join('\n') + '</code></pre>');
+        codeLines = [];
+        inCode = false;
+      } else {
+        flushPara(); closeAllLists(); flushTable(); flushIndentCode(); flushBQ(); flushHtml();
+        inCode = true;
+      }
+      continue;
+    }
+    if (inCode) { codeLines.push(line); continue; }
+
+    // Pass-through HTML block (line begins with `<` and looks like a tag).
+    // Flushed as-is so authors can drop in <iframe>, <details>, <img>, etc.
+    // A line opening with an <https://…> autolink is prose, not a tag.
+    if (/^<[a-zA-Z!][^>]*>?/.test(line.trim()) && !/^<https?:\/\//.test(line.trim())
+        && !inIndentCode) {
+      if (!inHtml) {
+        flushPara(); closeAllLists(); flushTable(); flushIndentCode(); flushBQ();
+        inHtml = true;
+      }
+      htmlLines.push(line);
+      continue;
+    }
+    if (inHtml && line.trim() === '') { flushHtml(); continue; }
+    if (inHtml) { htmlLines.push(line); continue; }
+
+    // Pipe-table.
+    if (line.startsWith('|')) {
+      flushPara(); closeAllLists(); flushIndentCode(); flushBQ();
+      tableLines.push(line);
+      inTable = true;
+      continue;
+    }
+    if (inTable) flushTable();
+
+    // Headings (always close pending blocks first).
+    const hMatch = line.match(/^(#{1,6})\s+(.*)/);
+    if (hMatch) {
+      flushPara(); closeAllLists(); flushIndentCode(); flushBQ();
+      const level = hMatch[1].length;
+      const rawText = hMatch[2];
+      let id = slugify(rawText);
+      let n = 2;
+      const baseId = id;
+      while (seenIds.has(id)) id = `${baseId}-${n++}`;
+      seenIds.add(id);
+      if (level <= 3) toc.push({ level, text: rawText.replace(/[`*_]/g, ''), id });
+      out.push(`<h${level} id="${escHtml(id)}">${inlinesMd(rawText)}</h${level}>`);
+      continue;
+    }
+
+    // Horizontal rule.
+    if (/^---+$/.test(line.trim())) {
+      flushPara(); closeAllLists(); flushIndentCode(); flushBQ();
+      out.push('<hr>');
+      continue;
+    }
+
+    // Blockquote.
+    const bqMatch = line.match(/^>\s?(.*)/);
+    if (bqMatch) {
+      flushPara(); closeAllLists(); flushIndentCode();
+      if (!inBQ) inBQ = true;
+      bqLines.push(bqMatch[1]);
+      continue;
+    }
+    if (inBQ) flushBQ();
+
+    // List item: bullet (- *) or numbered (1. ). Indent (every 2 spaces) is
+    // a nesting level. We open / close <ul>/<ol> as the indent depth changes.
+    const listMatch = line.match(/^(\s*)([-*]|\d+\.)\s+(.*)/);
+    if (listMatch) {
+      flushPara(); flushIndentCode(); flushBQ();
+      const indent = listMatch[1].length;
+      const marker = listMatch[2];
+      const text = listMatch[3];
+      const kind = /\d+\./.test(marker) ? 'ol' : 'ul';
+
+      // Close deeper lists.
+      closeListsTo(indent + 1);
+      // Open a new list if the current top is shallower or different kind.
+      if (!listStack.length
+          || listStack[listStack.length - 1].indent < indent
+          || listStack[listStack.length - 1].kind !== kind) {
+        listStack.push({ indent, kind });
+        out.push(`<${kind}>`);
+      }
+      liRaw = text;
+      out.push(`<li>${inlinesMd(text)}</li>`);
+      continue;
+    }
+    // A list-item continuation line (extra-indented prose under a bullet)
+    // — append it to the previous <li> as a soft break so the bullet keeps
+    // its full text. Only triggers while we're inside a list.
+    if (listStack.length && /^\s{2,}\S/.test(line)) {
+      const last = out.length - 1;
+      if (last >= 0 && out[last].endsWith('</li>') && liRaw !== null) {
+        liRaw += ' ' + line.trim();
+        out[last] = `<li>${inlinesMd(liRaw)}</li>`;
+        continue;
+      }
+    }
+    liRaw = null;
+    if (line.trim() !== '' && listStack.length) closeAllLists();
+
+    // Indented (4-space) code block — but only when we're NOT in a list.
+    if (/^ {4}\S/.test(line) && !listStack.length && !paraLines.length) {
+      flushTable();
+      if (!inIndentCode) inIndentCode = true;
+      indentLines.push(line);
+      continue;
+    }
+    if (inIndentCode && line.trim() === '') {
+      // Blank line inside an indented code block — keep it.
+      indentLines.push(line);
+      continue;
+    }
+    if (inIndentCode) flushIndentCode();
+
+    // Blank line: paragraph break.
+    if (line.trim() === '') {
+      flushPara();
+      closeAllLists();
+      out.push('');
+      continue;
+    }
+
+    // Paragraph (default): buffer until the next blank line or block.
+    paraLines.push(line.trim());
+  }
+
+  // Final flush of any open block.
+  flushPara();
+  if (inTable) flushTable();
+  flushIndentCode();
+  flushBQ();
+  flushHtml();
+  closeAllLists();
+  if (inCode) out.push('<pre><code>' + codeLines.map(escHtml).join('\n') + '</code></pre>');
+
+  return { html: out.join('\n'), toc };
+}
+
+
+// Split a leading YAML front-matter block off the body. Every generated
+// OKF page carries one (type, title, description, tags, …); the
+// hand-written docs have none.
+//
+// It cannot simply be rendered: a key line followed by '---' is a setext
+// H2, so the page would open with a heading reading `type: Access
+// Method`. It cannot simply be dropped either — 83 of the 86 OKF pages
+// keep their TITLE only in the front matter and open with a lede
+// paragraph, so dropping it leaves an untitled page.
+//
+// Front matter is also why those pages 404'd on the live site: GitHub
+// Pages runs Jekyll over the deployed artifact, and Jekyll REWRITES
+// markdown carrying front matter to .html while copying front-matter-less
+// markdown verbatim. docs/okf/index.md became index.html and every fetch
+// here missed, which is why deploy.yml now stages a .nojekyll file.
+//
+// The parser handles the flat `key: value` subset these files use;
+// nested and list values are read as raw strings and ignored, since only
+// title/description are consumed.
+function splitFrontMatter(md) {
+  const m = /^﻿?---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(md);
+  if (!m) return { meta: {}, body: md };
+  const meta = {};
+  for (const line of m[1].split(/\r?\n/)) {
+    const kv = /^([A-Za-z_][\w-]*)\s*:\s*(.*)$/.exec(line);
+    if (!kv) continue;
+    meta[kv[1]] = kv[2].trim().replace(/^["'](.*)["']$/, '$1');
+  }
+  return { meta, body: md.slice(m[0].length) };
+}
+
+
+// Front matter in, renderable markdown out. The title becomes the H1 the
+// page never had — so it reads like a page and lands in the TOC — but
+// only when the body doesn't already open with one, so a page that
+// titles itself is left alone.
+function withTitle(md) {
+  const { meta, body } = splitFrontMatter(md);
+  if (!meta.title || /^\s*#\s+/.test(body)) return body;
+  return `# ${meta.title}\n\n${body.replace(/^\s*\n/, '')}`;
+}
+
+
+// ── Fetch + cache markdown for a single page ───────────────────────
+async function loadDoc(page) {
+  if (_docCache.has(page.slug)) return _docCache.get(page.slug);
+  try {
+    const r = await fetch(`${BASE}${page.path}`);
+    if (!r.ok) {
+      const err = `<p class="docs-error">Failed to load ${escHtml(page.path)}: HTTP ${r.status}</p>`;
+      const cached = { html: err, toc: [] };
+      _docCache.set(page.slug, cached);
+      return cached;
+    }
+    const md = withTitle(await r.text());
+    const cached = mdToHtml(md);
+    _docCache.set(page.slug, cached);
+    return cached;
+  } catch (e) {
+    const err = `<p class="docs-error">Failed to load ${escHtml(page.path)}: ${escHtml(e.message)}</p>`;
+    const cached = { html: err, toc: [] };
+    _docCache.set(page.slug, cached);
+    return cached;
+  }
+}
+
+
+// ── Render: tab bar, active doc, TOC sidebar ───────────────────────
+function tabBarHtml(activeSlug) {
+  return `<nav class="docs-tabs" role="tablist">${
+    DOC_PAGES.map((p) => {
+      const active = (p.slug === activeSlug);
+      return `<a href="#/docs/${p.slug}" class="docs-tab${active ? ' active' : ''}"
+                 role="tab" aria-selected="${active}"
+                 data-doc-slug="${p.slug}">${escHtml(p.title)}</a>`;
+    }).join('')
+  }</nav>`;
+}
+
+function tocHtml(toc) {
+  if (!toc.length) {
+    return '<aside class="docs-toc"><h4>On this page</h4>'
+         + '<p class="docs-toc-empty">No headings yet.</p></aside>';
+  }
+  const items = toc.map((h) =>
+    `<li class="docs-toc-l${h.level}"><a href="#${escHtml(h.id)}">${escHtml(h.text)}</a></li>`
+  ).join('');
+  return `<aside class="docs-toc">
+            <h4>On this page</h4>
+            <ul>${items}</ul>
+          </aside>`;
+}
+
+function pageShellHtml(activeSlug) {
+  return `
+    ${tabBarHtml(activeSlug)}
+    <div class="docs-layout">
+      <article class="docs-body" id="docs-article">
+        <p class="docs-loading" style="color:var(--c-muted)">Loading documentation…</p>
+      </article>
+      <aside class="docs-toc-wrap" id="docs-toc-wrap">
+        <aside class="docs-toc"><h4>On this page</h4>
+          <p class="docs-toc-empty">Loading…</p>
+        </aside>
+      </aside>
+    </div>`;
+}
+
+async function renderActive(slug) {
+  if (!_container) return;
+  // Unlisted-slug fallback: any '#/docs/<path>' whose slug isn't a tab
+  // still renders, fetched from 'docs/<slug>.md'. This is what lets the
+  // ~85 OKF bundle pages (one per data archive + the access guides) be
+  // deep-linkable without becoming 85 tabs. Slug charset is restricted
+  // so the fetch path can't escape docs/.
+  let page = DOC_PAGES.find((p) => p.slug === slug);
+  if (!page && slug && /^[\w][\w/-]*$/.test(slug) && !slug.includes('..')) {
+    const stem = slug.split('/').pop();
+    page = {
+      title: stem.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+      path: `docs/${slug}.md`,
+      slug,
+    };
+  }
+  if (!page) page = DOC_PAGES[0];
+  _activeSlug = page.slug;
+
+  // Update tab bar active state without a full re-render of the shell.
+  // An unlisted OKF page highlights the bundle's tab so the reader keeps
+  // their bearings.
+  const tabSlug = DOC_PAGES.some((p) => p.slug === page.slug) ? page.slug
+    : (page.slug.startsWith('okf/') ? 'okf/index' : page.slug);
+  _container.querySelectorAll('.docs-tab').forEach((a) => {
+    const isActive = a.dataset.docSlug === tabSlug;
+    a.classList.toggle('active', isActive);
+    a.setAttribute('aria-selected', String(isActive));
+  });
+
+  const article = _container.querySelector('#docs-article');
+  const tocWrap = _container.querySelector('#docs-toc-wrap');
+  if (!article || !tocWrap) return;
+  article.innerHTML = `<p class="docs-loading" style="color:var(--c-muted)">Loading ${escHtml(page.title)}…</p>`;
+
+  const { html, toc } = await loadDoc(page);
+  // Bail if the user already switched tabs while we were fetching.
+  if (_activeSlug !== page.slug) return;
+
+  article.innerHTML = `
+    <header class="docs-page-head">
+      <h1>${escHtml(page.title)}</h1>
+      <p class="docs-page-source">
+        Source: <code>${escHtml(page.path)}</code>
+        · <a href="${BASE}${page.path}" target="_blank" rel="noopener">view raw</a>
+      </p>
+    </header>
+    ${html}`;
+  tocWrap.innerHTML = tocHtml(toc);
+
+  // Scroll to top of the article when switching tabs (anchored TOC
+  // clicks within a page navigate normally and we DON'T re-scroll).
+  article.scrollTop = 0;
+  const root = _container.querySelector('.docs-layout');
+  if (root) root.scrollTop = 0;
+}
+
+
+// ── Public API ─────────────────────────────────────────────────────
+//
+// initDocsView(container) is called once when the user first navigates
+// to '#/docs'. renderDocsView(path) is called by main.js on every
+// route change so we can pick up '/docs/<slug>' deep-links.
+
+export function initDocsView(container) {
+  _container = container;
+  if (!_container.dataset.docsReady) {
+    // Build the persistent shell only once. Tab clicks update the URL
+    // hash; the router calls renderDocsView() to swap content.
+    _container.innerHTML = pageShellHtml(_activeSlug || DOC_PAGES[0].slug);
+    _container.dataset.docsReady = '1';
+  }
+  // Pull initial slug from the URL.
+  const slug = (location.hash.match(/^#\/docs\/(.+)$/) || [])[1];
+  const page = DOC_PAGES.find((p) => p.slug === slug) || DOC_PAGES[0];
+  renderActive(page.slug);
+}
+
+export function renderDocsView(path) {
+  if (!_container) return;
+  // Slugs may span several segments ('/docs/okf/access-erddap'), so join
+  // everything after '/docs/' — split('/')[2] silently truncated these.
+  const slug = (path || '').split('/').slice(2).join('/') || DOC_PAGES[0].slug;
+  // Ensure the shell exists even if main.js routed straight to a
+  // sub-path on first visit.
+  if (!_container.dataset.docsReady) {
+    _container.innerHTML = pageShellHtml(slug);
+    _container.dataset.docsReady = '1';
+  }
+  if (slug !== _activeSlug) renderActive(slug);
+}

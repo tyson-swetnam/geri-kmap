@@ -1,0 +1,14 @@
+slug,label,aliases,level,url,parent
+geri,GERI,Global Ecosystem Research Infrastructure,global-ri-federation,https://deims.org/networks/c3abdc60-49f1-49db-81fe-863b7dbb21d3,
+neon,NEON,National Ecological Observatory Network,continental-ri,https://www.neonscience.org/,geri
+elter,eLTER,Integrated European Long-Term Ecosystem critical zone and socio-ecological Research|LTER Europe,continental-ri,https://elter-ri.eu/,geri
+icos,ICOS,Integrated Carbon Observation System,continental-ri,https://www.icos-cp.eu/,geri
+tern,TERN,Terrestrial Ecosystem Research Network,continental-ri,https://www.tern.org.au/,geri
+saeon,SAEON,South African Environmental Observation Network,continental-ri,https://www.saeon.ac.za/,geri
+efteon,EFTEON,Expanded Freshwater and Terrestrial Environmental Observation Network,continental-ri,https://efteon.saeon.ac.za/,saeon
+cern,CERN,Chinese Ecosystem Research Network|LTER China,continental-ri,https://www.cern.ac.cn/,geri
+neon-terrestrial,NEON terrestrial sites,,ri-component,https://www.neonscience.org/field-sites/explore-field-sites,neon
+neon-aquatic,NEON aquatic sites,,ri-component,https://www.neonscience.org/field-sites/explore-field-sites,neon
+icos-ecosystem,ICOS ecosystem stations,ICOS ES,ri-component,https://www.icos-cp.eu/observations/ecosystem,icos
+icos-atmosphere,ICOS atmosphere stations,ICOS AS,ri-component,https://www.icos-cp.eu/observations/atmosphere,icos
+icos-ocean,ICOS ocean stations,ICOS OS,ri-component,https://www.icos-cp.eu/observations/ocean,icos

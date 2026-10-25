@@ -1,0 +1,8 @@
+slug,label,description
+atmosphere,Atmosphere,"Observatories of the atmosphere: greenhouse-gas concentrations, atmospheric chemistry, deposition, radiation and surface meteorology (e.g. ICOS atmosphere stations)."
+cryosphere,Cryosphere,"Observatories of snow, ice, glaciers, permafrost and polar systems."
+terrestrial,Terrestrial / Ecological,"Ecological observatories on land: forests, grasslands, shrublands, alpine and urban systems, including flux towers and long-term plots."
+arid,Arid,"Observatories of arid, semi-arid and desert systems: hot and cold deserts, dryland shrublands and grasslands."
+agriculture,Agriculture,"Observatories of croplands, managed grasslands and agro-ecosystems."
+ocean-estuarine,Aquatic — Ocean & Estuarine,"Observatories of the ocean, coasts and estuaries."
+freshwater,Aquatic — Freshwater,"Observatories of streams, rivers, lakes and wetlands."

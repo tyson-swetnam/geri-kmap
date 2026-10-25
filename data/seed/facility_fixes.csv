@@ -1,0 +1,3 @@
+facility_id,table,key,action,field,value,source_url,retrieved_at,evidence
+cd9cd3ba6a7a9b83,facilities,,set,country,GL,http://meta.icos-cp.eu/resources/stations/AS_SNO,2026-10-25,"ICOS gives country DK (the operating state) and the point 81.361 N, 16.394 W, which lies in Natural Earth 1:10m admin-0 Greenland (GL); facilities.country is where the site is"
+d5b730ba9a18cf2a,facilities,,set,country,TN,https://deims.org/c617f8c8-1b19-4683-8546-a3c23c39bc0b,2026-10-25,"DEIMS lists France (OZCAR-RI, the operating infrastructure) and the point 36.871 N, 10.869 E, which lies in Natural Earth 1:10m admin-0 Tunisia (TN); facilities.country is where the site is"

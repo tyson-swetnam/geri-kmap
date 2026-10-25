@@ -1,0 +1,13 @@
+slug,label,description
+ri-site,Research-infrastructure site,"A site registered in DEIMS-SDR by a GERI research infrastructure, with no more specific type"
+lter-site,LTER site,"Long-term ecological research site (DEIMS site type: stationary land-based or water-based site)"
+ltser-platform,LTSER platform,"Long-term socio-ecological research platform: a landscape-scale area grouping several sites (DEIMS 'Socio-ecological research platform')"
+neon-terrestrial-site,NEON terrestrial site,"NEON terrestrial field site (tower, soil and organismal plots)"
+neon-aquatic-site,NEON aquatic site,"NEON aquatic field site (stream, river or lake)"
+icos-ecosystem-station,ICOS ecosystem station,"ICOS ecosystem (ES) station: eddy-covariance flux tower with ancillary ecosystem measurements"
+icos-atmosphere-station,ICOS atmosphere station,"ICOS atmosphere (AS) station: greenhouse-gas concentration measurement, often a tall tower"
+icos-ocean-station,ICOS ocean station,"ICOS ocean (OS) station: ship of opportunity or fixed ocean platform measuring surface-ocean CO2"
+supersite,TERN SuperSite,"TERN SuperSite: intensively instrumented long-term ecosystem observatory"
+plot-network,Plot network,"A network of long-term plots registered as one site (e.g. TERN LTERN / AusLTER plot networks)"
+field-station,Field station,"Permanent research station with staff and facilities (e.g. CERN field stations)"
+marine-site,Marine site,"Coastal or offshore observation site (e.g. SAEON sentinel sites, climate arrays)"

@@ -1,0 +1,1308 @@
+-- geri-kmap schema. Engine from tyson-swetnam/lto (itself forked from
+-- cod-kmap, MIT), with the LTO seven-sphere model, extended with the GERI
+-- site cross-walk (site_identifiers) and harmonized-data coverage.
+-- Idempotent: safe to re-read against an existing DB.
+-- Load the spatial extension externally (INSTALL spatial; LOAD spatial;)
+-- before calling ST_Point on the locations table.
+
+-- All tables live in the default `main` schema. DuckDB does not allow
+-- a custom schema with the same name as the database file, and the
+-- browser-side Wasm client expects tables to be discoverable without a
+-- schema prefix.
+
+-------------------------------------------------------------------------------
+-- Vocabularies (seeded from schema/vocab/*.csv by ingest.py)
+-------------------------------------------------------------------------------
+
+CREATE OR REPLACE TABLE facility_types (
+    slug         VARCHAR PRIMARY KEY,
+    label        VARCHAR NOT NULL,
+    description  VARCHAR
+);
+
+CREATE OR REPLACE TABLE research_areas (
+    area_id      VARCHAR PRIMARY KEY,   -- slug
+    label        VARCHAR NOT NULL,
+    gcmd_uri     VARCHAR,
+    parent_id    VARCHAR                -- soft reference to research_areas.area_id; no FK to allow unordered bulk load
+);
+
+CREATE OR REPLACE TABLE networks (
+    network_id   VARCHAR PRIMARY KEY,   -- slug
+    label        VARCHAR NOT NULL,
+    level        VARCHAR,               -- global-ri-federation | continental-ri | ri-component
+    url          VARCHAR,
+    parent_id    VARCHAR                -- soft reference to networks.network_id (eLTER -> GERI, ICOS ES -> ICOS)
+);
+
+-------------------------------------------------------------------------------
+-- Core entities
+-------------------------------------------------------------------------------
+
+CREATE OR REPLACE TABLE facilities (
+    facility_id     VARCHAR PRIMARY KEY,             -- hash(name||acronym)
+    canonical_name  VARCHAR NOT NULL,
+    acronym         VARCHAR,
+    parent_org      VARCHAR,
+    facility_type   VARCHAR NOT NULL REFERENCES facility_types(slug),
+    country         VARCHAR NOT NULL,                -- ISO 3166-1 alpha-2
+    region          VARCHAR,
+    hq_address      VARCHAR,
+    hq_lat          DOUBLE,
+    hq_lng          DOUBLE,
+    url             VARCHAR,
+    contact         VARCHAR,
+    established     INTEGER,
+    -- Research Organization Registry id, for facilities that are research
+    -- organisations. This is what joins a facility to a researcher's
+    -- OpenAlex affiliation (person_registry.affiliation_ror); see
+    -- scripts/link_registry_facilities.py. Null for facilities that are
+    -- places rather than organisations (a wilderness area or gauging
+    -- station will never hold a ROR; its operator might).
+    ror             VARCHAR,
+    -- LTO extensions ---------------------------------------------------------
+    record_length_years     INTEGER,                 -- continuous-record length in years (NULL when unknown)
+    long_term_threshold_met BOOLEAN,                 -- TRUE when established <= today-10y AND record_length_years >= 10 (per Peters et al. 2013)
+    data_portal_url         VARCHAR,                 -- canonical data portal / DOI landing page (EDI, NCEI, NWIS, etc.)
+    -- ------------------------------------------------------------------------
+    -- USPS code of the state or territory the HQ point falls in ('NM', 'PR').
+    -- Derived, never hand-typed: scripts/backfill_facility_state.py sets it
+    -- by point-in-polygon against Census state boundaries and logs each
+    -- decision to data/seed/facility_state.csv. Null outside the US (and for
+    -- facilities with no coordinates). Drives the New Mexico / Southwest
+    -- drylands scope lens in the frontend.
+    state           VARCHAR,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE OR REPLACE TABLE locations (
+    location_id     VARCHAR PRIMARY KEY,             -- hash(facility_id||label)
+    facility_id     VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    label           VARCHAR,
+    address         VARCHAR,
+    lat             DOUBLE,
+    lng             DOUBLE,
+    role            VARCHAR                          -- headquarters|field-station|observatory|vessel|mooring-array|buoy|lab|office|virtual
+);
+
+CREATE OR REPLACE TABLE funders (
+    funder_id       VARCHAR PRIMARY KEY,             -- hash(lower(name))
+    name            VARCHAR NOT NULL,
+    type            VARCHAR,                         -- federal|state|foundation|international|industry|private
+    country         VARCHAR,
+    url             VARCHAR,
+    notes           VARCHAR
+);
+
+-- Time-series funding record. One row per (funder, facility, award,
+-- fiscal_year) — so a multi-year grant produces one row per year with
+-- its annual allocation, and the same facility can receive multiple
+-- awards from the same funder in the same year. Nominal USD is stored
+-- as-reported; CPI adjustment is done at query time against the
+-- `cpi_index_us` helper table below.
+--
+-- `event_id` is a deterministic hash of the grain columns so re-ingests
+-- are idempotent. This replaces the older `funding_links` table (which
+-- had no primary key and no support for per-award-per-year granularity);
+-- a backwards-compatible view with the old `funding_links` shape is
+-- defined at the bottom of this file so existing queries keep working.
+CREATE OR REPLACE TABLE funding_events (
+    event_id        VARCHAR PRIMARY KEY,                -- hash(funder_id||facility_id||coalesce(award_id,'')||coalesce(fiscal_year,''))
+    funder_id       VARCHAR NOT NULL REFERENCES funders(funder_id),
+    facility_id     VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    -- Money (nominal, as reported by the source)
+    amount_usd      DOUBLE,                             -- allocation for THIS fiscal_year (or one-time if period_* null)
+    amount_currency VARCHAR DEFAULT 'USD',              -- ISO 4217; 'USD' by default, 'CAD', 'EUR' allowed
+    -- Time
+    fiscal_year     INTEGER,                            -- US FY (Oct 1 – Sep 30) unless funder is non-US
+    period_start    DATE,                               -- optional: multi-year award window start
+    period_end      DATE,                               -- optional: multi-year award window end
+    -- Identity
+    award_id        VARCHAR,                            -- funder's canonical award number (NSF 1234567, NOAA NA21NOS...)
+    award_title     VARCHAR,                            -- short free-text award title
+    program         VARCHAR,                            -- funder's internal program (NSF LTER, NOAA IOOS, EPA NEP, …)
+    -- Classification
+    relation        VARCHAR,                            -- parent-agency|appropriation|grant|contract|cooperative-agreement|endowment|state-appropriation|private-donor|membership-fee|in-kind
+    -- Provenance
+    source          VARCHAR,                            -- 'USAspending' | 'NSF Award Search' | 'NOAA Grants' | 'agency-report' | 'manual'
+    source_url      VARCHAR,                            -- direct URL to the authoritative record
+    retrieved_at    DATE,                               -- when we pulled this row from `source`
+    confidence      VARCHAR,                            -- high|medium|low — how confident is the mapping funder → facility
+    notes           VARCHAR,                            -- free-text qualifier (sub-award, pass-through, partial attribution…)
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Optional index helpers (DuckDB creates these only when beneficial;
+-- INSERT throughput is fine without them for the expected <100k rows).
+-- CREATE INDEX IF NOT EXISTS idx_funding_events_year  ON funding_events(fiscal_year);
+-- CREATE INDEX IF NOT EXISTS idx_funding_events_fac   ON funding_events(facility_id);
+-- CREATE INDEX IF NOT EXISTS idx_funding_events_funder ON funding_events(funder_id);
+
+-- Annual CPI for deflating nominal awards into real dollars. Optional;
+-- keep this table empty if you don't need CPI-adjusted queries.
+-- Source: US Bureau of Labor Statistics CPI-U, yearly average. Load via
+-- scripts/seed_cpi.py (not yet written — we'll add it alongside the
+-- first real CPI query).
+CREATE OR REPLACE TABLE cpi_index_us (
+    year    INTEGER PRIMARY KEY,                         -- e.g. 2024
+    cpi_u   DOUBLE NOT NULL,                             -- CPI-U annual average, 1982-84=100 base
+    source  VARCHAR DEFAULT 'BLS CPI-U'
+);
+
+-- Backwards-compatible view matching the original funding_links shape
+-- (columns in the exact same order). Existing app code queries against
+-- funding_links; new analyses that need period/title/program/provenance
+-- should hit funding_events directly.
+CREATE OR REPLACE VIEW funding_links AS
+SELECT funder_id, facility_id, amount_usd, fiscal_year, award_id,
+       relation, source_url
+FROM   funding_events;
+
+CREATE OR REPLACE TABLE area_links (
+    facility_id     VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    area_id         VARCHAR NOT NULL REFERENCES research_areas(area_id),
+    PRIMARY KEY (facility_id, area_id)
+);
+
+CREATE OR REPLACE TABLE network_membership (
+    facility_id     VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    network_id      VARCHAR NOT NULL REFERENCES networks(network_id),
+    role            VARCHAR,
+    PRIMARY KEY (facility_id, network_id)
+);
+
+-------------------------------------------------------------------------------
+-- Regions (overlay polygons as first-class records)
+-------------------------------------------------------------------------------
+--
+-- Every polygon shown under "Map overlays" (NMS sanctuaries, marine national
+-- monuments, NERR reserves, NPS coastal units, NEP programs, NEON ecological
+-- domains, EPA regions) becomes a row here, with the same rich metadata the
+-- per-point facilities already carry (name / acronym / url / manager / etc.)
+-- plus a foreign key to the `networks` vocabulary so region ↔ facility
+-- joins are cheap.
+
+CREATE OR REPLACE TABLE regions (
+    region_id       VARCHAR PRIMARY KEY,             -- hash(network_id||lower(name))
+    name            VARCHAR NOT NULL,
+    acronym         VARCHAR,
+    kind            VARCHAR,                          -- sanctuary | monument | nerr-reserve | nep-program | nps-unit | neon-domain | epa-region
+    network_id      VARCHAR REFERENCES networks(network_id),
+    url             VARCHAR,
+    manager         VARCHAR,
+    designated      INTEGER,
+    state           VARCHAR,
+    description     VARCHAR,
+    source_file     VARCHAR,                          -- which public/overlays/*.geojson produced this row
+    source          VARCHAR,                          -- upstream attribution (e.g. COMPASS-DOE/synthesis-networks)
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Region ↔ research_area (editable; empty by default — seed via
+-- scripts/populate_regions.py based on kind heuristics, or by hand).
+CREATE OR REPLACE TABLE region_area_links (
+    region_id       VARCHAR NOT NULL REFERENCES regions(region_id),
+    area_id         VARCHAR NOT NULL REFERENCES research_areas(area_id),
+    PRIMARY KEY (region_id, area_id)
+);
+
+-- Facility ↔ region (derived: point-in-polygon against each overlay).
+-- `relation` is 'within' when the facility's HQ coordinate lies inside
+-- the polygon; future work may add 'nearby' or 'adjacent' links.
+CREATE OR REPLACE TABLE facility_regions (
+    facility_id     VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    region_id       VARCHAR NOT NULL REFERENCES regions(region_id),
+    relation        VARCHAR,                          -- within | nearby | adjacent
+    distance_km     DOUBLE,                           -- 0.0 when within
+    PRIMARY KEY (facility_id, region_id)
+);
+
+-------------------------------------------------------------------------------
+-- Provenance & ingest bookkeeping
+-------------------------------------------------------------------------------
+
+CREATE OR REPLACE TABLE provenance (
+    record_type     VARCHAR NOT NULL,                -- 'facility' | 'funding_link' | ...
+    record_id       VARCHAR NOT NULL,
+    source_url      VARCHAR,
+    retrieved_at    DATE,
+    confidence      VARCHAR,                         -- high|medium|low
+    agent           VARCHAR                          -- R1..R9, D2, etc.
+);
+
+CREATE OR REPLACE TABLE ingest_runs (
+    run_id          VARCHAR PRIMARY KEY,
+    started_at      TIMESTAMP,
+    finished_at     TIMESTAMP,
+    git_sha         VARCHAR,
+    facility_count  INTEGER,
+    status          VARCHAR                          -- success|failed|partial
+);
+
+-------------------------------------------------------------------------------
+-- LTO extensions: spheres, ecosystem types, Holdridge life zones
+-------------------------------------------------------------------------------
+-- Vocabularies seeded from schema/vocab/{spheres,ecosystem_types,life_zones}.csv.
+
+CREATE OR REPLACE TABLE spheres (
+    slug         VARCHAR PRIMARY KEY,                -- atmosphere|cryosphere|terrestrial|agriculture|ocean-estuarine|freshwater
+    label        VARCHAR NOT NULL,
+    description  VARCHAR
+);
+
+-------------------------------------------------------------------------------
+-- Wave J: data-archive layer
+-------------------------------------------------------------------------------
+-- Records the addressable data resources for every facility:
+--
+--   data_archives        — repository / data-portal / ERDDAP / THREDDS
+--   facility_archives    — many-to-many: which facility hosts data at which archive
+--   data_products        — one row per identifiable dataset (DOI / format / bbox)
+--   api_endpoints        — discoverable API URLs (REST / OPeNDAP / STAC / OAI-PMH)
+--   cloud_buckets        — S3 / GCS / Azure buckets (name + region + access mode)
+--
+-- Vocabularies seeded from schema/vocab/{archive_types,data_formats,data_licenses,access_modes}.csv.
+
+CREATE OR REPLACE TABLE archive_types (
+    slug        VARCHAR PRIMARY KEY,
+    label       VARCHAR NOT NULL,
+    description VARCHAR
+);
+
+CREATE OR REPLACE TABLE data_formats (
+    slug      VARCHAR PRIMARY KEY,
+    label     VARCHAR NOT NULL,
+    mime_type VARCHAR
+);
+
+CREATE OR REPLACE TABLE data_licenses (
+    slug  VARCHAR PRIMARY KEY,
+    label VARCHAR NOT NULL,
+    url   VARCHAR
+);
+
+CREATE OR REPLACE TABLE access_modes (
+    slug  VARCHAR PRIMARY KEY,
+    label VARCHAR NOT NULL,
+    description VARCHAR
+);
+
+CREATE OR REPLACE TABLE data_archives (
+    archive_id    VARCHAR PRIMARY KEY,                -- slug, e.g. 'edi', 'neon-data-portal'
+    name          VARCHAR NOT NULL,
+    organization  VARCHAR,                            -- operating org
+    archive_type  VARCHAR REFERENCES archive_types(slug),
+    base_url      VARCHAR,                            -- human-facing URL
+    api_url       VARCHAR,                            -- machine API root
+    api_doc_url   VARCHAR,                            -- OpenAPI / Swagger / docs page
+    api_type      VARCHAR,                            -- rest|opendap|thredds|stac|erddap|oai-pmh|netcdf-subset|custom
+    license_slug  VARCHAR REFERENCES data_licenses(slug),
+    doi_prefix    VARCHAR,                            -- e.g. '10.6073' for EDI
+    notes         VARCHAR,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE OR REPLACE TABLE facility_archives (
+    facility_id VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    archive_id  VARCHAR NOT NULL REFERENCES data_archives(archive_id),
+    role        VARCHAR,                              -- primary|mirror|distribution
+    scope_url   VARCHAR,                              -- per-facility entry to the archive
+    scope_id    VARCHAR,                              -- archive-local scope identifier
+    sample_doi  VARCHAR,                              -- one example dataset DOI
+    notes       VARCHAR,
+    PRIMARY KEY (facility_id, archive_id)
+);
+
+CREATE OR REPLACE TABLE data_products (
+    product_id     VARCHAR PRIMARY KEY,               -- sha1(archive_id||identifier or doi)
+    archive_id     VARCHAR REFERENCES data_archives(archive_id),
+    facility_id    VARCHAR REFERENCES facilities(facility_id),
+    title          VARCHAR NOT NULL,
+    doi            VARCHAR,
+    identifier     VARCHAR,                           -- archive-local ID (EDI knb-lter-hbr.1.20, etc.)
+    url            VARCHAR,
+    format_slug    VARCHAR REFERENCES data_formats(slug),
+    license_slug   VARCHAR REFERENCES data_licenses(slug),
+    temporal_start DATE,
+    temporal_end   DATE,
+    bbox_min_lon   DOUBLE,
+    bbox_min_lat   DOUBLE,
+    bbox_max_lon   DOUBLE,
+    bbox_max_lat   DOUBLE,
+    variables_text VARCHAR,                           -- comma-sep variable summary
+    citation       VARCHAR,
+    cited_by_count INTEGER,                           -- if known via Crossref / DataCite
+    source         VARCHAR,                           -- which agent / API populated this
+    retrieved_at   DATE,
+    confidence     VARCHAR,                           -- high|medium|low
+    notes          VARCHAR,
+    -- Portal-style archives (EnviroData-NM) publish layers, not DOIs. These
+    -- three carry what such a record needs and stay null for everything else.
+    description    VARCHAR,                           -- the archive's own abstract, as plain text
+    category       VARCHAR,                           -- the archive's own grouping, ' / '-joined path
+    api_url        VARCHAR,                           -- machine endpoint for this one product (OGC WMS, REST)
+    created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE OR REPLACE TABLE api_endpoints (
+    endpoint_id     VARCHAR PRIMARY KEY,              -- sha1(archive_id||path_or_url)
+    archive_id      VARCHAR REFERENCES data_archives(archive_id),
+    facility_id     VARCHAR REFERENCES facilities(facility_id),
+    path_or_url     VARCHAR NOT NULL,                 -- relative path or full URL
+    method          VARCHAR DEFAULT 'GET',
+    purpose         VARCHAR,                          -- download|metadata|browse|auth|search
+    response_format VARCHAR,
+    schema_url      VARCHAR,                          -- OpenAPI / JSON-Schema / DCAT
+    example_call    VARCHAR,
+    notes           VARCHAR
+);
+
+CREATE OR REPLACE TABLE cloud_buckets (
+    bucket_id          VARCHAR PRIMARY KEY,           -- sha1(provider||bucket_name||region)
+    archive_id         VARCHAR REFERENCES data_archives(archive_id),
+    facility_id        VARCHAR REFERENCES facilities(facility_id),
+    provider           VARCHAR NOT NULL,              -- s3|gcs|azure|swift|other
+    bucket_name        VARCHAR NOT NULL,
+    region             VARCHAR,
+    access_mode        VARCHAR REFERENCES access_modes(slug),
+    documentation_url  VARCHAR,
+    sample_prefix      VARCHAR,                       -- one representative object key prefix
+    notes              VARCHAR
+);
+
+-------------------------------------------------------------------------------
+
+-- EcoTrends ecosystem types (Peters et al. 2013, table 1-2) plus
+-- WWF/Bailey-province extensions used by R-TER agents.
+-------------------------------------------------------------------------------
+-- GERI: site cross-walk and harmonized-data coverage
+-------------------------------------------------------------------------------
+--
+-- A GERI site is known by a different id in every registry: its DEIMS-SDR
+-- uuid, the NEON site code, the ICOS station id, a FLUXNET-style id, and
+-- the id the GERI harmonization pipeline gives it. site_identifiers holds
+-- every one of them, each with the page or API response it was read from,
+-- so a site can be found by any of its names.
+
+CREATE OR REPLACE TABLE site_identifiers (
+    facility_id  VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    scheme       VARCHAR NOT NULL,          -- deims-id | neon-site | icos-station | fluxnet-id | geri-harmonized-id | <network>-site-code
+    value        VARCHAR NOT NULL,
+    source_url   VARCHAR NOT NULL,
+    PRIMARY KEY (scheme, value, facility_id)
+);
+
+-- One row per site x harmonized variable: what the GERI harmonized
+-- products hold for the site and over which period. Derived from the
+-- parquet on the CyVerse Data Store by compute_harmonized_coverage.py;
+-- the observations themselves are not copied.
+CREATE OR REPLACE TABLE harmonized_coverage (
+    facility_id  VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    product_id   VARCHAR NOT NULL REFERENCES data_products(product_id),
+    variable     VARCHAR NOT NULL,
+    first_ts     TIMESTAMP,
+    last_ts      TIMESTAMP,
+    n_obs        BIGINT,
+    PRIMARY KEY (facility_id, product_id, variable)
+);
+
+CREATE OR REPLACE TABLE ecosystem_types (
+    slug         VARCHAR PRIMARY KEY,
+    label        VARCHAR NOT NULL,
+    source       VARCHAR,                            -- 'EcoTrends' | 'WWF biome' | 'Bailey ecoregion'
+    description  VARCHAR
+);
+
+-- Holdridge life zones used in Lugo et al. 2006 / EFR coverage analysis.
+CREATE OR REPLACE TABLE life_zones (
+    slug         VARCHAR PRIMARY KEY,
+    label        VARCHAR NOT NULL,
+    holdridge_class VARCHAR                          -- 'temperate-moist' | 'subtropical-dry' | 'subalpine-rain' | …
+);
+
+-- Facility ↔ sphere. A facility has exactly one `primary` sphere and may
+-- have any number of `secondary` spheres (e.g. Hubbard Brook is primary
+-- terrestrial + secondary atmosphere + freshwater).
+CREATE OR REPLACE TABLE facility_spheres (
+    facility_id  VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    sphere_slug  VARCHAR NOT NULL REFERENCES spheres(slug),
+    role         VARCHAR NOT NULL,                   -- 'primary' | 'secondary'
+    PRIMARY KEY (facility_id, sphere_slug)
+);
+
+CREATE OR REPLACE TABLE facility_ecosystems (
+    facility_id     VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    ecosystem_slug  VARCHAR NOT NULL REFERENCES ecosystem_types(slug),
+    PRIMARY KEY (facility_id, ecosystem_slug)
+);
+
+CREATE OR REPLACE TABLE facility_life_zones (
+    facility_id    VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    life_zone_slug VARCHAR NOT NULL REFERENCES life_zones(slug),
+    PRIMARY KEY (facility_id, life_zone_slug)
+);
+
+-------------------------------------------------------------------------------
+-- Projects (ARID wave)
+-------------------------------------------------------------------------------
+--
+-- A project is a funded or organised body of work, not a place: most have
+-- a lead organisation and a team but no site, so they cannot be facility
+-- rows (the map drops anything without coordinates, and a statewide study
+-- pinned to a campus would be a false point). `lead_facility_id` names the
+-- organisation that lists the project — ARID for this wave.
+--
+-- The three tables use soft references (no REFERENCES clause) on purpose:
+-- DuckDB rejects an UPDATE or REPLACE of a parent row that an FK child
+-- points at, which would make the idempotent loader (scripts/load_arid.py)
+-- fail on its second run. scripts/qa.py checks for orphans instead.
+
+CREATE OR REPLACE TABLE projects (
+    project_id          VARCHAR PRIMARY KEY,          -- slug, e.g. 'arid-for-nm'
+    name                VARCHAR NOT NULL,
+    acronym             VARCHAR,
+    parent_project_id   VARCHAR,                      -- sub-project of (CHANGES cores, field efforts)
+    lead_facility_id    VARCHAR,                      -- facilities.facility_id of the listing organisation
+    description         VARCHAR,
+    url                 VARCHAR,                      -- the project's page on the listing organisation's site
+    external_url        VARCHAR,                      -- the project's own site, when it has one
+    funding_text        VARCHAR,                      -- funder / award as the source words it; not parsed
+    extent_label        VARCHAR,                      -- where the work happens, as the source words it
+    lat                 DOUBLE,                       -- null unless the source names a place
+    lng                 DOUBLE,
+    location_precision  VARCHAR,                      -- site | county | city | statewide | regional | none
+    source_url          VARCHAR NOT NULL,
+    retrieved_at        DATE,
+    confidence          VARCHAR,                      -- high|medium|low
+    notes               VARCHAR,
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE OR REPLACE TABLE project_personnel (
+    project_id          VARCHAR NOT NULL,             -- projects.project_id
+    person_id           VARCHAR NOT NULL,             -- people.person_id
+    role                VARCHAR NOT NULL,             -- lead-PI | PI | co-PI | leader | co-leader | team | program-manager
+    title               VARCHAR,                      -- as written on the source page
+    source_url          VARCHAR,
+    retrieved_at        DATE,
+    confidence          VARCHAR,
+    notes               VARCHAR,
+    PRIMARY KEY (project_id, person_id, role)
+);
+
+CREATE OR REPLACE TABLE project_facilities (
+    project_id          VARCHAR NOT NULL,             -- projects.project_id
+    facility_id         VARCHAR NOT NULL,             -- facilities.facility_id
+    relation            VARCHAR NOT NULL,             -- host | partner | site
+    source_url          VARCHAR,
+    notes               VARCHAR,
+    PRIMARY KEY (project_id, facility_id, relation)
+);
+
+-------------------------------------------------------------------------------
+-- Helper views for the web UI (F3 consumes these)
+-------------------------------------------------------------------------------
+
+CREATE OR REPLACE VIEW v_facility_map AS
+SELECT
+    f.facility_id           AS id,
+    f.canonical_name        AS name,
+    f.acronym               AS acronym,
+    f.facility_type         AS type,
+    f.country               AS country,
+    f.region                AS region,
+    f.state                 AS state,
+    f.hq_lat                AS lat,
+    f.hq_lng                AS lng,
+    f.url                   AS url,
+    f.parent_org            AS parent_org
+FROM facilities f
+WHERE f.hq_lat IS NOT NULL AND f.hq_lng IS NOT NULL;
+
+CREATE OR REPLACE VIEW v_facility_enriched AS
+SELECT
+    f.facility_id,
+    f.canonical_name,
+    f.acronym,
+    f.facility_type,
+    f.country,
+    f.hq_lat,
+    f.hq_lng,
+    f.url,
+    f.parent_org,
+    f.established,
+    f.record_length_years,
+    f.long_term_threshold_met,
+    f.data_portal_url,
+    list(DISTINCT ra.label)        AS research_areas,
+    list(DISTINCT n.label)         AS networks,
+    list(DISTINCT fu.name)         AS funders,
+    list(DISTINCT r.name)          AS regions,
+    list(DISTINCT s.label)         AS spheres,
+    list(DISTINCT et.label)        AS ecosystem_types
+FROM facilities f
+LEFT JOIN area_links al        ON al.facility_id = f.facility_id
+LEFT JOIN research_areas ra    ON ra.area_id    = al.area_id
+LEFT JOIN network_membership nm ON nm.facility_id = f.facility_id
+LEFT JOIN networks n           ON n.network_id   = nm.network_id
+LEFT JOIN funding_links fl     ON fl.facility_id = f.facility_id
+LEFT JOIN funders fu           ON fu.funder_id   = fl.funder_id
+LEFT JOIN facility_regions fr  ON fr.facility_id = f.facility_id
+LEFT JOIN regions r            ON r.region_id    = fr.region_id
+LEFT JOIN facility_spheres   fs ON fs.facility_id = f.facility_id
+LEFT JOIN spheres            s  ON s.slug         = fs.sphere_slug
+LEFT JOIN facility_ecosystems fes ON fes.facility_id = f.facility_id
+LEFT JOIN ecosystem_types    et ON et.slug        = fes.ecosystem_slug
+GROUP BY f.facility_id, f.canonical_name, f.acronym, f.facility_type,
+         f.country, f.hq_lat, f.hq_lng, f.url, f.parent_org,
+         f.established, f.record_length_years,
+         f.long_term_threshold_met, f.data_portal_url;
+
+-- One row per facility with its GERI research infrastructures, whether the
+-- GERI harmonized products cover it, and every registry id it carries.
+-- Also re-created in the browser by src/db.js (keep the two identical).
+CREATE OR REPLACE VIEW v_facility_geri AS
+SELECT
+    f.facility_id,
+    f.canonical_name,
+    f.facility_type,
+    f.country,
+    f.hq_lat,
+    f.hq_lng,
+    list(DISTINCT n.network_id ORDER BY n.network_id)
+        FILTER (WHERE n.level = 'continental-ri')                    AS ris,
+    bool_or(si.scheme = 'geri-harmonized-id')                        AS geri_harmonized,
+    max(si.value) FILTER (WHERE si.scheme = 'deims-id')              AS deims_id,
+    list(DISTINCT si.scheme || ':' || si.value ORDER BY si.scheme || ':' || si.value)
+        FILTER (WHERE si.scheme IS NOT NULL)                         AS identifiers
+FROM facilities f
+LEFT JOIN network_membership nm ON nm.facility_id = f.facility_id
+LEFT JOIN networks n            ON n.network_id   = nm.network_id
+LEFT JOIN site_identifiers si   ON si.facility_id = f.facility_id
+GROUP BY f.facility_id, f.canonical_name, f.facility_type, f.country, f.hq_lat, f.hq_lng;
+
+-- Region enriched — every polygon with its network + any facilities within.
+CREATE OR REPLACE VIEW v_region_enriched AS
+SELECT
+    r.region_id,
+    r.name,
+    r.acronym,
+    r.kind,
+    r.network_id,
+    n.label         AS network_label,
+    r.url,
+    r.manager,
+    r.designated,
+    r.state,
+    r.description,
+    list(DISTINCT ra.label)         AS research_areas,
+    list(DISTINCT f.canonical_name) AS facilities,
+    count(DISTINCT fr.facility_id)  AS facility_count
+FROM regions r
+LEFT JOIN networks n             ON n.network_id  = r.network_id
+LEFT JOIN region_area_links ral  ON ral.region_id = r.region_id
+LEFT JOIN research_areas ra      ON ra.area_id    = ral.area_id
+LEFT JOIN facility_regions fr    ON fr.region_id  = r.region_id
+LEFT JOIN facilities f           ON f.facility_id = fr.facility_id
+GROUP BY r.region_id, r.name, r.acronym, r.kind, r.network_id, n.label,
+         r.url, r.manager, r.designated, r.state, r.description;
+
+-------------------------------------------------------------------------------
+-- Funding time-series views
+-------------------------------------------------------------------------------
+--
+-- These read from `funding_events` directly (which is what ingest writes to)
+-- and expose the common aggregates the UI + SQL tab want to show without
+-- rewriting the GROUP BY every time.
+
+-- Facility × fiscal_year totals: one row per (facility, year) with
+-- summed nominal USD and the list of funders that contributed that year.
+CREATE OR REPLACE VIEW v_facility_funding_by_year AS
+SELECT
+    f.facility_id,
+    f.canonical_name              AS facility,
+    f.acronym,
+    fe.fiscal_year,
+    SUM(fe.amount_usd)            AS total_usd_nominal,
+    COUNT(*)                      AS n_awards,
+    list(DISTINCT fu.name)        AS funders
+FROM facilities        f
+JOIN funding_events    fe ON fe.facility_id = f.facility_id
+JOIN funders           fu ON fu.funder_id   = fe.funder_id
+WHERE fe.fiscal_year IS NOT NULL AND fe.amount_usd IS NOT NULL
+GROUP BY f.facility_id, f.canonical_name, f.acronym, fe.fiscal_year;
+
+-- Funder × fiscal_year totals: "how much did NSF allocate to this
+-- dataset's facilities in 2019?" Useful for the funder's perspective.
+CREATE OR REPLACE VIEW v_funder_funding_by_year AS
+SELECT
+    fu.funder_id,
+    fu.name                       AS funder,
+    fu.type                       AS funder_type,
+    fe.fiscal_year,
+    SUM(fe.amount_usd)            AS total_usd_nominal,
+    COUNT(*)                      AS n_awards,
+    COUNT(DISTINCT fe.facility_id) AS n_facilities
+FROM funders         fu
+JOIN funding_events  fe ON fe.funder_id = fu.funder_id
+WHERE fe.fiscal_year IS NOT NULL AND fe.amount_usd IS NOT NULL
+GROUP BY fu.funder_id, fu.name, fu.type, fe.fiscal_year;
+
+-- Per-award ledger with facility and funder joined in. Flat enough
+-- to export as CSV for an auditor.
+CREATE OR REPLACE VIEW v_funding_ledger AS
+SELECT
+    fe.event_id,
+    fe.fiscal_year,
+    fe.period_start,
+    fe.period_end,
+    fu.name                AS funder,
+    fu.type                AS funder_type,
+    f.canonical_name       AS facility,
+    f.acronym              AS facility_acronym,
+    f.facility_type        AS facility_kind,
+    f.country,
+    fe.amount_usd          AS amount_usd_nominal,
+    fe.amount_currency,
+    fe.award_id,
+    fe.award_title,
+    fe.program,
+    fe.relation,
+    fe.source,
+    fe.source_url,
+    fe.retrieved_at,
+    fe.confidence,
+    fe.notes
+FROM funding_events fe
+JOIN funders    fu ON fu.funder_id   = fe.funder_id
+JOIN facilities f  ON f.facility_id  = fe.facility_id;
+
+-- CPI-adjusted version of the per-year facility totals. Joins to
+-- cpi_index_us; returns NULL for real_usd_2024 when the CPI row for
+-- that year hasn't been seeded yet. The constant 313.689 = 2024
+-- annual CPI-U (BLS) — update the anchor year below when you refresh
+-- cpi_index_us.
+CREATE OR REPLACE VIEW v_facility_funding_by_year_real AS
+SELECT
+    v.*,
+    CASE
+      WHEN cpi_yr.cpi_u IS NOT NULL AND cpi_anchor.cpi_u IS NOT NULL
+      THEN v.total_usd_nominal * (cpi_anchor.cpi_u / cpi_yr.cpi_u)
+      ELSE NULL
+    END AS total_usd_real_2024
+FROM v_facility_funding_by_year v
+LEFT JOIN cpi_index_us cpi_yr     ON cpi_yr.year     = v.fiscal_year
+LEFT JOIN cpi_index_us cpi_anchor ON cpi_anchor.year = 2024;
+
+-------------------------------------------------------------------------------
+-- People (staff, administrators, scientists) at facilities
+-------------------------------------------------------------------------------
+--
+-- Keeps everything in one DuckDB file so JOIN-heavy queries across
+-- facilities ↔ people ↔ publications ↔ research_areas stay cheap. The
+-- shape is adapted from UNM's knowledge-map schema (github.com/…/unm_kmap)
+-- but adds a facility_personnel table because cod-kmap tracks _which_
+-- role a person holds at _which_ facility (and when), which UNM's
+-- single-institution model didn't need.
+
+CREATE OR REPLACE TABLE people (
+    person_id           VARCHAR PRIMARY KEY,       -- sha1(lower(name)||'||')[:16]; never re-derived when
+                                                   -- an ORCID/email arrives (older rows used
+                                                   -- name|orcid|email and keep their ids)
+    name                VARCHAR NOT NULL,          -- "First Middle Last", display form
+    name_family         VARCHAR,                   -- last name (sort key)
+    name_given          VARCHAR,                   -- first + middle
+    email               VARCHAR,
+    orcid               VARCHAR,                   -- 0000-0002-xxxx-xxxx
+    openalex_id         VARCHAR,                   -- Axxxxxxxxxx
+    scopus_author_id    VARCHAR,
+    wos_researcher_id   VARCHAR,
+    google_scholar_id   VARCHAR,
+    homepage_url        VARCHAR,                   -- personal or institutional bio page
+    photo_url           VARCHAR,
+    research_interests  VARCHAR,                   -- free-text keywords, comma-separated
+    bio                 VARCHAR,                   -- short narrative bio
+    status              VARCHAR,                   -- active | emeritus | former | unknown
+    notes               VARCHAR,
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- Provenance for the narrative fields. Appended last so a lake migrated
+    -- in place (lto_db.ensure_schema: ALTER TABLE ADD COLUMN) has the same
+    -- column order as one rebuilt from parquet.
+    bio_source_url      VARCHAR,                   -- page the bio paraphrases; a bio without one
+                                                   -- is not written (scripts/load_people_research.py)
+    bio_retrieved_at    DATE,
+    research_interests_source_url VARCHAR,
+    orcid_source_url    VARCHAR,                   -- page that ties this ORCID to this person
+    homepage_checked_at DATE                       -- last date homepage_url was fetched and resolved
+);
+
+-- Role a person plays at a facility. A single person can hold multiple
+-- roles across multiple facilities over time (professor AND LTER
+-- director, or past-director AND current-emeritus). The grain is
+-- (person, facility, role) so (Jane Doe, SBC LTER, Director) is
+-- distinct from (Jane Doe, UCSB, Professor).
+CREATE OR REPLACE TABLE facility_personnel (
+    person_id           VARCHAR NOT NULL REFERENCES people(person_id),
+    facility_id         VARCHAR NOT NULL REFERENCES facilities(facility_id),
+    role                VARCHAR NOT NULL,          -- slug from schema/vocab/personnel_roles.csv
+                                                   -- (director | lead-PI | site-manager | ...);
+                                                   -- older loaders also wrote free-text Title Case
+    title               VARCHAR,                   -- free-text (e.g. "Professor of Marine Biology")
+    is_key_personnel    BOOLEAN DEFAULT false,     -- flag for Director / Chief Scientist / Head Admin
+    start_date          DATE,
+    end_date            DATE,                      -- NULL = currently serving
+    source              VARCHAR,                   -- 'facility-webpage' | 'manual' | 'orcid' | 'openalex'
+    source_url          VARCHAR,
+    retrieved_at        DATE,
+    confidence          VARCHAR,                   -- high | medium | low
+    notes               VARCHAR,
+    is_current          BOOLEAN,                   -- false = superseded / no longer listed (row kept);
+                                                   -- NULL = not stated (read end_date)
+    evidence            VARCHAR,                   -- short quote from source_url backing the row
+    PRIMARY KEY (person_id, facility_id, role)
+);
+
+CREATE OR REPLACE TABLE publications (
+    publication_id      VARCHAR PRIMARY KEY,       -- hash(doi) or openalex_id or scopus_eid
+    doi                 VARCHAR UNIQUE,
+    title               VARCHAR,
+    abstract            VARCHAR,
+    pub_year            INTEGER,
+    pub_type            VARCHAR,                   -- journal-article | conference-paper | book-chapter | preprint | report
+    journal             VARCHAR,
+    venue               VARCHAR,                   -- conference or book
+    cited_by_count      INTEGER DEFAULT 0,
+    openalex_id         VARCHAR,
+    scopus_eid          VARCHAR,
+    wos_uid             VARCHAR,
+    url                 VARCHAR,
+    source              VARCHAR,                   -- 'openalex' | 'scopus' | 'wos' | 'gscholar' | 'manual'
+    retrieved_at        DATE,
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE OR REPLACE TABLE authorship (
+    person_id           VARCHAR NOT NULL REFERENCES people(person_id),
+    publication_id      VARCHAR NOT NULL REFERENCES publications(publication_id),
+    author_position     INTEGER,                   -- 1 = first author, NULL unknown
+    is_corresponding    BOOLEAN DEFAULT false,
+    raw_name            VARCHAR,                   -- as printed on the paper
+    PRIMARY KEY (person_id, publication_id)
+);
+
+-- Person ↔ research_area (re-uses the existing research_areas vocab).
+CREATE OR REPLACE TABLE person_areas (
+    person_id           VARCHAR NOT NULL REFERENCES people(person_id),
+    area_id             VARCHAR NOT NULL REFERENCES research_areas(area_id),
+    weight              DOUBLE DEFAULT 1.0,        -- usually n-of-publications-on-topic / n-total
+    evidence_count      INTEGER DEFAULT 0,         -- how many of this person's pubs contributed
+    source              VARCHAR,                   -- 'openalex-topic' | 'gscholar-interest' | 'manual'
+    PRIMARY KEY (person_id, area_id)
+);
+
+-- Per-publication OpenAlex topics / concepts / keywords. Captured at
+-- enrichment time so we can later derive *fine-grained* person→area
+-- weights without re-fetching every Work. OpenAlex returns three
+-- parallel ontologies on each Work payload:
+--
+--   * concepts  — legacy 6-level (0..5) Wikidata-derived concepts (~65k)
+--   * topics    — newer ~4500-leaf hierarchy (domain → field → subfield → topic)
+--   * keywords  — free-text-ish keyword annotations
+--
+-- We store all three rather than picking one, because the marine /
+-- coastal crosswalk (data/vocab_crosswalk/openalex_to_area.csv) is
+-- easier to maintain when it can match against whichever ontology
+-- best disambiguates a research_area slug. Topic IDs (T10102) and
+-- concept IDs (C2778805511) live in the same column because they
+-- share no prefix collision; `kind` flags which ontology the row
+-- came from.
+CREATE OR REPLACE TABLE publication_topics (
+    publication_id      VARCHAR NOT NULL REFERENCES publications(publication_id),
+    concept_id          VARCHAR NOT NULL,          -- 'C2778805511' | 'T10102' | 'keywords/citation'
+    concept_name        VARCHAR NOT NULL,
+    score               DOUBLE,                    -- 0..1 confidence reported by OpenAlex
+    level               INTEGER,                   -- concept level (0..5); NULL for topics/keywords
+    kind                VARCHAR DEFAULT 'concept', -- 'concept' | 'topic' | 'keyword'
+    source              VARCHAR DEFAULT 'openalex',
+    PRIMARY KEY (publication_id, concept_id)
+);
+
+-- Co-authorship graph between people in the dataset. Store with
+-- person_a_id < person_b_id so each pair has one canonical row.
+CREATE OR REPLACE TABLE collaborations (
+    person_a_id         VARCHAR NOT NULL REFERENCES people(person_id),
+    person_b_id         VARCHAR NOT NULL REFERENCES people(person_id),
+    co_pub_count        INTEGER DEFAULT 0,
+    first_year          INTEGER,
+    last_year           INTEGER,
+    strength            DOUBLE DEFAULT 0.0,        -- normalised 0..1
+    PRIMARY KEY (person_a_id, person_b_id)
+);
+
+-------------------------------------------------------------------------------
+-- People helper views
+-------------------------------------------------------------------------------
+
+-- Current, key personnel only — driven by the facility_personnel
+-- is_key_personnel flag and a NULL end_date. Perfect for a "who runs
+-- the site today?" directory.
+CREATE OR REPLACE VIEW v_facility_key_personnel AS
+SELECT
+    f.facility_id,
+    f.canonical_name        AS facility,
+    f.acronym               AS facility_acronym,
+    p.person_id,
+    p.name,
+    fp.role,
+    fp.title,
+    p.orcid,
+    p.openalex_id,
+    p.homepage_url,
+    fp.start_date,
+    fp.source_url
+FROM facility_personnel fp
+JOIN people     p ON p.person_id   = fp.person_id
+JOIN facilities f ON f.facility_id = fp.facility_id
+WHERE fp.is_key_personnel = true
+  AND (fp.end_date IS NULL OR fp.end_date > CURRENT_DATE);
+
+-- Person-rollup: every person with list-aggregated facilities, roles,
+-- research areas, and publication count. Powers a "staff search" view
+-- in the web app.
+CREATE OR REPLACE VIEW v_person_enriched AS
+SELECT
+    p.person_id,
+    p.name,
+    p.name_family,
+    p.orcid,
+    p.openalex_id,
+    p.homepage_url,
+    p.research_interests,
+    p.status,
+    list(DISTINCT f.canonical_name)  AS facilities,
+    list(DISTINCT fp.role)           AS roles,
+    list(DISTINCT ra.label)          AS research_areas,
+    COUNT(DISTINCT a.publication_id) AS n_publications,
+    MAX(pub.pub_year)                AS latest_pub_year
+FROM people p
+LEFT JOIN facility_personnel fp ON fp.person_id   = p.person_id
+LEFT JOIN facilities         f  ON f.facility_id  = fp.facility_id
+LEFT JOIN person_areas       pa ON pa.person_id   = p.person_id
+LEFT JOIN research_areas     ra ON ra.area_id     = pa.area_id
+LEFT JOIN authorship         a  ON a.person_id    = p.person_id
+LEFT JOIN publications       pub ON pub.publication_id = a.publication_id
+GROUP BY p.person_id, p.name, p.name_family, p.orcid, p.openalex_id, p.homepage_url, p.research_interests, p.status;
+
+-- person × research_area enriched with the actual evidence count and
+-- the top topics (drawn from publication_topics) that pushed the
+-- person into that area. Powers the SQL canned query "Person research
+-- areas (by publication topics)".
+CREATE OR REPLACE VIEW v_person_areas_enriched AS
+SELECT
+    p.person_id,
+    p.name                       AS person,
+    ra.area_id,
+    ra.label                     AS area,
+    pa.weight,
+    pa.evidence_count,
+    pa.source,
+    f0.facilities                AS facilities
+FROM person_areas pa
+JOIN people         p  ON p.person_id  = pa.person_id
+JOIN research_areas ra ON ra.area_id   = pa.area_id
+LEFT JOIN (
+    SELECT fp.person_id, list(DISTINCT f.canonical_name) AS facilities
+    FROM facility_personnel fp
+    JOIN facilities f ON f.facility_id = fp.facility_id
+    GROUP BY fp.person_id
+) f0 ON f0.person_id = p.person_id;
+
+-------------------------------------------------------------------------------
+-- Unified person identity (ported from cod-kmap, adapted to LTO's two cohorts)
+-------------------------------------------------------------------------------
+--
+-- person_registry is the single identity space the human-facing layers resolve
+-- into: `people` (facility staff, is_site_personnel) and the field-wide
+-- researcher harvest (is_scholar). One row per human, keyed on a persistent
+-- identifier. It does not replace `people` — that table keeps its own columns
+-- and grain — it gives every human a common node id so the co-authorship graph
+-- can be computed once over one node set.
+--
+-- Hard rule inherited from three separate wrong-person incidents upstream
+-- (see scripts/wipe_bad_openalex_attributions.py, wipe_medicine_attributions.py
+-- and wipe_misattributed_identifiers.py): a row is merged into an existing
+-- registry entry ONLY on ORCID or openalex_id equality. Name similarity never
+-- merges. Every row carries a source_url and a confidence, and every merge
+-- decision is recorded in person_identity_source.
+--
+-- All registry-side tables are soft-ref (plain VARCHAR, no REFERENCES) so
+-- scripts/rebuild_db_from_parquet.py can bulk-load them in any order.
+
+CREATE OR REPLACE TABLE person_registry (
+    canonical_id        VARCHAR PRIMARY KEY,       -- 'orcid:0000-…' when an ORCID is known,
+                                                   -- else 'openalex:A…'; stable across rebuilds
+                                                   -- because it is derived from the identifier,
+                                                   -- not from a hash of mutable fields.
+    display_name        VARCHAR NOT NULL,
+    name_family         VARCHAR,
+    name_given          VARCHAR,
+
+    -- Persistent identifiers. At least one of orcid / openalex_id is
+    -- required — qa.py enforces it — because a registry row with neither
+    -- cannot be re-resolved or de-duplicated later.
+    orcid               VARCHAR,
+    openalex_id         VARCHAR,
+    google_scholar_id   VARCHAR,
+    scopus_author_id    VARCHAR,
+    wos_researcher_id   VARCHAR,
+    homepage_url        VARCHAR,                   -- institutional or personal page
+
+    -- Current affiliation as OpenAlex reports it. ror is what links a
+    -- researcher to a catalogued facility (see facilities.ror).
+    affiliation         VARCHAR,
+    affiliation_ror     VARCHAR,
+    affiliation_country VARCHAR,                   -- ISO-2
+
+    -- Cohort membership. A person can be in both at once; that is the
+    -- point of the table.
+    is_site_personnel   BOOLEAN DEFAULT false,     -- staffs a catalogued facility
+    is_scholar          BOOLEAN DEFAULT false,     -- in the field-wide harvest
+
+    -- Source-table back-reference, so a registry row can be walked back to
+    -- the layer it came from without a crosswalk table.
+    person_id           VARCHAR,                   -- soft ref people(person_id)
+
+    -- Bibliometrics, denormalised from the OpenAlex author record so the
+    -- registry alone can rank and tier without a join.
+    works_count         INTEGER,
+    cited_by_count      BIGINT,
+    h_index             INTEGER,
+    i10_index           INTEGER,
+    two_yr_mean_citedness DOUBLE,
+    lto_works_count     INTEGER,                   -- sum of topics[].count over the LTO topic set
+                                                   -- (schema/vocab/lto_openalex_topics.csv)
+    lto_share           DOUBLE,                    -- lto_works_count / works_count
+    first_pub_year      INTEGER,
+
+    -- Tiering. 'core' ships to public/parquet for the browser; 'archive'
+    -- stays in the local catalogue. See scripts/rank_person_registry.py.
+    tier                VARCHAR DEFAULT 'archive', -- core | archive
+    tier_rank           INTEGER,
+    tier_score          DOUBLE,
+
+    source              VARCHAR,                   -- openalex-harvest | people | curated
+    source_url          VARCHAR NOT NULL,
+    confidence          VARCHAR NOT NULL,          -- high | medium | low
+    retrieved_at        VARCHAR,
+    notes               VARCHAR
+);
+
+-- Provenance for every identifier attached to a registry row, and for every
+-- merge. One row per (canonical_id, field) assertion, so a wrong id can be
+-- traced to the rule that produced it rather than being silently overwritten.
+CREATE OR REPLACE TABLE person_identity_source (
+    canonical_id        VARCHAR NOT NULL,          -- soft ref person_registry
+    field               VARCHAR NOT NULL,          -- orcid | openalex_id | merge | homepage_url | …
+    value               VARCHAR,
+    method              VARCHAR NOT NULL,          -- orcid-equality | openalex-equality |
+                                                   -- openalex-author-record | seed | manual-audit
+    evidence            VARCHAR,                   -- what made this defensible
+    source_url          VARCHAR,
+    confidence          VARCHAR,                   -- high | medium | low
+    retrieved_at        VARCHAR
+);
+
+-- Co-publication edges over the registry node set. Distinct from
+-- `collaborations`, which is keyed on people(person_id) and therefore cannot
+-- express an edge to a harvested-only researcher. Undirected, stored once
+-- with canonical_id_a < canonical_id_b.
+CREATE OR REPLACE TABLE registry_collaborations (
+    canonical_id_a      VARCHAR NOT NULL,
+    canonical_id_b      VARCHAR NOT NULL,
+    co_pub_count        INTEGER NOT NULL,
+    first_year          INTEGER,
+    last_year           INTEGER,
+    shared_areas        VARCHAR,                   -- comma-separated area_id list
+    shared_facilities   VARCHAR,                   -- comma-separated facility_id list
+    PRIMARY KEY (canonical_id_a, canonical_id_b)
+);
+
+-- Researcher ↔ catalogued-facility links, joined on ROR equality between
+-- person_registry.affiliation_ror and facilities.ror — written by
+-- scripts/link_registry_facilities.py. Soft refs both sides.
+CREATE OR REPLACE TABLE registry_facilities (
+    canonical_id        VARCHAR NOT NULL,          -- soft ref person_registry
+    facility_id         VARCHAR NOT NULL,          -- soft ref facilities
+    method              VARCHAR NOT NULL,          -- ror-equality
+    ror                 VARCHAR,                   -- the ROR both sides carry
+    source_url          VARCHAR,
+    retrieved_at        VARCHAR,
+    confidence          VARCHAR,                   -- high | medium | low
+    PRIMARY KEY (canonical_id, facility_id)
+);
+
+-------------------------------------------------------------------------------
+-- Registry validation & provenanced co-authorship
+-------------------------------------------------------------------------------
+--
+-- Three tables, all soft-ref (no FK) so they can be bulk-loaded in any order
+-- by scripts/rebuild_db_from_parquet.py:
+--
+--   person_validation    one row per (registry row, check) — did this row's
+--                        ORCID / OpenAlex id / ROR actually resolve?
+--   coauthor_edges       accepted co-authorship edges, each carrying the work
+--                        that proves it
+--   coauthor_candidates  co-authors seen on registry members' works who are
+--                        NOT yet registry rows — a staging queue, reviewed
+--                        before anything is promoted into person_registry
+--
+-- Why not just extend person_registry / registry_collaborations: both are
+-- one-row-per-entity tables rebuilt wholesale by their build scripts, so a
+-- verdict written into them is destroyed on the next rebuild and cannot be
+-- diffed run-over-run. Validation is a time series over an identifier, not
+-- an attribute of it — hence its own table keyed on (canonical_id, check_id,
+-- run_id).
+
+-- Per-identifier resolution verdicts. Long form — one row per check per
+-- registry row — because the check set grows (ORCID, OpenAlex author, ROR,
+-- source_url reachability, cohort-flag agreement, name/affiliation
+-- agreement) and a wide table needs a schema migration for each addition
+-- while a long table needs none.
+--
+-- `verdict` deliberately separates "we asked and it said no" from "the
+-- question does not apply to this row". Counting not_applicable rows as
+-- failures would pressure someone into inventing an identifier to clear the
+-- number, which is the exact failure the wipe_* scripts were written to undo.
+CREATE OR REPLACE TABLE person_validation (
+    validation_id       VARCHAR PRIMARY KEY,       -- hash(canonical_id||check_id||run_id)
+    canonical_id        VARCHAR NOT NULL,          -- soft ref person_registry(canonical_id)
+    check_id            VARCHAR NOT NULL,          -- orcid-resolves | openalex-author-resolves |
+                                                   -- ror-resolves | source-url-citable |
+                                                   -- name-agreement | affiliation-agreement |
+                                                   -- cohort-flag-agreement
+    -- The identifier the check was run against, copied in so a verdict is
+    -- readable without joining back to a registry row that may since have
+    -- been re-harvested with a different value.
+    subject_id_type     VARCHAR,                   -- orcid | openalex_id | ror | source_url | none
+    subject_id_value    VARCHAR,
+
+    verdict             VARCHAR NOT NULL,          -- pass | fail | not_applicable | unresolved
+                                                   --   pass           id resolved and agrees
+                                                   --   fail           id resolved to nothing, or to
+                                                   --                  someone else
+                                                   --   not_applicable no such id exists for this row
+                                                   --                  by construction
+                                                   --   unresolved     check could not be run (API error,
+                                                   --                  rate limit, network refusal) — never
+                                                   --                  collapse this into 'fail'
+    http_status         INTEGER,                   -- as returned by the resolver, when the check was an HTTP GET
+    -- What made this verdict defensible. Same intent as
+    -- person_identity_source.evidence: a human reading one row should be able
+    -- to tell whether to trust it without re-running the check.
+    evidence            VARCHAR,                   -- 'ORCID record 0000-0002-…: name "…", 41 works'
+    mismatch_detail     VARCHAR,                   -- populated only on verdict='fail'
+
+    -- Provenance (project non-negotiable: source_url + retrieved_at on every
+    -- assertion, and a confidence rating on every assertion).
+    method              VARCHAR NOT NULL,          -- orcid-public-api | openalex-authors-batch |
+                                                   -- ror-api | http-head | manual-audit
+    source              VARCHAR,                   -- orcid | openalex | ror | manual
+    source_url          VARCHAR NOT NULL,          -- the exact URL queried, not the service homepage
+    retrieved_at        VARCHAR NOT NULL,          -- ISO-8601 date, matching person_registry.retrieved_at
+    confidence          VARCHAR NOT NULL,          -- high | medium | low
+    run_id              VARCHAR NOT NULL,          -- soft ref ingest_runs(run_id); groups a sweep so two
+                                                   -- sweeps of the same row are both retained and diffable
+    notes               VARCHAR,
+    CHECK (verdict IN ('pass', 'fail', 'not_applicable', 'unresolved')),
+    CHECK (confidence IN ('high', 'medium', 'low'))
+);
+
+-- Accepted co-authorship edges over the person_registry node set.
+--
+-- This is registry_collaborations plus a provenance path and a match method.
+-- registry_collaborations stays as-is (the network view reads it and its shape
+-- is baked into src/views/network.js); coauthor_edges is the auditable layer
+-- underneath it. The distinction that matters: an edge here cannot exist
+-- without naming at least one work both people are on (exemplar_work_id is
+-- NOT NULL), so any edge can be checked by hand against OpenAlex in one
+-- request.
+--
+-- Undirected, stored once with canonical_id_a < canonical_id_b — same
+-- convention as collaborations and registry_collaborations, enforced by the
+-- CHECK below and re-checked in scripts/qa.py.
+--
+-- match_method is restricted to identifier equality. There is no
+-- 'name-similarity' value and one must never be added: three separate
+-- wrong-person incidents upstream (scripts/wipe_bad_openalex_attributions.py,
+-- wipe_medicine_attributions.py and wipe_misattributed_identifiers.py) all
+-- trace to name-only resolution. A co-author who cannot be tied to a registry
+-- row by ORCID or OpenAlex author id belongs in coauthor_candidates, not here.
+CREATE OR REPLACE TABLE coauthor_edges (
+    edge_id             VARCHAR PRIMARY KEY,       -- hash(canonical_id_a||canonical_id_b)
+    canonical_id_a      VARCHAR NOT NULL,          -- soft ref person_registry(canonical_id)
+    canonical_id_b      VARCHAR NOT NULL,          -- soft ref person_registry(canonical_id)
+
+    co_pub_count        INTEGER NOT NULL,          -- number of works both are credited on
+    first_year          INTEGER,
+    last_year           INTEGER,
+    -- Symmetric-normalised edge weight, so a pair of prolific authors with 3
+    -- shared papers does not outrank a pair whose entire output is together:
+    --   co_pub_count / sqrt(works_a * works_b)
+    weight              DOUBLE,
+
+    -- Provenance path back to a work. exemplar_work_id is required: it is the
+    -- single OpenAlex Work id a reviewer can fetch to confirm the edge.
+    -- evidence_work_ids carries up to 20 more as a comma-separated list —
+    -- deliberately VARCHAR rather than a LIST, because Arrow LIST columns are
+    -- not plain JS arrays in DuckDB-Wasm and every consumer would otherwise
+    -- have to go through arrowToPlain() (see the trap documented in src/db.js).
+    exemplar_work_id    VARCHAR NOT NULL,          -- 'W2741809807'
+    exemplar_work_doi   VARCHAR,
+    exemplar_work_year  INTEGER,
+    evidence_work_ids   VARCHAR,                   -- comma-separated OpenAlex Work ids, capped at 20
+    evidence_truncated  BOOLEAN DEFAULT false,     -- true when co_pub_count exceeds the 20 listed
+
+    match_method        VARCHAR NOT NULL,          -- orcid-equality | openalex-author-id-equality |
+                                                   -- sameas-closure (OWL-RL over the
+                                                   -- InverseFunctional identity properties in lto.owl)
+    -- Denormalised context the network view would otherwise recompute per edge.
+    shared_areas        VARCHAR,                   -- comma-separated research_areas.area_id
+    shared_facilities   VARCHAR,                   -- comma-separated facilities.facility_id
+    same_institution    BOOLEAN,                   -- affiliation_ror equality at harvest time
+
+    source              VARCHAR,                   -- openalex-works
+    source_url          VARCHAR NOT NULL,          -- the works query that produced the edge
+    retrieved_at        VARCHAR NOT NULL,
+    confidence          VARCHAR NOT NULL,          -- high | medium | low
+    run_id              VARCHAR,                   -- soft ref ingest_runs(run_id)
+    CHECK (canonical_id_a < canonical_id_b),
+    CHECK (co_pub_count >= 1),
+    CHECK (match_method IN ('orcid-equality', 'openalex-author-id-equality',
+                            'sameas-closure')),
+    CHECK (confidence IN ('high', 'medium', 'low'))
+);
+
+-- Co-authors observed on registry members' works who are not (yet) registry
+-- rows. A staging queue, not a roster: nothing here is a personnel record and
+-- nothing here is drawn by the frontend.
+--
+-- The CHECK is the point of the table. A candidate must arrive with at least
+-- one persistent identifier — a bare name is not admissible even as a
+-- proposal, because a named-but-unidentified candidate is precisely what an
+-- eager resolver later "matches" to the wrong person. `decision` starts at
+-- 'pending'; promotion into person_registry writes 'accepted' here and a
+-- matching person_identity_source row there, so the decision survives the
+-- next registry rebuild.
+--
+-- ambiguity_note carries the disambiguation evidence and is required to be
+-- non-empty when decision is 'rejected' or 'deferred' (enforced in
+-- scripts/qa.py, not by a CHECK, so a partially-reviewed queue still loads),
+-- so a rejection records *why* rather than silently dropping a person.
+CREATE OR REPLACE TABLE coauthor_candidates (
+    candidate_id        VARCHAR PRIMARY KEY,       -- 'orcid:0000-…' or 'openalex:A…', same minting
+                                                   -- rule as person_registry.canonical_id, so an
+                                                   -- accepted candidate keeps its key
+    display_name        VARCHAR NOT NULL,
+    orcid               VARCHAR,
+    openalex_id         VARCHAR,
+    affiliation         VARCHAR,
+    affiliation_ror     VARCHAR,
+    affiliation_country VARCHAR,                   -- ISO-2
+
+    -- How this candidate was reached: which registry member, on which work.
+    seen_with_canonical_id VARCHAR NOT NULL,       -- soft ref person_registry(canonical_id)
+    seen_on_work_id     VARCHAR NOT NULL,          -- OpenAlex Work id
+    n_registry_coauthors INTEGER,                  -- how many distinct registry rows they co-author with
+    n_shared_works      INTEGER,                   -- total works shared with the registry
+
+    -- Why they might belong in the registry at all.
+    works_count         INTEGER,
+    lto_works_count     INTEGER,
+    lto_share           DOUBLE,                    -- gate inherited from the scholar harvest:
+                                                   -- >=10 works and a meaningful LTO-topic share
+    h_index             INTEGER,
+
+    decision            VARCHAR NOT NULL DEFAULT 'pending',  -- pending | accepted | rejected | deferred
+    decided_by          VARCHAR,                   -- script name or a human
+    decided_at          VARCHAR,
+    -- Disambiguation evidence. Required on a non-accept so the reasoning is
+    -- recoverable: 'two OpenAlex authors share this ORCID', 'name matches a
+    -- registry row but ORCIDs differ — distinct people', 'cardiology topics,
+    -- no LTO-relevant output'.
+    ambiguity_note      VARCHAR,
+
+    source              VARCHAR,                   -- openalex-works
+    source_url          VARCHAR NOT NULL,
+    retrieved_at        VARCHAR NOT NULL,
+    confidence          VARCHAR NOT NULL,          -- high | medium | low — in the IDENTITY, not in
+                                                   -- the decision to admit them
+    run_id              VARCHAR,
+    notes               VARCHAR,
+    CHECK (orcid IS NOT NULL OR openalex_id IS NOT NULL),
+    CHECK (decision IN ('pending', 'accepted', 'rejected', 'deferred')),
+    CHECK (confidence IN ('high', 'medium', 'low'))
+);
+
+-------------------------------------------------------------------------------
+-- Validation & co-authorship helper views
+-------------------------------------------------------------------------------
+-- Reminder (CLAUDE.md): views do not survive the parquet export. All three
+-- views below are also defined in the deferred `helperViews` array in
+-- src/db.js so the SQL tab keeps them in the browser. Change one, change
+-- both. (Upstream cod-kmap claims this mirroring but never did it — a known
+-- drift this port deliberately fixes.)
+
+-- Latest verdict per (row, check) — a validation sweep appends rather than
+-- overwrites, so almost every consumer wants this rather than the raw table.
+CREATE OR REPLACE VIEW v_person_validation_latest AS
+SELECT canonical_id, check_id, subject_id_type, subject_id_value,
+       verdict, http_status, evidence, mismatch_detail,
+       method, source_url, retrieved_at, confidence, run_id
+FROM (
+    SELECT v.*,
+           ROW_NUMBER() OVER (PARTITION BY canonical_id, check_id
+                              ORDER BY retrieved_at DESC, run_id DESC) AS rn
+    FROM person_validation v
+)
+WHERE rn = 1;
+
+-- One row per registry row: does it currently satisfy the non-negotiables?
+-- pass_rate excludes not_applicable from the denominator, so rows lacking an
+-- identifier by construction are not penalised for it.
+CREATE OR REPLACE VIEW v_person_validation_summary AS
+SELECT r.canonical_id,
+       r.display_name,
+       r.tier,
+       COUNT(*) FILTER (WHERE l.verdict = 'pass')           AS n_pass,
+       COUNT(*) FILTER (WHERE l.verdict = 'fail')           AS n_fail,
+       COUNT(*) FILTER (WHERE l.verdict = 'not_applicable') AS n_not_applicable,
+       COUNT(*) FILTER (WHERE l.verdict = 'unresolved')     AS n_unresolved,
+       CASE WHEN COUNT(*) FILTER (WHERE l.verdict IN ('pass', 'fail')) = 0 THEN NULL
+            ELSE COUNT(*) FILTER (WHERE l.verdict = 'pass')::DOUBLE
+                 / COUNT(*) FILTER (WHERE l.verdict IN ('pass', 'fail'))
+       END                                                  AS pass_rate,
+       -- The non-negotiables, restated as booleans over the registry row
+       -- itself so a caller does not have to know the check_id vocabulary.
+       (r.orcid IS NOT NULL OR r.openalex_id IS NOT NULL
+        OR r.affiliation_ror IS NOT NULL)                   AS has_persistent_id,
+       (r.source_url IS NOT NULL AND r.source_url <> '')    AS has_source_url,
+       (r.confidence IN ('high', 'medium', 'low'))          AS has_valid_confidence
+FROM person_registry r
+LEFT JOIN v_person_validation_latest l ON l.canonical_id = r.canonical_id
+GROUP BY r.canonical_id, r.display_name, r.tier, r.orcid, r.openalex_id,
+         r.affiliation_ror, r.source_url, r.confidence;
+
+-- Co-author edges with both endpoints resolved to display names — what the
+-- network view needs to label an edge without two extra joins per row.
+CREATE OR REPLACE VIEW v_coauthor_edges_enriched AS
+SELECT e.edge_id,
+       e.canonical_id_a, ra.display_name AS name_a, ra.affiliation AS affiliation_a,
+       e.canonical_id_b, rb.display_name AS name_b, rb.affiliation AS affiliation_b,
+       e.co_pub_count, e.first_year, e.last_year, e.weight,
+       e.exemplar_work_id, e.exemplar_work_doi, e.exemplar_work_year,
+       e.match_method, e.shared_areas, e.shared_facilities, e.same_institution,
+       e.source_url, e.retrieved_at, e.confidence
+FROM coauthor_edges e
+JOIN person_registry ra ON ra.canonical_id = e.canonical_id_a
+JOIN person_registry rb ON rb.canonical_id = e.canonical_id_b;

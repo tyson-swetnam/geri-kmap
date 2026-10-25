@@ -1,0 +1,17 @@
+# Pinned: DuckDB 2.0 is the engine of the DuckLake store of record
+# (scripts/geri_db.py; spec 1.1 catalogs need 2.0). The ducklake and sqlite
+# extensions come from extensions.duckdb.org on first use (INSTALL is
+# automatic in geri_db.connect()).
+duckdb==2.0.0
+# DuckDB returns TIMESTAMPTZ (e.g. lake.snapshots().snapshot_time) as
+# tz-aware datetimes via pytz.
+pytz>=2024.1
+# Fetchers (DEIMS-SDR, NEON, ICOS, Natural Earth) and name matching.
+requests>=2.31
+rapidfuzz>=3.9
+# geocode.py (only for records that arrive without coordinates).
+geopy>=2.4
+# NOTE: qa.py's JS parse check shells out to node (vm.SourceTextModule) and
+# is skipped with a warning when node is absent; `pip install
+# nodejs-wheel-binaries` provides one. Node is not a build step: nothing in
+# src/ is compiled or bundled.
