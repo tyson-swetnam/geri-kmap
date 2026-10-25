@@ -38,7 +38,7 @@ Coverage rows for a site with two series are added together: earliest first valu
 3. **ICOS:** `BE-Bra` → ICOS station `ES_BE-Bra`.
 4. **TERN:** `AU-How` → the OzFlux tower whose `fluxnet_id` is AU-How.
 
-Five ids are known only from the harmonized products and become sites of their own (`harmonized-only`), named as the products name them: ZA-CCs, ZA-Kru, FR-Lus, FR-Lqu and DE-RuS.
+Four ids are known only from the harmonized products and become sites of their own (`harmonized-only`), named as the products name them: ZA-CCs, FR-Lus, FR-Lqu and DE-RuS. ZA-Kru (`EFTEON_LVD_Skukuza_EC`) is SAEON's Skukuza Savanna eddy-covariance station, at the same point.
 
 `scripts/summarize_harmonized.py` reads the downloaded files (their MD5s match the Data Store's iRODS checksums) and writes the committed `data/raw/R-GERI-HARMONIZED/harmonized_summary.csv`. The loaders read that summary, so the 1 GB download is needed only to refresh it.
 
