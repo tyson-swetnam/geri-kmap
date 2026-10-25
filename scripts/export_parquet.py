@@ -290,7 +290,12 @@ def main() -> int:
                       v.url, v.parent_org, f.established,
                       f.record_length_years, f.long_term_threshold_met,
                       fs.sphere_slug AS primary_sphere,
-                      g.ris, coalesce(g.geri_harmonized, false), g.deims_id
+                      g.ris, coalesce(g.geri_harmonized, false), g.deims_id,
+                      -- The site's first-ranked RI: load_geri_sites.py writes
+                      -- its label to parent_org (RI_ORDER). src/db.js query()
+                      -- derives primary_ri the same way.
+                      (SELECT n.network_id FROM networks n
+                        WHERE n.label = f.parent_org AND n.level = 'continental-ri') AS primary_ri
                FROM v_facility_map v
                JOIN facilities f ON f.facility_id = v.id
                JOIN v_facility_geri g ON g.facility_id = v.id
@@ -304,7 +309,7 @@ def main() -> int:
     features = []
     for r in rows:
         (fid, name, acronym, ftype, country, lat, lng, url, parent, established,
-         rly, ltm, primary_sphere, ris, harmonized, deims_id) = r
+         rly, ltm, primary_sphere, ris, harmonized, deims_id, primary_ri) = r
         features.append({
             "type": "Feature",
             "geometry": {"type": "Point", "coordinates": [lng, lat]},
@@ -321,6 +326,7 @@ def main() -> int:
                 "long_term_threshold_met": ltm,
                 "primary_sphere": primary_sphere,
                 "ris": list(ris or []),
+                "primary_ri": primary_ri,
                 "geri_harmonized": harmonized,
                 "deims_id": deims_id,
             },

@@ -57,32 +57,81 @@ function sphereColorExpr() {
   return expr;
 }
 
-// Active marker color encoding. 'sphere' (default) paints by
-// primary_sphere; 'type' paints by facility_type (legacy behavior).
-// Persisted to localStorage so the user's choice survives reloads.
+// Research-infrastructure palette for feature.properties.primary_ri (the
+// RI the loader ranks first for a site; see load_geri_sites.RI_ORDER).
+// Hues are the dataviz reference categorical slots, checked with its
+// validator: adjacent CVD ΔE >= 9.1, normal-vision ΔE >= 19.6. ICOS and
+// eLTER, the only two RIs whose sites interleave (Europe), take the two
+// most separated hues (all-pairs CVD ΔE 24.7). NEON, TERN and SAEON fall
+// under 3:1 on the light basemap, so RI mode draws a dark stroke and the
+// legend, popups and scope lens name the RI. EFTEON is part of SAEON and
+// shares its colour.
+export const RI_COLORS = {
+  icos:   '#2a78d6', // blue
+  elter:  '#eb6834', // orange
+  neon:   '#1baf7a', // aqua
+  tern:   '#eda100', // yellow
+  saeon:  '#e87ba4', // magenta
+  efteon: '#e87ba4',
+  cern:   '#6250d6', // violet
+};
+const RI_LEGEND = [
+  ['icos', 'ICOS'], ['elter', 'eLTER'], ['neon', 'NEON'], ['tern', 'TERN'],
+  ['saeon', 'SAEON / EFTEON'], ['cern', 'CERN'],
+];
+const NO_RI_COLOR = '#94a3b8';   // GERI network only, no RI
+
+function riColorExpr() {
+  const expr = ['match', ['get', 'primary_ri']];   // null -> the default below
+  for (const [k, v] of Object.entries(RI_COLORS)) expr.push(k, v);
+  expr.push(NO_RI_COLOR);
+  return expr;
+}
+
+// Active marker colour encoding: 'ri' (default) paints by primary_ri,
+// 'sphere' by primary_sphere, 'type' by facility_type. Persisted to
+// localStorage so the choice survives reloads.
+const COLOR_MODES = ['ri', 'sphere', 'type'];
 let _colorMode = (() => {
   try {
     const v = localStorage.getItem('geri-kmap:colorMode');
-    return v === 'type' ? 'type' : 'sphere';
-  } catch (_) { return 'sphere'; }
+    return COLOR_MODES.includes(v) ? v : 'ri';
+  } catch (_) { return 'ri'; }
 })();
 
 function colorExprFor(mode) {
-  return mode === 'type' ? typeColorExpr() : sphereColorExpr();
+  if (mode === 'type') return typeColorExpr();
+  if (mode === 'sphere') return sphereColorExpr();
+  return riColorExpr();
 }
+// RI mode's pale hues need an edge on the light basemap; the other modes
+// keep the white halo.
+const strokeFor = (mode) => (mode === 'ri' ? '#334155' : '#fff');
+const strokeWidthFor = (mode) => (mode === 'ri' ? 1 : 1.5);
 
 export function getColorMode() { return _colorMode; }
+
+/** The colour the map paints a site in the current mode (for list swatches). */
+export function featureColor(p) {
+  if (_colorMode === 'type') return TYPE_COLORS[p.type] || '#64748b';
+  if (_colorMode === 'sphere') return SPHERE_COLORS[p.primary_sphere] || '#64748b';
+  return RI_COLORS[p.primary_ri] || NO_RI_COLOR;
+}
 export function setColorMode(mode) {
-  const next = mode === 'type' ? 'type' : 'sphere';
+  const next = COLOR_MODES.includes(mode) ? mode : 'ri';
   if (next === _colorMode) return;
   _colorMode = next;
   try { localStorage.setItem('geri-kmap:colorMode', next); } catch (_) { /* ignore */ }
   // Repaint the live map (skip in stub mode where setPaintProperty is a no-op).
   if (map && !_stubMode) {
-    try { map.setPaintProperty('facility-points', 'circle-color', colorExprFor(next)); }
-    catch (_) { /* layer not added yet */ }
+    try {
+      map.setPaintProperty('facility-points', 'circle-color', colorExprFor(next));
+      map.setPaintProperty('facility-points', 'circle-stroke-color', strokeFor(next));
+      map.setPaintProperty('facility-points', 'circle-stroke-width', strokeWidthFor(next));
+    } catch (_) { /* layer not added yet */ }
   }
   refreshLegend();
+  window.dispatchEvent(new CustomEvent('geri:colormode', { detail: next }));
 }
 
 let map;
@@ -237,8 +286,8 @@ export function initMap(container) {
       paint: {
         'circle-radius': 6,
         'circle-color': colorExprFor(_colorMode),
-        'circle-stroke-width': 1.5,
-        'circle-stroke-color': '#fff',
+        'circle-stroke-width': strokeWidthFor(_colorMode),
+        'circle-stroke-color': strokeFor(_colorMode),
       },
     });
 
@@ -474,6 +523,7 @@ function makeLegendControl() {
           <div class="legend-section legend-points">
             <div class="legend-section-label">Facilities</div>
             <div class="legend-color-mode">
+              <label><input type="radio" name="color-mode" value="ri" /> By research infrastructure</label>
               <label><input type="radio" name="color-mode" value="sphere" /> By primary sphere</label>
               <label><input type="radio" name="color-mode" value="type" /> By facility type</label>
             </div>
@@ -535,10 +585,15 @@ function makeLegendControl() {
         `<div class="legend-row"><span class="legend-chip" style="background:${color}"></span><span>${esc(slug)}</span></div>`
       ).join('');
 
+      const riChipHtml = [...RI_LEGEND, ['', 'GERI network only']].map(([slug, label]) =>
+        `<div class="legend-row"><span class="legend-chip legend-chip-ri" style="background:${RI_COLORS[slug] || NO_RI_COLOR}"></span><span>${esc(label)}</span></div>`
+      ).join('') + '<div class="legend-note">A site in several RIs takes the first of NEON, ICOS, TERN, CERN, SAEON, eLTER.</div>';
+
       const renderChips = () => {
         const body = div.querySelector('#legend-types');
         if (!body) return;
-        body.innerHTML = (_colorMode === 'sphere') ? sphereChipHtml : typeChipHtml;
+        body.innerHTML = _colorMode === 'ri' ? riChipHtml
+          : (_colorMode === 'sphere') ? sphereChipHtml : typeChipHtml;
       };
 
       fetchCSV(`${BASE}vocab/facility_types.csv`).then((rows) => {

@@ -668,6 +668,10 @@ export async function query(filterState) {
            EXISTS (SELECT 1 FROM site_identifiers si
                    WHERE si.facility_id = f.facility_id
                      AND si.scheme = 'geri-harmonized-id') AS geri_harmonized,
+           -- Same as export_parquet.py's GeoJSON: the RI whose label
+           -- load_geri_sites.py wrote to parent_org. Drives RI colouring.
+           (SELECT n2.network_id FROM networks n2
+             WHERE n2.label = f.parent_org AND n2.level = 'continental-ri') AS primary_ri,
            list(DISTINCT r.name)         AS regions,
            list(DISTINCT r.kind)         AS region_kinds
     FROM facilities f

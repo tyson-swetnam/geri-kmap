@@ -5,7 +5,7 @@ import {
   refreshLegend,
   onViewportChange,
   featuresInView,
-  TYPE_COLORS,
+  featureColor,
 } from './map.js';
 import { initFilters, DEFAULT_SCOPE } from './filters.js';
 import { initOverlays, activeOverlays, syncOverlaysToFilters } from './overlays.js';
@@ -125,7 +125,7 @@ function renderMapBrowse(features) {
 
   const rows = sorted.map((f) => {
     const p = normalizeFeature(f);
-    const color = TYPE_COLORS[p.type] || '#64748b';
+    const color = featureColor(p);
     const id = String(p.id ?? '');
     const url = p.url ? escHtml(p.url) : '';
     const nameCell = url
@@ -173,6 +173,8 @@ function scheduleMapBrowseUpdate() {
   });
 }
 onViewportChange(scheduleMapBrowseUpdate);
+// The in-view swatches follow the map's colour mode.
+window.addEventListener('geri:colormode', scheduleMapBrowseUpdate);
 
 // ── Refresh: re-query and update active view ────────────────────────
 async function refresh() {
