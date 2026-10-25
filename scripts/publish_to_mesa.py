@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Publish the LTO data artifacts to the MESA project on the CyVerse Data Store.
+"""Publish the geri-kmap data artifacts to their MESA project on the CyVerse Data Store.
 
-Target collection:  /iplant/home/tswetnam/lto   (enrolled MESA project;
-its ``.mesa/ducklake/`` history is maintained server-side from AVU writes).
+Target collection:  /iplant/home/shared/geri/geri-kmap   (its own enrolled MESA
+project inside the shared GERI collection; its ``.mesa/ducklake/`` history is
+maintained from AVU writes). Never stamp the parent /iplant/home/shared/geri:
+it carries the GERI collection's DataCite record.
 
 What a publish is
 -----------------
@@ -29,21 +31,21 @@ What a publish is
     row count, columns — from ``schema/table_descriptions.csv`` and the
     parquet itself). The staging dir contains no ``.git`` by construction
     — the CSI/FUSE mount must never see git metadata.
-4.  **Upload** — ``gocmd sync .mesa_publish i:/iplant/home/tswetnam/lto
+4.  **Upload** — ``gocmd sync .mesa_publish i:/iplant/home/shared/geri/geri-kmap
     --no_root`` (differential: unchanged files are skipped, so re-runs are
     idempotent). ``--freeze`` additionally uploads a frozen copy to
     ``snapshots/<YYYYMMDD>-<shortsha>/``.
-5.  **Stamp** — writes ``.mesa_publish_avus.json``: the ``lto.publish.*``
-    set for the collection root and an ``lto.table.*`` set for every
+5.  **Stamp** — writes ``.mesa_publish_avus.json``: the ``geri_kmap.publish.*``
+    set for the collection root and an ``geri_kmap.table.*`` set for every
     parquet file. A Python script cannot call MCP tools; the operator
     (usually Claude) applies each set with one batched ``ds_add_avus``
     call, which mesa-mcp mirrors into ``.mesa/ducklake/`` as one snapshot.
 
 AVU rules this script follows
 -----------------------------
-* **iRODS adds, it never replaces.** Writing a new ``lto.publish.commit``
+* **iRODS adds, it never replaces.** Writing a new ``geri_kmap.publish.commit``
   leaves the old one in place. Before stamping, delete the previous
-  ``lto.publish.*`` values from the root (``ds_delete_avu``), or they
+  ``geri_kmap.publish.*`` values from the root (``ds_delete_avu``), or they
   pile up; six publishes once left six sets.
 * **Table AVUs hold only what does not change between publishes** —
   name, description, kind, generator, column names. Re-applying an
@@ -85,7 +87,7 @@ CACHE_DIR = ROOT / "public" / "cache"
 VOCAB_DIR = ROOT / "schema" / "vocab"
 CROSSWALK_DIR = ROOT / "data" / "vocab_crosswalk"
 DOCS_DIR = ROOT / "docs"
-IRODS_DEST = "i:/iplant/home/tswetnam/lto"
+IRODS_DEST = "i:/iplant/home/shared/geri/geri-kmap"
 TABLE_DESCRIPTIONS = ROOT / "schema" / "table_descriptions.csv"
 AVU_PLAN = ROOT / ".mesa_publish_avus.json"
 AVU_VALUE_MAX = 400
@@ -148,30 +150,30 @@ def avu_plan(manifest: dict, catalog: dict[str, dict], manifest_sha: str) -> dic
     root = IRODS_DEST[2:]
     plan = {
         "note": "Apply each target with ONE ds_add_avus call. Delete the root's "
-                "previous lto.publish.* values first; see this script's docstring.",
+                "previous geri_kmap.publish.* values first; see this script's docstring.",
         "root": {
             "target": root,
             "avus": [
-                {"attribute": "lto.publish.commit", "value": manifest["git_commit"]},
-                {"attribute": "lto.publish.timestamp", "value": manifest["timestamp_utc"]},
-                {"attribute": "lto.publish.manifest_sha256", "value": manifest_sha},
-                {"attribute": "lto.publish.tables", "value": str(manifest["table_count"])},
+                {"attribute": "geri_kmap.publish.commit", "value": manifest["git_commit"]},
+                {"attribute": "geri_kmap.publish.timestamp", "value": manifest["timestamp_utc"]},
+                {"attribute": "geri_kmap.publish.manifest_sha256", "value": manifest_sha},
+                {"attribute": "geri_kmap.publish.tables", "value": str(manifest["table_count"])},
             ],
         },
         "tables": [],
     }
     if manifest.get("lake"):
-        plan["root"]["avus"].append({"attribute": "lto.publish.lake_snapshot",
+        plan["root"]["avus"].append({"attribute": "geri_kmap.publish.lake_snapshot",
                                      "value": str(manifest["lake"]["snapshot_id"])})
     for t, info in catalog.items():
         plan["tables"].append({
             "target": f"{root}/parquet/{t}.parquet",
             "avus": [
-                {"attribute": "lto.table.name", "value": t},
-                {"attribute": "lto.table.description", "value": info["description"]},
-                {"attribute": "lto.table.kind", "value": info["kind"]},
-                {"attribute": "lto.table.generator", "value": info["generator"]},
-                {"attribute": "lto.table.columns", "value": capped(", ".join(info["columns"]))},
+                {"attribute": "geri_kmap.table.name", "value": t},
+                {"attribute": "geri_kmap.table.description", "value": info["description"]},
+                {"attribute": "geri_kmap.table.kind", "value": info["kind"]},
+                {"attribute": "geri_kmap.table.generator", "value": info["generator"]},
+                {"attribute": "geri_kmap.table.columns", "value": capped(", ".join(info["columns"]))},
             ],
         })
     return plan
@@ -187,7 +189,7 @@ def preflight() -> list[str]:
         problems.append(f"tables in TABLES but missing from public/parquet/: {missing}")
     if extra:
         problems.append(f"parquet on disk but not in TABLES (stale?): {extra}")
-    for f in [GEOJSON, CACHE_DIR / "browse_cards.json", CACHE_DIR / "people_cards.json"]:
+    for f in [GEOJSON, CACHE_DIR / "browse_cards.json"]:
         if not f.exists():
             problems.append(f"missing publishable: {f.relative_to(ROOT)}")
     described = set(table_descriptions())
@@ -348,7 +350,7 @@ def main() -> int:
     upload(args.staging, args.freeze, manifest)
 
     print("\n[stamp] now apply the AVU plan through mesa-mcp: delete the root's "
-          "previous lto.publish.* values, then one ds_add_avus call per target "
+          "previous geri_kmap.publish.* values, then one ds_add_avus call per target "
           "(one call = one .mesa/ducklake snapshot).")
     return 0
 
