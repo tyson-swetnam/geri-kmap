@@ -142,6 +142,26 @@ funding AS (
   JOIN funders fr ON fr.funder_id = fe.funder_id
   GROUP BY fe.facility_id
 ),
+ids AS (
+  SELECT facility_id,
+         list(struct_pack(scheme := scheme, value := value, url := source_url)
+              ORDER BY scheme, value) AS identifiers
+  FROM site_identifiers
+  GROUP BY facility_id
+),
+cov AS (
+  SELECT h.facility_id,
+         list(struct_pack(
+           product  := p.title,
+           variable := h.variable,
+           first    := strftime(h.first_ts, '%Y-%m-%d'),
+           last     := strftime(h.last_ts, '%Y-%m-%d'),
+           n        := CAST(h.n_obs AS INTEGER)
+         ) ORDER BY p.title, h.variable) AS coverage
+  FROM harmonized_coverage h
+  JOIN data_products p ON p.product_id = h.product_id
+  GROUP BY h.facility_id
+),
 areas AS (
   SELECT al.facility_id, list(DISTINCT ra.label ORDER BY ra.label) AS research_areas
   FROM area_links al
@@ -159,6 +179,8 @@ SELECT b.*,
        coalesce(fu.n_funding, 0)                 AS n_funding,
        coalesce(fu.total_funding, 0)             AS total_funding,
        coalesce(fu.funding_list, [])             AS funding_list,
+       coalesce(i.identifiers, [])               AS identifiers,
+       coalesce(c.coverage, [])                  AS coverage,
        coalesce(ar.research_areas, [])           AS research_areas
 FROM base b
 LEFT JOIN nets      n  ON n.facility_id  = b.id
@@ -168,6 +190,8 @@ LEFT JOIN personnel pe ON pe.facility_id = b.id
 LEFT JOIN pubs      pu ON pu.facility_id = b.id
 LEFT JOIN funding   fu ON fu.facility_id = b.id
 LEFT JOIN areas     ar ON ar.facility_id = b.id
+LEFT JOIN ids       i  ON i.facility_id  = b.id
+LEFT JOIN cov       c  ON c.facility_id  = b.id
 ORDER BY b.id
 """
 

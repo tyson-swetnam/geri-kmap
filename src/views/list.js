@@ -31,13 +31,40 @@ let _renderLimit = PAGE_SIZE;
 
 const SORT_OPTIONS = [
   { key: 'composite',    label: 'Most-developed first' },
+  { key: 'harmonized',   label: 'Harmonized coverage first' },
+  { key: 'ids',          label: 'Most registry ids' },
   { key: 'name',         label: 'Name (A→Z)' },
   { key: 'established',  label: 'Oldest first' },
   { key: 'record',       label: 'Longest record' },
-  { key: 'pubs',         label: 'Most publications' },
-  { key: 'archives',     label: 'Most data archives' },
-  { key: 'funding',      label: 'Highest funding $' },
 ];
+
+// Registry-identifier schemes (site_identifiers.scheme) as card labels.
+// '<network>-site-code' schemes fall through to "<NETWORK> code".
+const SCHEME_LABELS = {
+  'deims-id': 'DEIMS',
+  'neon-site': 'NEON',
+  'icos-station': 'ICOS',
+  'fluxnet-id': 'FLUXNET',
+  'ozflux-site': 'OzFlux',
+  'doi': 'DOI',
+  'geri-harmonized-id': 'GERI',
+};
+// Shown once in the harmonized section instead; 'harmonized-only' only
+// says the products are the site's sole source.
+const SCHEMES_HIDDEN = new Set(['harmonized-only', 'geri-harmonized-id']);
+const schemeLabel = (s) => SCHEME_LABELS[s]
+  || (s.endsWith('-site-code') ? `${s.slice(0, -10).toUpperCase()} code` : s);
+
+// harmonized_coverage.variable -> what the variable is.
+const VARIABLE_LABELS = {
+  mean_air_temp_degC: 'Air temperature',
+  bulk_precipitation_mm: 'Precipitation',
+  mean_swc_percent: 'Soil moisture',
+  mean_soil_temp_degC: 'Soil temperature',
+  sand_percent: 'Soil texture: sand',
+  silt_percent: 'Soil texture: silt',
+  clay_percent: 'Soil texture: clay',
+};
 
 const SPHERE_LABELS = {
   'atmosphere':       'Atmosphere',
@@ -249,6 +276,26 @@ async function fetchEnrichedFacilities(ids) {
       JOIN funders fr ON fr.funder_id = fe.funder_id
       GROUP BY fe.facility_id
     ),
+    ids AS (
+      SELECT facility_id,
+             list(struct_pack(scheme := scheme, value := value, url := source_url)
+                  ORDER BY scheme, value) AS identifiers
+      FROM site_identifiers
+      GROUP BY facility_id
+    ),
+    cov AS (
+      SELECT h.facility_id,
+             list(struct_pack(
+               product  := p.title,
+               variable := h.variable,
+               first    := strftime(h.first_ts, '%Y-%m-%d'),
+               last     := strftime(h.last_ts, '%Y-%m-%d'),
+               n        := CAST(h.n_obs AS INTEGER)
+             ) ORDER BY p.title, h.variable) AS coverage
+      FROM harmonized_coverage h
+      JOIN data_products p ON p.product_id = h.product_id
+      GROUP BY h.facility_id
+    ),
     areas AS (
       SELECT al.facility_id, list(DISTINCT ra.label ORDER BY ra.label) AS research_areas
       FROM area_links al
@@ -266,6 +313,8 @@ async function fetchEnrichedFacilities(ids) {
            coalesce(fu.n_funding, 0)                 AS n_funding,
            coalesce(fu.total_funding, 0)             AS total_funding,
            coalesce(fu.funding_list, [])             AS funding_list,
+           coalesce(i.identifiers, [])               AS identifiers,
+           coalesce(c.coverage, [])                  AS coverage,
            coalesce(ar.research_areas, [])           AS research_areas
     FROM base b
     LEFT JOIN nets      n  ON n.facility_id  = b.id
@@ -275,6 +324,8 @@ async function fetchEnrichedFacilities(ids) {
     LEFT JOIN pubs      pu ON pu.facility_id = b.id
     LEFT JOIN funding   fu ON fu.facility_id = b.id
     LEFT JOIN areas     ar ON ar.facility_id = b.id
+    LEFT JOIN ids       i  ON i.facility_id  = b.id
+    LEFT JOIN cov       c  ON c.facility_id  = b.id
     ORDER BY b.id
   `;
 
@@ -286,6 +337,8 @@ function compositeScore(f) {
   // weighted sum of "developedness" — favours facilities with a richer
   // record of personnel, publications, and data products
   return (
+    (f.coverage      || []).length * 2 +
+    (f.identifiers   || []).length * 1 +
     (f.n_archives    || 0) * 3 +
     (f.n_products    || 0) * 2 +
     (f.n_personnel   || 0) * 2 +
@@ -309,14 +362,13 @@ function sortFacilities(rows, key) {
     case 'record':
       arr.sort((a, b) => (b.record_length_years || 0) - (a.record_length_years || 0));
       break;
-    case 'pubs':
-      arr.sort((a, b) => (b.n_pubs || 0) - (a.n_pubs || 0));
+    case 'harmonized':
+      arr.sort((a, b) => (b.coverage || []).length - (a.coverage || []).length
+        || (a.name || '').localeCompare(b.name || ''));
       break;
-    case 'archives':
-      arr.sort((a, b) => (b.n_archives || 0) - (a.n_archives || 0));
-      break;
-    case 'funding':
-      arr.sort((a, b) => Number(b.total_funding || 0) - Number(a.total_funding || 0));
+    case 'ids':
+      arr.sort((a, b) => (b.identifiers || []).length - (a.identifiers || []).length
+        || (a.name || '').localeCompare(b.name || ''));
       break;
     case 'composite':
     default:
@@ -334,6 +386,7 @@ function applySearch(rows, term) {
       f.primary_sphere, f.type,
       ...((f.networks || []).map((n) => `${n.slug} ${n.label}`)),
       ...((f.personnel_list || []).map((p) => p.name)),
+      ...((f.identifiers || []).map((i) => i.value)),
     ].join(' ').toLowerCase();
     return hay.includes(t);
   });
@@ -412,6 +465,45 @@ function cardHtml(f) {
 
   const recordBadge = recordTierBadge(f);
 
+  // Registry identifiers and harmonized coverage
+  const idList = (f.identifiers || []).filter((i) => !SCHEMES_HIDDEN.has(i.scheme));
+  const harmIds = (f.identifiers || []).filter((i) => i.scheme === 'geri-harmonized-id').map((i) => i.value);
+  const cov = f.coverage || [];
+  const idShown = idList.slice(0, 8);
+  const idValue = (i) => (i.scheme === 'deims-id' ? `${i.value.slice(0, 8)}…` : i.value);
+  const idHref = (i) => (i.scheme === 'doi' ? `https://doi.org/${i.value}` : i.url);
+  const idsHtml = idShown.length
+    ? `<div class="brw-section">
+         <h4>Registry ids</h4>
+         <ul class="brw-ids">
+           ${idShown.map((i) => {
+             const href = idHref(i);
+             const val = href
+               ? `<a href="${esc(href)}" target="_blank" rel="noopener" title="${esc(i.value)}">${esc(idValue(i))}</a>`
+               : `<span title="${esc(i.value)}">${esc(idValue(i))}</span>`;
+             return `<li><span class="brw-id-scheme">${esc(schemeLabel(i.scheme))}</span> ${val}</li>`;
+           }).join('')}
+           ${idList.length > idShown.length ? `<li class="brw-more">+${idList.length - idShown.length} more</li>` : ''}
+         </ul>
+       </div>`
+    : '';
+  const yr = (d) => (d ? String(d).slice(0, 4) : '');
+  const covHtml = cov.length
+    ? `<div class="brw-section">
+         <h4>GERI harmonized data <small class="brw-harm-ids">${esc(harmIds.join(' · '))}</small></h4>
+         <table class="brw-cov">
+           <tbody>
+             ${cov.map((c) => `<tr>
+               <td>${esc(VARIABLE_LABELS[c.variable] || c.variable)}</td>
+               <td class="brw-cov-years">${esc(yr(c.first))}${yr(c.last) && yr(c.last) !== yr(c.first) ? `–${esc(yr(c.last))}` : ''}</td>
+               <td class="brw-cov-n">${fmtInt(Number(c.n))}</td>
+             </tr>`).join('')}
+           </tbody>
+         </table>
+         <div class="brw-cov-link"><a href="#/data/geri-cyverse">Data Store products</a></div>
+       </div>`
+    : '';
+
   // Metrics row
   const established = f.established ? `${f.established}` : '—';
   const recordYears = f.record_length_years ? `${f.record_length_years}y` : '—';
@@ -419,11 +511,12 @@ function cardHtml(f) {
     <div class="brw-metrics">
       ${metricCell(esc(established), 'established')}
       ${metricCell(esc(recordYears), 'record')}
+      ${metricCell(fmtInt(idList.length), 'registry ids')}
+      ${metricCell(fmtInt(harmIds.length ? new Set(cov.map((c) => c.variable)).size : 0), 'harmonized vars')}
       ${metricCell(fmtInt(f.n_archives), 'archives')}
-      ${metricCell(fmtInt(f.n_products), 'datasets')}
-      ${metricCell(fmtInt(f.n_personnel), 'personnel')}
-      ${metricCell(fmtInt(f.n_pubs), 'pubs')}
-      ${metricCell(fmtUsd(f.total_funding), 'funding')}
+      ${f.n_personnel ? metricCell(fmtInt(f.n_personnel), 'personnel') : ''}
+      ${f.n_pubs ? metricCell(fmtInt(f.n_pubs), 'pubs') : ''}
+      ${Number(f.total_funding) ? metricCell(fmtUsd(f.total_funding), 'funding') : ''}
     </div>`;
 
   // Networks
@@ -536,6 +629,8 @@ function cardHtml(f) {
       </div>
       ${metricsRow}
       ${networksHtml}
+      ${covHtml}
+      ${idsHtml}
       ${archivesHtml}
       ${personnelHtml}
       ${fundingHtml}
@@ -556,7 +651,7 @@ function header(visible, total, hidden) {
         Showing <strong>${visible.toLocaleString()}</strong> of <strong>${total.toLocaleString()}</strong> facilities
       </span>
       ${hiddenNote}
-      <input type="search" id="brw-search" placeholder="Search by name, acronym, network, person…"
+      <input type="search" id="brw-search" placeholder="Search by name, acronym, network or any registry id…"
              value="${esc(_searchTerm)}" />
       <label class="brw-sort">
         Sort by:

@@ -2218,6 +2218,20 @@ footer a:hover { color: var(--c-primary); }
   border-top: none;
 }
 
+.brw-ids { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.brw-ids li { padding: 1px 0; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .76rem; }
+.brw-id-scheme {
+  font-family: system-ui, sans-serif; font-size: .64rem; font-weight: 600; color: #475569;
+  background: #f1f5f9; border-radius: 3px; padding: 0 4px; margin-right: 2px;
+}
+.brw-harm-ids { text-transform: none; font-weight: 500; color: #0f766e; letter-spacing: 0; }
+.brw-cov { width: 100%; border-collapse: collapse; font-size: .8rem; }
+.brw-cov td { padding: 2px 4px 2px 0; border-top: 1px dotted #f1f5f9; }
+.brw-cov tr:first-child td { border-top: none; }
+.brw-cov-years { color: #64748b; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .74rem; white-space: nowrap; }
+.brw-cov-n { text-align: right; color: #64748b; font-variant-numeric: tabular-nums; }
+.brw-cov-link { font-size: .76rem; padding-top: 2px; }
+
 .brw-links {
   font-size: .82rem;
   padding-top: 4px;
