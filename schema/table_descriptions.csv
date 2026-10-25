@@ -1,20 +1,20 @@
 table,kind,generator,description
 access_modes,vocabulary,schema/vocab/access_modes.csv,"How a cloud bucket or archive can be reached: public, registered users, requester-pays and similar."
-api_endpoints,entity,(to be written: scripts/load_geri_archives.py),"Documented machine calls for each data archive: path or URL, purpose, response format and an example call."
+api_endpoints,entity,scripts/load_geri_archives.py,"Documented machine calls for each data archive: path or URL, purpose, response format and an example call."
 archive_types,vocabulary,schema/vocab/archive_types.csv,"Kinds of data archive: repository, data portal, ERDDAP server, aggregator and others."
 area_links,link,scripts/ingest.py,Which research areas each facility works in.
 authorship,link,scripts/enrich_people_openalex.py,Which catalogued person authored which publication.
-cloud_buckets,entity,(to be written: scripts/load_geri_archives.py),"Public cloud storage buckets that hold an archive or facility data: provider, bucket, region and access mode."
+cloud_buckets,entity,scripts/load_geri_archives.py,"Public cloud storage buckets that hold an archive or facility data: provider, bucket, region and access mode."
 coauthor_candidates,registry,scripts/harvest_core_works.py,People seen as co-authors of registry members in the OpenAlex harvest who are not yet in the registry.
 coauthor_edges,registry,scripts/harvest_core_works.py,"Co-authorship between pairs of registry members, with an exemplar work and provenance for each edge."
 collaborations,derived,scripts/compute_collaborations.py,"Co-publication counts between pairs of catalogued people, with first and last year."
-data_archives,entity,(to be written: scripts/load_geri_archives.py),"Data archives and portals where facility records live, including EnviroData-NM and the Arizona Water Observatory."
+data_archives,entity,scripts/load_geri_archives.py,"Data archives and portals where site data live: the GERI collection on the CyVerse Data Store and the GERI DataONE portal."
 data_formats,vocabulary,schema/vocab/data_formats.csv,File and service formats used by data products.
 data_licenses,vocabulary,schema/vocab/data_licenses.csv,Licences and data-use policies that apply to archives and products.
-data_products,entity,(to be written: scripts/load_geri_archives.py),"Addressable datasets and map layers, each pointing at its source archive by URL, DOI or service endpoint. Holds metadata and links only."
+data_products,entity,scripts/load_geri_archives.py,"Addressable datasets and map layers, each pointing at its source archive by URL, DOI or service endpoint. Holds metadata and links only."
 ecosystem_types,vocabulary,schema/vocab/ecosystem_types.csv,Ecosystem-type facet for facilities.
 facilities,entity,scripts/ingest.py; scripts/load_arid.py,"Long-term observatories, field stations, networks and institutes: one row per facility with type, location, state and record length."
-facility_archives,link,(to be written: scripts/load_geri_archives.py),"Which archives hold each facility data, with the role of the archive and a per-facility entry URL."
+facility_archives,link,scripts/load_geri_archives.py,"Which archives hold each facility data, with the role of the archive and a per-facility entry URL."
 facility_ecosystems,link,scripts/ingest.py,Ecosystem types assigned to each facility.
 facility_life_zones,link,scripts/ingest.py,Holdridge life zones assigned to each facility.
 facility_personnel,link,scripts/load_facility_personnel.py; scripts/load_arid.py,"Roles people hold at facilities, with title, dates and the source page."
@@ -46,4 +46,4 @@ registry_facilities,registry,scripts/link_registry_facilities.py,"Links from per
 research_areas,vocabulary,schema/vocab/research_areas.csv,Research-area vocabulary with parent areas.
 spheres,vocabulary,schema/vocab/spheres.csv,The seven spheres used to classify facilities.
 site_identifiers,entity,scripts/load_geri_sites.py,"Every identifier a GERI site carries across registries (DEIMS-SDR id, NEON site code, ICOS station, GERI harmonized-product id, network site codes), each with the URL it was read from."
-harmonized_coverage,derived,scripts/compute_harmonized_coverage.py,"Per site and variable, the period and number of observations the GERI harmonized products hold, derived from the parquet on the CyVerse Data Store."
+harmonized_coverage,derived,scripts/load_geri_archives.py,"Per site and variable, the period and number of observations the GERI harmonized products hold, derived from the parquet on the CyVerse Data Store."

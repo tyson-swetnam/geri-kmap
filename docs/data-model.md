@@ -4,7 +4,7 @@ The schema is lto's (itself cod-kmap's), with two GERI tables added. Constraints
 
 ## Sites
 
-- **facilities**: one row per site. `facility_id` is `sha1("deims:" + DEIMS uuid)[:16]` for a DEIMS site, or `sha1("icos:" + station)[:16]` for an ICOS station with no DEIMS record.
+- **facilities**: one row per site. `facility_id` is `sha1("<source>:" + id)[:16]`, where source is `deims` (DEIMS uuid), `icos` (an ICOS station with no DEIMS record), `ozflux` (an OzFlux folder with no TERN SuperSite), `doi` (a SAEON station) or `geri-harmonized` (a site only the harmonized products know).
   - `country` is where the site is (ISO 3166-1 alpha-2), not the operating country.
   - `established` comes from DEIMS. `record_length_years` and `long_term_threshold_met` (at least 10 years) are derived from it.
 - **locations**: the points of a site. One per registry that gives coordinates, so an eLTER site that holds an ICOS station has both points.
@@ -19,6 +19,9 @@ The schema is lto's (itself cod-kmap's), with two GERI tables added. Constraints
   - `neon-site`
   - `icos-station` (the Carbon Portal station key, e.g. `ES_FI-Hyy`)
   - `geri-harmonized-id` (the site id in the GERI harmonized products)
+  - `fluxnet-id` and `ozflux-site` (OzFlux towers)
+  - `doi` (SAEON/EFTEON station DataCite records)
+  - `harmonized-only` (a site known only from the GERI products)
   - `<network>-site-code` (the network's own code in DEIMS)
 
   QA fails if one value of a scheme names two sites.

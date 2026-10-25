@@ -53,6 +53,13 @@ RAW = ROOT / "data" / "raw"
 DEIMS_JSON = RAW / "R-GERI-DEIMS" / "sites_deims.json"
 NEON_JSON = RAW / "R-GERI-NEON" / "sites_neon.json"
 ICOS_JSON = RAW / "R-GERI-ICOS" / "stations_icos.json"
+OZFLUX_JSON = RAW / "R-GERI-TERN" / "sites_ozflux.json"
+HARM_DIR = RAW / "R-GERI-HARMONIZED"
+SAEON_JSON = HARM_DIR / "saeon_stations.json"
+HARM_CSV = HARM_DIR / "geri_harmonized_sites.csv"
+HARM_URL = "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv"
+HARM_MAP = ROOT / "data" / "seed" / "geri_harmonized_site_map.csv"
+HARM_SUMMARY = HARM_DIR / "harmonized_summary.csv"
 COUNTRY_NAMES = ROOT / "schema" / "vocab" / "country_names.csv"
 COUNTRY_BBOX = ROOT / "schema" / "vocab" / "country_bbox.csv"
 
@@ -69,9 +76,12 @@ DEIMS_NETWORK = {
     "4dac034d-92d5-4c06-8e4e-aabafdbcedff": "cern",
 }
 RI_LABEL = {"neon": "NEON", "elter": "eLTER", "icos": "ICOS", "tern": "TERN",
-            "saeon": "SAEON", "cern": "CERN"}
+            "saeon": "SAEON", "efteon": "EFTEON", "cern": "CERN"}
 # Precedence when a facility belongs to several RIs: which one names its type.
-RI_ORDER = ["neon", "icos", "tern", "cern", "saeon", "elter"]
+RI_ORDER = ["neon", "icos", "tern", "cern", "efteon", "saeon", "elter"]
+# A well-formed OzFlux FLUXNET id. Upstream attributes are not always
+# right: Wedgetail's file says 'Au-Sil', which is Silver Plains' id.
+FLUXNET_ID_RE = re.compile(r"^AU-[A-Za-z0-9]{2,4}$")
 ICOS_KIND = {"ES": ("icos-ecosystem", "icos-ecosystem-station", "terrestrial", "flux-tower"),
              "AS": ("icos-atmosphere", "icos-atmosphere-station", "atmosphere", "observatory"),
              "OS": ("icos-ocean", "icos-ocean-station", "ocean-estuarine", "observatory")}
@@ -124,6 +134,21 @@ def pick_country(codes: list[str], lat, lng, boxes) -> str | None:
             if any(a <= lat <= b and lo <= lng <= hi for a, b, lo, hi in boxes.get(c, [])):
                 return c
     return codes[0] if codes else None
+
+
+def km(lat1, lng1, lat2, lng2) -> float:
+    """Great-circle distance in km."""
+    import math                                         # noqa: PLC0415
+    p = math.radians
+    a = (math.sin(p(lat2 - lat1) / 2) ** 2
+         + math.cos(p(lat1)) * math.cos(p(lat2)) * math.sin(p(lng2 - lng1) / 2) ** 2)
+    return 2 * 6371 * math.asin(math.sqrt(a))
+
+
+# A DEIMS point farther than this from the ICOS station the site holds
+# cannot be that site (an umbrella platform spans tens of km at most); the
+# station's own coordinates are used instead.
+ICOS_OVERRIDE_KM = 50
 
 
 def num(v) -> float | None:
@@ -265,6 +290,13 @@ def apply_icos(s: Site, st: dict, retrieved: str, own: bool) -> None:
     s.ids[("icos-station", key)] = st["s"]
     s.spheres.add(sphere)
     lat, lng = num(st.get("lat")), num(st.get("lon"))
+    if (not own and lat is not None and lng is not None and s.lat is not None
+            and km(s.lat, s.lng, lat, lng) > ICOS_OVERRIDE_KM):
+        print(f"[icos] {key}: DEIMS point of '{s.name}' is {km(s.lat, s.lng, lat, lng):.0f} km "
+              f"from the station; using the ICOS coordinates")
+        s.locations = [loc for loc in s.locations
+                       if (loc["lat"], loc["lng"]) != (s.lat, s.lng)]
+        s.lat, s.lng = lat, lng
     if own:
         s.name = st["name"]
         s.acronym = st["id"]
@@ -277,6 +309,131 @@ def apply_icos(s: Site, st: dict, retrieved: str, own: bool) -> None:
         s.locations.append({"label": f"ICOS {st['station_type']} {st['id']} {st['name']}",
                             "lat": lat, "lng": lng, "role": role})
     s.prov.append((st["s"], retrieved, "R-GERI-ICOS"))
+
+
+def apply_ozflux(s: Site, o: dict, fluxnet_id: str | None, retrieved: str, own: bool) -> None:
+    a = o["attributes"]
+    lat, lng = num(a.get("latitude")), num(a.get("longitude"))
+    s.ris.add("tern")
+    s.networks.update({"tern", "ozflux"})
+    s.spheres.add("terrestrial")
+    s.ids[("ozflux-site", o["folder"])] = o["catalog_url"]
+    if fluxnet_id:
+        s.ids[("fluxnet-id", fluxnet_id)] = o["opendap_url"]
+    if own:
+        s.name = a.get("site_name") or o["folder"]
+        s.acronym = fluxnet_id
+        s.country = "AU"
+        s.lat, s.lng = lat, lng
+        s.url = o["catalog_url"]
+        s.ftype = "flux-tower"
+        s.primary_sphere = "terrestrial"
+        start = (a.get("time_coverage_start") or "")[:4]
+        s.established = int(start) if start.isdigit() else None
+        s.retrieved_year = int(retrieved[:4])
+    if lat is not None and lng is not None:
+        s.locations.append({"label": f"OzFlux {fluxnet_id or o['folder']} flux tower",
+                            "lat": lat, "lng": lng, "role": "flux-tower"})
+    s.prov.append((o["catalog_url"], retrieved, "R-GERI-TERN"))
+
+
+def from_saeon(st: dict, retrieved: str) -> Site:
+    """A SAEON/EFTEON station from its DataCite record (geri-metadata/saeon/)."""
+    r = st["record"]
+    s = Site(fid("doi:" + r["doi"].lower()))
+    title = r["titles"][0]["title"]
+    s.name = title.split(" - SAEON ")[0]
+    s.country = "ZA"
+    pts = [g["geoLocationPoint"] for g in r.get("geoLocations") or [] if g.get("geoLocationPoint")]
+    if pts:
+        s.lat, s.lng = num(pts[0].get("pointLatitude")), num(pts[0].get("pointLongitude"))
+        s.locations.append({"label": s.name, "lat": s.lat, "lng": s.lng, "role": "flux-tower"})
+    s.url = r.get("url") or r["id"]
+    creators = " ".join(c.get("name", "") for c in r.get("creators") or [])
+    subjects = [x.get("subject", "") for x in r.get("subjects") or []]
+    efteon = "Expanded Freshwater and Terrestrial" in creators or any(x.startswith("EFTEON") for x in subjects)
+    s.ris.update({"saeon", "efteon"} if efteon else {"saeon"})
+    s.networks.update(s.ris)
+    s.ftype = "flux-tower" if "Eddy Covariance" in title else "ri-site"
+    s.primary_sphere = "terrestrial"
+    s.spheres.add("terrestrial")
+    s.ids[("doi", r["doi"].lower())] = r["id"]
+    s.retrieved_year = int(retrieved[:4])
+    s.prov.append((r["id"], retrieved, "R-GERI-SAEON"))
+    return s
+
+
+def read_harmonized() -> list[dict]:
+    """geri_harmonized_sites.csv as written; its bytes are Latin-1."""
+    text = HARM_CSV.read_bytes().decode("latin-1")
+    return [dict(r) for r in csv.DictReader(text.splitlines())]
+
+
+def read_harmonized_map() -> dict[str, tuple[str, str]]:
+    """Reviewed site_id -> (scheme, value) for ids the rules cannot resolve.
+    Scheme 'unresolved' records why an id has no facility yet; scheme
+    'harmonized-only' makes the site a facility of its own, built from the
+    harmonized CSV point and the products' site name (no registry has it)."""
+    if not HARM_MAP.exists():
+        return {}
+    with HARM_MAP.open(newline="", encoding="utf-8") as fh:
+        return {r["site_id"]: (r["scheme"], r["value"]) for r in csv.DictReader(fh)}
+
+
+def from_harmonized(row: dict, names: dict[str, str], retrieved: str) -> Site:
+    """A site only the GERI harmonized products know: CSV point, product name."""
+    sid = row["site_id"]
+    s = Site(fid("geri-harmonized:" + sid))
+    s.name = names.get(sid) or sid
+    s.acronym = sid
+    s.country = sid.split("-", 1)[0]
+    s.lat, s.lng = num(row["lat"]), num(row["lon"])
+    if s.lat is not None:
+        s.locations.append({"label": s.name, "lat": s.lat, "lng": s.lng, "role": "field-station"})
+    ri = row["research_infrastructure"].lower()
+    s.ris.update({"efteon", "saeon"} if ri == "efteon" else {ri})
+    s.networks.update(s.ris)
+    s.ftype = "flux-tower" if s.name.endswith("_EC") else "ri-site"
+    s.primary_sphere = "terrestrial"
+    s.spheres.add("terrestrial")
+    s.url = HARM_URL
+    s.retrieved_year = int(retrieved[:4])
+    s.prov.append((HARM_URL, retrieved, "R-GERI-HARMONIZED"))
+    return s
+
+
+def harmonized_names() -> dict[str, str]:
+    """site_id -> site_name as the harmonized products give it."""
+    if not HARM_SUMMARY.exists():
+        return {}
+    with HARM_SUMMARY.open(newline="", encoding="utf-8") as fh:
+        return {r["site_id"]: r["site_name"] for r in csv.DictReader(fh) if r["site_name"]}
+
+
+def resolve_harmonized(rows: list[dict], index: dict[tuple[str, str], Site]) -> tuple[dict, list]:
+    """site_id -> Site. Order: the reviewed map, then the rules
+    NEON 'US-ABBY' -> neon-site ABBY, ICOS 'BE-Bra' -> icos-station ES_BE-Bra,
+    TERN 'AU-How' -> fluxnet-id AU-How."""
+    seed = read_harmonized_map()
+    found, missing = {}, []
+    for r in rows:
+        sid, ri = r["site_id"], r["research_infrastructure"]
+        cands = []
+        if sid in seed:
+            scheme, value = seed[sid]
+            cands.append((scheme, sid) if scheme == "harmonized-only" else (scheme, value))
+        if ri == "NEON" and sid.startswith("US-"):
+            cands.append(("neon-site", sid[3:]))
+        if ri == "ICOS":
+            cands.append(("icos-station", f"ES_{sid}"))
+        if ri == "TERN":
+            cands.append(("fluxnet-id", sid))
+        site = next((index[c] for c in cands if c in index), None)
+        if site is None:
+            missing.append(sid)
+        else:
+            found[sid] = site
+    return found, missing
 
 
 def build_sites() -> tuple[list[Site], dict]:
@@ -338,6 +495,60 @@ def build_sites() -> tuple[list[Site], dict]:
             apply_icos(s, st, icos["retrieved_at"], own=True)
     stats["icos"], stats["icos_matched_deims"] = len(icos["stations"]), icos_matched
 
+    # OzFlux towers. A TERN DEIMS site whose TERN code carries the tower's
+    # FLUXNET code (TERN_ASM_AU_11 <-> AU-ASM) holds the tower; otherwise
+    # the tower is its own facility.
+    oz = json.loads(OZFLUX_JSON.read_text())
+    ids = [o["attributes"].get("fluxnet_id") for o in oz["sites"]]
+    tern_code: dict[str, Site] = {}
+    for st in sites.values():
+        for scheme, value in st.ids:
+            if scheme == "tern-site-code":
+                for tok in re.split(r"[_-]", value.upper()):
+                    tern_code.setdefault(tok, st)
+    oz_matched = 0
+    for o, fx in zip(oz["sites"], ids):
+        if fx and (not FLUXNET_ID_RE.match(fx) or ids.count(fx) > 1):
+            print(f"[ozflux] {o['folder']}: fluxnet_id {fx!r} malformed or not unique; not used")
+            fx = None
+        host = tern_code.get(fx[3:].upper()) if fx else None
+        if host is not None:
+            oz_matched += 1
+            apply_ozflux(host, o, fx, oz["retrieved_at"], own=False)
+        else:
+            key = fid("ozflux:" + o["folder"])
+            apply_ozflux(sites.setdefault(key, Site(key)), o, fx, oz["retrieved_at"], own=True)
+    stats["ozflux"], stats["ozflux_matched_deims"] = len(oz["sites"]), oz_matched
+
+    sa = json.loads(SAEON_JSON.read_text())
+    for st in sa["stations"]:
+        s = from_saeon(st, sa["retrieved_at"])
+        sites[s.facility_id] = s
+    stats["saeon_stations"] = len(sa["stations"])
+
+    # GERI harmonized-product site ids. Sites no registry knows are built
+    # from the harmonized list itself first, so the resolver finds them.
+    harm_rows = read_harmonized()
+    seed = read_harmonized_map()
+    names = harmonized_names()
+    retrieved = json.loads((HARM_DIR / "datastore_listing.json").read_text())["retrieved_at"]
+    for r in harm_rows:
+        if seed.get(r["site_id"], ("",))[0] == "harmonized-only":
+            st = from_harmonized(r, names, retrieved)
+            st.ids[("harmonized-only", r["site_id"])] = HARM_URL
+            sites[st.facility_id] = st
+    index = {k: st for st in sites.values() for k in st.ids}
+    found, missing = resolve_harmonized(harm_rows, index)
+    for sid, st in found.items():
+        st.ids[("geri-harmonized-id", sid)] = HARM_URL
+    acknowledged = {k for k, (scheme, _) in read_harmonized_map().items() if scheme == "unresolved"}
+    for sid in missing:
+        if sid in acknowledged:
+            print(f"[harmonized] {sid}: unresolved (reason in {HARM_MAP.relative_to(ROOT)})")
+        else:
+            print(f"[harmonized] {sid}: no facility -- add a row to {HARM_MAP.relative_to(ROOT)}")
+    stats["harmonized"], stats["harmonized_unresolved"] = len(harm_rows), len(missing)
+
     for s in sites.values():
         # The type follows the RI with precedence when DEIMS gave none better.
         if s.ftype in (None, "ri-site", "lter-site") and "icos" in s.ris and "elter" not in s.ris:
@@ -393,7 +604,10 @@ def main() -> int:
     con = geri_db.connect(catalog=args.catalog, data=args.lake_data)
     with geri_db.transaction(con, f"load_geri_sites: {len(fac_rows)} GERI RI sites "
                                   f"(DEIMS {stats['deims']}, NEON {stats['neon']}, "
-                                  f"ICOS {stats['icos']})"):
+                                  f"ICOS {stats['icos']}, OzFlux {stats['ozflux']}, "
+                                  f"SAEON {stats['saeon_stations']}; harmonized "
+                                  f"{stats['harmonized'] - stats['harmonized_unresolved']}"
+                                  f"/{stats['harmonized']})"):
         for change in geri_db.ensure_schema(con):
             print(f"[schema] {change}")
         load_vocab(con)

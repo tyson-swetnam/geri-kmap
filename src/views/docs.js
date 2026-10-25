@@ -30,6 +30,7 @@ const BASE = new URL('./', document.baseURI).href;
 const DOC_PAGES = [
   { title: 'Overview',   path: 'docs/index.md' },
   { title: 'Networks',   path: 'docs/networks.md' },
+  { title: 'Harmonized', path: 'docs/harmonized.md' },
   { title: 'Data Model', path: 'docs/data-model.md' },
   { title: 'Sources',    path: 'docs/sources.md' },
 ];

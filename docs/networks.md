@@ -5,11 +5,12 @@ GERI's six research infrastructures, as they appear in the catalogue. A site bel
 | Network | Sites | Registry the sites come from |
 |---|---:|---|
 | eLTER (DEIMS network "LTER Europe") | 637 | DEIMS-SDR |
-| ICOS | 188 | ICOS Carbon Portal (169 classified stations) and DEIMS-SDR |
+| ICOS | 191 | ICOS Carbon Portal (169 classified stations), DEIMS-SDR, GERI products |
 | NEON | 81 | NEON Data API, joined to DEIMS-SDR by the DEIMS id NEON publishes |
 | CERN (DEIMS network "CERN (LTER China)") | 42 | DEIMS-SDR |
-| TERN (DEIMS network "TERN Australia") | 27 | DEIMS-SDR |
-| SAEON | 22 | DEIMS-SDR |
+| TERN | 62 | DEIMS-SDR (27 SuperSites and plot networks) + 47 OzFlux towers from TERN's THREDDS server, 12 of them at a SuperSite |
+| SAEON | 30 | DEIMS-SDR (22) + SAEON/EFTEON DataCite station records + GERI products |
+| EFTEON | 5 | SAEON DataCite station records + GERI products |
 | GERI (the DEIMS GERI network) | 561 | DEIMS-SDR |
 
 ICOS stations are split by kind:
@@ -26,8 +27,6 @@ NEON sites are split into terrestrial (47) and aquatic (34) by NEON's own `HABIT
 
 ## Gaps known today
 
-- **TERN:** DEIMS lists TERN's SuperSites and LTERN/AusLTER plot networks, but not the OzFlux flux towers. Most harmonized Australian sites are OzFlux towers (AU-How, AU-DaS, AU-Stp and others).
-- **SAEON and EFTEON:** DEIMS lists 22 SAEON sites. The EFTEON landscapes and the South African flux sites in the harmonized products (ZA-Kru, ZA-BfK and others) are not in DEIMS.
+- **SAEON and EFTEON:** DEIMS lists 22 SAEON sites, and the GERI Data Store holds DataCite records for six eddy-covariance stations. The full EFTEON landscape and station list is not yet in the catalogue.
 - **CERN:** DEIMS lists 42 CERN stations, which may not be the full current CERN station list.
-
-These are filled from the RIs' own registries and the GERI Data Store metadata (`geri-metadata/`), never from recall.
+- **Co-located duplicates:** where two registries describe one place without naming each other, it appears twice. Examples are ICOS Hyytiälä and eLTER's SMEAR II record. They are merged only through a reviewed `data/seed/facility_merge_seed.csv` row, never by distance alone.

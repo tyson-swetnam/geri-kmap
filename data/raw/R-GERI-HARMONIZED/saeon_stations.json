@@ -1,0 +1,780 @@
+{
+ "source": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/",
+ "retrieved_at": "2026-10-25",
+ "stations": [
+  {
+   "file": "obs.monitor.15152420.json",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/obs.monitor.15152420.json",
+   "record": {
+    "id": "https://doi.org/10.15493/obs.monitor.15152420",
+    "doi": "10.15493/OBS.MONITOR.15152420",
+    "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.15152420",
+    "types": {
+     "ris": "DATA",
+     "bibtex": "misc",
+     "citeproc": "dataset",
+     "schemaOrg": "Dataset",
+     "resourceType": "Dataset",
+     "resourceTypeGeneral": "Dataset"
+    },
+    "creators": [
+     {
+      "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {}
+      ],
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "https://ror.org/041j42q70",
+        "nameIdentifierScheme": "ROR"
+       }
+      ]
+     }
+    ],
+    "titles": [
+     {
+      "title": "Spioenkop Savanna Eddy Covariance - SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "publisher": {
+     "name": "South African Environmental Observation Network"
+    },
+    "container": {},
+    "subjects": [
+     {
+      "subject": "Spioenkop Savanna Eddy Covariance"
+     },
+     {
+      "subject": "EFTEON Kimberley"
+     },
+     {
+      "subject": "South African Environmental Observation Network"
+     },
+     {
+      "subject": "Real-time data"
+     },
+     {
+      "subject": "SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "contributors": [
+     {
+      "name": "South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "Distributor"
+     },
+     {
+      "name": "Abri de Buys",
+      "nameType": "Personal",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "ContactPerson",
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "",
+        "nameIdentifierScheme": "ORCID"
+       }
+      ]
+     }
+    ],
+    "dates": [
+     {
+      "date": "2023-01-19/2026-12-31",
+      "dateType": "Valid"
+     }
+    ],
+    "publicationYear": 2024,
+    "language": "en",
+    "identifiers": [],
+    "formats": [
+     "Collection"
+    ],
+    "rightsList": [
+     {
+      "rights": "Creative Commons Attribution Share Alike 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-sa-4.0",
+      "rightsIdentifierScheme": "SPDX"
+     }
+    ],
+    "descriptions": [
+     {
+      "description": "This dataset contains raw, unprocessed data collected continuously by a South African Environmental Observation Network (SAEON) flux tower at the Spioenkop Nature Reserve savanna monitoring site. The dataset is updated daily, with new values constantly ingested, when the sites are online. As a result, users can access near-real-time data captured at the site. The dataset covers a variety of environmental and meteorological parameters. Note that the data is presented as-is, without quality control, and is considered “Level Zero” data. Users should be aware that data gaps, outliers and/or other inconsistencies are expected due to routine maintenance, equipment downtime, or network connectivity issues.",
+      "descriptionType": "Abstract"
+     }
+    ],
+    "geoLocations": [
+     {
+      "geoLocationPoint": {
+       "pointLatitude": -28.71231,
+       "pointLongitude": 29.50914
+      }
+     }
+    ],
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "providerId": "nrf",
+    "clientId": "nrf.saeon",
+    "agency": "datacite",
+    "state": "findable"
+   }
+  },
+  {
+   "file": "obs.monitor.23081135.json",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/obs.monitor.23081135.json",
+   "record": {
+    "id": "https://doi.org/10.15493/obs.monitor.23081135",
+    "doi": "10.15493/OBS.MONITOR.23081135",
+    "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.23081135",
+    "types": {
+     "ris": "DATA",
+     "bibtex": "misc",
+     "citeproc": "dataset",
+     "schemaOrg": "Dataset",
+     "resourceType": "Dataset",
+     "resourceTypeGeneral": "Dataset"
+    },
+    "creators": [
+     {
+      "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {}
+      ],
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "https://ror.org/041j42q70",
+        "nameIdentifierScheme": "ROR"
+       }
+      ]
+     }
+    ],
+    "titles": [
+     {
+      "title": "Umhlabuyalingana Grassland Eddy Covariance - SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "publisher": {
+     "name": "South African Environmental Observation Network"
+    },
+    "container": {},
+    "subjects": [
+     {
+      "subject": "Umhlabuyalingana Grassland Eddy Covariance"
+     },
+     {
+      "subject": "EFTEON Maputaland"
+     },
+     {
+      "subject": "South African Environmental Observation Network"
+     },
+     {
+      "subject": "Real-time data"
+     },
+     {
+      "subject": "SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "contributors": [
+     {
+      "name": "South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "Distributor"
+     },
+     {
+      "name": "Abri de Buys",
+      "nameType": "Personal",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "ContactPerson",
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "",
+        "nameIdentifierScheme": "ORCID"
+       }
+      ]
+     }
+    ],
+    "dates": [
+     {
+      "date": "2023-03-15/2026-12-31",
+      "dateType": "Valid"
+     }
+    ],
+    "publicationYear": 2024,
+    "language": "en",
+    "identifiers": [],
+    "formats": [
+     "Collection"
+    ],
+    "rightsList": [
+     {
+      "rights": "Creative Commons Attribution Share Alike 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-sa-4.0",
+      "rightsIdentifierScheme": "SPDX"
+     }
+    ],
+    "descriptions": [
+     {
+      "description": "This dataset contains raw, unprocessed data collected continuously by a South African Environmental Observation Network (SAEON) flux tower at the Umhlabuyalingana grassland monitoring site. The dataset is updated daily, with new values constantly ingested, when the sites are online. As a result, users can access near-real-time data captured at the site. The dataset covers a variety of environmental and meteorological parameters. Note that the data is presented as-is, without quality control, and is considered “Level Zero” data. Users should be aware that data gaps, outliers and/or other inconsistencies are expected due to routine maintenance, equipment downtime, or network connectivity issues.",
+      "descriptionType": "Abstract"
+     }
+    ],
+    "geoLocations": [
+     {
+      "geoLocationPoint": {
+       "pointLatitude": -27.3952,
+       "pointLongitude": 32.5889
+      }
+     }
+    ],
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "providerId": "nrf",
+    "clientId": "nrf.saeon",
+    "agency": "datacite",
+    "state": "findable"
+   }
+  },
+  {
+   "file": "obs.monitor.67986839.json",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/obs.monitor.67986839.json",
+   "record": {
+    "id": "https://doi.org/10.15493/obs.monitor.67986839",
+    "doi": "10.15493/OBS.MONITOR.67986839",
+    "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.67986839",
+    "types": {
+     "ris": "DATA",
+     "bibtex": "misc",
+     "citeproc": "dataset",
+     "schemaOrg": "Dataset",
+     "resourceType": "Dataset",
+     "resourceTypeGeneral": "Dataset"
+    },
+    "creators": [
+     {
+      "name": "Fynbos Node, South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {}
+      ],
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "https://ror.org/041j42q70",
+        "nameIdentifierScheme": "ROR"
+       }
+      ]
+     }
+    ],
+    "titles": [
+     {
+      "title": "Jonkershoek Fynbos Eddy Covariance - SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "publisher": {
+     "name": "South African Environmental Observation Network"
+    },
+    "container": {},
+    "subjects": [
+     {
+      "subject": "Jonkershoek Fynbos Eddy Covariance"
+     },
+     {
+      "subject": "SAEON-Fynbos"
+     },
+     {
+      "subject": "Jonkershoek"
+     },
+     {
+      "subject": "South African Environmental Observation Network"
+     },
+     {
+      "subject": "Real-time data"
+     },
+     {
+      "subject": "SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "contributors": [
+     {
+      "name": "South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "Distributor"
+     },
+     {
+      "name": "Sagwati Maswanganye",
+      "nameType": "Personal",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "ContactPerson",
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "",
+        "nameIdentifierScheme": "ORCID"
+       }
+      ]
+     }
+    ],
+    "dates": [
+     {
+      "date": "2019-01-25/2026-12-31",
+      "dateType": "Valid"
+     }
+    ],
+    "publicationYear": 2024,
+    "language": "en",
+    "identifiers": [],
+    "formats": [
+     "Collection"
+    ],
+    "rightsList": [
+     {
+      "rights": "Creative Commons Attribution Share Alike 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-sa-4.0",
+      "rightsIdentifierScheme": "SPDX"
+     }
+    ],
+    "descriptions": [
+     {
+      "description": "This dataset contains raw, unprocessed data collected continuously by a SAEON weather station in the Jonkershoek Experimental Catchment. The dataset is updated daily, with new values constantly ingested, when the sites are online. As a result, users can access near-real-time data captured at the site. The dataset covers a variety of environmental and meteorological parameters. Note that the data is presented as-is, without quality control, and is considered “Level Zero” data. Users should be aware that data gaps, outliers and/or other inconsistencies are expected due to routine maintenance, equipment downtime, or network connectivity issues.",
+      "descriptionType": "Abstract"
+     }
+    ],
+    "geoLocations": [
+     {
+      "geoLocationPoint": {
+       "pointLatitude": -33.99029,
+       "pointLongitude": 18.95543
+      }
+     }
+    ],
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "providerId": "nrf",
+    "clientId": "nrf.saeon",
+    "agency": "datacite",
+    "state": "findable"
+   }
+  },
+  {
+   "file": "obs.monitor.69963566.json",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/obs.monitor.69963566.json",
+   "record": {
+    "id": "https://doi.org/10.15493/obs.monitor.69963566",
+    "doi": "10.15493/OBS.MONITOR.69963566",
+    "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.69963566",
+    "types": {
+     "ris": "DATA",
+     "bibtex": "misc",
+     "citeproc": "dataset",
+     "schemaOrg": "Dataset",
+     "resourceType": "Dataset",
+     "resourceTypeGeneral": "Dataset"
+    },
+    "creators": [
+     {
+      "name": "Grasslands-Forests-Wetlands Node, South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {}
+      ],
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "https://ror.org/041j42q70",
+        "nameIdentifierScheme": "ROR"
+       }
+      ]
+     }
+    ],
+    "titles": [
+     {
+      "title": "Cathedral Peak Grassland Eddy Covariance - SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "publisher": {
+     "name": "South African Environmental Observation Network"
+    },
+    "container": {},
+    "subjects": [
+     {
+      "subject": "Cathedral Peak Grassland Eddy Covariance"
+     },
+     {
+      "subject": "SAEON - GFW"
+     },
+     {
+      "subject": "Cathedral Peak"
+     },
+     {
+      "subject": "South African Environmental Observation Network"
+     },
+     {
+      "subject": "Real-time data"
+     },
+     {
+      "subject": "SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "contributors": [
+     {
+      "name": "South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "Distributor"
+     },
+     {
+      "name": "Kent Lawrence",
+      "nameType": "Personal",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "ContactPerson",
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "",
+        "nameIdentifierScheme": "ORCID"
+       }
+      ]
+     }
+    ],
+    "dates": [
+     {
+      "date": "2024-10-30/2026-12-31",
+      "dateType": "Valid"
+     }
+    ],
+    "publicationYear": 2024,
+    "language": "en",
+    "identifiers": [],
+    "formats": [
+     "Collection"
+    ],
+    "rightsList": [
+     {
+      "rights": "Creative Commons Attribution Share Alike 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-sa-4.0",
+      "rightsIdentifierScheme": "SPDX"
+     }
+    ],
+    "descriptions": [
+     {
+      "description": "This dataset contains raw, unprocessed data collected continuously by a South African Environmental Observation Network (SAEON) flux tower at the Cathedral Peak Grassland monitoring site. The dataset is updated daily, with new values constantly ingested, when the sites are online. As a result, users can access near-real-time data captured at the site. The dataset covers a variety of environmental and meteorological parameters. Note that the data is presented as-is, without quality control, and is considered “Level Zero” data. Users should be aware that data gaps, outliers and/or other inconsistencies are expected due to routine maintenance, equipment downtime, or network connectivity issues.",
+      "descriptionType": "Abstract"
+     }
+    ],
+    "geoLocations": [
+     {
+      "geoLocationPoint": {
+       "pointLatitude": -28.99356,
+       "pointLongitude": 29.25184
+      }
+     }
+    ],
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "providerId": "nrf",
+    "clientId": "nrf.saeon",
+    "agency": "datacite",
+    "state": "findable"
+   }
+  },
+  {
+   "file": "obs.monitor.88212042.json",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/obs.monitor.88212042.json",
+   "record": {
+    "id": "https://doi.org/10.15493/obs.monitor.88212042",
+    "doi": "10.15493/OBS.MONITOR.88212042",
+    "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.88212042",
+    "types": {
+     "ris": "DATA",
+     "bibtex": "misc",
+     "citeproc": "dataset",
+     "schemaOrg": "Dataset",
+     "resourceType": "Dataset",
+     "resourceTypeGeneral": "Dataset"
+    },
+    "creators": [
+     {
+      "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {}
+      ],
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "https://ror.org/041j42q70",
+        "nameIdentifierScheme": "ROR"
+       }
+      ]
+     }
+    ],
+    "titles": [
+     {
+      "title": "Benfontein Karoo Eddy Covariance - SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "publisher": {
+     "name": "South African Environmental Observation Network"
+    },
+    "container": {},
+    "subjects": [
+     {
+      "subject": "Benfontein Karoo Eddy Covariance"
+     },
+     {
+      "subject": "EFTEON Kimberley"
+     },
+     {
+      "subject": "South African Environmental Observation Network"
+     },
+     {
+      "subject": "Real-time data"
+     },
+     {
+      "subject": "SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "contributors": [
+     {
+      "name": "South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "Distributor"
+     },
+     {
+      "name": "Abri de Buys",
+      "nameType": "Personal",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "ContactPerson",
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "",
+        "nameIdentifierScheme": "ORCID"
+       }
+      ]
+     }
+    ],
+    "dates": [
+     {
+      "date": "2020-02-23/2026-12-31",
+      "dateType": "Valid"
+     }
+    ],
+    "publicationYear": 2024,
+    "language": "en",
+    "identifiers": [],
+    "formats": [
+     "Collection"
+    ],
+    "rightsList": [
+     {
+      "rights": "Creative Commons Attribution Share Alike 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-sa-4.0",
+      "rightsIdentifierScheme": "SPDX"
+     }
+    ],
+    "descriptions": [
+     {
+      "description": "This dataset contains raw, unprocessed data collected continuously by a South African Environmental Observation Network (SAEON) flux tower at the Benfontein Nature Reserve karoo monitoring site. The dataset is updated daily, with new values constantly ingested, when the sites are online. As a result, users can access near-real-time data captured at the site. The dataset covers a variety of environmental and meteorological parameters. Note that the data is presented as-is, without quality control, and is considered “Level Zero” data. Users should be aware that data gaps, outliers and/or other inconsistencies are expected due to routine maintenance, equipment downtime, or network connectivity issues.",
+      "descriptionType": "Abstract"
+     }
+    ],
+    "geoLocations": [
+     {
+      "geoLocationPoint": {
+       "pointLatitude": -28.85648,
+       "pointLongitude": 24.83985
+      }
+     }
+    ],
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "providerId": "nrf",
+    "clientId": "nrf.saeon",
+    "agency": "datacite",
+    "state": "findable"
+   }
+  },
+  {
+   "file": "obs.monitor.90686782.json",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-metadata/saeon/obs.monitor.90686782.json",
+   "record": {
+    "id": "https://doi.org/10.15493/obs.monitor.90686782",
+    "doi": "10.15493/OBS.MONITOR.90686782",
+    "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.90686782",
+    "types": {
+     "ris": "DATA",
+     "bibtex": "misc",
+     "citeproc": "dataset",
+     "schemaOrg": "Dataset",
+     "resourceType": "Dataset",
+     "resourceTypeGeneral": "Dataset"
+    },
+    "creators": [
+     {
+      "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {}
+      ],
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "https://ror.org/041j42q70",
+        "nameIdentifierScheme": "ROR"
+       }
+      ]
+     }
+    ],
+    "titles": [
+     {
+      "title": "Benfontein Savanna Eddy Covariance - SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "publisher": {
+     "name": "South African Environmental Observation Network"
+    },
+    "container": {},
+    "subjects": [
+     {
+      "subject": "Benfontein Savanna Eddy Covariance"
+     },
+     {
+      "subject": "EFTEON Savanna"
+     },
+     {
+      "subject": "South African Environmental Observation Network"
+     },
+     {
+      "subject": "Real-time data"
+     },
+     {
+      "subject": "SAEON Terrestrial Observations Monitor"
+     }
+    ],
+    "contributors": [
+     {
+      "name": "South African Environmental Observation Network",
+      "nameType": "Organizational",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "Distributor"
+     },
+     {
+      "name": "Abri de Buys",
+      "nameType": "Personal",
+      "affiliation": [
+       {
+        "affiliationIdentifier": "https://ror.org/041j42q70",
+        "affiliationIdentifierScheme": "ROR"
+       }
+      ],
+      "contributorType": "ContactPerson",
+      "nameIdentifiers": [
+       {
+        "nameIdentifier": "",
+        "nameIdentifierScheme": "ORCID"
+       }
+      ]
+     }
+    ],
+    "dates": [
+     {
+      "date": "2020-02-23/2026-12-31",
+      "dateType": "Valid"
+     }
+    ],
+    "publicationYear": 2024,
+    "language": "en",
+    "identifiers": [],
+    "formats": [
+     "Collection"
+    ],
+    "rightsList": [
+     {
+      "rights": "Creative Commons Attribution Share Alike 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-sa-4.0",
+      "rightsIdentifierScheme": "SPDX"
+     }
+    ],
+    "descriptions": [
+     {
+      "description": "This dataset contains raw, unprocessed data collected continuously by a South African Environmental Observation Network (SAEON) flux tower at the Benfontein Nature Reserve savanna monitoring site. The dataset is updated daily, with new values constantly ingested, when the sites are online. As a result, users can access near-real-time data captured at the site. The dataset covers a variety of environmental and meteorological parameters. Note that the data is presented as-is, without quality control, and is considered “Level Zero” data. Users should be aware that data gaps, outliers and/or other inconsistencies are expected due to routine maintenance, equipment downtime, or network connectivity issues.",
+      "descriptionType": "Abstract"
+     }
+    ],
+    "geoLocations": [
+     {
+      "geoLocationPoint": {
+       "pointLatitude": -28.70405,
+       "pointLongitude": 29.62612
+      }
+     }
+    ],
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "providerId": "nrf",
+    "clientId": "nrf.saeon",
+    "agency": "datacite",
+    "state": "findable"
+   }
+  }
+ ]
+}

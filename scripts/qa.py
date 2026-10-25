@@ -251,7 +251,7 @@ def check_facility_merges(conn, failures: list[str], warnings: list[str]) -> Non
 # own endpoints, never a copy of its data. archive_id → the prefix every
 # product url and api_url must start with.
 POINTER_ARCHIVES = {
-    "geri-cyverse": "https://data.cyverse.org/dav/iplant/home/shared/geri/",
+    "geri-cyverse": "https://data.cyverse.org/dav-anon/iplant/projects/geri/",
 }
 
 
@@ -369,6 +369,48 @@ def check_geri(conn, failures: list[str]) -> None:
                ORDER BY 1""", [scheme]).fetchall()
         assert_true(not split, f"{len(split)} {scheme} value(s) name more than one facility: "
                                f"{split[:5]}", failures)
+    # Every site in the GERI harmonized products resolves to a facility,
+    # or carries a reviewed 'unresolved' row saying why (a warning).
+    import csv as _csv                                    # noqa: PLC0415
+    root = Path(__file__).resolve().parent.parent
+    harm_csv = root / "data" / "raw" / "R-GERI-HARMONIZED" / "geri_harmonized_sites.csv"
+    harm_map = root / "data" / "seed" / "geri_harmonized_site_map.csv"
+    if harm_csv.exists():
+        ids = [r["site_id"] for r in _csv.DictReader(harm_csv.read_bytes().decode("latin-1").splitlines())]
+        have = {r[0] for r in conn.execute(
+            "SELECT value FROM site_identifiers WHERE scheme = 'geri-harmonized-id'").fetchall()}
+        ack = set()
+        if harm_map.exists():
+            with harm_map.open(newline="", encoding="utf-8") as fh:
+                ack = {r["site_id"] for r in _csv.DictReader(fh) if r["scheme"] == "unresolved"}
+        lost = sorted(set(ids) - have - ack)
+        assert_true(not lost, f"{len(lost)} GERI harmonized site ids resolve to no facility "
+                              f"and have no reviewed row in {harm_map.name}: {lost[:8]}", failures)
+        # A harmonized id on a facility far from the CSV point is either a
+        # CSV coordinate error or a mislabelled id (FR-FBn was Fontainebleau).
+        pts = {r["site_id"]: (float(r["lat"]), float(r["lon"]))
+               for r in _csv.DictReader(harm_csv.read_bytes().decode("latin-1").splitlines())}
+        far = []
+        for sid, name, lat, lng in conn.execute(
+                """SELECT si.value, f.canonical_name, f.hq_lat, f.hq_lng
+                   FROM site_identifiers si JOIN facilities f USING (facility_id)
+                   WHERE si.scheme = 'geri-harmonized-id' AND f.hq_lat IS NOT NULL
+                   ORDER BY 1""").fetchall():
+            import math                                   # noqa: PLC0415
+            a, b = pts[sid]
+            p = math.radians
+            d = 2 * 6371 * math.asin(math.sqrt(math.sin(p(lat - a) / 2) ** 2 + math.cos(p(a))
+                                               * math.cos(p(lat)) * math.sin(p(lng - b) / 2) ** 2))
+            if d > 25:
+                far.append(f"{sid} -> {name} ({d:.0f} km)")
+        if far:
+            print(f"[qa] WARNING: {len(far)} harmonized ids sit more than 25 km from their "
+                  f"facility (CSV point error or wrong id; see docs/harmonized.md): "
+                  f"{'; '.join(far)}", file=sys.stderr)
+        pending = sorted((set(ids) - have) & ack)
+        if pending:
+            print(f"[qa] WARNING: {len(pending)} harmonized site ids acknowledged as unresolved: "
+                  f"{', '.join(pending)}", file=sys.stderr)
     orphan_parent = conn.execute(
         """SELECT network_id FROM networks c WHERE parent_id IS NOT NULL
              AND NOT EXISTS (SELECT 1 FROM networks p WHERE p.network_id = c.parent_id)""").fetchall()

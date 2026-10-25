@@ -1,0 +1,715 @@
+file,md5,variable,site_id,site_name,research_infrastructure,country,first_ts,last_ts,n_obs
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AT-Rosalia,LehrforstRosalia,eLTER,AT,2014-01-01 00:00:00+00,2025-04-29 15:30:00+00,191436
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2010-09-02 23:30:00+00,2025-12-31 23:00:00+00,238145
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Boy,Boyagin Flux Station,TERN,AU,2017-10-20 12:30:00+00,2025-12-09 10:00:00+00,139555
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Cow,Cow Bay Flux Station,TERN,AU,2009-01-01 08:30:00+00,2026-03-08 19:30:00+00,275921
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2010-07-30 10:30:00+00,2026-02-02 12:00:00+00,264702
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2009-12-31 23:30:00+00,2018-11-02 12:00:00+00,148827
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2014-01-01 00:00:00+00,2025-06-17 23:30:00+00,198471
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-DaP,Daly Pasture Flux Station,TERN,AU,2007-12-31 23:30:00+00,2013-09-08 13:30:00+00,89215
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2007-12-31 23:30:00+00,2025-12-31 23:30:00+00,298031
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Dry,Dry River Flux Station,TERN,AU,2009-10-25 14:30:00+00,2025-03-28 08:00:00+00,220356
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2011-06-10 00:00:00+00,2013-12-31 23:30:00+00,43286
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Fle,Fletcherview Flux Station,TERN,AU,2022-01-22 21:30:00+00,2026-02-03 02:30:00+00,68062
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-01-01 15:00:00+00,2025-06-30 08:00:00+00,207631
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Gin,Gingin Flux Station,TERN,AU,2011-10-13 13:30:00+00,2025-09-16 10:30:00+00,230497
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-How,Howard Springs Flux Station,TERN,AU,2002-01-01 05:30:00+00,2025-09-08 16:00:00+00,367353
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Lit,Litchfield Flux Station,TERN,AU,2015-06-23 12:30:00+00,2025-12-09 11:00:00+00,159797
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Rgf,Ridgefield Flux Station,TERN,AU,2015-03-29 04:30:00+00,2025-12-07 06:30:00+00,137637
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Rob,Robson Creek Flux Station,TERN,AU,2013-08-01 17:00:00+00,2025-11-27 16:00:00+00,215088
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2010-06-02 11:30:00+00,2017-12-31 14:30:00+00,124572
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Stp,Sturt Plains Flux Station,TERN,AU,2008-08-28 10:30:00+00,2025-12-09 10:00:00+00,271716
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-TTE,Ti Tree East Flux Station,TERN,AU,2012-07-17 23:30:00+00,2025-12-31 21:00:00+00,160106
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Tum,Tumbarumba Flux Station,TERN,AU,2002-01-07 15:30:00+00,2025-12-22 07:30:00+00,181550
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Whr,Whroo Flux Station,TERN,AU,2011-12-01 13:00:00+00,2025-12-22 07:30:00+00,186492
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2010-01-20 13:30:00+00,2025-03-10 05:30:00+00,196325
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Wrr,Warra Flux Station,TERN,AU,2013-03-05 14:30:00+00,2021-09-21 12:00:00+00,133462
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 00:30:00+00,91187
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 00:30:00+00,86781
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,AU-Ync,Yanco Flux Station,TERN,AU,2012-10-24 13:30:00+00,2026-03-13 10:30:00+00,225145
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,BE-Bra,Brasschaat,ICOS,BE,2020-10-26 00:00:00+00,2024-12-23 07:00:00+00,72050
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,BE-Dor,Dorinne,ICOS,BE,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36738
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,BE-Lon,Lonzee,ICOS,BE,2018-07-05 00:00:00+00,2025-01-01 00:00:00+00,100043
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,BE-Maa,Maasmechelen,ICOS,BE,2020-05-05 00:00:00+00,2025-01-01 00:00:00+00,80624
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,BE-Vie,Vielsalm,ICOS,BE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,73156
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,CH-Dav,Davos,ICOS,CH,2019-11-18 00:00:00+00,2025-01-01 00:00:00+00,86036
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45295
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,CZ-Lnz,Lanzhot,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45348
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,DE-HoH-E,HohesHolz,eLTER,DE,2015-01-01 00:00:00+00,2025-06-23 00:30:00+00,181366
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,DE-HoH-I,Hohes Holz,ICOS,DE,2019-05-22 00:00:00+00,2025-01-01 00:00:00+00,91550
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,DE-RuS,Rursee-Schwammenauel,ICOS,DE,2019-04-29 00:00:00+00,2025-01-01 00:00:00+00,92311
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,DE-Tha,Tharandt,ICOS,DE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,67731
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,DK-Sor,Sorø,ICOS,DK,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,52921
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,DK-Vng,Voulund (Vindgaarde),ICOS,DK,2020-10-27 17:00:00+00,2024-01-01 00:00:00+00,52965
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FI-Hyy,Hyytiälä,ICOS,FI,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,105190
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FI-Sii,Siikaneva,ICOS,FI,2017-10-25 00:00:00+00,2025-01-01 00:00:00+00,123875
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FI-Värriö,VärriöLTER,eLTER,FI,2014-01-01 00:00:00+00,2024-12-31 22:00:00+00,139722
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FR-FBn,Fontainebleau,ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36821
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FR-Gri,Grignon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,53735
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FR-Hes,Hesse,ICOS,FR,2022-06-27 14:00:00+00,2025-01-01 00:00:00+00,33281
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FR-Lqu,Landes de Gascogne (Lourquen),ICOS,FR,2022-11-23 09:30:00+00,2024-12-31 22:30:00+00,32704
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FR-Lus,Lussas,ICOS,FR,2022-12-20 00:00:00+00,2025-01-01 00:00:00+00,34508
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,FR-Pue,Puechabon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,52167
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,GB-AMo,Auchencorth Moss,ICOS,GB,2021-11-17 01:00:00+00,2025-01-01 00:00:00+00,45646
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,GL-ZaF,Zackenberg,ICOS,GL,2023-04-23 20:30:00+00,2024-09-16 00:00:00+00,22443
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,IT-MBo,Monte Bondone,ICOS,IT,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36440
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,IT-Ren,Renon/Ritten,ICOS,IT,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,47616
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,IT-SR2,San Rossore 2,ICOS,IT,2019-10-28 00:00:00+00,2024-10-14 00:00:00+00,77984
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,NL-Loo,Loobos,ICOS,NL,2023-05-10 00:00:00+00,2025-01-01 00:00:00+00,28771
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,SE-Deg,Degerö,ICOS,SE,2019-10-28 00:00:00+00,2025-01-01 00:00:00+00,89272
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,SE-Htm,Hyltemossa,ICOS,SE,2018-04-19 00:00:00+00,2025-01-01 00:00:00+00,113610
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,SE-Nor,Norunda,ICOS,SE,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,105964
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,SE-Sto,Stordalen,ICOS,SE,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45322
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,SE-Svb,Svartberget,ICOS,SE,2019-04-29 00:00:00+00,2025-01-01 00:00:00+00,99059
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2014-01-01 00:00:00+00,2026-05-30 19:30:00+00,211949
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-ABBY,Abby Road NEON,NEON,US,2016-04-29 00:00:00+00,2025-07-01 00:00:00+00,133400
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-BARR,Utqiaġvik NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,127376
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-BART,Bartlett Experimental Forest NEON,NEON,US,2014-10-20 00:00:00+00,2025-07-01 00:00:00+00,177550
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2014-09-14 00:00:00+00,2025-07-01 00:00:00+00,183588
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-10-16 00:00:00+00,2025-07-01 00:00:00+00,130370
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2017-07-21 00:00:00+00,2025-07-01 00:00:00+00,137962
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-CPER,Central Plains Experimental Range NEON,NEON,US,2014-02-18 00:00:00+00,2025-07-01 00:00:00+00,185803
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,138213
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-DEJU,Delta Junction NEON,NEON,US,2017-01-06 00:00:00+00,2025-07-01 00:00:00+00,147464
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-DELA,Dead Lake NEON,NEON,US,2014-12-20 00:00:00+00,2025-07-01 00:00:00+00,176712
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2014-09-11 00:00:00+00,2025-07-01 00:00:00+00,184735
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2017-08-20 00:00:00+00,2025-07-01 00:00:00+00,133073
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-GUAN,Guánica Forest NEON,NEON,US,2018-05-26 00:00:00+00,2025-07-01 00:00:00+00,107203
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2014-10-20 00:00:00+00,2025-07-01 00:00:00+00,177108
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-HEAL,Healy NEON,NEON,US,2016-05-01 00:00:00+00,2025-07-01 00:00:00+00,149054
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2014-09-11 00:00:00+00,2025-07-01 00:00:00+00,183549
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-JORN,Jornada Experimental Range NEON,NEON,US,2014-09-11 00:00:00+00,2025-07-01 00:00:00+00,180571
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2016-05-02 00:00:00+00,2025-07-01 00:00:00+00,152173
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2015-06-01 00:00:00+00,2025-07-01 00:00:00+00,158633
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-LAJA,Lajas Experimental Station NEON,NEON,US,2015-06-04 00:00:00+00,2025-07-01 00:00:00+00,154441
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-LENO,Lenoir Landing NEON,NEON,US,2016-05-01 00:00:00+00,2025-07-01 00:00:00+00,146512
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2015-09-11 00:00:00+00,2025-07-01 00:00:00+00,165963
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-MOAB,Moab NEON,NEON,US,2015-06-02 00:00:00+00,2025-07-01 00:00:00+00,170567
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-NIWO,Niwot Ridge NEON,NEON,US,2017-07-14 00:00:00+00,2025-07-01 00:00:00+00,135563
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2017-08-25 00:00:00+00,2025-07-01 00:00:00+00,128300
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2015-01-23 00:00:00+00,2025-07-01 00:00:00+00,174955
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-ONAQ,Onaqui NEON,NEON,US,2015-06-02 00:00:00+00,2025-07-01 00:00:00+00,171686
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-ORNL,Oak Ridge NEON,NEON,US,2015-04-23 00:00:00+00,2025-07-01 00:00:00+00,168910
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2014-08-07 00:00:00+00,2025-07-01 00:00:00+00,184396
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-RMNP,Rocky Mountains NEON,NEON,US,2014-12-20 00:00:00+00,2025-07-01 00:00:00+00,156764
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2014-12-20 00:00:00+00,2025-07-01 00:00:00+00,162858
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2016-02-22 00:00:00+00,2025-07-01 00:00:00+00,159809
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2018-09-06 00:00:00+00,2025-07-01 00:00:00+00,118099
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-SOAP,Soaproot Saddle NEON,NEON,US,2017-08-03 00:00:00+00,2025-07-01 00:00:00+00,127101
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2017-07-14 00:00:00+00,2025-07-01 00:00:00+00,136280
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,137186
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-STER,North Sterling NEON,NEON,US,2013-12-06 00:00:00+00,2025-07-01 00:00:00+00,183376
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-TALL,Talladega National Forest NEON,NEON,US,2015-04-23 00:00:00+00,2025-07-01 00:00:00+00,160681
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-TEAK,Lower Teakettle NEON,NEON,US,2018-06-18 00:00:00+00,2025-07-01 00:00:00+00,119441
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-TOOL,Toolik Field Station NEON,NEON,US,2017-07-09 00:00:00+00,2025-07-01 00:00:00+00,132286
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-TREE,Treehaven NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,140290
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-UKFS,University of Kansas Field Station NEON,NEON,US,2016-01-26 00:00:00+00,2025-07-01 00:00:00+00,157897
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2014-12-20 00:00:00+00,2025-07-01 00:00:00+00,161376
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2015-06-03 00:00:00+00,2025-07-01 00:00:00+00,172234
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-WREF,Wind River Experimental Forest NEON,NEON,US,2018-05-12 00:00:00+00,2025-07-01 00:00:00+00,123413
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,US-YELL,Yellowstone National Park NEON,NEON,US,2018-09-27 00:00:00+00,2025-07-01 00:00:00+00,110096
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-BfK,EFTEON_KIM_BenfonteinKaroo_EC,EFTEON,ZA,2024-07-31 18:30:00+00,2026-05-17 01:30:00+00,30744
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-BfS,EFTEON_KIM_BenfonteinSavanna_EC,EFTEON,ZA,2024-07-31 19:00:00+00,2026-05-17 02:00:00+00,30749
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-CCs,SAEON_GWF_CoastalCashews_EC,SAEON,ZA,2024-07-31 18:30:00+00,2026-02-25 06:30:00+00,16558
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-CPk,SAEON_GWF_CathedralPeak_EC,SAEON,ZA,2024-09-19 14:30:00+00,2026-05-17 16:30:00+00,26503
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-Jks,SAEON_FYN_Jonkershoek_EC,SAEON,ZA,2024-07-31 22:00:00+00,2026-05-17 20:30:00+00,29273
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-Kru,EFTEON_LVD_Skukuza_EC,EFTEON,ZA,2024-10-26 09:00:00+00,2026-05-17 04:30:00+00,25549
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-Spk,EFTEON_NDR_Spioenkop_EC,EFTEON,ZA,2024-07-31 20:30:00+00,2026-05-17 05:00:00+00,29173
+GERI_airtemperature_30min.parquet,c25d2346c3319e9a5d74d1b93cc0e7a9,mean_air_temp_degC,ZA-Uby,EFTEON_MCP_Umhlabuyalingana_EC,EFTEON,ZA,2024-07-31 20:30:00+00,2026-05-17 15:30:00+00,29883
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AT-Rosalia,LehrforstRosalia,eLTER,AT,2014-01-01 00:00:00+00,2025-04-29 16:00:00+00,91930
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2010-09-02 23:00:00+00,2025-12-31 23:00:00+00,106660
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Boy,Boyagin Flux Station,TERN,AU,2017-10-20 12:00:00+00,2025-12-09 10:00:00+00,68121
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Cow,Cow Bay Flux Station,TERN,AU,2009-01-01 08:00:00+00,2026-03-08 20:00:00+00,102952
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2010-07-30 10:00:00+00,2026-02-02 12:00:00+00,132502
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2009-12-31 23:00:00+00,2018-11-02 12:00:00+00,73266
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2014-01-01 00:00:00+00,2025-06-18 00:00:00+00,99812
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-DaP,Daly Pasture Flux Station,TERN,AU,2007-12-31 23:00:00+00,2013-09-08 14:00:00+00,36112
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2007-12-31 23:00:00+00,2026-01-01 00:00:00+00,132755
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Dry,Dry River Flux Station,TERN,AU,2009-10-25 14:00:00+00,2025-03-28 08:00:00+00,104679
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2011-06-10 00:00:00+00,2014-01-01 00:00:00+00,22463
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Fle,Fletcherview Flux Station,TERN,AU,2022-01-22 21:00:00+00,2026-02-03 03:00:00+00,33489
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-01-01 15:00:00+00,2025-06-30 08:00:00+00,104272
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Gin,Gingin Flux Station,TERN,AU,2011-10-13 13:00:00+00,2025-09-16 11:00:00+00,114270
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-How,Howard Springs Flux Station,TERN,AU,2002-01-01 05:00:00+00,2025-09-08 16:00:00+00,184633
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Lit,Litchfield Flux Station,TERN,AU,2015-06-23 12:00:00+00,2025-12-09 11:00:00+00,79436
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Rgf,Ridgefield Flux Station,TERN,AU,2015-03-29 04:00:00+00,2025-12-07 07:00:00+00,68456
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Rob,Robson Creek Flux Station,TERN,AU,2013-08-01 17:00:00+00,2025-11-27 16:00:00+00,107384
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2010-06-02 11:00:00+00,2017-12-31 15:00:00+00,58252
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Stp,Sturt Plains Flux Station,TERN,AU,2008-08-28 10:00:00+00,2025-12-09 10:00:00+00,118397
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-TTE,Ti Tree East Flux Station,TERN,AU,2012-07-17 23:00:00+00,2025-12-31 21:00:00+00,70052
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Tum,Tumbarumba Flux Station,TERN,AU,2002-01-07 15:00:00+00,2025-12-22 08:00:00+00,7613
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Whr,Whroo Flux Station,TERN,AU,2011-12-01 13:00:00+00,2025-12-22 08:00:00+00,66602
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2010-01-20 13:00:00+00,2025-03-10 06:00:00+00,95841
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Wrr,Warra Flux Station,TERN,AU,2013-03-05 14:00:00+00,2021-09-21 12:00:00+00,65002
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 01:00:00+00,48024
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 01:00:00+00,48023
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,AU-Ync,Yanco Flux Station,TERN,AU,2012-10-24 13:00:00+00,2026-03-13 11:00:00+00,113549
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,BE-Bra,Brasschaat,ICOS,BE,2020-10-26 00:00:00+00,2024-11-21 00:00:00+00,33925
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,BE-Dor,Dorinne,ICOS,BE,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,15863
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,BE-Lon,Lonzee,ICOS,BE,2018-07-05 00:00:00+00,2025-01-01 00:00:00+00,52523
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,BE-Maa,Maasmechelen,ICOS,BE,2020-05-04 00:00:00+00,2025-01-01 00:00:00+00,40381
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,BE-Vie,Vielsalm,ICOS,BE,2020-10-26 00:00:00+00,2024-12-04 00:00:00+00,33877
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,CH-Dav,Davos,ICOS,CH,2019-11-18 00:00:00+00,2025-01-01 00:00:00+00,44721
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,22598
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,CZ-Lnz,Lanzhot,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,20711
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,DE-HoH-E,HohesHolz,eLTER,DE,2015-01-01 00:00:00+00,2025-09-09 01:00:00+00,93310
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,DE-HoH-I,Hohes Holz,ICOS,DE,2019-05-22 00:00:00+00,2025-01-01 00:00:00+00,43810
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,DE-RuS,Rursee-Schwammenauel,ICOS,DE,2019-04-30 09:00:00+00,2025-01-01 00:00:00+00,48705
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,DE-Tha,Tharandt,ICOS,DE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,34304
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,DK-Sor,Sorø,ICOS,DK,2021-11-17 00:00:00+00,2024-12-31 00:00:00+00,24390
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,DK-Vng,Voulund (Vindgaarde),ICOS,DK,2020-10-26 00:00:00+00,2024-01-01 00:00:00+00,26889
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FI-Hyy,Hyytiälä,ICOS,FI,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,51847
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FI-Sii,Siikaneva,ICOS,FI,2017-10-25 00:00:00+00,2025-01-01 00:00:00+00,62209
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FI-Värriö,VärriöLTER,eLTER,FI,2014-01-01 00:00:00+00,2024-12-31 22:00:00+00,95115
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FR-FBn,Fontainebleau,ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,18420
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FR-Gri,Grignon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,16094
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FR-Hes,Hesse,ICOS,FR,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,22089
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FR-Lqu,Landes de Gascogne (Lourquen),ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,17692
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FR-Lus,Lussas,ICOS,FR,2022-11-29 09:00:00+00,2025-01-01 00:00:00+00,17194
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,FR-Pue,Puechabon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,26203
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,GB-AMo,Auchencorth Moss,ICOS,GB,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,25515
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,GL-ZaF,Zackenberg,ICOS,GL,2022-11-23 00:00:00+00,2024-08-30 00:00:00+00,13383
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,IT-MBo,Monte Bondone,ICOS,IT,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,18218
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,IT-Ren,Renon/Ritten,ICOS,IT,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,26784
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,IT-SR2,San Rossore 2,ICOS,IT,2019-10-28 00:00:00+00,2024-09-21 00:00:00+00,23911
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,NL-Loo,Loobos,ICOS,NL,2023-05-10 00:00:00+00,2025-01-01 00:00:00+00,14397
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,SE-Deg,Degerö,ICOS,SE,2020-05-05 00:00:00+00,2025-01-01 00:00:00+00,33903
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,SE-Htm,Hyltemossa,ICOS,SE,2018-04-19 00:00:00+00,2025-01-01 00:00:00+00,57781
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,SE-Nor,Norunda,ICOS,SE,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,43140
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,SE-Sto,Stordalen,ICOS,SE,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,22458
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,SE-Svb,Svartberget,ICOS,SE,2019-05-08 11:00:00+00,2025-01-01 00:00:00+00,33946
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2014-01-01 00:00:00+00,2021-08-22 17:00:00+00,66977
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-ABBY,Abby Road NEON,NEON,US,2017-09-09 00:00:00+00,2025-07-01 00:00:00+00,67147
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-BARR,Utqiaġvik NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,69840
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-BART,Bartlett Experimental Forest NEON,NEON,US,2014-10-20 00:00:00+00,2025-07-01 00:00:00+00,93768
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2014-09-14 00:00:00+00,2025-07-01 00:00:00+00,94632
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-10-20 00:00:00+00,2025-07-01 00:00:00+00,48289
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2017-07-25 00:00:00+00,2025-07-01 00:00:00+00,63927
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-CPER,Central Plains Experimental Range NEON,NEON,US,2016-07-25 00:00:00+00,2025-07-01 00:00:00+00,76366
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,69741
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-DEJU,Delta Junction NEON,NEON,US,2017-01-06 00:00:00+00,2025-07-01 00:00:00+00,74021
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-DELA,Dead Lake NEON,NEON,US,2014-12-20 00:00:00+00,2025-07-01 00:00:00+00,92177
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2014-09-11 00:00:00+00,2025-07-01 00:00:00+00,93936
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2017-08-20 00:00:00+00,2025-07-01 00:00:00+00,68928
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-GUAN,Guánica Forest NEON,NEON,US,2018-05-26 00:00:00+00,2025-07-01 00:00:00+00,62232
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2017-02-08 00:00:00+00,2025-07-01 00:00:00+00,73021
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-HEAL,Healy NEON,NEON,US,2016-05-01 00:00:00+00,2025-07-01 00:00:00+00,80252
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2014-09-11 00:00:00+00,2025-07-01 00:00:00+00,94704
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-JORN,Jornada Experimental Range NEON,NEON,US,2014-09-11 00:00:00+00,2025-07-01 00:00:00+00,94703
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2016-05-02 00:00:00+00,2025-07-01 00:00:00+00,80026
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2017-06-22 00:00:00+00,2025-07-01 00:00:00+00,67842
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-LAJA,Lajas Experimental Station NEON,NEON,US,2015-06-04 00:00:00+00,2025-07-01 00:00:00+00,81935
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-LENO,Lenoir Landing NEON,NEON,US,2016-05-01 00:00:00+00,2025-07-01 00:00:00+00,73937
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2015-09-11 00:00:00+00,2025-07-01 00:00:00+00,85896
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-MOAB,Moab NEON,NEON,US,2015-06-02 00:00:00+00,2025-07-01 00:00:00+00,84168
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-NIWO,Niwot Ridge NEON,NEON,US,2024-02-19 00:00:00+00,2025-07-01 00:00:00+00,11549
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2017-08-25 00:00:00+00,2025-07-01 00:00:00+00,68807
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2015-01-23 00:00:00+00,2025-07-01 00:00:00+00,91484
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-ONAQ,Onaqui NEON,NEON,US,2017-07-12 00:00:00+00,2025-07-01 00:00:00+00,61914
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-ORNL,Oak Ridge NEON,NEON,US,2017-05-11 00:00:00+00,2025-07-01 00:00:00+00,71299
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2016-08-11 00:00:00+00,2025-07-01 00:00:00+00,77709
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-RMNP,Rocky Mountains NEON,NEON,US,2014-12-20 00:00:00+00,2025-07-01 00:00:00+00,90130
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2017-02-19 00:00:00+00,2025-07-01 00:00:00+00,73295
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2016-02-22 00:00:00+00,2025-07-01 00:00:00+00,82007
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2018-09-10 00:00:00+00,2025-07-01 00:00:00+00,53578
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-SOAP,Soaproot Saddle NEON,NEON,US,2017-08-03 00:00:00+00,2025-07-01 00:00:00+00,68613
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2017-07-18 00:00:00+00,2025-07-01 00:00:00+00,65021
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2017-08-01 00:00:00+00,2025-07-01 00:00:00+00,69224
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-STER,North Sterling NEON,NEON,US,2013-12-06 00:00:00+00,2025-07-01 00:00:00+00,95806
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-TALL,Talladega National Forest NEON,NEON,US,2015-04-23 00:00:00+00,2025-07-01 00:00:00+00,88443
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-TEAK,Lower Teakettle NEON,NEON,US,2018-06-18 00:00:00+00,2025-07-01 00:00:00+00,60822
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-TOOL,Toolik Field Station NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,65030
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-TREE,Treehaven NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,70488
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-UKFS,University of Kansas Field Station NEON,NEON,US,2016-01-26 00:00:00+00,2025-07-01 00:00:00+00,81957
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2017-02-19 00:00:00+00,2025-07-01 00:00:00+00,70338
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2017-10-29 00:00:00+00,2025-07-01 00:00:00+00,65156
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-WREF,Wind River Experimental Forest NEON,NEON,US,2018-05-12 00:00:00+00,2025-07-01 00:00:00+00,62567
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,US-YELL,Yellowstone National Park NEON,NEON,US,2018-10-01 00:00:00+00,2025-07-01 00:00:00+00,51521
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-BfK,EFTEON_KIM_BenfonteinKaroo_EC,EFTEON,ZA,2024-07-31 18:00:00+00,2026-05-17 02:00:00+00,15045
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-BfS,EFTEON_KIM_BenfonteinSavanna_EC,EFTEON,ZA,2024-07-31 19:00:00+00,2026-05-17 02:00:00+00,15047
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-CCs,SAEON_GWF_CoastalCashews_EC,SAEON,ZA,2024-07-31 18:00:00+00,2025-10-20 17:00:00+00,7619
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-CPk,SAEON_GWF_CathedralPeak_EC,SAEON,ZA,2024-09-19 14:00:00+00,2026-05-17 17:00:00+00,12969
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-Jks,SAEON_FYN_Jonkershoek_EC,SAEON,ZA,2024-07-31 22:00:00+00,2026-05-17 21:00:00+00,14325
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-Kru,EFTEON_LVD_Skukuza_EC,EFTEON,ZA,2024-10-23 11:00:00+00,2026-05-17 05:00:00+00,12695
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-Spk,EFTEON_NDR_Spioenkop_EC,EFTEON,ZA,2024-07-31 20:00:00+00,2026-05-17 05:00:00+00,14264
+GERI_precipitation_60min.parquet,3761be362875240b4f7eeaa727adc036,bulk_precipitation_mm,ZA-Uby,EFTEON_MCP_Umhlabuyalingana_EC,EFTEON,ZA,2024-07-31 20:00:00+00,2026-05-17 16:00:00+00,14620
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AT-Rosalia,LehrforstRosalia,eLTER,AT,2014-01-01 00:00:00+00,2020-10-30 08:30:00+00,55619
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2010-09-02 23:30:00+00,2025-12-31 23:00:00+00,237630
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Boy,Boyagin Flux Station,TERN,AU,2017-10-20 12:30:00+00,2025-12-09 10:00:00+00,138173
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Cow,Cow Bay Flux Station,TERN,AU,2009-01-01 08:30:00+00,2026-03-08 19:30:00+00,186378
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2010-07-30 10:30:00+00,2026-02-02 12:00:00+00,233297
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2009-12-31 23:30:00+00,2018-11-02 12:00:00+00,140037
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2014-01-01 00:00:00+00,2025-06-17 23:30:00+00,198655
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-DaP,Daly Pasture Flux Station,TERN,AU,2007-12-31 23:30:00+00,2013-09-08 13:30:00+00,89215
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2007-12-31 23:30:00+00,2025-12-31 23:30:00+00,295214
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Dry,Dry River Flux Station,TERN,AU,2009-10-25 14:30:00+00,2025-03-28 08:00:00+00,208640
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2011-06-10 00:00:00+00,2013-12-31 23:30:00+00,43106
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Fle,Fletcherview Flux Station,TERN,AU,2022-01-22 21:30:00+00,2026-02-03 02:30:00+00,65583
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-01-01 15:00:00+00,2025-06-30 08:00:00+00,205857
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Gin,Gingin Flux Station,TERN,AU,2011-10-13 13:30:00+00,2025-09-16 10:30:00+00,234330
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-How,Howard Springs Flux Station,TERN,AU,2002-01-01 05:30:00+00,2025-09-08 16:00:00+00,368882
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Lit,Litchfield Flux Station,TERN,AU,2015-06-23 12:30:00+00,2025-12-09 11:00:00+00,158313
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Rgf,Ridgefield Flux Station,TERN,AU,2015-03-29 04:30:00+00,2025-12-07 06:30:00+00,166806
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Rob,Robson Creek Flux Station,TERN,AU,2013-08-01 17:00:00+00,2025-11-27 16:00:00+00,203508
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2010-06-02 11:30:00+00,2017-12-31 14:30:00+00,109004
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Stp,Sturt Plains Flux Station,TERN,AU,2008-08-28 10:30:00+00,2025-12-09 10:00:00+00,155581
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-TTE,Ti Tree East Flux Station,TERN,AU,2012-07-17 23:30:00+00,2025-12-31 21:00:00+00,147729
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Tum,Tumbarumba Flux Station,TERN,AU,2002-01-07 15:30:00+00,2025-12-22 07:30:00+00,164087
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Whr,Whroo Flux Station,TERN,AU,2011-12-01 13:00:00+00,2025-12-22 07:30:00+00,39569
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2010-01-20 13:30:00+00,2025-03-10 05:30:00+00,190341
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Wrr,Warra Flux Station,TERN,AU,2013-03-05 14:30:00+00,2021-09-21 12:00:00+00,77453
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 00:30:00+00,93635
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 00:30:00+00,78705
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,AU-Ync,Yanco Flux Station,TERN,AU,2012-10-24 13:30:00+00,2026-03-13 10:30:00+00,215791
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,BE-Bra,Brasschaat,ICOS,BE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,72191
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,BE-Dor,Dorinne,ICOS,BE,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36651
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,BE-Lon,Lonzee,ICOS,BE,2018-08-03 00:00:00+00,2025-01-01 00:00:00+00,111753
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,BE-Maa,Maasmechelen,ICOS,BE,2020-05-04 00:00:00+00,2025-01-01 00:00:00+00,81299
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,BE-Vie,Vielsalm,ICOS,BE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,72024
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,CH-Dav,Davos,ICOS,CH,2019-11-18 00:00:00+00,2025-01-01 00:00:00+00,89151
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45605
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,CZ-Lnz,Lanzhot,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45562
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,DE-HoH-E,HohesHolz,eLTER,DE,2014-01-01 00:00:00+00,2025-09-09 00:30:00+00,202755
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,DE-HoH-I,Hohes Holz,ICOS,DE,2019-05-22 00:00:00+00,2025-01-01 00:00:00+00,94034
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,DE-RuS,Rursee-Schwammenauel,ICOS,DE,2019-04-29 00:00:00+00,2025-01-01 00:00:00+00,98590
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,DE-Tha,Tharandt,ICOS,DE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,70416
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,DK-Sor,Sorø,ICOS,DK,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,54565
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,DK-Vng,Voulund (Vindgaarde),ICOS,DK,2020-10-26 00:00:00+00,2024-01-01 00:00:00+00,52876
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FI-Hyy,Hyytiälä,ICOS,FI,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,107564
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FI-Sii,Siikaneva,ICOS,FI,2017-10-25 00:00:00+00,2025-01-01 00:00:00+00,125740
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FI-Värriö,VärriöLTER,eLTER,FI,2014-01-01 00:00:00+00,2024-12-31 22:00:00+00,69181
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FR-FBn,Fontainebleau,ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36864
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FR-Gri,Grignon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,53481
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FR-Hes,Hesse,ICOS,FR,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,46022
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FR-Lqu,Landes de Gascogne (Lourquen),ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36546
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FR-Lus,Lussas,ICOS,FR,2022-11-29 08:30:00+00,2025-01-01 00:00:00+00,35700
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,FR-Pue,Puechabon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,53470
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,GB-AMo,Auchencorth Moss,ICOS,GB,2022-09-30 00:00:00+00,2025-01-01 00:00:00+00,37609
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,GL-ZaF,Zackenberg,ICOS,GL,2022-11-23 00:00:00+00,2024-09-16 00:00:00+00,31210
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,IT-MBo,Monte Bondone,ICOS,IT,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36475
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,IT-Ren,Renon/Ritten,ICOS,IT,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,52224
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,IT-SR2,San Rossore 2,ICOS,IT,2019-10-28 00:00:00+00,2024-10-19 00:00:00+00,74844
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,NL-Loo,Loobos,ICOS,NL,2023-05-10 00:00:00+00,2025-01-01 00:00:00+00,28799
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,SE-Deg,Degerö,ICOS,SE,2019-10-29 00:00:00+00,2025-01-01 00:00:00+00,79304
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,SE-Htm,Hyltemossa,ICOS,SE,2018-04-19 00:00:00+00,2022-06-27 23:00:00+00,72753
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,SE-Nor,Norunda,ICOS,SE,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,107636
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,SE-Sto,Stordalen,ICOS,SE,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45347
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,SE-Svb,Svartberget,ICOS,SE,2019-04-29 00:00:00+00,2025-01-01 00:00:00+00,96398
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2014-01-01 00:00:00+00,2026-05-30 13:00:00+00,35412
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-ABBY,Abby Road NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,137652
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-BARR,Utqiaġvik NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,38973
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-BART,Bartlett Experimental Forest NEON,NEON,US,2017-02-02 16:30:00+00,2025-07-01 00:00:00+00,142049
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2017-02-21 09:30:00+00,2025-07-01 00:00:00+00,140287
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-10-17 00:00:00+00,2025-07-01 00:00:00+00,51554
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2017-07-21 00:00:00+00,2025-07-01 00:00:00+00,138148
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-CPER,Central Plains Experimental Range NEON,NEON,US,2016-07-21 16:00:00+00,2025-07-01 00:00:00+00,123164
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,112769
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-DEJU,Delta Junction NEON,NEON,US,2017-01-08 14:00:00+00,2025-07-01 00:00:00+00,88607
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-DELA,Dead Lake NEON,NEON,US,2017-06-01 16:30:00+00,2025-07-01 00:00:00+00,98543
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2017-02-21 12:30:00+00,2025-07-01 00:00:00+00,133292
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2017-08-20 00:00:00+00,2025-07-01 00:00:00+00,135990
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-GUAN,Guánica Forest NEON,NEON,US,2018-05-26 00:00:00+00,2025-07-01 00:00:00+00,117969
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2017-02-07 00:00:00+00,2025-07-01 00:00:00+00,102834
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-HEAL,Healy NEON,NEON,US,2017-06-02 19:00:00+00,2025-07-01 00:00:00+00,77000
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2016-12-31 00:00:00+00,2025-07-01 00:00:00+00,146907
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-JORN,Jornada Experimental Range NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,138520
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2017-06-19 00:00:00+00,2025-07-01 00:00:00+00,131886
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2017-06-18 00:00:00+00,2025-07-01 00:00:00+00,130250
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-LAJA,Lajas Experimental Station NEON,NEON,US,2018-04-30 19:00:00+00,2025-07-01 00:00:00+00,106323
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-LENO,Lenoir Landing NEON,NEON,US,2017-06-29 00:00:00+00,2025-07-01 00:00:00+00,104593
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2017-07-20 00:00:00+00,2025-07-01 00:00:00+00,132090
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-MOAB,Moab NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,130066
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-NIWO,Niwot Ridge NEON,NEON,US,2017-07-14 00:00:00+00,2025-07-01 00:00:00+00,84079
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2017-08-25 00:00:00+00,2025-07-01 00:00:00+00,115217
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2017-07-24 00:00:00+00,2025-07-01 00:00:00+00,111437
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-ONAQ,Onaqui NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,129414
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-ORNL,Oak Ridge NEON,NEON,US,2016-10-19 15:00:00+00,2025-07-01 00:00:00+00,149515
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2016-09-22 14:30:00+00,2025-07-01 00:00:00+00,152640
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-RMNP,Rocky Mountains NEON,NEON,US,2017-02-08 00:30:00+00,2025-07-01 00:00:00+00,106344
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2016-11-28 15:00:00+00,2025-07-01 00:00:00+00,130685
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2016-04-08 07:30:00+00,2025-07-01 00:00:00+00,155048
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2018-09-21 16:30:00+00,2025-07-01 00:00:00+00,117264
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-SOAP,Soaproot Saddle NEON,NEON,US,2017-08-04 00:00:00+00,2025-07-01 00:00:00+00,119974
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2017-07-14 00:00:00+00,2025-07-01 00:00:00+00,138470
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2017-08-01 00:00:00+00,2025-07-01 00:00:00+00,130304
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-STER,North Sterling NEON,NEON,US,2017-05-26 00:00:00+00,2025-07-01 00:00:00+00,121237
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-TALL,Talladega National Forest NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,134830
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-TEAK,Lower Teakettle NEON,NEON,US,2018-06-18 00:00:00+00,2025-07-01 00:00:00+00,119828
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-TOOL,Toolik Field Station NEON,NEON,US,2017-07-09 00:00:00+00,2025-07-01 00:00:00+00,100932
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-TREE,Treehaven NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,130972
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-UKFS,University of Kansas Field Station NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,131158
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2017-02-20 01:30:00+00,2025-07-01 00:00:00+00,142294
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2017-07-15 00:00:00+00,2025-07-01 00:00:00+00,93328
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-WREF,Wind River Experimental Forest NEON,NEON,US,2018-05-12 00:00:00+00,2025-07-01 00:00:00+00,123530
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,US-YELL,Yellowstone National Park NEON,NEON,US,2018-10-01 19:00:00+00,2025-07-01 00:00:00+00,74029
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-BfK,EFTEON_KIM_BenfonteinKaroo_EC,EFTEON,ZA,2024-07-31 18:30:00+00,2026-05-17 01:30:00+00,30748
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-BfS,EFTEON_KIM_BenfonteinSavanna_EC,EFTEON,ZA,2024-07-31 19:00:00+00,2026-05-17 02:00:00+00,30750
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-CCs,SAEON_GWF_CoastalCashews_EC,SAEON,ZA,2024-07-31 18:30:00+00,2025-10-20 17:00:00+00,15571
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-CPk,SAEON_GWF_CathedralPeak_EC,SAEON,ZA,2024-09-19 14:30:00+00,2026-05-17 16:30:00+00,26505
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-Jks,SAEON_FYN_Jonkershoek_EC,SAEON,ZA,2024-07-31 22:00:00+00,2026-05-17 20:30:00+00,28878
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-Kru,EFTEON_LVD_Skukuza_EC,EFTEON,ZA,2024-10-26 09:00:00+00,2026-05-17 04:30:00+00,25157
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-Spk,EFTEON_NDR_Spioenkop_EC,EFTEON,ZA,2024-07-31 20:30:00+00,2026-05-17 05:00:00+00,29174
+GERI_soilmoisture_30min.parquet,72ca33ec92e80505a38d292d2d0baffa,mean_swc_percent,ZA-Uby,EFTEON_MCP_Umhlabuyalingana_EC,EFTEON,ZA,2024-07-31 20:30:00+00,2026-05-17 15:30:00+00,29878
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AT-Rosalia,LehrforstRosalia,eLTER,AT,2014-01-01 00:00:00+00,2020-10-30 08:30:00+00,55856
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2010-09-02 23:30:00+00,2025-12-31 23:00:00+00,236927
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Boy,Boyagin Flux Station,TERN,AU,2017-10-20 12:30:00+00,2025-12-09 10:00:00+00,138174
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Cow,Cow Bay Flux Station,TERN,AU,2009-01-01 08:30:00+00,2026-03-08 19:30:00+00,174958
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2010-07-30 10:30:00+00,2026-02-02 12:00:00+00,240900
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2009-12-31 23:30:00+00,2018-11-02 12:00:00+00,140037
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2014-01-01 00:00:00+00,2025-06-17 23:30:00+00,198529
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-DaP,Daly Pasture Flux Station,TERN,AU,2007-12-31 23:30:00+00,2013-09-08 13:30:00+00,89103
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2007-12-31 23:30:00+00,2025-12-31 23:30:00+00,293566
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Dry,Dry River Flux Station,TERN,AU,2009-10-25 14:30:00+00,2025-03-28 08:00:00+00,222562
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2011-06-10 00:00:00+00,2013-12-31 23:30:00+00,43106
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Fle,Fletcherview Flux Station,TERN,AU,2022-01-22 21:30:00+00,2026-02-03 02:30:00+00,66987
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-01-01 15:00:00+00,2025-06-30 08:00:00+00,207638
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Gin,Gingin Flux Station,TERN,AU,2011-10-13 13:30:00+00,2025-09-16 10:30:00+00,229810
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-How,Howard Springs Flux Station,TERN,AU,2002-01-01 05:30:00+00,2025-09-08 16:00:00+00,340073
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Lit,Litchfield Flux Station,TERN,AU,2015-06-23 12:30:00+00,2025-12-09 11:00:00+00,156386
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Rgf,Ridgefield Flux Station,TERN,AU,2015-03-29 04:30:00+00,2025-12-07 06:30:00+00,167684
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Rob,Robson Creek Flux Station,TERN,AU,2013-08-01 17:00:00+00,2025-11-27 16:00:00+00,188004
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2010-06-02 11:30:00+00,2017-12-31 14:30:00+00,124120
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Stp,Sturt Plains Flux Station,TERN,AU,2008-08-28 10:30:00+00,2025-12-09 10:00:00+00,254169
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-TTE,Ti Tree East Flux Station,TERN,AU,2012-07-17 23:30:00+00,2025-12-31 21:00:00+00,156276
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Tum,Tumbarumba Flux Station,TERN,AU,2002-01-07 15:30:00+00,2025-12-22 07:30:00+00,169604
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Whr,Whroo Flux Station,TERN,AU,2011-12-01 13:00:00+00,2025-12-22 07:30:00+00,43974
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2010-01-20 13:30:00+00,2025-03-10 05:30:00+00,190810
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Wrr,Warra Flux Station,TERN,AU,2013-03-05 14:30:00+00,2021-09-21 12:00:00+00,99813
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 00:30:00+00,93120
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2020-01-01 00:00:00+00,2025-06-24 00:30:00+00,86541
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,AU-Ync,Yanco Flux Station,TERN,AU,2012-10-24 13:30:00+00,2026-03-13 10:30:00+00,223526
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,BE-Bra,Brasschaat,ICOS,BE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,72191
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,BE-Dor,Dorinne,ICOS,BE,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36869
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,BE-Lon,Lonzee,ICOS,BE,2018-08-03 00:00:00+00,2025-01-01 00:00:00+00,109198
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,BE-Maa,Maasmechelen,ICOS,BE,2020-05-04 00:00:00+00,2025-01-01 00:00:00+00,81299
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,BE-Vie,Vielsalm,ICOS,BE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,72533
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,CH-Dav,Davos,ICOS,CH,2019-11-18 00:00:00+00,2025-01-01 00:00:00+00,89151
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45605
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,CZ-Lnz,Lanzhot,ICOS,CZ,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45562
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,DE-HoH-E,HohesHolz,eLTER,DE,2014-01-01 00:00:00+00,2025-09-09 00:30:00+00,203533
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,DE-HoH-I,Hohes Holz,ICOS,DE,2019-05-22 00:00:00+00,2025-01-01 00:00:00+00,94204
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,DE-RuS,Rursee-Schwammenauel,ICOS,DE,2019-04-29 00:00:00+00,2025-01-01 00:00:00+00,98589
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,DE-Tha,Tharandt,ICOS,DE,2020-10-26 00:00:00+00,2025-01-01 00:00:00+00,70416
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,DK-Sor,Sorø,ICOS,DK,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,54565
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,DK-Vng,Voulund (Vindgaarde),ICOS,DK,2020-10-26 00:00:00+00,2024-01-01 00:00:00+00,52876
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FI-Hyy,Hyytiälä,ICOS,FI,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,107899
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FI-Sii,Siikaneva,ICOS,FI,2017-10-25 00:00:00+00,2025-01-01 00:00:00+00,125749
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FI-Värriö,VärriöLTER,eLTER,FI,2014-01-01 00:00:00+00,2024-12-31 22:00:00+00,83771
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FR-FBn,Fontainebleau,ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36864
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FR-Gri,Grignon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,53516
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FR-Hes,Hesse,ICOS,FR,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,46032
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FR-Lqu,Landes de Gascogne (Lourquen),ICOS,FR,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36546
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FR-Lus,Lussas,ICOS,FR,2022-11-29 08:30:00+00,2025-01-01 00:00:00+00,35700
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,FR-Pue,Puechabon,ICOS,FR,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,53470
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,GB-AMo,Auchencorth Moss,ICOS,GB,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,52096
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,GL-ZaF,Zackenberg,ICOS,GL,2022-11-23 00:00:00+00,2024-09-16 00:00:00+00,31210
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,IT-MBo,Monte Bondone,ICOS,IT,2022-11-23 00:00:00+00,2025-01-01 00:00:00+00,36406
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,IT-Ren,Renon/Ritten,ICOS,IT,2021-11-17 00:00:00+00,2025-01-01 00:00:00+00,52224
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,IT-SR2,San Rossore 2,ICOS,IT,2019-10-28 00:00:00+00,2024-10-19 00:00:00+00,74844
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,NL-Loo,Loobos,ICOS,NL,2023-05-10 00:00:00+00,2025-01-01 00:00:00+00,28463
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,SE-Deg,Degerö,ICOS,SE,2019-10-29 00:00:00+00,2025-01-01 00:00:00+00,90513
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,SE-Htm,Hyltemossa,ICOS,SE,2018-06-22 00:00:00+00,2025-01-01 00:00:00+00,113709
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,SE-Nor,Norunda,ICOS,SE,2018-11-06 00:00:00+00,2025-01-01 00:00:00+00,107757
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,SE-Sto,Stordalen,ICOS,SE,2022-05-18 00:00:00+00,2025-01-01 00:00:00+00,45542
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,SE-Svb,Svartberget,ICOS,SE,2019-09-10 18:00:00+00,2025-01-01 00:00:00+00,90066
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2014-01-01 00:00:00+00,2026-05-30 13:00:00+00,151337
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-ABBY,Abby Road NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,137614
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-BARR,Utqiaġvik NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,130531
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-BART,Bartlett Experimental Forest NEON,NEON,US,2017-02-02 16:30:00+00,2025-07-01 00:00:00+00,145198
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2017-01-16 16:00:00+00,2025-07-01 00:00:00+00,146060
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-10-17 00:00:00+00,2025-07-01 00:00:00+00,131989
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2017-07-21 00:00:00+00,2025-07-01 00:00:00+00,138299
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-CPER,Central Plains Experimental Range NEON,NEON,US,2016-07-18 16:30:00+00,2025-07-01 00:00:00+00,155769
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,139124
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-DEJU,Delta Junction NEON,NEON,US,2017-01-06 00:00:00+00,2025-07-01 00:00:00+00,148112
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-DELA,Dead Lake NEON,NEON,US,2017-06-01 16:30:00+00,2025-07-01 00:00:00+00,117717
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2017-02-02 13:00:00+00,2025-07-01 00:00:00+00,145159
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2017-08-20 00:00:00+00,2025-07-01 00:00:00+00,136389
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-GUAN,Guánica Forest NEON,NEON,US,2018-05-26 00:00:00+00,2025-07-01 00:00:00+00,120536
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2017-02-02 16:30:00+00,2025-07-01 00:00:00+00,145515
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-HEAL,Healy NEON,NEON,US,2017-06-06 16:30:00+00,2025-07-01 00:00:00+00,139183
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2016-12-31 00:00:00+00,2025-07-01 00:00:00+00,147024
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-JORN,Jornada Experimental Range NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,138677
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2017-06-19 00:00:00+00,2025-07-01 00:00:00+00,136209
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2017-06-18 00:00:00+00,2025-07-01 00:00:00+00,135558
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-LAJA,Lajas Experimental Station NEON,NEON,US,2018-04-18 14:00:00+00,2025-07-01 00:00:00+00,121881
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-LENO,Lenoir Landing NEON,NEON,US,2017-06-29 00:00:00+00,2025-07-01 00:00:00+00,125055
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2017-07-20 00:00:00+00,2025-07-01 00:00:00+00,137575
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-MOAB,Moab NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,140147
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-NIWO,Niwot Ridge NEON,NEON,US,2017-07-14 00:00:00+00,2025-07-01 00:00:00+00,137080
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2017-08-25 00:00:00+00,2025-07-01 00:00:00+00,135329
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2017-07-24 00:00:00+00,2025-07-01 00:00:00+00,138695
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-ONAQ,Onaqui NEON,NEON,US,2017-07-08 00:00:00+00,2025-07-01 00:00:00+00,139401
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-ORNL,Oak Ridge NEON,NEON,US,2016-10-19 15:00:00+00,2025-07-01 00:00:00+00,149660
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2016-09-22 14:30:00+00,2025-07-01 00:00:00+00,151607
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-RMNP,Rocky Mountains NEON,NEON,US,2017-02-21 09:30:00+00,2025-07-01 00:00:00+00,144220
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2016-11-28 15:00:00+00,2025-07-01 00:00:00+00,148964
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2016-04-08 16:00:00+00,2025-07-01 00:00:00+00,159595
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2018-09-06 00:00:00+00,2025-07-01 00:00:00+00,118017
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-SOAP,Soaproot Saddle NEON,NEON,US,2017-08-04 00:00:00+00,2025-07-01 00:00:00+00,133148
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2017-07-14 00:00:00+00,2025-07-01 00:00:00+00,138497
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2017-08-01 00:00:00+00,2025-07-01 00:00:00+00,137168
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-STER,North Sterling NEON,NEON,US,2017-05-26 00:00:00+00,2025-07-01 00:00:00+00,141165
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-TALL,Talladega National Forest NEON,NEON,US,2017-07-13 00:00:00+00,2025-07-01 00:00:00+00,136789
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-TEAK,Lower Teakettle NEON,NEON,US,2018-06-18 00:00:00+00,2025-07-01 00:00:00+00,119968
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-TOOL,Toolik Field Station NEON,NEON,US,2017-07-09 00:00:00+00,2025-07-01 00:00:00+00,135708
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-TREE,Treehaven NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,140619
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-UKFS,University of Kansas Field Station NEON,NEON,US,2017-06-16 00:00:00+00,2025-07-01 00:00:00+00,140019
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2017-02-21 10:00:00+00,2025-07-01 00:00:00+00,142871
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2017-07-15 00:00:00+00,2025-07-01 00:00:00+00,138894
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-WREF,Wind River Experimental Forest NEON,NEON,US,2018-05-12 00:00:00+00,2025-07-01 00:00:00+00,123631
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,US-YELL,Yellowstone National Park NEON,NEON,US,2018-09-28 00:00:00+00,2025-07-01 00:00:00+00,115340
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-BfK,EFTEON_KIM_BenfonteinKaroo_EC,EFTEON,ZA,2024-07-31 18:30:00+00,2026-05-17 01:30:00+00,30742
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-BfS,EFTEON_KIM_BenfonteinSavanna_EC,EFTEON,ZA,2024-07-31 19:00:00+00,2026-05-17 02:00:00+00,30745
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-CCs,SAEON_GWF_CoastalCashews_EC,SAEON,ZA,2024-07-31 18:30:00+00,2025-10-20 17:00:00+00,15561
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-CPk,SAEON_GWF_CathedralPeak_EC,SAEON,ZA,2024-09-19 14:30:00+00,2026-05-17 16:30:00+00,26505
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-Jks,SAEON_FYN_Jonkershoek_EC,SAEON,ZA,2024-07-31 22:00:00+00,2026-05-17 20:30:00+00,29274
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-Kru,EFTEON_LVD_Skukuza_EC,EFTEON,ZA,2024-10-23 18:30:00+00,2026-05-17 04:30:00+00,23554
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-Spk,EFTEON_NDR_Spioenkop_EC,EFTEON,ZA,2024-07-31 20:30:00+00,2026-05-17 05:00:00+00,29041
+GERI_soiltemperature_30min.parquet,bfe1096468817d8d9c3260e8c0f552dc,mean_soil_temp_degC,ZA-Uby,EFTEON_MCP_Umhlabuyalingana_EC,EFTEON,ZA,2024-07-31 20:30:00+00,2026-05-17 15:30:00+00,29727
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AT-Rosalia,LehrforstRosalia,eLTER,AT,1984-12-31,1984-12-31,52
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2020-07-31,2020-07-31,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Boy,Boyagin Flux Station,TERN,AU,2016-10-06,2016-10-06,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Cow,Cow Bay Flux Station,TERN,AU,2011-06-01,2011-06-01,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2019-05-02,2019-05-02,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2006-06-01,2006-06-01,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2013-09-01,2013-09-01,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-DaP,Daly Pasture Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Dry,Dry River Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Fle,Fletcherview Flux Station,TERN,AU,2021-05-05,2021-05-05,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-10-30,2013-10-30,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Gin,Gingin Flux Station,TERN,AU,2016-09-29,2016-09-29,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-How,Howard Springs Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Lit,Litchfield Flux Station,TERN,AU,2014-03-18,2014-03-18,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Rgf,Ridgefield Flux Station,TERN,AU,2016-10-06,2016-10-06,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Rob,Robson Creek Flux Station,TERN,AU,2012-06-01,2012-06-01,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2021-03-26,2021-03-26,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Stp,Sturt Plains Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-TTE,Ti Tree East Flux Station,TERN,AU,2020-08-07,2020-08-07,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Tum,Tumbarumba Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Whr,Whroo Flux Station,TERN,AU,2015-03-25,2015-03-25,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Wrr,Warra Flux Station,TERN,AU,2012-02-28,2012-02-28,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,AU-Ync,Yanco Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,BE-Bra,Brasschaat,ICOS,BE,2021-04-20,2021-04-20,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,BE-Dor,Dorinne,ICOS,BE,2022-05-02,2022-05-02,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-16,2022-05-16,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,DE-HoH-E,HohesHolz,eLTER,DE,2014-03-20,2014-03-20,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,FI-Värriö,VärriöLTER,eLTER,FI,2011-07-01,2011-07-01,1
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,SE-Htm,Hyltemossa,ICOS,SE,2019-08-13,2019-08-13,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,SE-Svb,Svartberget,ICOS,SE,2022-08-22,2022-08-22,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2007-07-12,2007-07-12,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-ABBY,Abby Road NEON,NEON,US,2015-06-01,2015-06-01,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-BARR,Utqiaġvik NEON,NEON,US,2016-05-14,2016-05-14,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-BART,Bartlett Experimental Forest NEON,NEON,US,2013-08-19,2013-08-19,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2013-01-14,2013-01-14,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-03-20,2017-03-20,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2016-05-09,2016-05-09,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-CPER,Central Plains Experimental Range NEON,NEON,US,2012-08-13,2012-08-13,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2012-09-26,2012-09-26,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-DEJU,Delta Junction NEON,NEON,US,2015-07-28,2015-07-28,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-DELA,Dead Lake NEON,NEON,US,2013-04-29,2013-04-29,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2013-02-04,2013-02-04,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2015-04-20,2015-04-20,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-GUAN,Guánica Forest NEON,NEON,US,2015-04-10,2015-04-10,16
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2012-07-17,2012-07-17,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-HEAL,Healy NEON,NEON,US,2015-11-04,2015-11-04,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2012-12-10,2012-12-10,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-JORN,Jornada Experimental Range NEON,NEON,US,2013-03-05,2013-03-05,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2014-08-04,2014-08-04,31
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2014-06-24,2014-06-24,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-LAJA,Lajas Experimental Station NEON,NEON,US,2014-04-07,2014-04-07,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-LENO,Lenoir Landing NEON,NEON,US,2015-03-16,2015-03-16,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2013-12-02,2013-12-02,33
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-MOAB,Moab NEON,NEON,US,2014-02-24,2014-02-24,11
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-NIWO,Niwot Ridge NEON,NEON,US,2014-08-19,2014-08-19,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2013-07-08,2013-07-08,13
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2013-02-19,2013-02-19,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-ONAQ,Onaqui NEON,NEON,US,2014-06-02,2014-06-02,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-ORNL,Oak Ridge NEON,NEON,US,2013-09-23,2013-09-23,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2012-06-19,2012-06-19,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-RMNP,Rocky Mountains NEON,NEON,US,2013-05-31,2013-05-31,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2013-05-13,2013-05-13,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2014-05-05,2014-05-05,15
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2016-11-15,2016-11-15,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-SOAP,Soaproot Saddle NEON,NEON,US,2016-08-15,2016-08-15,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2013-11-04,2013-11-04,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2015-06-16,2015-06-16,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-STER,North Sterling NEON,NEON,US,2013-04-08,2013-04-08,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-TALL,Talladega National Forest NEON,NEON,US,2014-01-13,2014-01-13,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-TEAK,Lower Teakettle NEON,NEON,US,2016-08-09,2016-08-09,35
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-TOOL,Toolik Field Station NEON,NEON,US,2016-04-20,2016-04-20,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-TREE,Treehaven NEON,NEON,US,2015-06-15,2015-06-15,12
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-UKFS,University of Kansas Field Station NEON,NEON,US,2014-07-21,2014-07-21,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2013-09-09,2013-09-09,13
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2012-09-18,2012-09-18,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-WREF,Wind River Experimental Forest NEON,NEON,US,2017-09-26,2017-09-26,31
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,clay_percent,US-YELL,Yellowstone National Park NEON,NEON,US,2018-07-11,2018-07-11,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AT-Rosalia,LehrforstRosalia,eLTER,AT,1984-12-31,1984-12-31,52
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2020-07-31,2020-07-31,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Boy,Boyagin Flux Station,TERN,AU,2016-10-06,2016-10-06,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Cow,Cow Bay Flux Station,TERN,AU,2011-06-01,2011-06-01,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2019-05-02,2019-05-02,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2006-06-01,2006-06-01,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2013-09-01,2013-09-01,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-DaP,Daly Pasture Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Dry,Dry River Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Fle,Fletcherview Flux Station,TERN,AU,2021-05-05,2021-05-05,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-10-30,2013-10-30,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Gin,Gingin Flux Station,TERN,AU,2016-09-29,2016-09-29,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-How,Howard Springs Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Lit,Litchfield Flux Station,TERN,AU,2014-03-18,2014-03-18,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Rgf,Ridgefield Flux Station,TERN,AU,2016-10-06,2016-10-06,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Rob,Robson Creek Flux Station,TERN,AU,2012-06-01,2012-06-01,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2021-03-26,2021-03-26,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Stp,Sturt Plains Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-TTE,Ti Tree East Flux Station,TERN,AU,2020-08-07,2020-08-07,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Tum,Tumbarumba Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Whr,Whroo Flux Station,TERN,AU,2015-03-25,2015-03-25,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Wrr,Warra Flux Station,TERN,AU,2012-02-28,2012-02-28,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,AU-Ync,Yanco Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,BE-Bra,Brasschaat,ICOS,BE,2021-04-20,2021-04-20,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,BE-Dor,Dorinne,ICOS,BE,2022-05-02,2022-05-02,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-16,2022-05-16,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,DE-HoH-E,HohesHolz,eLTER,DE,2014-03-20,2014-03-20,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,FI-Värriö,VärriöLTER,eLTER,FI,2011-07-01,2011-07-01,1
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,SE-Htm,Hyltemossa,ICOS,SE,2019-08-13,2019-08-13,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,SE-Svb,Svartberget,ICOS,SE,2022-08-22,2022-08-22,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2007-07-12,2007-07-12,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-ABBY,Abby Road NEON,NEON,US,2015-06-01,2015-06-01,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-BARR,Utqiaġvik NEON,NEON,US,2016-05-14,2016-05-14,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-BART,Bartlett Experimental Forest NEON,NEON,US,2013-08-19,2013-08-19,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2013-01-14,2013-01-14,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-03-20,2017-03-20,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2016-05-09,2016-05-09,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-CPER,Central Plains Experimental Range NEON,NEON,US,2012-08-13,2012-08-13,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2012-09-26,2012-09-26,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-DEJU,Delta Junction NEON,NEON,US,2015-07-28,2015-07-28,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-DELA,Dead Lake NEON,NEON,US,2013-04-29,2013-04-29,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2013-02-04,2013-02-04,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2015-04-20,2015-04-20,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-GUAN,Guánica Forest NEON,NEON,US,2015-04-10,2015-04-10,16
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2012-07-17,2012-07-17,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-HEAL,Healy NEON,NEON,US,2015-11-04,2015-11-04,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2012-12-10,2012-12-10,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-JORN,Jornada Experimental Range NEON,NEON,US,2013-03-05,2013-03-05,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2014-08-04,2014-08-04,31
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2014-06-24,2014-06-24,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-LAJA,Lajas Experimental Station NEON,NEON,US,2014-04-07,2014-04-07,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-LENO,Lenoir Landing NEON,NEON,US,2015-03-16,2015-03-16,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2013-12-02,2013-12-02,33
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-MOAB,Moab NEON,NEON,US,2014-02-24,2014-02-24,11
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-NIWO,Niwot Ridge NEON,NEON,US,2014-08-19,2014-08-19,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2013-07-08,2013-07-08,13
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2013-02-19,2013-02-19,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-ONAQ,Onaqui NEON,NEON,US,2014-06-02,2014-06-02,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-ORNL,Oak Ridge NEON,NEON,US,2013-09-23,2013-09-23,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2012-06-19,2012-06-19,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-RMNP,Rocky Mountains NEON,NEON,US,2013-05-31,2013-05-31,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2013-05-13,2013-05-13,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2014-05-05,2014-05-05,15
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2016-11-15,2016-11-15,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-SOAP,Soaproot Saddle NEON,NEON,US,2016-08-15,2016-08-15,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2013-11-04,2013-11-04,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2015-06-16,2015-06-16,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-STER,North Sterling NEON,NEON,US,2013-04-08,2013-04-08,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-TALL,Talladega National Forest NEON,NEON,US,2014-01-13,2014-01-13,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-TEAK,Lower Teakettle NEON,NEON,US,2016-08-09,2016-08-09,35
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-TOOL,Toolik Field Station NEON,NEON,US,2016-04-20,2016-04-20,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-TREE,Treehaven NEON,NEON,US,2015-06-15,2015-06-15,12
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-UKFS,University of Kansas Field Station NEON,NEON,US,2014-07-21,2014-07-21,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2013-09-09,2013-09-09,13
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2012-09-18,2012-09-18,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-WREF,Wind River Experimental Forest NEON,NEON,US,2017-09-26,2017-09-26,31
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,sand_percent,US-YELL,Yellowstone National Park NEON,NEON,US,2018-07-11,2018-07-11,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AT-Rosalia,LehrforstRosalia,eLTER,AT,1984-12-31,1984-12-31,52
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-ASM,Alice Springs Mulga Flux Station,TERN,AU,2020-07-31,2020-07-31,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Boy,Boyagin Flux Station,TERN,AU,2016-10-06,2016-10-06,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Cow,Cow Bay Flux Station,TERN,AU,2011-06-01,2011-06-01,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Cpr,Calperum Chowilla Flux Station,TERN,AU,2019-05-02,2019-05-02,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Ctr,Cape Tribulation Flux Station,TERN,AU,2006-06-01,2006-06-01,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Cum,Cumberland Plain Flux Station,TERN,AU,2013-09-01,2013-09-01,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-DaP,Daly Pasture Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-DaS,Daly Uncleared Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Dry,Dry River Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Emr,Arcturus Emerald Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Fle,Fletcherview Flux Station,TERN,AU,2021-05-05,2021-05-05,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-GWW,Great Western Woodlands Flux Station,TERN,AU,2013-10-30,2013-10-30,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Gin,Gingin Flux Station,TERN,AU,2016-09-29,2016-09-29,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-How,Howard Springs Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Lit,Litchfield Flux Station,TERN,AU,2014-03-18,2014-03-18,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Rgf,Ridgefield Flux Station,TERN,AU,2016-10-06,2016-10-06,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Rob,Robson Creek Flux Station,TERN,AU,2012-06-01,2012-06-01,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Sam,Samford Ecological Research Facility Flux Station,TERN,AU,2021-03-26,2021-03-26,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Stp,Sturt Plains Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-TTE,Ti Tree East Flux Station,TERN,AU,2020-08-07,2020-08-07,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Tum,Tumbarumba Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Whr,Whroo Flux Station,TERN,AU,2015-03-25,2015-03-25,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Wom,Wombat State Forest Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Wrr,Warra Flux Station,TERN,AU,2012-02-28,2012-02-28,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Ya1,Yarramundi Control Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Ya2,Yarramundi Irrigation Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,AU-Ync,Yanco Flux Station,TERN,AU,2013-09-13,2013-09-13,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,BE-Bra,Brasschaat,ICOS,BE,2021-04-20,2021-04-20,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,BE-Dor,Dorinne,ICOS,BE,2022-05-02,2022-05-02,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,CZ-BK1,Bily Kriz forest,ICOS,CZ,2022-05-16,2022-05-16,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,DE-HoH-E,HohesHolz,eLTER,DE,2014-03-20,2014-03-20,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,FI-Värriö,VärriöLTER,eLTER,FI,2011-07-01,2011-07-01,1
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,SE-Htm,Hyltemossa,ICOS,SE,2019-08-13,2019-08-13,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,SE-Svb,Svartberget,ICOS,SE,2022-08-22,2022-08-22,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,SK-Polana,PolanaHukavskyGrun,eLTER,SK,2007-07-12,2007-07-12,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-ABBY,Abby Road NEON,NEON,US,2015-06-01,2015-06-01,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-BARR,Utqiaġvik NEON,NEON,US,2016-05-14,2016-05-14,3
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-BART,Bartlett Experimental Forest NEON,NEON,US,2013-08-19,2013-08-19,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-BLAN,Blandy Experimental Farm NEON,NEON,US,2013-01-14,2013-01-14,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-BONA,Caribou-Poker Creeks Research Watershed NEON,NEON,US,2017-03-20,2017-03-20,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-CLBJ,Lyndon B. Johnson National Grassland NEON,NEON,US,2016-05-09,2016-05-09,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-CPER,Central Plains Experimental Range NEON,NEON,US,2012-08-13,2012-08-13,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-DCFS,Dakota Coteau Field Site NEON,NEON,US,2012-09-26,2012-09-26,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-DEJU,Delta Junction NEON,NEON,US,2015-07-28,2015-07-28,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-DELA,Dead Lake NEON,NEON,US,2013-04-29,2013-04-29,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-DSNY,Disney Wilderness Preserve NEON,NEON,US,2013-02-04,2013-02-04,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-GRSM,Great Smoky Mountains National Park NEON,NEON,US,2015-04-20,2015-04-20,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-GUAN,Guánica Forest NEON,NEON,US,2015-04-10,2015-04-10,16
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-HARV,Harvard Forest & Quabbin Watershed NEON,NEON,US,2012-07-17,2012-07-17,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-HEAL,Healy NEON,NEON,US,2015-11-04,2015-11-04,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-JERC,The Jones Center At Ichauway NEON,NEON,US,2012-12-10,2012-12-10,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-JORN,Jornada Experimental Range NEON,NEON,US,2013-03-05,2013-03-05,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-KONA,Konza Prairie Agroecosystem NEON,NEON,US,2014-08-04,2014-08-04,31
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-KONZ,Konza Prairie Biological Station NEON,NEON,US,2014-06-24,2014-06-24,10
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-LAJA,Lajas Experimental Station NEON,NEON,US,2014-04-07,2014-04-07,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-LENO,Lenoir Landing NEON,NEON,US,2015-03-16,2015-03-16,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-MLBS,Mountain Lake Biological Station NEON,NEON,US,2013-12-02,2013-12-02,33
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-MOAB,Moab NEON,NEON,US,2014-02-24,2014-02-24,11
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-NIWO,Niwot Ridge NEON,NEON,US,2014-08-19,2014-08-19,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-NOGP,Northern Great Plains Research Laboratory NEON,NEON,US,2013-07-08,2013-07-08,13
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-OAES,Marvin Klemme Range Research Station NEON,NEON,US,2013-02-19,2013-02-19,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-ONAQ,Onaqui NEON,NEON,US,2014-06-02,2014-06-02,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-ORNL,Oak Ridge NEON,NEON,US,2013-09-23,2013-09-23,9
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-OSBS,Ordway-Swisher Biological Station NEON,NEON,US,2012-06-19,2012-06-19,4
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-RMNP,Rocky Mountains NEON,NEON,US,2013-05-31,2013-05-31,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-SCBI,Smithsonian Conservation Biology Institute NEON,NEON,US,2013-05-13,2013-05-13,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-SERC,Smithsonian Environmental Research Center NEON,NEON,US,2014-05-05,2014-05-05,15
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-SJER,San Joaquin Experimental Range NEON,NEON,US,2016-11-15,2016-11-15,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-SOAP,Soaproot Saddle NEON,NEON,US,2016-08-15,2016-08-15,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-SRER,Santa Rita Experimental Range NEON,NEON,US,2013-11-04,2013-11-04,5
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-STEI,Steigerwaldt-Chequamegon NEON,NEON,US,2015-06-16,2015-06-16,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-STER,North Sterling NEON,NEON,US,2013-04-08,2013-04-08,6
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-TALL,Talladega National Forest NEON,NEON,US,2014-01-13,2014-01-13,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-TEAK,Lower Teakettle NEON,NEON,US,2016-08-09,2016-08-09,35
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-TOOL,Toolik Field Station NEON,NEON,US,2016-04-20,2016-04-20,2
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-TREE,Treehaven NEON,NEON,US,2015-06-15,2015-06-15,12
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-UKFS,University of Kansas Field Station NEON,NEON,US,2014-07-21,2014-07-21,8
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-UNDE,University of Notre Dame Environmental Research Center NEON,NEON,US,2013-09-09,2013-09-09,13
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-WOOD,Chase Lake National Wildlife Refuge NEON,NEON,US,2012-09-18,2012-09-18,7
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-WREF,Wind River Experimental Forest NEON,NEON,US,2017-09-26,2017-09-26,31
+GERI_soiltexture_static.parquet,4ded7b6702a7015a1ff343e26d2a1d38,silt_percent,US-YELL,Yellowstone National Park NEON,NEON,US,2018-07-11,2018-07-11,8

@@ -25,7 +25,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "6d07b95f-37ef-467f-afc7-e69bbafbba39"
 }
 },
@@ -361,7 +361,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "41d4f6f2-a946-4c2d-8d30-53997d4eeb7c"
 }
 },
@@ -501,7 +501,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "94e73bd6-a98d-40f2-a764-447e38e31ec7"
 }
 },
@@ -529,7 +529,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "d08e33e3-c000-4572-87fd-553cf5296459"
 }
 },
@@ -697,7 +697,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": null
 }
 },
@@ -894,7 +894,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "871aaf92-3609-452e-aceb-a30b7a04d3bd"
 }
 },
@@ -959,6 +959,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+131.3181,
+-14.0633
+]
+},
+"properties": {
+"id": "06020b4b922d8112",
+"name": "Daly Pasture",
+"acronym": "AU-DaP",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/DalyPasture/catalog.html",
+"parent_org": "TERN",
+"established": 2008,
+"record_length_years": 18,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 -87.393259,
 32.95047
 ]
@@ -978,7 +1006,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "a262f449-d36d-4c94-93b8-d0dac260f5dc"
 }
 },
@@ -1624,6 +1652,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "c49d2b32-a013-4e69-b995-115515712449"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+141.960897,
+-37.390033
+]
+},
+"properties": {
+"id": "0c4d38c4b39460cd",
+"name": "GatumPasture",
+"acronym": "",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/GatumPasture/catalog.html",
+"parent_org": "TERN",
+"established": 2015,
+"record_length_years": 11,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -2629,7 +2685,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "30f887c3-135b-41e8-9f44-9b084ce2b3bd"
 }
 },
@@ -2713,8 +2769,36 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "7b37ec94-7b2e-4122-b3fc-8583d0f3e978"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+29.25184,
+-28.99356
+]
+},
+"properties": {
+"id": "17838c8e5b599f82",
+"name": "Cathedral Peak Grassland Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.69963566",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -2825,7 +2909,7 @@
 "ris": [
 "elter"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "e4548296-426c-4e08-a517-d177d8ad5239"
 }
 },
@@ -2890,6 +2974,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+131.3072,
+-12.5452
+]
+},
+"properties": {
+"id": "19de874b55d3b366",
+"name": "Fogg Dam",
+"acronym": "AU-Fog",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/FoggDam/catalog.html",
+"parent_org": "TERN",
+"established": 2006,
+"record_length_years": 20,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 146.683758,
 -43.098625
 ]
@@ -2909,7 +3021,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "153c699b-2237-445d-9b9c-29f8acc697ab"
 }
 },
@@ -3161,7 +3273,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "ef223049-cffa-4477-aee6-04784b6d8a45"
 }
 },
@@ -3553,7 +3665,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "55f8ff7d-8616-4244-8048-4c01a69c3fad"
 }
 },
@@ -3778,7 +3890,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c31d9f9c-7f96-48b8-afe8-96df3e96cbf3"
 }
 },
@@ -4430,6 +4542,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+32.5889,
+-27.3952
+]
+},
+"properties": {
+"id": "26833e09e706a363",
+"name": "Umhlabuyalingana Grassland Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.23081135",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 150.9,
 -34.23
 ]
@@ -4591,6 +4732,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "2b587e26-4550-4841-a032-ab3c93ced8a0"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+150.09,
+-30.697
+]
+},
+"properties": {
+"id": "290fa437d2ce365f",
+"name": "MyallValeB",
+"acronym": "AU-MVB",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/MyallValeB/catalog.html",
+"parent_org": "TERN",
+"established": 2023,
+"record_length_years": 3,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -4785,7 +4954,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "0e39569d-ff81-4b78-9c34-b07309504d80"
 }
 },
@@ -4869,7 +5038,7 @@
 "ris": [
 "elter"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "77c127c4-2ebe-453b-b5af-61858ff02e31"
 }
 },
@@ -4955,6 +5124,62 @@
 ],
 "geri_harmonized": false,
 "deims_id": "b9263e0a-7072-4959-b255-e05d54455834"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+150.02,
+-30.543
+]
+},
+"properties": {
+"id": "2b6a0c852dcebd72",
+"name": "MyallValeA",
+"acronym": "AU-MVA",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/MyallValeA/catalog.html",
+"parent_org": "TERN",
+"established": 2023,
+"record_length_years": 3,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+150.734864,
+-33.613469
+]
+},
+"properties": {
+"id": "2bae452adff5b6c9",
+"name": "YarCon",
+"acronym": "",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/YarramundiControl/catalog.html",
+"parent_org": "TERN",
+"established": 2019,
+"record_length_years": 7,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -5156,6 +5381,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+140.65512,
+-34.47035
+]
+},
+"properties": {
+"id": "2cd9957ca880dcf3",
+"name": "Loxton",
+"acronym": "AU-Lox",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Loxton/catalog.html",
+"parent_org": "TERN",
+"established": 2008,
+"record_length_years": 18,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 21.2833,
 55.5667
 ]
@@ -5313,7 +5566,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "9a9e1cb0-c43d-463a-87f4-e44697739d1a"
 }
 },
@@ -5567,7 +5820,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "18293b3d-2c9a-4d03-826c-32d9ea6b5d01"
 }
 },
@@ -5819,7 +6072,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "459284f2-c7cd-4bb1-96c3-2b38c338ff4a"
 }
 },
@@ -6071,7 +6324,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "0f2005e9-bfe6-438b-8242-116a9457ce45"
 }
 },
@@ -6528,6 +6781,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+146.2908,
+-34.9878
+]
+},
+"properties": {
+"id": "3d77b30e150df4ae",
+"name": "Yanco",
+"acronym": "AU-Ync",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Yanco/catalog.html",
+"parent_org": "TERN",
+"established": 2012,
+"record_length_years": 14,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 80.85,
 40.6167
 ]
@@ -6640,6 +6921,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+148.9843,
+-32.5727
+]
+},
+"properties": {
+"id": "3f48276364b0661b",
+"name": "Wellington",
+"acronym": "AU-Wel",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Wellington/catalog.html",
+"parent_org": "TERN",
+"established": 2023,
+"record_length_years": 3,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 5.626886,
 50.964926
 ]
@@ -6660,7 +6969,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "dae8cf66-bdca-47db-b595-7bf6c1762e00"
 }
 },
@@ -6837,6 +7146,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+148.4746,
+-23.85872
+]
+},
+"properties": {
+"id": "4211b210aa72823f",
+"name": "Arcturus",
+"acronym": null,
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Emerald/catalog.html",
+"parent_org": "TERN",
+"established": 2011,
+"record_length_years": 15,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 21.886757,
 56.008507
 ]
@@ -6938,7 +7275,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "29d0ad65-2274-45d5-9f64-b600f9faf983"
 }
 },
@@ -7079,7 +7416,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "01d7ab82-94cd-4b53-9dc3-a409c4498895"
 }
 },
@@ -7367,8 +7704,8 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
--3.581543,
-40.279002
+-5.77465,
+39.94033
 ]
 },
 "properties": {
@@ -7444,6 +7781,62 @@
 ],
 "geri_harmonized": false,
 "deims_id": "d6936d5d-e036-4b3d-bf3c-4a8702e82f1b"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+132.3706,
+-15.2588
+]
+},
+"properties": {
+"id": "4765a137fa98ba18",
+"name": "Dry River",
+"acronym": "AU-Dry",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/DryRiver/catalog.html",
+"parent_org": "TERN",
+"established": 2009,
+"record_length_years": 17,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+115.71377,
+-31.37635
+]
+},
+"properties": {
+"id": "476b08d6280eefb0",
+"name": "Gingin",
+"acronym": "AU-Gin",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Gingin/catalog.html",
+"parent_org": "TERN",
+"established": 2011,
+"record_length_years": 15,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -7610,7 +8003,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "6de989a9-acb8-4a03-83f6-a9a43465152f"
 }
 },
@@ -7778,8 +8171,36 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "942f7e22-f099-4dd0-a586-ffcbb1d3d530"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+145.1878,
+-37.4259
+]
+},
+"properties": {
+"id": "4abddb716004aca6",
+"name": "Wallaby",
+"acronym": null,
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/WallabyCreek/catalog.html",
+"parent_org": "TERN",
+"established": 2005,
+"record_length_years": 21,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -7806,7 +8227,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "d070b1b9-76fe-4e91-a280-7f7476ae78df"
 }
 },
@@ -7834,7 +8255,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "7abf28d7-7fbc-45fd-acf6-d33cb9e3348f"
 }
 },
@@ -7983,6 +8404,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+31.4969,
+-25.0197
+]
+},
+"properties": {
+"id": "4c687ad557e7261e",
+"name": "EFTEON_LVD_Skukuza_EC",
+"acronym": "ZA-Kru",
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 139.909191,
 -66.692889
 ]
@@ -8123,6 +8573,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+24.86112,
+-28.8906
+]
+},
+"properties": {
+"id": "4d3b3068d1fbf392",
+"name": "Benfontein Savanna Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.90686782",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 11.8083,
 50.03
 ]
@@ -8226,6 +8705,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "ba4963e3-0164-4448-a53c-6951c10e9cd0"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+133.6399,
+-22.2871
+]
+},
+"properties": {
+"id": "4e7b29e3957e38f0",
+"name": "Ti Tree East",
+"acronym": "AU-TTE",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/TiTreeEast/catalog.html",
+"parent_org": "TERN",
+"established": 2012,
+"record_length_years": 14,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -9268,6 +9775,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+147.320833,
+-36.862222
+]
+},
+"properties": {
+"id": "5658e906825ceecc",
+"name": "Alpine Peatland",
+"acronym": "AU-APL",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/AlpinePeatland/catalog.html",
+"parent_org": "TERN",
+"established": 2017,
+"record_length_years": 9,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 0.933333,
 42.566667
 ]
@@ -9789,7 +10324,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "a1bb29d8-197c-4181-90d8-76083afd44bb"
 }
 },
@@ -10067,7 +10602,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "23d337b5-793a-45ca-9c8d-382bd74cfaf2"
 }
 },
@@ -10235,7 +10770,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "dcd5ef29-9000-4c25-ac5c-8bf068e0c264"
 }
 },
@@ -10293,6 +10828,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "b7f692ef-10b0-432e-ab42-a3e9b764c5cc"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+4.33,
+44.59
+]
+},
+"properties": {
+"id": "61b9e5b82abdb4c3",
+"name": "Lussas",
+"acronym": "FR-Lus",
+"type": "ri-site",
+"country": "FR",
+"url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
+"parent_org": "ICOS",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"icos"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -10431,7 +10994,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "cfee2545-bebd-4861-aa5f-7ae53a764149"
 }
 },
@@ -11074,7 +11637,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c0705d0f-92c1-4964-a345-38c0be3113e1"
 }
 },
@@ -11300,6 +11863,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "5ddc53e5-e43b-48fc-a62a-81de7e38e3f1"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+142.81,
+-38.525
+]
+},
+"properties": {
+"id": "6896f7e990a35179",
+"name": "Otway",
+"acronym": "AU-Otw",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Otway/catalog.html",
+"parent_org": "TERN",
+"established": 2007,
+"record_length_years": 19,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -11660,7 +12251,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "16d02952-7cb5-487b-a5a3-7bc9ba0d557e"
 }
 },
@@ -11826,7 +12417,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "bd3322ed-0ae8-4da5-beb5-1bd5c9205fa1"
 }
 },
@@ -11938,7 +12529,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": null
 }
 },
@@ -12078,7 +12669,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "2592b8ed-e6cf-4854-9488-e9459b9b458c"
 }
 },
@@ -12395,6 +12986,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+24.83985,
+-28.85648
+]
+},
+"properties": {
+"id": "7345af2da46b1ce7",
+"name": "Benfontein Karoo Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.88212042",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 13.12118,
 56.714322
 ]
@@ -12610,7 +13230,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "2ca71755-9cd8-4384-8c8c-a8d4ddf2c51b"
 }
 },
@@ -12731,6 +13351,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+116.93856,
+-32.47709
+]
+},
+"properties": {
+"id": "75979c264b508fd4",
+"name": "Boyagin",
+"acronym": "AU-Boy",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Boyagin/catalog.html",
+"parent_org": "TERN",
+"established": 2017,
+"record_length_years": 9,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 12.1502,
 58.3641
 ]
@@ -12816,6 +13464,63 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+29.50914,
+-28.71231
+]
+},
+"properties": {
+"id": "761bcbac6a612286",
+"name": "Spioenkop Savanna Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.15152420",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+131.1523,
+-12.4943
+]
+},
+"properties": {
+"id": "7622ae10107c2b3d",
+"name": "Howard Springs",
+"acronym": "AU-How",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/HowardSprings/catalog.html",
+"parent_org": "TERN",
+"established": 2002,
+"record_length_years": 24,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 4.69,
 45.74
 ]
@@ -12863,7 +13568,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "4dfd3534-9b2b-45df-8307-bdb54bad3d10"
 }
 },
@@ -12921,7 +13626,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "a61dd7df-5fd7-47b4-8172-b7dfaf969748"
 }
 },
@@ -13146,7 +13851,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "8976fdd3-aaf3-4fc0-8861-67a93a00a39a"
 }
 },
@@ -13398,7 +14103,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "2d69f93e-743b-40d7-bda8-59c49767e7a4"
 }
 },
@@ -14068,7 +14773,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "488ced79-07f7-4ebd-942d-c119d0f03c1b"
 }
 },
@@ -14181,7 +14886,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "64679f32-fb3e-4937-b1f7-dc25e327c7af"
 }
 },
@@ -14405,7 +15110,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "5d4a0457-aff6-410b-b43a-2b3a00fba990"
 }
 },
@@ -14573,7 +15278,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "1a5fbe95-b936-4a0e-8cf5-bbed079cb76e"
 }
 },
@@ -14657,7 +15362,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "1d43e5d4-63fc-4fb2-97e0-040697927004"
 }
 },
@@ -14942,6 +15647,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+116.9668,
+-32.5061
+]
+},
+"properties": {
+"id": "8717630a844021a3",
+"name": "Ridgefield",
+"acronym": "AU-Rgf",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Ridgefield/catalog.html",
+"parent_org": "TERN",
+"established": 2015,
+"record_length_years": 11,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 9.38938,
 48.4374
 ]
@@ -15017,7 +15750,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "d3c55759-78e7-4936-8bc5-7ee4c0938058"
 }
 },
@@ -15082,6 +15815,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+147.0875,
+-42.090556
+]
+},
+"properties": {
+"id": "88d13385a6dfa93e",
+"name": "SilverPlains",
+"acronym": "AU-Sil",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/SilverPlains/catalog.html",
+"parent_org": "TERN",
+"established": 2019,
+"record_length_years": 7,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 2.35,
 48.85
 ]
@@ -15129,7 +15890,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": null
 }
 },
@@ -15157,7 +15918,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "61f52437-1f08-495f-bf62-a0e1dd3d34ad"
 }
 },
@@ -15381,7 +16142,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "67996b63-8edd-4cd7-824b-6a0f3db0ac8b"
 }
 },
@@ -15465,7 +16226,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "e99a9257-6654-42d3-8baf-077906ab8f00"
 }
 },
@@ -15584,6 +16345,62 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+145.723814,
+-36.390261
+]
+},
+"properties": {
+"id": "8cd8a65bd173d185",
+"name": "Dookie1",
+"acronym": "AU-Do1",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Dookie1/catalog.html",
+"parent_org": "TERN",
+"established": 2024,
+"record_length_years": 2,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+133.3502,
+-17.1507
+]
+},
+"properties": {
+"id": "8cfd5959b19eeda6",
+"name": "Sturt Plains",
+"acronym": "AU-Stp",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/SturtPlains/catalog.html",
+"parent_org": "TERN",
+"established": 2008,
+"record_length_years": 18,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 114.683,
 37.8833
 ]
@@ -15640,6 +16457,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+140.69965,
+-31.88493
+]
+},
+"properties": {
+"id": "8da59285f10a6d06",
+"name": "Boolcoomatta",
+"acronym": "AU-Boo",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Boolcoomatta/catalog.html",
+"parent_org": "TERN",
+"established": 2025,
+"record_length_years": 1,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 -3.73024,
 52.466
 ]
@@ -15687,7 +16532,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "fa10b3cb-44a1-430e-9310-d0433b6cc484"
 }
 },
@@ -15993,7 +16838,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "d9e0fbf0-9f84-4dc6-bb17-2adbfb714849"
 }
 },
@@ -16274,7 +17119,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "ee70c9dd-c91b-4248-a7b4-2e760b0c266c"
 }
 },
@@ -16526,7 +17371,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "312fac70-04a7-4cab-8d03-68b1fe3192f4"
 }
 },
@@ -16668,6 +17513,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "f6a6b3e0-9a39-4fe3-8ae5-24d833b8ad26"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+-0.957,
+44.02
+]
+},
+"properties": {
+"id": "99010e34008440f1",
+"name": "Landes de Gascogne (Lourquen)",
+"acronym": "FR-Lqu",
+"type": "ri-site",
+"country": "FR",
+"url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
+"parent_org": "ICOS",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"icos"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -16925,6 +17798,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+147.07944444,
+-42.09138889
+]
+},
+"properties": {
+"id": "9be63f21575db582",
+"name": "WedgeTail",
+"acronym": null,
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Wedgetail/catalog.html",
+"parent_org": "TERN",
+"established": 2024,
+"record_length_years": 2,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 9.8552112,
 46.8153458
 ]
@@ -16945,7 +17846,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "a547dab2-859a-414c-b148-0e7df8de5773"
 }
 },
@@ -17171,6 +18072,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "46cdd668-31b9-4629-8293-c49c03ca6fa6"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+32.58713,
+-27.19953
+]
+},
+"properties": {
+"id": "9e86d47a250fab00",
+"name": "SAEON_GWF_CoastalCashews_EC",
+"acronym": "ZA-CCs",
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -17451,7 +18380,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "911b287a-b96b-483c-96a6-619c288237cf"
 }
 },
@@ -17591,7 +18520,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "2f2ec7d7-b5f2-4aea-b1d0-d59fe8543330"
 }
 },
@@ -17647,7 +18576,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "da6fa957-137f-4f02-b27e-71a0e9008329"
 }
 },
@@ -17677,6 +18606,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "8cf20f01-7aa1-418b-a613-a95ceeb350dd"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+146.18897,
+-19.88721
+]
+},
+"properties": {
+"id": "a3749879e689b05c",
+"name": "FletcherviewTropicalRangeland",
+"acronym": "AU-Fle",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Fletcherview/catalog.html",
+"parent_org": "TERN",
+"established": 2022,
+"record_length_years": 4,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -17954,7 +18911,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "348d9d4f-d936-469b-b394-c63ec31ac33b"
 }
 },
@@ -18010,7 +18967,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c694ba4c-600d-432d-874f-4cbd3f2f7cee"
 }
 },
@@ -18213,6 +19170,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+132.477567,
+-14.563639
+]
+},
+"properties": {
+"id": "a9fe450dd220cb43",
+"name": "Red Dirt Melon Farm",
+"acronym": "AU-RDF",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/RedDirtMelonFarm/catalog.html",
+"parent_org": "TERN",
+"established": 2011,
+"record_length_years": 15,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 5.31187,
 48.53816
 ]
@@ -18345,7 +19330,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c4c1c0ca-5a43-4d19-ab50-34dad0af44e8"
 }
 },
@@ -18373,7 +19358,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "892320ed-6877-4400-b0e0-5ad6750f621d"
 }
 },
@@ -18543,6 +19528,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "32c023e0-e828-4152-9942-d65d64c97b8e"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+6.4258,
+50.6231
+]
+},
+"properties": {
+"id": "ae7ce8f3f83c2153",
+"name": "Rursee-Schwammenauel",
+"acronym": "DE-RuS",
+"type": "ri-site",
+"country": "DE",
+"url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
+"parent_org": "ICOS",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"icos"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -18744,6 +19757,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+141.616472,
+-37.882694
+]
+},
+"properties": {
+"id": "b1676501426bcfde",
+"name": "DigbyPlantation",
+"acronym": "",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/DigbyPlantation/catalog.html",
+"parent_org": "TERN",
+"established": 2018,
+"record_length_years": 8,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 8.535683,
 47.6837031
 ]
@@ -18819,7 +19860,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "f530cc5c-712c-4439-9822-c391a513d792"
 }
 },
@@ -18849,6 +19890,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "c80eaaac-411f-4e8f-a2c8-5ee7797576db"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+131.3881,
+-14.1592
+]
+},
+"properties": {
+"id": "b286789ad5b48c03",
+"name": "Daly Uncleared",
+"acronym": "AU-DaS",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/DalyUncleared/catalog.html",
+"parent_org": "TERN",
+"established": 2008,
+"record_length_years": 18,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -19073,6 +20142,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "642846aa-ac83-4faa-a18b-8832d379e458"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+144.31041571964502,
+-23.523265764497292
+]
+},
+"properties": {
+"id": "b445f2f0bab25a4d",
+"name": "Longreach",
+"acronym": "AU-Lon",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/LongreachMitchellGrassRangeland/catalog.html",
+"parent_org": "TERN",
+"established": 2018,
+"record_length_years": 8,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -19323,7 +20420,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "0154f730-1434-4597-9f59-c6320cfec41b"
 }
 },
@@ -19491,7 +20588,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "9234a653-6e76-4ddc-aef1-a1ab2f2755ab"
 }
 },
@@ -19685,7 +20782,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "8d00bd9f-3bee-4d10-ade1-499fb061b7ff"
 }
 },
@@ -20224,6 +21321,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+18.95543,
+-33.99029
+]
+},
+"properties": {
+"id": "bd238909221c383c",
+"name": "Jonkershoek Fynbos Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.67986839",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 8.666364,
 40.551715
 ]
@@ -20580,7 +21705,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "68e6a8e5-d6d2-4c8c-91c4-10e7f87ac556"
 }
 },
@@ -21476,7 +22601,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "e4e24dbf-1b5a-4e44-9459-4b7312d7284f"
 }
 },
@@ -22205,7 +23330,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "9f8d9c9d-f025-4777-a668-44578a4c6928"
 }
 },
@@ -22661,8 +23786,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-10.063477,
-50.679927
+131.1178,
+-13.0769
+]
+},
+"properties": {
+"id": "d33a8f8abcc244d9",
+"name": "Adelaide River",
+"acronym": "AU-Adr",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/AdelaideRiver/catalog.html",
+"parent_org": "TERN",
+"established": 2007,
+"record_length_years": 19,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+13.48978,
+50.96381
 ]
 },
 "properties": {
@@ -23222,6 +24375,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+150.763284,
+-33.620812
+]
+},
+"properties": {
+"id": "d8beca090647e024",
+"name": "YarIrr",
+"acronym": "",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/YarramundiIrrigated/catalog.html",
+"parent_org": "TERN",
+"established": 2019,
+"record_length_years": 7,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 2.1125,
 47.9647
 ]
@@ -23612,6 +24793,34 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+116.237,
+-33.42
+]
+},
+"properties": {
+"id": "dc0a330513695913",
+"name": "Collie",
+"acronym": "AU-Col",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/Collie/catalog.html",
+"parent_org": "TERN",
+"established": 2017,
+"record_length_years": 9,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 10.075131,
 42.584217
 ]
@@ -23696,8 +24905,8 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-11.755371,
-43.707097
+11.045831,
+46.01468
 ]
 },
 "properties": {
@@ -23715,7 +24924,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "e0970cf4-db62-40c3-84b1-d10f8b381541"
 }
 },
@@ -23912,7 +25121,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "e742a1a7-61d2-4e65-8fef-2e809fd3963e"
 }
 },
@@ -23968,7 +25177,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "9dbbd9ea-21dc-43e3-b55d-42623427e642"
 }
 },
@@ -24108,7 +25317,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c442aec3-ef7b-4064-add3-7125a7155c87"
 }
 },
@@ -24192,7 +25401,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "66448525-42c7-4d47-8f37-b29d0145935a"
 }
 },
@@ -24248,7 +25457,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "91af4ae3-c169-46f2-87d4-a0b836849596"
 }
 },
@@ -24304,7 +25513,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "2f027d25-93c1-4af7-bfd1-36f2bbd24460"
 }
 },
@@ -24334,6 +25543,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "d47ec839-5d20-4315-9f88-1e9edbab22e8"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+145.42715,
+-16.23819
+]
+},
+"properties": {
+"id": "e2e3e53ce4cf5119",
+"name": "Cow Bay",
+"acronym": "AU-Cow",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/CowBay/catalog.html",
+"parent_org": "TERN",
+"established": 2009,
+"record_length_years": 17,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": true,
+"deims_id": null
 }
 },
 {
@@ -24890,7 +26127,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "b47f5a24-2f3f-4ffb-8a16-76b011aa8569"
 }
 },
@@ -25367,7 +26604,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c3c8a84f-ff66-4d19-8c28-42c7ed63b43d"
 }
 },
@@ -25397,6 +26634,34 @@
 ],
 "geri_harmonized": false,
 "deims_id": "82a80c17-91b2-4e0d-8250-af97bcc20261"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+145.576,
+-36.656
+]
+},
+"properties": {
+"id": "ec1318f509f5b5a3",
+"name": "Riggs Creek",
+"acronym": "AU-Rig",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/RiggsCreek/catalog.html",
+"parent_org": "TERN",
+"established": 2011,
+"record_length_years": 15,
+"long_term_threshold_met": true,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
+],
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -25535,7 +26800,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "639cfe33-17b2-49fc-8e8d-3a2cb80231fc"
 }
 },
@@ -25647,7 +26912,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "9dc14cf4-c3ab-449b-a1ec-468ad1bd5c5c"
 }
 },
@@ -25674,6 +26939,34 @@
 "primary_sphere": "atmosphere",
 "ris": [
 "icos"
+],
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+148.43585,
+-36.375649
+]
+},
+"properties": {
+"id": "f1373b097d6aa1ea",
+"name": "Snow Gum",
+"acronym": "AU-Sno",
+"type": "flux-tower",
+"country": "AU",
+"url": "https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/SnowGum/catalog.html",
+"parent_org": "TERN",
+"established": 2024,
+"record_length_years": 2,
+"long_term_threshold_met": false,
+"primary_sphere": "terrestrial",
+"ris": [
+"tern"
 ],
 "geri_harmonized": false,
 "deims_id": null
@@ -25954,7 +27247,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "5d32cbf8-ab7c-4acb-b29f-600fec830a1d"
 }
 },
@@ -26095,7 +27388,7 @@
 "elter",
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "b471311f-e819-4f6f-bbae-1ac86cd9777f"
 }
 },
@@ -26179,7 +27472,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "2aa216dd-e81f-4945-af90-99179d0024ca"
 }
 },
@@ -26291,7 +27584,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "b27549de-1e6f-4f3e-9e22-4d4f3dec61e3"
 }
 },
@@ -26431,7 +27724,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "14360240-f2ac-4b93-9b0e-a4713d493e05"
 }
 },
@@ -26880,7 +28173,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "07939248-647d-49fb-810d-1b76b50135d4"
 }
 },
@@ -27020,7 +28313,7 @@
 "ris": [
 "icos"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "ddd2e8d2-44db-420e-8fa4-6b4fe1b00c78"
 }
 },
@@ -27048,7 +28341,7 @@
 "ris": [
 "tern"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "3245f5fb-bed2-4957-806f-6797b79af5e7"
 }
 },
@@ -27076,7 +28369,7 @@
 "ris": [
 "neon"
 ],
-"geri_harmonized": false,
+"geri_harmonized": true,
 "deims_id": "c42b2e3e-598f-4048-822b-56c64748542b"
 }
 },

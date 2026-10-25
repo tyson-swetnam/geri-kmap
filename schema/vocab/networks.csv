@@ -12,3 +12,4 @@ neon-aquatic,NEON aquatic sites,,ri-component,https://www.neonscience.org/field-
 icos-ecosystem,ICOS ecosystem stations,ICOS ES,ri-component,https://www.icos-cp.eu/observations/ecosystem,icos
 icos-atmosphere,ICOS atmosphere stations,ICOS AS,ri-component,https://www.icos-cp.eu/observations/atmosphere,icos
 icos-ocean,ICOS ocean stations,ICOS OS,ri-component,https://www.icos-cp.eu/observations/ocean,icos
+ozflux,OzFlux,Australian and New Zealand flux tower network,ri-component,https://www.ozflux.org.au/,tern

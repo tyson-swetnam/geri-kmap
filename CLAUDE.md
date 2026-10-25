@@ -26,8 +26,12 @@ python scripts/rebuild_lake_from_parquet.py   # FIRST after a clone or pull (--e
 python scripts/fetch_deims.py                 # DEIMS-SDR sites of the 6 RIs + GERI network (caches details in data/cache/)
 python scripts/fetch_neon.py                  # NEON sites + habitat / field-site URL
 python scripts/fetch_icos.py                  # ICOS ES/AS/OS stations with a station class
-python scripts/load_geri_sites.py             # data/raw/R-GERI-* → lake (owns every R-GERI-* facility)
+python scripts/fetch_ozflux.py                # OzFlux towers from TERN THREDDS (L3 global attributes via .das)
+python scripts/fetch_geri_datastore.py        # GERI Data Store (anonymous WebDAV): harmonized site list, eLTER/SAEON metadata, file listing
+python scripts/summarize_harmonized.py --download   # harmonized parquet (~1 GB, data/cache/) → committed harmonized_summary.csv; only when the products change
+python scripts/load_geri_sites.py             # data/raw/R-GERI-* → lake (owns every R-GERI-* facility; assigns harmonized ids)
 python scripts/apply_facility_fixes.py        # data/seed/facility_fixes.csv — ALWAYS after load_geri_sites
+python scripts/load_geri_archives.py          # Data Store pointer archives/products + harmonized_coverage — after load_geri_sites
 python scripts/qa.py                          # the correctness gate (non-zero on failure)
 python scripts/export_parquet.py              # lake → public/parquet/, public/facilities.geojson
 python scripts/export_view_caches.py          # → public/cache/browse_cards.json
@@ -36,12 +40,13 @@ python scripts/build_country_bbox.py          # Natural Earth → schema/vocab/c
 python -m http.server 5173                    # web UI
 ```
 
-The canonical sequence after a data change is: load → `apply_facility_fixes.py` → `qa.py` → `export_parquet.py` → `export_view_caches.py` → `cp schema/vocab/*.csv public/vocab/`. `load_geri_sites.py` rewrites every facility it owns, so it overwrites the fixes; re-run `apply_facility_fixes.py` after it every time.
+The canonical sequence after a data change is: `load_geri_sites.py` → `apply_facility_fixes.py` → `load_geri_archives.py` → `qa.py` → `export_parquet.py` → `export_view_caches.py` → `cp schema/vocab/*.csv public/vocab/`. `load_geri_sites.py` rewrites every facility it owns, so it overwrites the fixes; re-run `apply_facility_fixes.py` after it every time.
 
 There is no test framework. `qa.py` is the only correctness gate; add new invariants there rather than introducing pytest. Its JS parse check needs `node` on PATH. QA checks:
 - every PRIMARY KEY / UNIQUE / FOREIGN KEY / CHECK / NOT NULL in `schema/schema.sql`, against the lake;
 - every facility is in GERI or a continental RI;
 - no `site_identifiers` value (deims-id, neon-site, icos-station, geri-harmonized-id) names two facilities;
+- every id in the harmonized site list resolves to a facility, or has a reviewed `unresolved` row. A harmonized id more than 25 km from its facility is a warning: it means a CSV point error or a mislabelled id.
 - every point falls inside a Natural Earth box of its country. Marine sites, ICOS ocean stations and stations south of 60° S are exempt.
 
 ## DuckLake store (unchanged from lto)
@@ -70,19 +75,26 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 - **Identity.** One facility per DEIMS-SDR site, `sha1("deims:" + uuid)[:16]`. NEON joins DEIMS through the `deimsId` NEON publishes. ICOS stations join through the station URI DEIMS records in the site's ICOS affiliation, normalised to `ES_FR-Lus`. An unmatched ICOS station becomes `sha1("icos:" + key)[:16]`. Nothing is matched by distance; co-located stations that are really one site go through `merge_facilities.py` with a reviewed `data/seed/facility_merge_seed.csv` row.
 - **Umbrella sites.** When several DEIMS sites name one ICOS station (an LTSER platform and the plot inside it), the station id goes to the most specific one: not a platform, then the closest name. The loader prints each decision.
 - **Precedence.** RI-native values (NEON coordinates, name, habitat; ICOS coordinates) win over DEIMS. `facilities.country` is where the site is, not the operating country. DEIMS gives a list; the loader picks the listed country whose box holds the point. Corrections go in `data/seed/facility_fixes.csv` with a source per row.
+- **More sources.**
+  - OzFlux towers (`fetch_ozflux.py`) attach to a TERN DEIMS site whose TERN code carries the tower's FLUXNET code (`TERN_ASM_AU_11` ↔ `AU-ASM`). Otherwise each is its own facility, `sha1("ozflux:" + folder)`. A `fluxnet_id` that is malformed or not unique is ignored (Wedgetail says `Au-Sil`).
+  - SAEON/EFTEON stations come from their DataCite records, `sha1("doi:" + doi)`.
+  - When a DEIMS point lies more than 50 km from the ICOS station the site holds, the ICOS coordinates win (Monte Bondone, Hetzdorf, Las Majadas).
+- **Harmonized ids.** `resolve_harmonized()` tries, in order:
+  1. the reviewed `data/seed/geri_harmonized_site_map.csv` (every row has evidence);
+  2. NEON `US-ABBY` → neon-site ABBY;
+  3. ICOS `BE-Bra` → `ES_BE-Bra`;
+  4. TERN `AU-How` → fluxnet-id.
+
+  The seed outranks the rules on purpose: the products mislabel some ICOS ids (FR-FBn is Fontainebleau, i.e. ICOS FR-Fon), and the products' `site_name` decides. Scheme `harmonized-only` builds a facility from the CSV point and product name, for sites no registry has. The harmonized CSV is Latin-1. `docs/harmonized.md` lists every defect found in it; report them upstream, don't edit them in.
+- **Timezones.** `summarize_harmonized.py` and `load_geri_archives.py` set DuckDB's `TimeZone` to UTC. Without it, timestamps print in the machine's zone and committed files differ by machine.
 - **Nothing from recall.** Every site, coordinate and id comes from a fetched registry response or a cited page. Vocabulary URLs were checked by fetching them.
 - **DEIMS network ids** are hard-coded in `fetch_deims.NETWORKS` and `load_geri_sites.DEIMS_NETWORK` (keep them equal), as read from `https://deims.org/api/networks`.
 
 ### Known gaps (next waves)
 
-- **Harmonized-site flag:** map each `site_id` in `/iplant/home/shared/geri/geri-harmonized/geri_harmonized_sites.csv` to a facility as a `geri-harmonized-id`. NEON (`US-ABBY` → ABBY) and ICOS (`BE-Bra` → `ES_BE-Bra`) map by code. eLTER sites map via `geri-metadata/elter/*.json`. Known defects in that CSV must be cited fixes, not silent edits:
-  - `US-NOGP` longitude is positive;
-  - `NL-Loo` latitude is 57.199 (Loobos is about 52.17);
-  - `FI-Värriö` is mis-encoded;
-  - `AU-ASM`/`AU-TTE` and `AU-Ya1`/`AU-Ya2` share coordinates.
-- **TERN OzFlux towers and SAEON/EFTEON flux sites** are missing from DEIMS. Source them from TERN/SAEON registries or `geri-metadata/{tern,saeon}/`.
-- **Harmonized coverage:** `data_archives` / `data_products` pointer rows for `/iplant/home/shared/geri/geri-harmonized/*.parquet`, plus `harmonized_coverage` computed from those files. `POINTER_ARCHIVES` in `qa.py` already names `geri-cyverse`. Write it as `scripts/load_geri_archives.py`, modelled on lto's `scripts/load_lto_archives.py`.
-- **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. A site panel should show `site_identifiers` and `harmonized_coverage`. The Stats tab still has lto sections that read absent derived tables.
+- **Duplicates across registries** that don't name each other (ICOS Hyytiälä vs eLTER SMEAR II) need reviewed `data/seed/facility_merge_seed.csv` rows (`merge_facilities.py`).
+- **EFTEON / CERN completeness:** only six SAEON/EFTEON eddy-covariance stations have DataCite records on the Data Store; CERN's list is DEIMS's 42.
+- **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. Browse cards and popups don't yet show `site_identifiers` or `harmonized_coverage`; that needs `BROWSE_SQL` and `list.js` changed together.
 
 ## MESA project on the CyVerse Data Store
 

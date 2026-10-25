@@ -1,0 +1,41 @@
+{
+ "source": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/",
+ "retrieved_at": "2026-10-25",
+ "files": [
+  {
+   "name": "GERI_airtemperature_30min.parquet",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/GERI_airtemperature_30min.parquet",
+   "size": 298429902
+  },
+  {
+   "name": "GERI_precipitation_60min.parquet",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/GERI_precipitation_60min.parquet",
+   "size": 68157852
+  },
+  {
+   "name": "GERI_soilmoisture_30min.parquet",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/GERI_soilmoisture_30min.parquet",
+   "size": 225567851
+  },
+  {
+   "name": "GERI_soiltemperature_30min.parquet",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/GERI_soiltemperature_30min.parquet",
+   "size": 260866735
+  },
+  {
+   "name": "GERI_soiltexture_static.parquet",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/GERI_soiltexture_static.parquet",
+   "size": 21424
+  },
+  {
+   "name": "geri_harmonized_sites.csv",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
+   "size": 3756
+  },
+  {
+   "name": "validation",
+   "url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/validation",
+   "size": null
+  }
+ ]
+}

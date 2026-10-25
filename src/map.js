@@ -30,6 +30,7 @@ export const TYPE_COLORS = {
   'icos-ocean-station':      '#1e3a8a',
   'supersite':               '#b45309',
   'plot-network':            '#d97706',
+  'flux-tower':              '#ca8a04',
   'field-station':           '#dc2626',
   'lter-site':               '#7c3aed',
   'ltser-platform':          '#c026d3',
@@ -488,20 +489,9 @@ function makeLegendControl() {
       };
       div.addEventListener('legend:refresh', refresh);
 
-      // Initial population: facility types via vocab CSV. Only the
-      // types that actually have facilities are shown — reserved slugs
-      // (industry / local-gov / university-institute / vessel / virtual)
-      // stay in the vocab file but are hidden from the legend so users
-      // don't see always-empty chips. Keep this in sync with the
-      // `typeSlugs` list in src/filters.js.
-      const SHOWN_TYPES = new Set([
-        'federal', 'state', 'nonprofit',
-        'experimental-forest-range', 'flux-tower', 'ltar-site',
-        'streamgage-network', 'glacier-monitoring', 'atmospheric-baseline',
-        'field-station', 'university-field-station', 'university-marine-lab',
-        'university-institute',
-        'protected-area-federal', 'network',
-      ]);
+      // Initial population: facility types via vocab CSV, limited to the
+      // types TYPE_COLORS paints (the GERI types), in that order.
+      const SHOWN_TYPES = new Set(Object.keys(TYPE_COLORS));
 
       // Cache the type-chip HTML once (it depends only on the vocab
       // CSV + TYPE_COLORS) and the sphere-chip HTML once (it's
