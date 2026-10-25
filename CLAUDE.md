@@ -95,7 +95,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 
 - **More duplicates** may surface as sources grow. Find candidates by same name within about 10 km across sources; a reviewed seed row merges them.
 - **EFTEON / CERN completeness:** only six SAEON/EFTEON eddy-covariance stations have DataCite records on the Data Store; CERN's list is DEIMS's 42.
-- **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. Browse cards show registry ids and harmonized coverage (the `ids` / `cov` CTEs in both `BROWSE_SQL` and `list.js`); map popups don't yet.
+- **Frontend:** a colour-by-RI mode needs a scalar `primary_ri` on both the DuckDB and the GeoJSON paths. Browse cards and map popups show registry ids and harmonized coverage. Both read the site's card from `browse_cards.json` through `src/cards.js` (one loader, one set of labels); the card SQL is the `ids` / `cov` CTEs in both `BROWSE_SQL` and `list.js`.
 
 ## MESA project on the CyVerse Data Store
 

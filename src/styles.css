@@ -539,6 +539,13 @@ footer a:hover { color: var(--c-primary); }
   border-top: 1px solid var(--c-border);
   padding-top: 6px;
 }
+.popup-harm-ids { color: #0f766e; font-weight: 600; }
+.popup-cov { margin: 2px 0 0; padding: 0; list-style: none; font-size: 12px; }
+.popup-cov li { display: flex; justify-content: space-between; gap: 8px; }
+.popup-cov li span { color: var(--c-muted); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; }
+.popup-id { white-space: nowrap; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; margin-right: 4px; }
+.popup-id b { font-family: system-ui, sans-serif; font-size: 10px; color: var(--c-muted); }
+.popup-more { color: var(--c-muted); font-size: 11px; font-style: italic; }
 .popup-source {
   display: inline-block;
   margin-top: 10px;

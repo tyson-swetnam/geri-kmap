@@ -1,6 +1,7 @@
 import maplibregl from 'maplibre-gl';
 import { fetchCSV } from './csv.js';
 import { DATA_BASE as BASE } from './config.js';
+import { cardById, schemeLabel, splitIdentifiers, idText, idHref, variableLabel, yearSpan } from './cards.js';
 
 // LTO six-sphere palette, used when the user picks "Color by primary
 // sphere" in the legend. Slugs match schema/vocab/spheres.csv. Colours
@@ -265,10 +266,17 @@ export function initMap(container) {
           try { p[key] = JSON.parse(p[key]); } catch (_) { p[key] = []; }
         }
       }
-      new maplibregl.Popup({ maxWidth: '320px' })
+      const popup = new maplibregl.Popup({ maxWidth: '320px' })
         .setLngLat(coords)
         .setHTML(popupHtml(p))
         .addTo(map);
+      // Registry ids and harmonized coverage come from the site's card
+      // (public/cache/browse_cards.json, fetched once and shared with the
+      // Browse tab); the popup opens at once and fills in when it arrives.
+      cardById(p.id).then((card) => {
+        const slot = popup.getElement()?.querySelector(`.popup-geri[data-id="${CSS.escape(p.id)}"]`);
+        if (slot && card) slot.innerHTML = popupGeriHtml(card);
+      }).catch(() => { /* no cache: the popup keeps what it has */ });
     });
 
     map.on('mousemove', 'facility-points', (e) => {
@@ -383,15 +391,39 @@ function popupHtml(p) {
     <div class="popup-name">${nameHtml}${p.acronym ? ` <span class="popup-acr">(${esc(p.acronym)})</span>` : ''}</div>
     <div class="popup-meta">
       <span class="type-badge" style="background:${color}">${esc(p.type || 'unknown')}</span>
-      ${(p.state || p.country) ? `<span class="popup-country">${esc(p.state || p.country)}</span>` : ''}
+      ${p.country ? `<span class="popup-country">${esc(p.country)}</span>` : ''}
     </div>
     ${p.parent_org ? `<div class="popup-row"><em>Org:</em> ${esc(p.parent_org)}</div>` : ''}
     ${areas ? `<div class="popup-row"><em>Research:</em> ${areas}</div>` : ''}
     ${networks ? `<div class="popup-row"><em>Networks:</em> ${networks}</div>` : ''}
     ${regions ? `<div class="popup-row"><em>Inside:</em> ${regions}</div>` : ''}
     ${funders ? `<div class="popup-row"><em>Funders:</em> ${funders}</div>` : ''}
+    <div class="popup-geri" data-id="${esc(p.id)}"></div>
     ${p.url ? `<a class="popup-source" href="${esc(p.url)}" target="_blank" rel="noopener">Visit website</a>` : ''}
   </div>`;
+}
+
+// The GERI part of a popup: harmonized coverage (one line per variable)
+// and the site's registry ids, from its Browse card.
+function popupGeriHtml(card) {
+  const { registry, harmonized } = splitIdentifiers(card);
+  const cov = card.coverage || [];
+  const covHtml = cov.length
+    ? `<div class="popup-row"><em>GERI harmonized</em> <span class="popup-harm-ids">${esc(harmonized.join(' · '))}</span>
+         <ul class="popup-cov">${cov.map((c) => `<li>${esc(variableLabel(c.variable))}
+           <span>${esc(yearSpan(c.first, c.last))}</span></li>`).join('')}</ul></div>`
+    : '';
+  const shown = registry.slice(0, 6);
+  const idsHtml = shown.length
+    ? `<div class="popup-row"><em>Ids:</em> ${shown.map((i) => {
+        const href = idHref(i);
+        const val = href
+          ? `<a href="${esc(href)}" target="_blank" rel="noopener" title="${esc(i.value)}">${esc(idText(i))}</a>`
+          : esc(idText(i));
+        return `<span class="popup-id"><b>${esc(schemeLabel(i.scheme))}</b> ${val}</span>`;
+      }).join(' ')}${registry.length > shown.length ? ` <span class="popup-more">+${registry.length - shown.length}</span>` : ''}</div>`
+    : '';
+  return covHtml + idsHtml;
 }
 
 function esc(s) {

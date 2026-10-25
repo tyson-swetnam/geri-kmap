@@ -18,8 +18,10 @@
 
 import { getConn, query, unwrapRow, whenReady } from '../db.js';
 import { TYPE_COLORS } from '../map.js';
-import { DATA_BASE } from '../config.js';
 import { loadRoleLabels, roleLabel } from '../roles.js';
+import {
+  loadAllCardsOnce, schemeLabel, splitIdentifiers, idText, idHref, variableLabel, yearSpan,
+} from '../cards.js';
 
 let _container = null;
 let _features = [];
@@ -38,33 +40,6 @@ const SORT_OPTIONS = [
   { key: 'record',       label: 'Longest record' },
 ];
 
-// Registry-identifier schemes (site_identifiers.scheme) as card labels.
-// '<network>-site-code' schemes fall through to "<NETWORK> code".
-const SCHEME_LABELS = {
-  'deims-id': 'DEIMS',
-  'neon-site': 'NEON',
-  'icos-station': 'ICOS',
-  'fluxnet-id': 'FLUXNET',
-  'ozflux-site': 'OzFlux',
-  'doi': 'DOI',
-  'geri-harmonized-id': 'GERI',
-};
-// Shown once in the harmonized section instead; 'harmonized-only' only
-// says the products are the site's sole source.
-const SCHEMES_HIDDEN = new Set(['harmonized-only', 'geri-harmonized-id']);
-const schemeLabel = (s) => SCHEME_LABELS[s]
-  || (s.endsWith('-site-code') ? `${s.slice(0, -10).toUpperCase()} code` : s);
-
-// harmonized_coverage.variable -> what the variable is.
-const VARIABLE_LABELS = {
-  mean_air_temp_degC: 'Air temperature',
-  bulk_precipitation_mm: 'Precipitation',
-  mean_swc_percent: 'Soil moisture',
-  mean_soil_temp_degC: 'Soil temperature',
-  sand_percent: 'Soil texture: sand',
-  silt_percent: 'Soil texture: silt',
-  clay_percent: 'Soil texture: clay',
-};
 
 const SPHERE_LABELS = {
   'atmosphere':       'Atmosphere',
@@ -116,27 +91,6 @@ function featureIds(features) {
   return ids;
 }
 
-// Module-level cache of the full pre-computed browse-card array. We
-// fetch the static JSON once and filter in memory by id; subsequent
-// renders never hit the network again. Falls through to DuckDB only if
-// the cache file is missing.
-let _allCardsPromise = null;
-function loadAllCardsOnce() {
-  if (_allCardsPromise) return _allCardsPromise;
-  // Default caching, not 'force-cache': force-cache reuses a stored copy
-  // however old, so a returning visitor kept the cards from before a data
-  // update (and only the ids both versions share). The default honours
-  // Pages' max-age and then revalidates by ETag.
-  _allCardsPromise = fetch(`${DATA_BASE}cache/browse_cards.json`)
-    .then((r) => r.ok ? r.json() : Promise.reject(new Error(`cache ${r.status}`)))
-    .catch((err) => {
-      // Reset so a future call can retry; don't let one failed fetch
-      // permanently disable the fast path.
-      _allCardsPromise = null;
-      throw err;
-    });
-  return _allCardsPromise;
-}
 
 async function fetchEnrichedFacilities(ids) {
   if (!ids.length) return [];
@@ -469,12 +423,9 @@ function cardHtml(f) {
   const recordBadge = recordTierBadge(f);
 
   // Registry identifiers and harmonized coverage
-  const idList = (f.identifiers || []).filter((i) => !SCHEMES_HIDDEN.has(i.scheme));
-  const harmIds = (f.identifiers || []).filter((i) => i.scheme === 'geri-harmonized-id').map((i) => i.value);
+  const { registry: idList, harmonized: harmIds } = splitIdentifiers(f);
   const cov = f.coverage || [];
   const idShown = idList.slice(0, 8);
-  const idValue = (i) => (i.scheme === 'deims-id' ? `${i.value.slice(0, 8)}…` : i.value);
-  const idHref = (i) => (i.scheme === 'doi' ? `https://doi.org/${i.value}` : i.url);
   const idsHtml = idShown.length
     ? `<div class="brw-section">
          <h4>Registry ids</h4>
@@ -482,23 +433,22 @@ function cardHtml(f) {
            ${idShown.map((i) => {
              const href = idHref(i);
              const val = href
-               ? `<a href="${esc(href)}" target="_blank" rel="noopener" title="${esc(i.value)}">${esc(idValue(i))}</a>`
-               : `<span title="${esc(i.value)}">${esc(idValue(i))}</span>`;
+               ? `<a href="${esc(href)}" target="_blank" rel="noopener" title="${esc(i.value)}">${esc(idText(i))}</a>`
+               : `<span title="${esc(i.value)}">${esc(idText(i))}</span>`;
              return `<li><span class="brw-id-scheme">${esc(schemeLabel(i.scheme))}</span> ${val}</li>`;
            }).join('')}
            ${idList.length > idShown.length ? `<li class="brw-more">+${idList.length - idShown.length} more</li>` : ''}
          </ul>
        </div>`
     : '';
-  const yr = (d) => (d ? String(d).slice(0, 4) : '');
   const covHtml = cov.length
     ? `<div class="brw-section">
          <h4>GERI harmonized data <small class="brw-harm-ids">${esc(harmIds.join(' · '))}</small></h4>
          <table class="brw-cov">
            <tbody>
              ${cov.map((c) => `<tr>
-               <td>${esc(VARIABLE_LABELS[c.variable] || c.variable)}</td>
-               <td class="brw-cov-years">${esc(yr(c.first))}${yr(c.last) && yr(c.last) !== yr(c.first) ? `–${esc(yr(c.last))}` : ''}</td>
+               <td>${esc(variableLabel(c.variable))}</td>
+               <td class="brw-cov-years">${esc(yearSpan(c.first, c.last))}</td>
                <td class="brw-cov-n">${fmtInt(Number(c.n))}</td>
              </tr>`).join('')}
            </tbody>
