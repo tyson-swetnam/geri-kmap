@@ -100,6 +100,8 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 
 The published copy goes to `/iplant/home/shared/geri/geri-kmap`, its own MESA project inside the shared GERI collection. **Never write AVUs on the parent `/iplant/home/shared/geri`**: it carries the collection's DataCite record.
 
-- `scripts/publish_to_mesa.py` is still lto's (target `/iplant/home/tswetnam/lto`, `lto.*` AVUs). Retarget it before the first publish.
+- **Published.** First publish was 2026-10-25, commit `15148ae`, 48 tables. The project is registered in the DuckLake catalog as `59c8732f-…`. Public read: `https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-kmap/`.
+- `scripts/publish_to_mesa.py`: `--dry-run`, then a real run (`gocmd sync`). Then apply `.mesa_publish_avus.json` through mesa-mcp: delete the previous `geri_kmap.publish.*` values on the root first, then one `ds_add_avus` per target. Table AVUs (`geri_kmap.table.*`) come from `schema/table_descriptions.csv`; re-add one only when its value changes, deleting the old value first.
+- The root carries a DataCite record written with `mesa_avu_apply_datacite`. That tool wants `titles` as strings and `value` keys, and has no `fundingReferences`. The NSF funding reference is therefore plain `datacite.fundingReference.1.*` AVUs, named as on the parent. The description AVU (about 560 characters) landed in iRODS, but the call reported no server response, so it is missing from the DuckLake mirror.
 - Metadata goes through mesa-mcp (`ds_add_avus`), never `imeta`. iRODS adds AVUs and never replaces them: delete the old value first. Keep values under about 400 characters.
 - Run `mesa_ducklake_init_project` on the target once per machine before writing AVUs.
