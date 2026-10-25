@@ -3893,6 +3893,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+21.438889,
+-33.391667
+]
+},
+"properties": {
+"id": "219ea6cbfc351c40",
+"name": "Besemfontein Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.94390502",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 4.968113,
 50.311874
 ]
@@ -3971,6 +4000,36 @@
 "primary_ri": null,
 "geri_harmonized": false,
 "deims_id": "e40fb493-7926-44c7-8c5c-bc1943adfcdb"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+30.06225,
+-28.71895
+]
+},
+"properties": {
+"id": "2230df7c5c469b36",
+"name": "Zingela Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.45061426",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -4145,6 +4204,35 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "5311dc45-04db-4358-b5fa-9ba59c044e61"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+19.150306,
+-32.353552
+]
+},
+"properties": {
+"id": "2301e64e09f916ca",
+"name": "Engelsmanskloof Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.97891920",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -7023,6 +7111,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+31.66638,
+-25.41544
+]
+},
+"properties": {
+"id": "3e84c4ed5c1ce8cf",
+"name": "Mjejane Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10793468",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 -8.57045,
 38.1069
 ]
@@ -8037,6 +8155,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+24.7803,
+-28.7483
+]
+},
+"properties": {
+"id": "47f8be8bd91cbb30",
+"name": "McGregor Museum Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10773468",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 11.296,
 46.4296
 ]
@@ -8059,6 +8207,36 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "7d2699f6-ae7b-4b00-a3b0-24b24bfa1334"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+29.39507,
+-28.86436
+]
+},
+"properties": {
+"id": "48dea16d7c50f4e2",
+"name": "Ezibomvini Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.39744624",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -8559,36 +8737,6 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
-31.4969,
--25.0197
-]
-},
-"properties": {
-"id": "4c687ad557e7261e",
-"name": "EFTEON_LVD_Skukuza_EC",
-"acronym": "ZA-Kru",
-"type": "flux-tower",
-"country": "ZA",
-"url": "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv",
-"parent_org": "EFTEON",
-"established": null,
-"record_length_years": null,
-"long_term_threshold_met": null,
-"primary_sphere": "terrestrial",
-"ris": [
-"efteon",
-"saeon"
-],
-"primary_ri": "efteon",
-"geri_harmonized": true,
-"deims_id": null
-}
-},
-{
-"type": "Feature",
-"geometry": {
-"type": "Point",
-"coordinates": [
 139.909191,
 -66.692889
 ]
@@ -8611,6 +8759,36 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "4a405a4b-5eed-40a7-be42-bfda96d02c00"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+18.715428,
+-34.025479
+]
+},
+"properties": {
+"id": "4c9e423648a0f977",
+"name": "iThemba Labs Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.49511556",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -9864,6 +10042,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+31.09639,
+-24.55056
+]
+},
+"properties": {
+"id": "5612031612d3a8db",
+"name": "Wits Rural Facility Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.91822244",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 17.57913,
 48.376203
 ]
@@ -10471,6 +10679,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+31.256944,
+-24.820833
+]
+},
+"properties": {
+"id": "5bd5cb00e73809e3",
+"name": "Medical Research Council/Wits Agincourt Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.99292338",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 19.700538194,
 46.17449307
 ]
@@ -10839,6 +11077,35 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "2bea9b9a-fcd5-4890-971c-99717be1175e"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+29.93792,
+-23.947794
+]
+},
+"properties": {
+"id": "60f98af2a26a200b",
+"name": "Haenertsburg Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.63690198",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -11570,6 +11837,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+32.536,
+-27.362806
+]
+},
+"properties": {
+"id": "64a3e95536f1d0d8",
+"name": "Mabasa Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.72155980",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 6.2908547,
 46.2298528
 ]
@@ -11592,6 +11889,36 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "fa36576a-6409-41d4-96ae-67f2a3d7e085"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+29.13235,
+-28.68813
+]
+},
+"properties": {
+"id": "65429e9d963a2cfe",
+"name": "Bambanani Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.17556428",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -13184,6 +13511,36 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "3bb4e99f-dc55-4a6b-819d-9081247d8201"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+18.57389,
+-33.96307
+]
+},
+"properties": {
+"id": "73a4a02b7f23f935",
+"name": "St Josephs Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10763468",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -15631,6 +15988,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+114.52,
+22.524167
+]
+},
+"properties": {
+"id": "851568593f4b789e",
+"name": "Marine Biological Research Station at Daya Bay",
+"acronym": null,
+"type": "field-station",
+"country": "CN",
+"url": "https://www.cern.ac.cn/ftp/CERN%E8%8B%B1%E6%96%87%E4%BB%8B%E7%BB%8D%EF%BC%88%E7%AC%AC%E4%B8%80%E7%89%88%EF%BC%89.pdf",
+"parent_org": "CERN",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "ocean-estuarine",
+"ris": [
+"cern"
+],
+"primary_ri": "cern",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 5.815613,
 52.228746
 ]
@@ -16526,6 +16912,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+30.8969,
+-24.9464
+]
+},
+"properties": {
+"id": "8c2f3a2cdb2f0bbc",
+"name": "MTO Ramanas Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10783468",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 169.092,
 -76.7
 ]
@@ -17277,6 +17693,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+24.3514,
+-29.173585
+]
+},
+"properties": {
+"id": "92ddf14f00e5eeef",
+"name": "Mokala National Park Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.79343770",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 -122.165554,
 44.259598
 ]
@@ -17908,6 +18354,35 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "fa9e4d17-3c60-4295-a9e3-64d4b7c1ab09"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+19.012972,
+-33.999667
+]
+},
+"properties": {
+"id": "994df1409bf97837",
+"name": "Dwarsberg Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.69042683",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -21015,6 +21490,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+31.4969,
+-25.0197
+]
+},
+"properties": {
+"id": "b7f50102678653a7",
+"name": "Skukuza Savanna Eddy Covariance",
+"acronym": null,
+"type": "flux-tower",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.50074678",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": true,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 -4.199318,
 55.841666
 ]
@@ -23506,6 +24011,35 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+31.3302116,
+-24.5409126
+]
+},
+"properties": {
+"id": "cccf4b9fd87f27e3",
+"name": "South African Wildlife College Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.85163588",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 12.6514,
 50.0333
 ]
@@ -24551,6 +25085,36 @@
 "geometry": {
 "type": "Point",
 "coordinates": [
+28.869943,
+-28.756748
+]
+},
+"properties": {
+"id": "d6285885934de01c",
+"name": "Namahadi Pass Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10762468",
+"parent_org": "EFTEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"efteon",
+"saeon"
+],
+"primary_ri": "efteon",
+"geri_harmonized": false,
+"deims_id": null
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
 7.4166536,
 47.2251551
 ]
@@ -25325,6 +25889,35 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "29728230-1607-4143-a40d-1e6d27e383a8"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+32.713983,
+-27.164693
+]
+},
+"properties": {
+"id": "dcbf389d37747888",
+"name": "Vasi Science Centre Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.41183728",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {
@@ -28139,6 +28732,35 @@
 "primary_ri": "elter",
 "geri_harmonized": false,
 "deims_id": "c713db56-373c-46cc-8828-ce8cadc4f3bb"
+}
+},
+{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [
+18.38745,
+-34.055007
+]
+},
+"properties": {
+"id": "f74ee2655d4509e1",
+"name": "Constantiaberg Automatic Weather Station",
+"acronym": null,
+"type": "weather-station",
+"country": "ZA",
+"url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.08181522",
+"parent_org": "SAEON",
+"established": null,
+"record_length_years": null,
+"long_term_threshold_met": null,
+"primary_sphere": "terrestrial",
+"ris": [
+"saeon"
+],
+"primary_ri": "saeon",
+"geri_harmonized": false,
+"deims_id": null
 }
 },
 {

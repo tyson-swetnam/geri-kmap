@@ -13,3 +13,9 @@ icos-ecosystem,ICOS ecosystem stations,ICOS ES,ri-component,https://www.icos-cp.
 icos-atmosphere,ICOS atmosphere stations,ICOS AS,ri-component,https://www.icos-cp.eu/observations/atmosphere,icos
 icos-ocean,ICOS ocean stations,ICOS OS,ri-component,https://www.icos-cp.eu/observations/ocean,icos
 ozflux,OzFlux,Australian and New Zealand flux tower network,ri-component,https://www.ozflux.org.au/,tern
+efteon-greater-cape-town,EFTEON Greater Cape Town,Greater Cape Town landscape (Western Cape),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
+efteon-garden-route,EFTEON Garden Route Gateway,Garden Route Gateway landscape (George; Western Cape),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
+efteon-maputaland,EFTEON Maputaland,Maputaland landscape (northern KwaZulu-Natal),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
+efteon-kimtri,EFTEON KIMTRI,KIMTRI landscape (Kimberley area; Northern Cape and western Free State),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
+efteon-northern-drakensberg,EFTEON Northern Maluti-Drakensberg,Northern Maluti-Drakensberg landscape (Cathedral Peak and surrounds),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
+efteon-lowveld,EFTEON Lowveld,Lowveld landscape (Mpumalanga),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon

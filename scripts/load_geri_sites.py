@@ -55,7 +55,8 @@ NEON_JSON = RAW / "R-GERI-NEON" / "sites_neon.json"
 ICOS_JSON = RAW / "R-GERI-ICOS" / "stations_icos.json"
 OZFLUX_JSON = RAW / "R-GERI-TERN" / "sites_ozflux.json"
 HARM_DIR = RAW / "R-GERI-HARMONIZED"
-SAEON_JSON = HARM_DIR / "saeon_stations.json"
+SAEON_JSON = RAW / "R-GERI-SAEON" / "stations_saeon.json"
+CERN_SEED = ROOT / "data" / "seed" / "cern_stations.csv"
 HARM_CSV = HARM_DIR / "geri_harmonized_sites.csv"
 HARM_URL = "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv"
 HARM_MAP = ROOT / "data" / "seed" / "geri_harmonized_site_map.csv"
@@ -80,6 +81,17 @@ RI_LABEL = {"neon": "NEON", "elter": "eLTER", "icos": "ICOS", "tern": "TERN",
             "saeon": "SAEON", "efteon": "EFTEON", "cern": "CERN"}
 # Precedence when a facility belongs to several RIs: which one names its type.
 RI_ORDER = ["neon", "icos", "tern", "cern", "efteon", "saeon", "elter"]
+# EFTEON landscape as SAEON's DataCite subjects name it -> networks.csv slug.
+# (EFTEON's six landscapes: https://efteon.saeon.ac.za/landscapes/)
+EFTEON_LANDSCAPE = {
+    "EFTEON Lowveld": "efteon-lowveld",
+    "EFTEON Kimberley": "efteon-kimtri",
+    "EFTEON-Kimberley": "efteon-kimtri",
+    "EFTEON Northern Drakensberg": "efteon-northern-drakensberg",
+    "EFTEON Maputaland": "efteon-maputaland",
+    "EFTEON Greater Cape Town": "efteon-greater-cape-town",
+    "EFTEON Garden Route": "efteon-garden-route",
+}
 # A well-formed OzFlux FLUXNET id. Upstream attributes are not always
 # right: Wedgetail's file says 'Au-Sil', which is Silver Plains' id.
 FLUXNET_ID_RE = re.compile(r"^AU-[A-Za-z0-9]{2,4}$")
@@ -396,29 +408,57 @@ def apply_ozflux(s: Site, o: dict, fluxnet_id: str | None, retrieved: str, own: 
     s.prov.append((o["catalog_url"], retrieved, "R-GERI-TERN"))
 
 
-def from_saeon(st: dict, retrieved: str) -> Site:
-    """A SAEON/EFTEON station from its DataCite record (geri-metadata/saeon/)."""
-    r = st["record"]
+def from_saeon(r: dict, retrieved: str) -> Site:
+    """A SAEON/EFTEON station from its DataCite record (fetch_saeon_stations.py).
+
+    EFTEON when EFTEON is a creator or a subject reads 'EFTEON ...'; the
+    'EFTEON <landscape>' subject also places it in that landscape."""
     s = Site(fid("doi:" + r["doi"].lower()))
     title = r["titles"][0]["title"]
     s.name = title.split(" - SAEON ")[0]
     s.country = "ZA"
+    weather = "Weather Station" in title
+    eddy = "Eddy Covariance" in title
     pts = [g["geoLocationPoint"] for g in r.get("geoLocations") or [] if g.get("geoLocationPoint")]
     if pts:
         s.lat, s.lng = num(pts[0].get("pointLatitude")), num(pts[0].get("pointLongitude"))
-        s.locations.append({"label": s.name, "lat": s.lat, "lng": s.lng, "role": "flux-tower"})
+        s.locations.append({"label": s.name, "lat": s.lat, "lng": s.lng,
+                            "role": "flux-tower" if eddy else "weather-station" if weather else "field-station"})
     s.url = r.get("url") or r["id"]
-    creators = " ".join(c.get("name", "") for c in r.get("creators") or [])
-    subjects = [x.get("subject", "") for x in r.get("subjects") or []]
+    creators = " ".join(c.get("name") or "" for c in r.get("creators") or [])
+    subjects = [x.get("subject") or "" for x in r.get("subjects") or []]
     efteon = "Expanded Freshwater and Terrestrial" in creators or any(x.startswith("EFTEON") for x in subjects)
     s.ris.update({"saeon", "efteon"} if efteon else {"saeon"})
     s.networks.update(s.ris)
-    s.ftype = "flux-tower" if "Eddy Covariance" in title else "ri-site"
+    for x in subjects:
+        if x in EFTEON_LANDSCAPE:
+            s.networks.add(EFTEON_LANDSCAPE[x])
+        elif x.startswith("EFTEON"):
+            print(f"[saeon] {s.name}: subject {x!r} names no EFTEON landscape; not placed")
+    s.ftype = "flux-tower" if eddy else "weather-station" if weather else "ri-site"
     s.primary_sphere = "terrestrial"
-    s.spheres.add("terrestrial")
+    s.spheres.update({"terrestrial", "atmosphere"} if weather else {"terrestrial"})
     s.ids[("doi", r["doi"].lower())] = r["id"]
     s.retrieved_year = int(retrieved[:4])
     s.prov.append((r["id"], retrieved, "R-GERI-SAEON"))
+    return s
+
+
+def from_cern_seed(row: dict) -> Site:
+    """A CERN station named in CERN's own brochure but absent from DEIMS."""
+    s = Site(fid("cern:" + row["name"]))
+    s.name = row["name"]
+    s.country = "CN"
+    s.lat, s.lng = num(row["lat"]), num(row["lng"])
+    s.locations.append({"label": s.name, "lat": s.lat, "lng": s.lng, "role": "field-station"})
+    s.ris.add("cern")
+    s.networks.add("cern")
+    s.ftype = "field-station"
+    s.primary_sphere = {"marine": "ocean-estuarine", "lake": "freshwater"}.get(row["ecosystem"], "terrestrial")
+    s.spheres.add(s.primary_sphere)
+    s.ids[("cern-station", row["station_no"])] = row["source_url"]
+    s.url = row["source_url"]
+    s.prov.append((row["source_url"], row["retrieved_at"], "R-GERI-CERN"))
     return s
 
 
@@ -589,6 +629,15 @@ def build_sites() -> tuple[list[Site], dict]:
         s = from_saeon(st, sa["retrieved_at"])
         sites[s.facility_id] = s
     stats["saeon_stations"] = len(sa["stations"])
+
+    n_cern = 0
+    if CERN_SEED.exists():
+        with CERN_SEED.open(newline="", encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                s = from_cern_seed(row)
+                sites[s.facility_id] = s
+                n_cern += 1
+    stats["cern_seed"] = n_cern
 
     # Reviewed merges: one field site recorded twice (an ICOS station and
     # the DEIMS site that hosts it, ICOS ES and AS stations at one site).

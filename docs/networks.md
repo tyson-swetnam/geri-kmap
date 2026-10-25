@@ -7,10 +7,10 @@ GERI's six research infrastructures, as they appear in the catalogue. A site bel
 | eLTER (DEIMS network "LTER Europe") | 637 | DEIMS-SDR |
 | ICOS | 180 | ICOS Carbon Portal (169 classified stations), DEIMS-SDR, GERI products |
 | NEON | 81 | NEON Data API, joined to DEIMS-SDR by the DEIMS id NEON publishes |
-| CERN (DEIMS network "CERN (LTER China)") | 42 | DEIMS-SDR |
+| CERN | 43 | DEIMS-SDR (42) + CERN's own station list (Daya Bay) |
 | TERN | 62 | DEIMS-SDR (27 SuperSites and plot networks) + 47 OzFlux towers from TERN's THREDDS server, 12 of them at a SuperSite |
-| SAEON | 26 | DEIMS-SDR (22) + SAEON/EFTEON DataCite station records + GERI products |
-| EFTEON | 4 | SAEON DataCite station records + GERI products |
+| SAEON | 46 | DEIMS-SDR (22) + every SAEON Terrestrial Observations Monitor station (DataCite) + GERI products |
+| EFTEON | 17 | SAEON DataCite station records + GERI products |
 | GERI (the DEIMS GERI network) | 561 | DEIMS-SDR |
 
 ICOS stations are split by kind:
@@ -22,6 +22,27 @@ ICOS stations are split by kind:
 Only stations with an ICOS station class (1, 2 or Associated) are included. The Carbon Portal also lists about 300 stations that never entered ICOS labelling.
 
 NEON sites are split into terrestrial (47) and aquatic (34) by NEON's own `HABITAT` location property.
+
+## SAEON and EFTEON stations
+
+SAEON registers every station of its Terrestrial Observations Monitor as a DataCite DOI (`10.15493/obs.monitor.*`). All 33 are loaded: 7 eddy-covariance towers and 26 automatic weather stations. Five weather stations and four towers stand at a DEIMS site and are part of it, and the Spioenkop weather station shares its point with the Spioenkop tower.
+
+A station is EFTEON when EFTEON is its creator or one of its subjects is "EFTEON …". That subject also places it in one of EFTEON's six landscapes (https://efteon.saeon.ac.za/landscapes/):
+
+| Landscape | Sites |
+|---|---:|
+| Northern Maluti-Drakensberg | 5 |
+| KIMTRI (Kimberley) | 3 |
+| Lowveld | 3 |
+| Maputaland | 2 |
+| Greater Cape Town | 1 |
+| Garden Route Gateway | 0 (no station registered yet) |
+
+The record for Benfontein Savanna EC gives the subject "EFTEON Savanna", which is not one of the six landscapes, so that station is left unplaced. Its point is also wrong (see [Harmonized](harmonized.md)).
+
+## CERN stations
+
+CERN's station page (https://www.cern.ac.cn/1wljs/index.asp?channelid1=100110) links its English brochure, which lists 36 stations. 35 of them are DEIMS-SDR sites in the CERN network. The 36th, the Marine Biological Research Station at Daya Bay, is not, so it is added from the brochure (`data/seed/cern_stations.csv`). DEIMS also has seven stations newer than the brochure. Together that is 43.
 
 32 sites appear in the DEIMS GERI network but in no RI network; they are national LTER, ICP Forests and similar sites. They are kept as GERI members.
 
@@ -41,5 +62,5 @@ Two kinds of neighbour are left apart on purpose:
 
 ## Gaps known today
 
-- **SAEON and EFTEON:** DEIMS lists 22 SAEON sites, and the GERI Data Store holds DataCite records for six eddy-covariance stations. The full EFTEON landscape and station list is not yet in the catalogue.
-- **CERN:** DEIMS lists 42 CERN stations, which may not be the full current CERN station list.
+- **CERN:** the brochure is a first edition. CERN's English site, which might list the current set, was unreachable on 2026-10-25.
+- **EFTEON:** a landscape with no registered station (Garden Route Gateway) has no site yet. EFTEON's landscape pages give no coordinates, so the landscapes are networks, not points.

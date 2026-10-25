@@ -1,0 +1,1708 @@
+{
+ "source": "https://api.datacite.org/dois?query=titles.title:\"Observations Monitor\"&prefix=10.15493",
+ "retrieved_at": "2026-10-25",
+ "stations": [
+  {
+   "doi": "10.15493/obs.monitor.08181522",
+   "id": "https://doi.org/10.15493/obs.monitor.08181522",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.08181522",
+   "titles": [
+    {
+     "title": "Constantiaberg Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Fynbos Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Constantiaberg AWS"
+    },
+    {
+     "subject": "SAEON-Fynbos"
+    },
+    {
+     "subject": "Table Mountain National Park"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -34.055007,
+      "pointLongitude": 18.38745
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2013-10-28/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.10762468",
+   "id": "https://doi.org/10.15493/obs.monitor.10762468",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10762468",
+   "titles": [
+    {
+     "title": "Namahadi Pass Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Namahadi Pass"
+    },
+    {
+     "subject": "EFTEON Northern Drakensberg"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.756748,
+      "pointLongitude": 28.869943
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2025-11-12/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.10763468",
+   "id": "https://doi.org/10.15493/obs.monitor.10763468",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10763468",
+   "titles": [
+    {
+     "title": "St Josephs Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, SAEON"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "Expanded Freshwater and Terrestrial Environmental Observation Network"
+    },
+    {
+     "subject": "SOUTH AFRICA"
+    },
+    {
+     "subject": "WEATHER STATIONS"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -33.96307,
+      "pointLongitude": 18.57389
+     },
+     "geoLocationPlace": "St Josephs School"
+    }
+   ],
+   "dates": [
+    {
+     "date": "2026-03-11/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.10773468",
+   "id": "https://doi.org/10.15493/obs.monitor.10773468",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10773468",
+   "titles": [
+    {
+     "title": "McGregor Museum Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, SAEON"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "Expanded Freshwater and Terrestrial Environmental Observation Network"
+    },
+    {
+     "subject": "SOUTH AFRICA"
+    },
+    {
+     "subject": "WEATHER STATIONS"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.7483,
+      "pointLongitude": 24.7803
+     },
+     "geoLocationPlace": "McGregor Museum"
+    }
+   ],
+   "dates": [
+    {
+     "date": "2026-08-26/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.10783468",
+   "id": "https://doi.org/10.15493/obs.monitor.10783468",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10783468",
+   "titles": [
+    {
+     "title": "MTO Ramanas Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, SAEON"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "Expanded Freshwater and Terrestrial Environmental Observation Network"
+    },
+    {
+     "subject": "SOUTH AFRICA"
+    },
+    {
+     "subject": "WEATHER STATIONS"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -24.9464,
+      "pointLongitude": 30.8969
+     },
+     "geoLocationPlace": "MTO Ramanas"
+    }
+   ],
+   "dates": [
+    {
+     "date": "2026-08-25/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.10793468",
+   "id": "https://doi.org/10.15493/obs.monitor.10793468",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.10793468",
+   "titles": [
+    {
+     "title": "Mjejane Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "Expanded Freshwater and Terrestrial Environmental Observation Network"
+    },
+    {
+     "subject": "SOUTH AFRICA"
+    },
+    {
+     "subject": "WEATHER STATIONS"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -25.41544,
+      "pointLongitude": 31.66638
+     },
+     "geoLocationPlace": "Mjejane Game Reserve, EFTEON Lowveld, South Africa"
+    }
+   ],
+   "dates": [
+    {
+     "date": "2026-09-08/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.15152420",
+   "id": "https://doi.org/10.15493/obs.monitor.15152420",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.15152420",
+   "titles": [
+    {
+     "title": "Spioenkop Savanna Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Spioenkop Savanna Eddy Covariance"
+    },
+    {
+     "subject": "EFTEON Kimberley"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.71231,
+      "pointLongitude": 29.50914
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-01-19/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.17556428",
+   "id": "https://doi.org/10.15493/obs.monitor.17556428",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.17556428",
+   "titles": [
+    {
+     "title": "Bambanani Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Bambanani AWS"
+    },
+    {
+     "subject": "EFTEON Northern Drakensberg"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.68813,
+      "pointLongitude": 29.13235
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-06-20/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.23081135",
+   "id": "https://doi.org/10.15493/obs.monitor.23081135",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.23081135",
+   "titles": [
+    {
+     "title": "Umhlabuyalingana Grassland Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Umhlabuyalingana Grassland Eddy Covariance"
+    },
+    {
+     "subject": "EFTEON Maputaland"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -27.3952,
+      "pointLongitude": 32.5889
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-03-15/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.23317120",
+   "id": "https://doi.org/10.15493/obs.monitor.23317120",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.23317120",
+   "titles": [
+    {
+     "title": "Tierberg Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Arid Lands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Tierberg AWS"
+    },
+    {
+     "subject": "SAEON-Arid Lands"
+    },
+    {
+     "subject": "Tierberg Karoo Research Center"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -33.166143,
+      "pointLongitude": 22.267964
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2013-12-23/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.33802912",
+   "id": "https://doi.org/10.15493/obs.monitor.33802912",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.33802912",
+   "titles": [
+    {
+     "title": "Cathedral Peak Vulture's Retreat High Altitude Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Grasslands-Forests-Wetlands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Cathedral Peak Vulture's Retreat High Altitude AWS"
+    },
+    {
+     "subject": "SAEON-GFW"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -29.067001,
+      "pointLongitude": 29.322132
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2015-08-06/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.36326358",
+   "id": "https://doi.org/10.15493/obs.monitor.36326358",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.36326358",
+   "titles": [
+    {
+     "title": "Cathedral Peak Mike's Pass Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Grasslands-Forests-Wetlands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Cathedral Peak Mike's Pass AWS"
+    },
+    {
+     "subject": "SAEON-GFW"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.975583,
+      "pointLongitude": 29.235787
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2012-08-02/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.39744624",
+   "id": "https://doi.org/10.15493/obs.monitor.39744624",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.39744624",
+   "titles": [
+    {
+     "title": "Ezibomvini Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Ezibomvini AWS"
+    },
+    {
+     "subject": "EFTEON Northern Drakensberg"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.86436,
+      "pointLongitude": 29.39507
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-05-10/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.41183728",
+   "id": "https://doi.org/10.15493/obs.monitor.41183728",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.41183728",
+   "titles": [
+    {
+     "title": "Vasi Science Centre Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Grasslands-Forests-Wetlands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Vasi Science Centre AWS"
+    },
+    {
+     "subject": "Maputaland"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -27.164693,
+      "pointLongitude": 32.713983
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2018-11-08/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.45061426",
+   "id": "https://doi.org/10.15493/obs.monitor.45061426",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.45061426",
+   "titles": [
+    {
+     "title": "Zingela Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Zingela AWS"
+    },
+    {
+     "subject": "EFTEON Northern Drakensberg"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.71895,
+      "pointLongitude": 30.06225
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-11-02/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.45062043",
+   "id": "https://doi.org/10.15493/obs.monitor.45062043",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.45062043",
+   "titles": [
+    {
+     "title": "Spioenkop Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Spioenkop AWS"
+    },
+    {
+     "subject": "EFTEON Northern Drakensberg"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.71231,
+      "pointLongitude": 29.50914
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-01-19/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.49511556",
+   "id": "https://doi.org/10.15493/obs.monitor.49511556",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.49511556",
+   "titles": [
+    {
+     "title": "iThemba Labs Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "iThemba Labs AWS"
+    },
+    {
+     "subject": "EFTEON Greater Cape Town"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -34.025479,
+      "pointLongitude": 18.715428
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2024-04-20/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.50074678",
+   "id": "https://doi.org/10.15493/obs.monitor.50074678",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.50074678",
+   "titles": [
+    {
+     "title": "Skukuza Savanna Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Skukuza Savanna Eddy Covariance"
+    },
+    {
+     "subject": "EFTEON Lowveld"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -25.0197,
+      "pointLongitude": 31.4969
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2024-11-07/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.63690198",
+   "id": "https://doi.org/10.15493/obs.monitor.63690198",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.63690198",
+   "titles": [
+    {
+     "title": "Haenertsburg Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Ndlovu Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Lowveld"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -23.947794,
+      "pointLongitude": 29.93792
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2020-11-01/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.67986839",
+   "id": "https://doi.org/10.15493/obs.monitor.67986839",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.67986839",
+   "titles": [
+    {
+     "title": "Jonkershoek Fynbos Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Fynbos Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Jonkershoek Fynbos Eddy Covariance"
+    },
+    {
+     "subject": "SAEON-Fynbos"
+    },
+    {
+     "subject": "Jonkershoek"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -33.99029,
+      "pointLongitude": 18.95543
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2019-01-25/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.69042683",
+   "id": "https://doi.org/10.15493/obs.monitor.69042683",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.69042683",
+   "titles": [
+    {
+     "title": "Dwarsberg Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Fynbos Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Dwarsberg AWS"
+    },
+    {
+     "subject": "SAEON-Fynbos"
+    },
+    {
+     "subject": "Jonkershoek"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -33.999667,
+      "pointLongitude": 19.012972
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2013-03-03/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.69963566",
+   "id": "https://doi.org/10.15493/obs.monitor.69963566",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.69963566",
+   "titles": [
+    {
+     "title": "Cathedral Peak Grassland Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Grasslands-Forests-Wetlands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Cathedral Peak Grassland Eddy Covariance"
+    },
+    {
+     "subject": "SAEON - GFW"
+    },
+    {
+     "subject": "Cathedral Peak"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.99356,
+      "pointLongitude": 29.25184
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2024-10-30/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.70369025",
+   "id": "https://doi.org/10.15493/obs.monitor.70369025",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.70369025",
+   "titles": [
+    {
+     "title": "Benfontein Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Arid Lands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Benfontein AWS"
+    },
+    {
+     "subject": "SAEON-Arid Lands Node"
+    },
+    {
+     "subject": "Benfontein Nature Reserve"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.8924,
+      "pointLongitude": 24.8641
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2018-07-04/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.72155980",
+   "id": "https://doi.org/10.15493/obs.monitor.72155980",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.72155980",
+   "titles": [
+    {
+     "title": "Mabasa Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Mabasa AWS"
+    },
+    {
+     "subject": "EFTEON Maputaland"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -27.362806,
+      "pointLongitude": 32.536
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2022-06-21/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.72779560",
+   "id": "https://doi.org/10.15493/obs.monitor.72779560",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.72779560",
+   "titles": [
+    {
+     "title": "Cathedral Peak Research Centre Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Grasslands-Forests-Wetlands Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Cathedral Peak Research Centre AWS"
+    },
+    {
+     "subject": "SAEON-GFW"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.975583,
+      "pointLongitude": 29.235787
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2013-02-07/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.79343770",
+   "id": "https://doi.org/10.15493/obs.monitor.79343770",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.79343770",
+   "titles": [
+    {
+     "title": "Mokala National Park Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Mokala National Park"
+    },
+    {
+     "subject": "EFTEON-Kimberley"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -29.173585,
+      "pointLongitude": 24.3514
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2024-12-11/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.85163588",
+   "id": "https://doi.org/10.15493/obs.monitor.85163588",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.85163588",
+   "titles": [
+    {
+     "title": "South African Wildlife College Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Ndlovu Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Lowveld"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -24.5409126,
+      "pointLongitude": 31.3302116
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2020-11-01/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.88212042",
+   "id": "https://doi.org/10.15493/obs.monitor.88212042",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.88212042",
+   "titles": [
+    {
+     "title": "Benfontein Karoo Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Benfontein Karoo Eddy Covariance"
+    },
+    {
+     "subject": "EFTEON Kimberley"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.85648,
+      "pointLongitude": 24.83985
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2020-02-23/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.90686782",
+   "id": "https://doi.org/10.15493/obs.monitor.90686782",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.90686782",
+   "titles": [
+    {
+     "title": "Benfontein Savanna Eddy Covariance - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Benfontein Savanna Eddy Covariance"
+    },
+    {
+     "subject": "EFTEON Savanna"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -28.70405,
+      "pointLongitude": 29.62612
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2020-02-23/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.91822244",
+   "id": "https://doi.org/10.15493/obs.monitor.91822244",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.91822244",
+   "titles": [
+    {
+     "title": "Wits Rural Facility Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Wits Rural Facility AWS"
+    },
+    {
+     "subject": "EFTEON Lowveld"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -24.55056,
+      "pointLongitude": 31.09639
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-08-31/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.94390502",
+   "id": "https://doi.org/10.15493/obs.monitor.94390502",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.94390502",
+   "titles": [
+    {
+     "title": "Besemfontein Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Fynbos Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Besemfontein AWS"
+    },
+    {
+     "subject": "SAEON-Fynbos"
+    },
+    {
+     "subject": "Swartberg Nature Reserve"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -33.391667,
+      "pointLongitude": 21.438889
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2021-08-11/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.97891920",
+   "id": "https://doi.org/10.15493/obs.monitor.97891920",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.97891920",
+   "titles": [
+    {
+     "title": "Engelsmanskloof Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Fynbos Node, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "Engelsmanskloof AWS"
+    },
+    {
+     "subject": "SAEON-Fynbos"
+    },
+    {
+     "subject": "Cederberg"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -32.353552,
+      "pointLongitude": 19.150306
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2015-12-02/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  },
+  {
+   "doi": "10.15493/obs.monitor.99292338",
+   "id": "https://doi.org/10.15493/obs.monitor.99292338",
+   "url": "https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/Obs.Monitor.99292338",
+   "titles": [
+    {
+     "title": "Medical Research Council/Wits Agincourt Automatic Weather Station - SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "creators": [
+    {
+     "name": "Expanded Freshwater and Terrestrial Environmental Observation Network, South African Environmental Observation Network"
+    }
+   ],
+   "subjects": [
+    {
+     "subject": "ATMOSPHERE"
+    },
+    {
+     "subject": "CLIMATE INDICATORS"
+    },
+    {
+     "subject": "MRC/Wits Agincourt AWS"
+    },
+    {
+     "subject": "EFTEON Lowveld"
+    },
+    {
+     "subject": "South African Environmental Observation Network"
+    },
+    {
+     "subject": "Real-time data"
+    },
+    {
+     "subject": "SAEON Terrestrial Observations Monitor"
+    }
+   ],
+   "geoLocations": [
+    {
+     "geoLocationPoint": {
+      "pointLatitude": -24.820833,
+      "pointLongitude": 31.256944
+     }
+    }
+   ],
+   "dates": [
+    {
+     "date": "2023-10-18/2026-12-31",
+     "dateType": "Valid"
+    }
+   ]
+  }
+ ]
+}

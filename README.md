@@ -16,8 +16,8 @@ catalogues where the RIs operate and cross-walks each site's identifiers across 
 records which sites the GERI harmonized products cover. Those products live on the CyVerse Data
 Store at `/iplant/home/shared/geri`.
 
-Today the catalogue holds 1,019 sites in 51 countries. They come from DEIMS-SDR, the NEON Data API,
-the ICOS Carbon Portal, TERN's OzFlux server, SAEON DataCite records and the GERI Data Store. All 117
+Today the catalogue holds 1,040 sites in 51 countries. They come from DEIMS-SDR, the NEON Data API,
+the ICOS Carbon Portal, TERN's OzFlux server, SAEON DataCite station records, CERN's station list and the GERI Data Store. All 117
 site ids in the GERI harmonized products resolve to catalogue sites. See [`docs/`](docs/index.md).
 
 ## Repository layout
@@ -52,7 +52,7 @@ Refresh from the registries:
 
 ```bash
 python scripts/fetch_deims.py && python scripts/fetch_neon.py && python scripts/fetch_icos.py
-python scripts/fetch_ozflux.py && python scripts/fetch_geri_datastore.py
+python scripts/fetch_ozflux.py && python scripts/fetch_saeon_stations.py && python scripts/fetch_geri_datastore.py
 python scripts/summarize_harmonized.py --download   # only when the harmonized products change (~1 GB)
 python scripts/load_geri_sites.py
 python scripts/apply_facility_fixes.py

@@ -32,6 +32,7 @@ export const TYPE_COLORS = {
   'supersite':               '#b45309',
   'plot-network':            '#d97706',
   'flux-tower':              '#ca8a04',
+  'weather-station':         '#be185d',
   'field-station':           '#dc2626',
   'lter-site':               '#7c3aed',
   'ltser-platform':          '#c026d3',

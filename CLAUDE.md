@@ -27,6 +27,7 @@ python scripts/fetch_deims.py                 # DEIMS-SDR sites of the 6 RIs + G
 python scripts/fetch_neon.py                  # NEON sites + habitat / field-site URL
 python scripts/fetch_icos.py                  # ICOS ES/AS/OS stations with a station class
 python scripts/fetch_ozflux.py                # OzFlux towers from TERN THREDDS (L3 global attributes via .das)
+python scripts/fetch_saeon_stations.py        # every SAEON / EFTEON Observations Monitor station (DataCite, prefix 10.15493)
 python scripts/fetch_geri_datastore.py        # GERI Data Store (anonymous WebDAV): harmonized site list, eLTER/SAEON metadata, file listing
 python scripts/summarize_harmonized.py --download   # harmonized parquet (~1 GB, data/cache/) → committed harmonized_summary.csv; only when the products change
 python scripts/load_geri_sites.py             # data/raw/R-GERI-* → lake (owns every R-GERI-* facility; assigns harmonized ids)
@@ -78,7 +79,8 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 - **Precedence.** RI-native values (NEON coordinates, name, habitat; ICOS coordinates) win over DEIMS. `facilities.country` is where the site is, not the operating country. DEIMS gives a list; the loader picks the listed country whose box holds the point. Corrections go in `data/seed/facility_fixes.csv` with a source per row.
 - **More sources.**
   - OzFlux towers (`fetch_ozflux.py`) attach to a TERN DEIMS site whose TERN code carries the tower's FLUXNET code (`TERN_ASM_AU_11` ↔ `AU-ASM`). Otherwise each is its own facility, `sha1("ozflux:" + folder)`. A `fluxnet_id` that is malformed or not unique is ignored (Wedgetail says `Au-Sil`).
-  - SAEON/EFTEON stations come from their DataCite records, `sha1("doi:" + doi)`.
+  - SAEON/EFTEON stations: every Observations Monitor DOI from DataCite (`fetch_saeon_stations.py`), `sha1("doi:" + doi)`. EFTEON by creator or an 'EFTEON …' subject; the landscape comes from `EFTEON_LANDSCAPE`. Types are `weather-station` and `flux-tower`.
+  - CERN stations DEIMS lacks come from CERN's brochure (`data/seed/cern_stations.csv`, `sha1("cern:" + name)`); today only Daya Bay.
   - When a DEIMS point lies more than 50 km from the ICOS station the site holds, the ICOS coordinates win (Monte Bondone, Hetzdorf, Las Majadas).
 - **Harmonized ids.** `resolve_harmonized()` tries, in order:
   1. the reviewed `data/seed/geri_harmonized_site_map.csv` (every row has evidence);
@@ -94,7 +96,7 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 ### Known gaps (next waves)
 
 - **More duplicates** may surface as sources grow. Find candidates by same name within about 10 km across sources; a reviewed seed row merges them.
-- **EFTEON / CERN completeness:** only six SAEON/EFTEON eddy-covariance stations have DataCite records on the Data Store; CERN's list is DEIMS's 42.
+- **CERN completeness:** DEIMS's 42 plus the brochure's Daya Bay. CERN's English site (www.cern.ac.cn:8080) was unreachable; check it for a current list.
 - **Frontend:** the map colours by RI by default (`RI_COLORS` in `src/map.js`, hues validated with the dataviz palette script). `primary_ri` is the RI whose label `load_geri_sites.py` writes to `facilities.parent_org` (its `RI_ORDER`); `export_parquet.py`'s GeoJSON and `query()` in `src/db.js` derive it identically. Browse cards and map popups show registry ids and harmonized coverage. Both read the site's card from `browse_cards.json` through `src/cards.js` (one loader, one set of labels); the card SQL is the `ids` / `cov` CTEs in both `BROWSE_SQL` and `list.js`.
 
 ## MESA project on the CyVerse Data Store
