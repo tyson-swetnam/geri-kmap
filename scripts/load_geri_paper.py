@@ -15,8 +15,10 @@ collaboration", Ecosphere 17(10): e70789, doi:10.1002/ecs2.70789 (CC BY 4.0).
                          networks of the GENNI use case (Box 1), from
                          data/raw/J-GENNI/landscape_orgs.json
                          (fetch_landscape_survey.py)
-  publications           the paper, the GERI paper it builds on and the two
-                         Zenodo records, from data/raw/J-GENNI/publications.json
+  publications           the paper, the GERI paper it builds on, the two
+                         Zenodo records, and Karns et al. (2026)'s EGU abstract
+                         and Data Commons collection on the harmonized products,
+                         from data/raw/J-GENNI/publications.json
                          (fetch_geri_papers.py)
 
 Run after load_geri_sites.py (the networks vocabulary must be loaded).
@@ -123,7 +125,7 @@ def main() -> int:
     orgs = org_rows()
     papers = json.loads(PAPERS.read_text())
     pub_rows = [(sha16("doi:" + p["doi"]), p["doi"], p["title"], p.get("abstract"), p["pub_year"],
-                 p["pub_type"], p.get("journal"), None, 0, p["url"], p["registry"],
+                 p["pub_type"], p.get("journal"), p.get("venue"), 0, p["url"], p["registry"],
                  papers["retrieved_at"]) for p in papers["publications"]]
     prof_rows = [(n, v, r, var, prod, sites, notes, AS_OF, PAPER_DOI)
                  for n, v, r, var, prod, sites, notes in RI_PROFILES]

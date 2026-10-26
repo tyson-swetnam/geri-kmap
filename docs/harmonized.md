@@ -31,6 +31,37 @@ The products name **117 site ids**, and all of them resolve. Two pairs share a s
 
 Coverage rows for a site with two series are added together: earliest first value, latest last value, summed counts.
 
+## How the products are made, and how to cite them
+
+GERI domain experts made the products, using transformation scripts they wrote to map each RI's source files into a common GERI target schema. Two 2026 works by Karns et al. describe and archive them:
+
+- **Karns, T., C. Hagen, K. Deshpande, M. SanClements, C. Laney, B. Ruddell, H. Loescher and T. Swetnam. 2026.** "Using artificial intelligence to automate and expedite the harmonization of environmental data." EGU General Assembly 2026, Vienna, session ESSI2.5, EGU26-12357. [https://doi.org/10.5194/egusphere-egu26-12357](https://doi.org/10.5194/egusphere-egu26-12357) (CC BY 4.0)
+
+  The abstract presents an agentic system built on large language models (LLMs). It reads raw datasets and their metadata, interprets what each variable means, and writes a transformation pipeline for it. The system was tuned on part of GERI's hand-harmonized data from NEON, ICOS, TERN, SAEON and eLTER. It was evaluated against the manual workflow for accuracy, time and labour, and preservation of data integrity. The abstract reports no results.
+- **Karns, T. D., C. J. Hagen, K. Deshpande, M. D. SanClements, C. Laney, B. L. Ruddell, H. W. Loescher and T. L. Swetnam. 2026.** "Autonomous LLM-agent harmonization of environmental data across global research infrastructures (GERI): input data, metadata, human reference harmonization, target schema, and agent decision logs." CyVerse Data Commons. [https://doi.org/10.25739/e9d8-ee77](https://doi.org/10.25739/e9d8-ee77) ([landing page](https://dc.cyverse.org/dataset/autonomous_llm-agent_harmonization_of_environmental_data_across_global_research_infrastructures_geri))
+
+  This collection is the study's supplementary research object. It holds:
+  - the agents' raw input data and the RIs' source metadata;
+  - the human-expert reference harmonization;
+  - the GERI target schema;
+  - the agents' decision and quality-control logs;
+  - the validation tables;
+  - citations for all 121 source datasets (`A_source_data_citations.csv`).
+
+  The components GERI produced are CC0 1.0; redistributed source data keep their own licences. The code is at [https://github.com/GERI-Drought-Pilot/geri-ai-harmonization](https://github.com/GERI-Drought-Pilot/geri-ai-harmonization).
+
+The collection's reference is these products: its README names `geri/geri-harmonized/` as the host of the human-expert harmonization that served as ground truth, which the agents had no access to during harmonization. The collection archives three versions of the five products:
+
+| Version | RIs | Notes from the collection's README |
+|---|---|---|
+| March 2026 | NEON, SAEON, TERN, eLTER (no ICOS) | Soil water content as a fraction (0–1), one row per depth, camelCase names. The study's accuracy figures were validated against this version. |
+| May 2026 | NEON, ICOS, SAEON, TERN, EFTEON (no eLTER) | Soil water content in percent, depths aggregated, snake_case names |
+| July 2026 | (not described) | Not described in the README. Its files are close in size to the current Data Store files but not identical: within 0.02% for the four time series and 1.5% for soil texture (air temperature 298,434,984 bytes, against 298,429,902 now). |
+
+The catalogue summarizes the files on the Data Store now (see the table above). They are not byte-identical to any archived version.
+
+**To cite the harmonized products,** cite the Data Commons collection by its DOI. Also cite each source dataset you use, as `A_source_data_citations.csv` lists them; the collection notes that TERN citations are provisional and eLTER citations partial. Each harmonized product in the **Data** tab (archive *GERI collection, CyVerse Data Store*) carries this citation. Both records are in the `publications` table.
+
 ## How ids are resolved
 
 1. **Reviewed rows first.** `data/seed/geri_harmonized_site_map.csv` gives a scheme, value, source and evidence for each id the rules below cannot place, or would place wrongly.

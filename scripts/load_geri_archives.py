@@ -32,7 +32,10 @@ It also writes one data_products row per GERI harmonized file under
 ``geri-harmonized/`` (from
 ``data/raw/R-GERI-HARMONIZED/datastore_listing.json``, written by
 fetch_geri_datastore.py). Metadata and links only: no observation is
-copied.
+copied. Each row's description and citation point to Karns et al. (2026):
+the CyVerse Data Commons collection that archives the products as its
+human reference (doi:10.25739/e9d8-ee77) and the EGU abstract on the
+LLM-agent harmonization they validated (doi:10.5194/egusphere-egu26-12357).
 
 From ``harmonized_summary.csv`` (summarize_harmonized.py) it also writes
 ``harmonized_coverage`` -- per facility, product and variable, the first
@@ -206,6 +209,25 @@ VAR_LABEL = {"airtemperature": "air temperature", "precipitation": "precipitatio
 RES_LABEL = {"30min": "30-minute", "60min": "hourly", "monthly": "monthly", "static": "static"}
 
 
+# How the harmonized products are made and cited. The Data Commons
+# collection (README of its C_reference_harmonized/) names geri-harmonized/
+# as the human-expert reference and archives March, May and July 2026
+# versions of the five products, with the 121 source-dataset citations.
+KARNS_DATA_DOI = "10.25739/e9d8-ee77"
+KARNS_EGU_DOI = "10.5194/egusphere-egu26-12357"
+HARMONIZED_DESCRIPTION = (     # the Data tab shows 220 characters: DOIs first
+    f"Cite: Karns et al. 2026, doi:{KARNS_DATA_DOI} (CyVerse Data Commons; archives this "
+    f"human-expert harmonization as its reference). Method: Karns et al. 2026, EGU26-12357, "
+    f"doi:{KARNS_EGU_DOI}. Harmonized by GERI domain experts into the GERI target schema; the "
+    "collection also lists citations for the 121 source datasets, which must be cited too.")
+HARMONIZED_CITATION = (
+    "Karns, T. D., C. J. Hagen, K. Deshpande, M. D. SanClements, C. Laney, B. L. Ruddell, "
+    "H. W. Loescher and T. L. Swetnam. 2026. Autonomous LLM-agent harmonization of environmental "
+    "data across global research infrastructures (GERI): input data, metadata, human reference "
+    "harmonization, target schema, and agent decision logs. CyVerse Data Commons. "
+    f"https://doi.org/{KARNS_DATA_DOI}. Cite the source datasets too (A_source_data_citations.csv).")
+
+
 def product_id(name: str) -> str:
     return hashlib.sha1(f"geri-cyverse|{name}".encode()).hexdigest()[:16]
 
@@ -230,6 +252,7 @@ def main() -> int:
             "source": "scripts/fetch_geri_datastore.py", "retrieved_at": listing["retrieved_at"],
             "confidence": "high",
             "notes": f"{f['size']:,} bytes" if f.get("size") else None,
+            "description": HARMONIZED_DESCRIPTION, "citation": HARMONIZED_CITATION,
         })
     con = geri_db.connect(catalog=args.catalog, data=args.lake_data)
     con.execute("SET TimeZone = 'UTC'")   # summary timestamps are UTC; dates stay midnight

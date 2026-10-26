@@ -30,7 +30,7 @@ The schema is lto's (itself cod-kmap's), with four GERI tables added. Constraint
 - **harmonized_coverage** (`facility_id`, `product_id`, `variable`, `first_ts`, `last_ts`, `n_obs`): what the GERI harmonized products hold for each site. It is derived from the parquet on the Data Store; the observations are not copied.
 - **ri_profiles** (`network_id`, `data_volume_tib`, `data_rate_tib_year`, `data_variety`, `n_data_products`, `paper_site_count`, `notes`, `as_of`, `source_doi`): each RI as Loescher et al. (2026) describe it (Table 1, Figure 1).
 - **network_organizations**: the 251 organizations of that paper's landscape survey plus the Mexican networks of its GENNI use case, with scope, region, country (ISO-2 when one), functions (observation, aggregation, network), `genni_case`, and `network_id` when the organization is a network the catalogue holds. See [GERI & GENNI](genni.md).
-- **publications** (lto's table, otherwise empty here): the paper, the GERI paper it builds on and the two Zenodo records it cites.
+- **publications** (lto's table, otherwise empty here): that paper, the GERI paper it builds on, the two Zenodo records it cites, and Karns et al. (2026)'s EGU abstract and Data Commons collection on the harmonized products.
 
 ## Views
 

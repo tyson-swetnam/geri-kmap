@@ -51,7 +51,8 @@
     "Nena Elizabeth Bloom",
     "Alison Specht"
    ],
-   "registry": "crossref"
+   "registry": "crossref",
+   "venue": null
   },
   {
    "doi": "10.1002/ecs2.4262",
@@ -84,7 +85,8 @@
     "Samantha R. Weintraub‐Leff",
     "Di Yang"
    ],
-   "registry": "crossref"
+   "registry": "crossref",
+   "venue": null
   },
   {
    "doi": "10.5281/zenodo.17717896",
@@ -102,7 +104,8 @@
     "Morris, Beryl",
     "Loescher, Henry"
    ],
-   "registry": "datacite"
+   "registry": "datacite",
+   "venue": null
   },
   {
    "doi": "10.5281/zenodo.17726569",
@@ -133,7 +136,56 @@
     "Lopez Portillo, Melissa",
     "Yepez, Enrico A."
    ],
-   "registry": "datacite"
+   "registry": "datacite",
+   "venue": null
+  },
+  {
+   "doi": "10.5194/egusphere-egu26-12357",
+   "cited_for": "Karns et al. (2026), EGU: LLM-agent harmonization of GERI data, validated against the GERI harmonized products",
+   "title": "Using artificial intelligence to automate and expedite the harmonization of environmental data",
+   "pub_year": 2026,
+   "pub_type": "posted-content",
+   "journal": null,
+   "volume": null,
+   "article_number": null,
+   "url": "https://doi.org/10.5194/egusphere-egu26-12357",
+   "abstract": "Data harmonization–the process of unifying disparate datasets into compatible formats and comparable units–is critical for global environmental research but remains prohibitively time-consuming and expensive. While many global environmental datasets could be assembled from existing available data, potentially offering transformative insight in pressing environmental issues, the exhaustive efforts to harmonize data is currently unfeasible for most scientific funding cycles. For example, cross-network studies (such as those between the U.S. National Ecological Observatory Network (NEON), the European Integrated Carbon Observation System (ICOS), and the Australian Terrestrial Ecosystem Research Network (TERN)) requires weeks-to-years of manual schema mapping, unit conversions, alignment, quality flag standardization for even a small number of data products, and more effort needed before any analyses can begin. Here, we present a large language model (LLM)-based agentic system designed to automate many of these data harmonization steps by leveraging semantic understanding of scientific metadata and documentation. This system is designed to ingest raw datasets and metadata, interpret variable semantics within scientific contexts, and generate tailored transformation pipelines. We tune this approach using a subset of previously manually harmonized environmental data from NEON, ICOS, and TERN, as well as the South African Environmental Observation Network (SAEON) and the Integrated European Long-Term Ecosystem, Critical Zone and Socio-Ecological Research Infrastructure (eLTER), as part of an effort by the Global Ecosystem Research Infrastructure (GERI) to build globally harmonized ecological drought datasets. Using these harmonized ecological drought datasets from across the globe, we test the efficacy of this LLM-based agentic system measuring accuracy, time/labor efficiencies, and data integrity preservation as compared to manual data harmonization workflows. Pressing global environmental challenges require rapid synthesis of global environmental data. By reducing data harmonization time from months to hours, these artificial intelligence (AI) tools will enable scientists to focus on analysis and modeling rather than data wrangling, ultimately accelerating research in these critical areas of global environmental science.",
+   "license": null,
+   "authors": [
+    "Tyler Karns",
+    "Cedric Hagen",
+    "Krutika Deshpande",
+    "Michael SanClements",
+    "Christine Laney",
+    "Benjamin Ruddell",
+    "Henry Loescher",
+    "Tyson Swetnam"
+   ],
+   "registry": "crossref",
+   "venue": "EGU General Assembly 2026, Vienna, 3-8 May 2026; session ESSI2.5, abstract EGU26-12357"
+  },
+  {
+   "doi": "10.25739/e9d8-ee77",
+   "cited_for": "Karns et al. (2026), CyVerse Data Commons: the inputs, human reference harmonized products, target schema and agent logs of that study",
+   "title": "Autonomous LLM-agent harmonization of environmental data across global research infrastructures (GERI): input data, metadata, human reference harmonization, target schema, and agent decision logs",
+   "pub_year": 2026,
+   "pub_type": "dataset",
+   "journal": "CyVerse Data Commons",
+   "url": "https://doi.org/10.25739/e9d8-ee77",
+   "abstract": "This collection is the supplementary research object for a study in which large language model (LLM) agents autonomously harmonize environmental data across five global research infrastructures (NEON, ICOS, TERN, SAEON, and eLTER). It contains five components: (A) the exact raw input-data snapshot the agents consumed; (B) the source metadata (sensor positions, variable dictionaries, site tables, NetCDF attributes); (C) the human-expert reference harmonized dataset (March and May 2026 versions) used to validate the agent output; (D) the a-priori GERI target schema; (E) the per-run agent decision and quality-control logs; (F) the validation matrix data. Per-dataset citations for all 121 source datasets are in A_source_data_citations.csv, and 00_README.md describes the full layout and how to reuse each component. GERI-produced components are released under CC0 1.0; redistributed source datasets retain their own licenses (see the citations file).",
+   "license": null,
+   "authors": [
+    "Karns, Tyler D.",
+    "Hagen, Cedric J.",
+    "Deshpande, Krutika",
+    "SanClements, Michael D.",
+    "Laney, Christine",
+    "Ruddell, Benjamin L.",
+    "Loescher, Henry W.",
+    "Swetnam, Tyson L."
+   ],
+   "registry": "datacite",
+   "venue": null
   }
  ]
 }

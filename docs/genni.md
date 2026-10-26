@@ -1,6 +1,6 @@
 # GERI and GENNI
 
-Loescher, H. W., M. SanClements, C. Laney, et al. 2026. "Toward a Global Ecosystem Network-of-Networks: Team Science as a Pathway for Equitable Macrosystem Collaboration." *Ecosphere* 17(10): e70789. https://doi.org/10.1002/ecs2.70789 (CC BY 4.0)
+Loescher, H. W., M. SanClements, C. Laney, et al. 2026. "Toward a Global Ecosystem Network-of-Networks: Team Science as a Pathway for Equitable Macrosystem Collaboration." *Ecosphere* 17(10): e70789. [https://doi.org/10.1002/ecs2.70789](https://doi.org/10.1002/ecs2.70789) (CC BY 4.0)
 
 The paper describes GERI's six research infrastructures (RIs) and proposes **GENNI**, a Global Ecosystem Network-of-Networks Initiative. GENNI would be a light-governance framework that links self-organizing networks of environmental networks to GERI. GERI's member RIs cover only part of the globe, with the largest gaps in the southern hemisphere and lower-income regions. The paper argues that the main barriers to joining smaller networks to the RIs are organizational and cultural, not technical. It tests team-science methods (participatory governance, distributed leadership, a code of conduct) in a November 2024 workshop with five Mexican networks. A landscape survey found 223 organizations in 41 countries that could partner with GERI.
 
@@ -48,7 +48,7 @@ All five are rows of `network_organizations` with `genni_case = true`. Figure 3 
 
 ## The landscape survey (Table 3)
 
-Table `network_organizations`. The survey is published as Ceron Castano, Specht, Morris and Loescher, "Terrestrial Ecosystem Observatories", https://doi.org/10.5281/zenodo.17717896 (CC BY 4.0). Version 2 of the spreadsheet lists **251 organizations**; the paper reports 223 from an earlier cut. `scripts/fetch_landscape_survey.py` reads the spreadsheet as published. The four Mexican networks it lacks are added from Box 1, for 255 rows.
+Table `network_organizations`. The survey is published as Ceron Castano, Specht, Morris and Loescher, "Terrestrial Ecosystem Observatories", [https://doi.org/10.5281/zenodo.17717896](https://doi.org/10.5281/zenodo.17717896) (CC BY 4.0). Version 2 of the spreadsheet lists **251 organizations**; the paper reports 223 from an earlier cut. `scripts/fetch_landscape_survey.py` reads the spreadsheet as published. The four Mexican networks it lacks are added from Box 1, for 255 rows.
 
 | By scope | Organizations |
 |---|---:|
@@ -78,7 +78,7 @@ The survey's "Republic of China" rows are mainland organizations (CERN, the Chin
 
 ## Publications
 
-`publications` holds the paper, the GERI network-of-networks paper it builds on (SanClements et al. 2022, https://doi.org/10.1002/ecs2.4262), the survey dataset and the Mexican network-of-networks vision statement (https://doi.org/10.5281/zenodo.17726569). Metadata comes from Crossref and DataCite (`scripts/fetch_geri_papers.py`).
+`publications` holds the paper, the GERI network-of-networks paper it builds on (SanClements et al. 2022, [https://doi.org/10.1002/ecs2.4262](https://doi.org/10.1002/ecs2.4262)), the survey dataset and the Mexican network-of-networks vision statement ([https://doi.org/10.5281/zenodo.17726569](https://doi.org/10.5281/zenodo.17726569)). It also holds Karns et al. (2026)'s EGU abstract and CyVerse Data Commons collection on how the GERI harmonized products are made and validated (see [Harmonized](harmonized.md)). Metadata comes from Crossref and DataCite (`scripts/fetch_geri_papers.py`).
 
 ## Queries
 
