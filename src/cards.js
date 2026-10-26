@@ -42,6 +42,9 @@ const SCHEME_LABELS = {
   'icos-station': 'ICOS',
   'fluxnet-id': 'FLUXNET',
   'ozflux-site': 'OzFlux',
+  'ausplots-site': 'AusPlots',
+  'mexflux-site': 'MexFlux',
+  'ameriflux-id': 'AmeriFlux',
   'doi': 'DOI',
   'geri-harmonized-id': 'GERI',
 };

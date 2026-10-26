@@ -10,6 +10,7 @@ icos-ocean-station,ICOS ocean station,"ICOS ocean (OS) station: ship of opportun
 supersite,TERN SuperSite,"TERN SuperSite: intensively instrumented long-term ecosystem observatory"
 plot-network,Plot network,"A network of long-term plots registered as one site (e.g. TERN LTERN / AusLTER plot networks)"
 field-station,Field station,"Permanent research station with staff and facilities (e.g. CERN field stations)"
-flux-tower,Flux tower,"Eddy-covariance flux tower outside ICOS (e.g. OzFlux, SAEON/EFTEON eddy-covariance stations)"
+flux-tower,Flux tower,"Eddy-covariance flux tower outside ICOS (e.g. OzFlux, SAEON/EFTEON eddy-covariance stations, MexFlux)"
 weather-station,Weather station,"Automatic weather station run as an observatory station (e.g. SAEON / EFTEON Terrestrial Observations Monitor)"
 marine-site,Marine site,"Coastal or offshore observation site (e.g. SAEON sentinel sites, climate arrays)"
+surveillance-plot,Surveillance plot,"TERN Ecosystem Surveillance (AusPlots) plot: a permanent 1 ha plot of vegetation and soil, revisited over time"

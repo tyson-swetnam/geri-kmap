@@ -19,3 +19,6 @@ efteon-maputaland,EFTEON Maputaland,Maputaland landscape (northern KwaZulu-Natal
 efteon-kimtri,EFTEON KIMTRI,KIMTRI landscape (Kimberley area; Northern Cape and western Free State),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
 efteon-northern-drakensberg,EFTEON Northern Maluti-Drakensberg,Northern Maluti-Drakensberg landscape (Cathedral Peak and surrounds),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
 efteon-lowveld,EFTEON Lowveld,Lowveld landscape (Mpumalanga),ri-component,https://efteon.saeon.ac.za/landscapes/,efteon
+tern-surveillance,TERN Ecosystem Surveillance plots,AusPlots surveillance monitoring plots,ri-component,https://www.tern.org.au/tern-observatory/ecosystem-surveillance-and-environmental-monitoring/,tern
+genni,GENNI,Global Ecosystem Network-of-Networks Initiative (proposed; Loescher et al. 2026),network-of-networks,https://doi.org/10.1002/ecs2.70789,
+mexflux,MexFlux,Mexican ecosystem-atmosphere flux network (GENNI use case; not a GERI member),environmental-network,https://mexflux.gitlab.io/,genni

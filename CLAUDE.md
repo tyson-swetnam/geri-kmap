@@ -29,6 +29,10 @@ python scripts/fetch_icos.py                  # ICOS ES/AS/OS stations with a st
 python scripts/fetch_ozflux.py                # OzFlux towers from TERN THREDDS (L3 global attributes via .das)
 python scripts/fetch_saeon_stations.py        # every SAEON / EFTEON Observations Monitor station (DataCite, prefix 10.15493)
 python scripts/fetch_elter_dar.py             # eLTER DAR records counted per DEIMS site → data/raw/J-GERI/dar_site_records.json
+python scripts/fetch_ausplots.py              # TERN surveillance plots from the public AusPlots API (visits → one record per plot)
+python scripts/fetch_mexflux.py               # MexFlux towers (GENNI, not GERI): site table + map, AmeriFlux points; no PI contacts
+python scripts/fetch_landscape_survey.py      # Loescher et al. 2026 partner-organization survey (Zenodo 17717896) + Box 1 networks
+python scripts/fetch_geri_papers.py           # Crossref/DataCite records of the cited papers and datasets → data/raw/J-GENNI/publications.json
 python scripts/fetch_geri_datastore.py        # GERI Data Store (anonymous WebDAV): harmonized site list, eLTER/SAEON metadata, file listing
 python scripts/summarize_harmonized.py --download   # harmonized parquet (~1 GB, data/cache/) → committed harmonized_summary.csv; only when the products change
 python scripts/load_geri_sites.py             # data/raw/R-GERI-* → lake (owns every R-GERI-* facility; assigns harmonized ids)
@@ -36,6 +40,7 @@ python scripts/apply_facility_fixes.py        # data/seed/facility_fixes.csv —
 python scripts/import_lto_archives.py         # lto's records for archives that serve GERI sites → data/raw/J-LTO/ (rarely)
 python scripts/check_endpoints.py             # request every archive / endpoint / bucket URL → data/seed/endpoint_checks.csv
 python scripts/load_geri_archives.py          # data-access layer (J-LTO + J-GERI, checks applied, site links) + harmonized products/coverage — after load_geri_sites
+python scripts/load_geri_paper.py             # ri_profiles (paper Table 1), network_organizations, publications — after load_geri_sites
 python scripts/qa.py                          # the correctness gate (non-zero on failure)
 python scripts/export_parquet.py              # lake → public/parquet/, public/facilities.geojson
 python scripts/export_view_caches.py          # → public/cache/browse_cards.json
@@ -44,11 +49,11 @@ python scripts/build_country_bbox.py          # Natural Earth → schema/vocab/c
 python -m http.server 5173                    # web UI
 ```
 
-The canonical sequence after a data change is: `load_geri_sites.py` → `apply_facility_fixes.py` → `load_geri_archives.py` → `qa.py` → `export_parquet.py` → `export_view_caches.py` → `cp schema/vocab/*.csv public/vocab/`. `load_geri_sites.py` rewrites every facility it owns, so it overwrites the fixes; re-run `apply_facility_fixes.py` after it every time.
+The canonical sequence after a data change is: `load_geri_sites.py` → `apply_facility_fixes.py` → `load_geri_archives.py` → `load_geri_paper.py` → `qa.py` → `export_parquet.py` → `export_view_caches.py` → `cp schema/vocab/*.csv public/vocab/`. `load_geri_sites.py` rewrites every facility it owns, so it overwrites the fixes; re-run `apply_facility_fixes.py` after it every time.
 
 There is no test framework. `qa.py` is the only correctness gate; add new invariants there rather than introducing pytest. Its JS parse check needs `node` on PATH. QA checks:
 - every PRIMARY KEY / UNIQUE / FOREIGN KEY / CHECK / NOT NULL in `schema/schema.sql`, against the lake;
-- every facility is in GERI or a continental RI;
+- every facility is in GERI or a continental RI, or in a GENNI environmental network (MexFlux), and no GENNI site is in GERI;
 - no `site_identifiers` value (deims-id, neon-site, icos-station, geri-harmonized-id) names two facilities;
 - every id in the harmonized site list resolves to a facility, or has a reviewed `unresolved` row. A harmonized id more than 25 km from its facility is a warning: it means a CSV point error or a mislabelled id.
 - every point falls inside a Natural Earth box of its country. Marine sites, ICOS ocean stations and stations south of 60° S are exempt.
@@ -85,6 +90,13 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
   - SAEON/EFTEON stations: every Observations Monitor DOI from DataCite (`fetch_saeon_stations.py`), `sha1("doi:" + doi)`. EFTEON by creator or an 'EFTEON …' subject; the landscape comes from `EFTEON_LANDSCAPE`. Types are `weather-station` and `flux-tower`.
   - CERN stations DEIMS lacks come from CERN's brochure (`data/seed/cern_stations.csv`, `sha1("cern:" + name)`); today only Daya Bay.
   - When a DEIMS point lies more than 50 km from the ICOS station the site holds, the ICOS coordinates win (Monte Bondone, Hetzdorf, Las Majadas).
+  - TERN surveillance plots (`fetch_ausplots.py`): one facility per AusPlots `site_location_name`, `sha1("ausplots:" + name)`, type `surveillance-plot`, network `tern-surveillance`. 820 published plots; the API's statistics count 954 sites, but `/site` serves published visits only. This closes the gap to the paper's TERN count (about 800).
+- **GENNI (Loescher et al. 2026, doi:10.1002/ecs2.70789).** The paper proposes GENNI, a network-of-networks linked to GERI. `networks` holds `genni` (level `network-of-networks`) and `mexflux` (level `environmental-network`, parent `genni`). MexFlux towers (`sha1("mexflux:" + id)`, agent `R-GENNI-MEXFLUX`) are in `mexflux` + `genni`, never `geri`. The loader owns agents `R-GERI-*` and `R-GENNI-*`. Everything that lists a site's RIs reads `level IN ('continental-ri', 'environmental-network')`: `v_facility_geri` (schema.sql and db.js), `query()` in db.js, and export_parquet's `primary_ri`. Keep all of these in step. The scope lens is "All sites" (it includes MexFlux), plus a MexFlux lens; `RI_COLORS.mexflux` is green. `load_geri_paper.py` writes:
+  - `ri_profiles` (Table 1, transcribed in `RI_PROFILES`);
+  - `network_organizations` (the survey's 251 organizations as published in Zenodo V2, where the paper says 223, plus the four Box 1 networks the survey lacks);
+  - `publications`.
+
+  See `docs/genni.md`.
 - **Harmonized ids.** `resolve_harmonized()` tries, in order:
   1. the reviewed `data/seed/geri_harmonized_site_map.csv` (every row has evidence);
   2. NEON `US-ABBY` → neon-site ABBY;
@@ -101,13 +113,13 @@ There is no test framework. `qa.py` is the only correctness gate; add new invari
 - **Two sources.** `data/raw/J-GERI/{archives,api_endpoints}.json` is curated, and every row cites its `source_url`; `archive_overrides` corrects imported archives (e.g. NEON's token requirement). `data/raw/J-LTO/` is a faithful copy of lto's rows for the GERI-relevant archives. The loader reads J-LTO, then J-GERI; the same archive and URL means J-GERI wins.
 - **Checks decide what loads.** `check_endpoints.py` writes `data/seed/endpoint_checks.csv`, and the loader skips rows whose verdict is `gone`. An endpoint's `access_mode` is the curated one, else follows from its check (auth → registered-users, ok → public-read). A bucket's access is what an anonymous listing showed, overriding lto's claim, with a note saying so. An archive with no stated access takes the strictest of its checked endpoints.
 - **lto's bucket table was fixed at source.** Four of its five buckets for these archives did not exist (2026-10-25). lto#26 (`f08a3d3`) added `scripts/check_cloud_buckets.py` there and corrected the table. Re-import with `import_lto_archives.py --lto <a checkout of lto main>`: `../lto` may be on another branch. The loader still drops anything `check_endpoints.py` finds gone.
-- **Site links:** `SITE_LINKS` / `NETWORK_LINKS` in `load_geri_archives.py` map identifier schemes to archives and entry-URL templates. eLTER DAR links come from `dar_site_records.json` (`DAR_SEARCH`): only sites with records are linked, primary for eLTER members. The DAR's `siteReferences[].siteID` is the DEIMS uuid.
+- **Site links:** `SITE_LINKS` / `NETWORK_LINKS` in `load_geri_archives.py` map identifier schemes to archives and entry-URL templates (`ausplots-site` → `tern-ausplots`, `ameriflux-id` → `ameriflux`). eLTER DAR links come from `dar_site_records.json` (`DAR_SEARCH`): only sites with records are linked, primary for eLTER members. The DAR's `siteReferences[].siteID` is the DEIMS uuid.
 
 ### Known gaps (next waves)
 
 - **More duplicates** may surface as sources grow. Find candidates by same name within about 10 km across sources; a reviewed seed row merges them.
 - **CERN completeness:** DEIMS's 42 plus the brochure's Daya Bay. CERN's English site (www.cern.ac.cn:8080) was unreachable; check it for a current list.
-- **Frontend:** the map colours by RI by default (`RI_COLORS` in `src/map.js`, hues validated with the dataviz palette script). `primary_ri` is the RI whose label `load_geri_sites.py` writes to `facilities.parent_org` (its `RI_ORDER`); `export_parquet.py`'s GeoJSON and `query()` in `src/db.js` derive it identically. Browse cards and map popups show registry ids and harmonized coverage. Both read the site's card from `browse_cards.json` through `src/cards.js` (one loader, one set of labels); the card SQL is the `ids` / `cov` CTEs in both `BROWSE_SQL` and `list.js`.
+- **Frontend:** the map colours by RI by default (`RI_COLORS` in `src/map.js`, hues validated with the dataviz palette script). `primary_ri` is the RI whose label `load_geri_sites.py` writes to `facilities.parent_org` (its `RI_ORDER`); `export_parquet.py`'s GeoJSON and `query()` in `src/db.js` derive it identically. Browse cards and map popups show registry ids and harmonized coverage. A popup links to the site's Browse card (`#/browse/<facility_id>`: `focusCard()` in `list.js` clears a hiding search, pages far enough, highlights and scrolls) and to each holding archive's Data card (`#/data/<archive_id>`), from the card's `archive_list`. Both read the site's card from `browse_cards.json` through `src/cards.js` (one loader, one set of labels); the card SQL is the `ids` / `cov` CTEs in both `BROWSE_SQL` and `list.js`.
 
 ## MESA project on the CyVerse Data Store
 

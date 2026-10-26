@@ -8,26 +8,26 @@ cloud_buckets,entity,scripts/load_geri_archives.py,"Cloud object-storage buckets
 coauthor_candidates,registry,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). People seen as co-authors of registry members in the OpenAlex harvest who are not yet in the registry.
 coauthor_edges,registry,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Co-authorship between pairs of registry members, with an exemplar work and provenance for each edge."
 collaborations,derived,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Co-publication counts between pairs of catalogued people, with first and last year."
-data_archives,entity,scripts/load_geri_archives.py,"Data archives and services that hold GERI site data: RI portals and APIs (NEON, ICOS, DEIMS-SDR, eLTER DAR, TERN, OzFlux, SAEON, CNERN), global services and the GERI Data Store, each with its access mode and last check."
+data_archives,entity,scripts/load_geri_archives.py,"Data archives and services that hold GERI site data: RI portals and APIs (NEON, ICOS, DEIMS-SDR, eLTER DAR, TERN, TERN AusPlots, OzFlux, SAEON, CNERN), AmeriFlux, global services and the GERI Data Store, each with its access mode and last check."
 data_formats,vocabulary,schema/vocab/data_formats.csv,File and service formats used by data products.
 data_licenses,vocabulary,schema/vocab/data_licenses.csv,Licences and data-use policies that apply to archives and products.
 data_products,entity,scripts/load_geri_archives.py,"GERI harmonized datasets on the CyVerse Data Store, one row per file, with period and variables. Metadata and links only."
 ecosystem_types,vocabulary,schema/vocab/ecosystem_types.csv,Ecosystem-type facet for facilities.
-facilities,entity,scripts/load_geri_sites.py; scripts/apply_facility_fixes.py,"Sites of the GERI research infrastructures (NEON, eLTER, ICOS, TERN, SAEON/EFTEON, CERN): one row per site with type, country (where the site is), point and year established."
+facilities,entity,scripts/load_geri_sites.py; scripts/apply_facility_fixes.py,"Sites of the GERI research infrastructures (NEON, eLTER, ICOS, TERN including its surveillance plots, SAEON/EFTEON, CERN) and the MexFlux towers of the GENNI use case: one row per site with type, country (where the site is), point and year established."
 facility_archives,link,scripts/load_geri_archives.py,"Which archives hold data for each site, with a per-site entry URL (NEON explorer, ICOS station page, DEIMS record, OzFlux THREDDS catalog, SAEON landing page, eLTER Digital Asset Register search with record count and a sample DOI)."
 facility_ecosystems,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Ecosystem types assigned to each facility.
 facility_life_zones,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Holdridge life zones assigned to each facility.
 facility_personnel,link,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Roles people hold at facilities, with title, dates and the source page."
 facility_regions,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Which overlay regions each facility falls inside.
 facility_spheres,link,scripts/load_geri_sites.py,"Primary and secondary spheres (atmosphere, cryosphere, terrestrial, arid, agriculture, ocean/estuarine, freshwater) of each site, from DEIMS biome fields, ICOS station type and NEON habitat."
-facility_types,vocabulary,schema/vocab/facility_types.csv,"Facility-type vocabulary for GERI sites (LTER site, LTSER platform, ICOS station kinds, NEON site kinds, SuperSite, flux tower and others)."
+facility_types,vocabulary,schema/vocab/facility_types.csv,"Facility-type vocabulary for GERI sites (LTER site, LTSER platform, ICOS station kinds, NEON site kinds, SuperSite, surveillance plot, flux tower and others)."
 funders,entity,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Organisations that fund facilities.
 funding_events,entity,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Individual awards and budget lines linking a funder to a facility, with amount, fiscal year and source."
 funding_links,derived,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Flattened funder-to-facility funding rows, exported from a view for the map popups."
 life_zones,vocabulary,schema/vocab/life_zones.csv,Holdridge life-zone vocabulary.
 locations,entity,scripts/load_geri_sites.py,"Points of each site, one per source that gives coordinates (DEIMS site, NEON site, ICOS station, OzFlux tower, SAEON station)."
 network_membership,link,scripts/load_geri_sites.py,"Which GERI research infrastructures and components (ICOS ES/AS/OS, NEON terrestrial/aquatic, OzFlux) each site belongs to."
-networks,vocabulary,schema/vocab/networks.csv,"GERI, its six research infrastructures plus EFTEON, and their components, with parent links."
+networks,vocabulary,schema/vocab/networks.csv,"GERI, its six research infrastructures plus EFTEON, and their components; GENNI and MexFlux (Loescher et al. 2026); with parent links."
 people,entity,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Researchers and staff tied to facilities or projects, with ORCID and OpenAlex identifiers where verified."
 person_areas,derived,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Research areas inherited by each person from the facilities they belong to.
 person_identity_source,registry,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Provenance for every identifier in the person registry: which source asserted it and how.
@@ -38,7 +38,7 @@ project_personnel,link,(none in geri-kmap; table kept from the lto schema),"Empt
 projects,entity,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Projects and sub-projects listed by the ARID Institute, with extent, location precision and source page."
 provenance,entity,scripts/load_geri_sites.py; scripts/apply_facility_fixes.py,"Source URL, retrieval date, confidence and agent for each site record, one row per source."
 publication_topics,entity,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). OpenAlex topics, concepts and keywords attached to each publication, with scores."
-publications,entity,(none in geri-kmap; table kept from the lto schema),"Empty in geri-kmap (lto schema). Publications by catalogued people, with year, venue, DOI and citation count."
+publications,entity,scripts/load_geri_paper.py,"Papers and datasets the catalogue draws on: Loescher et al. (2026) on GERI and GENNI, the GERI network-of-networks paper it builds on, and the Zenodo records of its landscape survey and Mexican vision statement, with DOI, year, venue and abstract."
 region_area_links,link,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Research areas associated with overlay regions.
 regions,entity,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Overlay polygons as first-class records.
 registry_collaborations,registry,(none in geri-kmap; table kept from the lto schema),Empty in geri-kmap (lto schema). Co-publication counts between pairs of person-registry members.
@@ -47,3 +47,5 @@ research_areas,vocabulary,schema/vocab/research_areas.csv,Research-area vocabula
 spheres,vocabulary,schema/vocab/spheres.csv,The seven spheres used to classify sites.
 site_identifiers,entity,scripts/load_geri_sites.py,"Every identifier a GERI site carries across registries (DEIMS-SDR id, NEON site code, ICOS station, GERI harmonized-product id, network site codes), each with the URL it was read from."
 harmonized_coverage,derived,scripts/load_geri_archives.py,"Per site and variable, the period and number of observations the GERI harmonized products hold, derived from the parquet on the CyVerse Data Store."
+ri_profiles,entity,scripts/load_geri_paper.py,"Each GERI research infrastructure as Loescher et al. (2026, Ecosphere, Table 1 and Figure 1) describe it: data held (TiB to January 2025), yearly growth, data variety, number of data products and the site count the paper maps."
+network_organizations,registry,scripts/load_geri_paper.py,"Organizations that could partner with GERI: the 251 observatories, networks and data aggregators of the landscape survey behind Loescher et al. (2026, Table 3; Zenodo 10.5281/zenodo.17717896) and the Mexican networks of its GENNI use case, with scope, country and function. Organizations, not sites."

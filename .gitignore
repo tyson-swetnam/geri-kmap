@@ -31,6 +31,10 @@ db/parquet/*.parquet
 !data/raw/J-GERI/*.json
 !data/raw/J-LTO/
 !data/raw/J-LTO/*.json
+!data/raw/R-GENNI-*/
+!data/raw/R-GENNI-*/*.json
+!data/raw/J-GENNI/
+!data/raw/J-GENNI/*.json
 data/cache/
 
 # Large raster deliverables — too big for GitHub without LFS.

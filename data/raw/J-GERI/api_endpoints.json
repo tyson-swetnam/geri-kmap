@@ -449,6 +449,34 @@
    "access_mode": "registered-users",
    "source_url": "https://www.neonscience.org/resources/learning-hub/tutorials/neon-api-tokens-tutorial",
    "retrieved_at": "2026-10-25"
+  },
+  {
+   "archive_id": "tern-ausplots",
+   "path_or_url": "http://swarmapi.ausplots.aekos.org.au/site?site_location_name=eq.{ausplots-site}",
+   "method": "GET",
+   "purpose": "metadata",
+   "response_format": "application/json",
+   "schema_url": "http://swarmapi.ausplots.aekos.org.au/",
+   "example_call": "curl 'http://swarmapi.ausplots.aekos.org.au/site?site_location_name=eq.NTADAC0001&select=site_location_name,visit_start_date,latitude,longitude'",
+   "check_url": "http://swarmapi.ausplots.aekos.org.au/site?site_location_name=eq.NTADAC0001&select=site_location_name,latitude,longitude",
+   "notes": "One row per published visit of a surveillance plot; PostgREST filters (eq., select=, order=, limit/offset). geri-kmap's ausplots-site ids are the site_location_name values.",
+   "access_mode": "public-read",
+   "source_url": "http://swarmapi.ausplots.aekos.org.au/",
+   "retrieved_at": "2026-10-26"
+  },
+  {
+   "archive_id": "ameriflux",
+   "path_or_url": "https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux",
+   "method": "GET",
+   "purpose": "search",
+   "response_format": "application/json",
+   "schema_url": null,
+   "example_call": "curl https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux",
+   "check_url": "https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux",
+   "notes": "Every AmeriFlux site with its point, IGBP class, climate and tower years (fetch_mexflux.py reads it for the MexFlux towers).",
+   "access_mode": "public-read",
+   "source_url": "https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux",
+   "retrieved_at": "2026-10-26"
   }
  ]
 }

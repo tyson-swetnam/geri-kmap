@@ -346,7 +346,9 @@ def check_geri(conn, failures: list[str]) -> None:
     """GERI site-layer invariants.
 
     * every facility is a member of GERI or of a continental-ri network
-      (DEIMS lists some sites in its GERI network and no RI network);
+      (DEIMS lists some sites in its GERI network and no RI network), or
+      of an environmental-network under GENNI (MexFlux; Loescher et al.
+      2026) -- and a GENNI site is never also in the GERI network;
     * a harmonized-pipeline site id names exactly one facility, and a
       DEIMS id likewise (two facilities with one DEIMS id is a split
       site the loader should have kept together);
@@ -358,10 +360,17 @@ def check_geri(conn, failures: list[str]) -> None:
         """SELECT canonical_name FROM facilities f WHERE NOT EXISTS (
              SELECT 1 FROM network_membership nm JOIN networks n USING (network_id)
              WHERE nm.facility_id = f.facility_id
-               AND (n.level = 'continental-ri' OR n.network_id = 'geri'))
+               AND (n.level = 'continental-ri' OR n.network_id = 'geri'
+                    OR (n.level = 'environmental-network' AND n.parent_id = 'genni')))
            ORDER BY 1""").fetchall()
-    assert_true(not no_ri, f"{len(no_ri)} facilities belong neither to GERI nor to a GERI "
-                           f"research infrastructure: {[r[0] for r in no_ri[:5]]}", failures)
+    assert_true(not no_ri, f"{len(no_ri)} facilities belong neither to GERI, nor to a GERI "
+                           f"research infrastructure, nor to a GENNI network: "
+                           f"{[r[0] for r in no_ri[:5]]}", failures)
+    both = conn.execute(
+        """SELECT count(DISTINCT a.facility_id) FROM network_membership a
+           JOIN network_membership b USING (facility_id)
+           WHERE a.network_id = 'genni' AND b.network_id = 'geri'""").fetchone()[0]
+    assert_true(both == 0, f"{both} GENNI sites are also in the GERI network", failures)
     for scheme in ("geri-harmonized-id", "deims-id", "neon-site", "icos-station"):
         split = conn.execute(
             """SELECT value, count(DISTINCT facility_id) FROM site_identifiers

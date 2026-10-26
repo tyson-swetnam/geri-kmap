@@ -22,7 +22,8 @@ facility_archives links every site to its research infrastructure's
 archive with a per-site entry URL: NEON site -> the NEON explorer, ICOS
 station -> its landing page, DEIMS site -> its DEIMS record, OzFlux tower
 -> its THREDDS catalog, SAEON station -> its ODP landing page, CERN
-station -> CNERN. A site with records in the eLTER Digital Asset Register
+station -> CNERN, TERN surveillance plot -> its AusPlots API record,
+MexFlux tower registered in AmeriFlux -> its AmeriFlux site page. A site with records in the eLTER Digital Asset Register
 (data/raw/J-GERI/dar_site_records.json, fetch_elter_dar.py) links to the
 DAR's search for its DEIMS id, with the record count and a sample DOI:
 primary for eLTER sites, secondary for the rest.
@@ -83,6 +84,9 @@ SITE_LINKS = [
     ("ozflux-site", "tern-dap", "primary", None),            # the identifier's own source_url
     ("doi", "saeon-odp", "primary", "https://api.odp.saeon.ac.za/catalog/SAEON/go/{value}"),
     ("deims-id", "deims-sdr", "secondary", "https://deims.org/{value}"),
+    ("ausplots-site", "tern-ausplots", "primary",
+     "http://swarmapi.ausplots.aekos.org.au/site?site_location_name=eq.{value}"),
+    ("ameriflux-id", "ameriflux", "primary", "https://ameriflux.lbl.gov/sites/siteinfo/{value}"),
 ]
 NETWORK_LINKS = [("cern", "cnern", "primary")]           # no per-station page
 # The DAR's per-site search; the API (/api/records) takes the same q.

@@ -14,9 +14,10 @@ const countryName = (code) => {
 // ── Scope lens ───────────────────────────────────────────────────────
 //
 // One lens per GERI research infrastructure, plus the sites the GERI
-// harmonization pipeline covers. The lens is a single-choice facet that
-// narrows every facility query; "All GERI" removes it. Nothing is deleted
-// from the data to make the narrower views.
+// harmonization pipeline covers, plus MexFlux: the GENNI environmental
+// network of Loescher et al. (2026), which is not a GERI member. The lens
+// is a single-choice facet that narrows every facility query; "All sites"
+// removes it. Nothing is deleted from the data to make the narrower views.
 //
 // Each lens is defined twice, and the two must agree: `sql` for the
 // DuckDB path and `test` for the GeoJSON-fallback path (which sees only
@@ -30,8 +31,8 @@ const riScope = (slug, label, hint) => ({
 });
 export const SCOPES = {
   all: {
-    label: 'All GERI',
-    hint: 'Every site of the six GERI research infrastructures',
+    label: 'All sites',
+    hint: 'Every site of the six GERI research infrastructures, and the MexFlux towers of the GENNI use case',
     sql: null,
     test: () => true,
   },
@@ -48,6 +49,8 @@ export const SCOPES = {
   tern: riScope('tern', 'TERN', 'Terrestrial Ecosystem Research Network (Australia)'),
   saeon: riScope('saeon', 'SAEON', 'South African Environmental Observation Network'),
   cern: riScope('cern', 'CERN', 'Chinese Ecosystem Research Network'),
+  mexflux: riScope('mexflux', 'MexFlux (GENNI)',
+    'Mexican flux-tower network: the GENNI use case of Loescher et al. (2026); not a GERI member'),
 };
 
 /** Build a collapsible facet section element. */

@@ -559,6 +559,11 @@ footer a:hover { color: var(--c-primary); }
   transition: background .15s;
 }
 .popup-source:hover { background: var(--c-primary-d); }
+.popup-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.popup-source-alt { background: var(--c-bg-alt); color: var(--c-text-soft); }
+.popup-source-alt:hover { background: var(--c-border); }
+.popup-archive { white-space: nowrap; }
+.popup-ext { text-decoration: none; font-size: 11px; }
 
 /* ── Legend control (bottom-left) ───────────────────────────────── */
 .legend-control {
@@ -2317,6 +2322,7 @@ footer a:hover { color: var(--c-primary); }
   padding: 12px 14px 14px; background: #fff; scroll-margin-top: 14px;
 }
 .ds-card-active { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,.25); }
+.brw-card-active { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,.25); }
 .ds-card-head {
   display: flex; justify-content: space-between; align-items: baseline;
   gap: 8px; margin-bottom: 2px;

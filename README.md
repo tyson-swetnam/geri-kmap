@@ -16,9 +16,19 @@ catalogues where the RIs operate and cross-walks each site's identifiers across 
 records which sites the GERI harmonized products cover. Those products live on the CyVerse Data
 Store at `/iplant/home/shared/geri`.
 
-Today the catalogue holds 1,040 sites in 51 countries. They come from DEIMS-SDR, the NEON Data API,
-the ICOS Carbon Portal, TERN's OzFlux server, SAEON DataCite station records, CERN's station list and the GERI Data Store. All 117
-site ids in the GERI harmonized products resolve to catalogue sites. See [`docs/`](docs/index.md).
+Today the catalogue holds 1,893 sites in 52 countries. They come from DEIMS-SDR, the NEON Data API,
+the ICOS Carbon Portal, TERN's OzFlux server and AusPlots API (820 surveillance plots), SAEON DataCite
+station records, CERN's station list and the GERI Data Store. All 117 site ids in the GERI harmonized
+products resolve to catalogue sites. See [`docs/`](docs/index.md).
+
+The catalogue also carries what Loescher et al. (2026), "Toward a global ecosystem
+network-of-networks" (*Ecosphere* 17: e70789, [doi:10.1002/ecs2.70789](https://doi.org/10.1002/ecs2.70789)),
+adds:
+- the RI profiles of its Table 1;
+- the 33 MexFlux towers of its GENNI use case, kept outside GERI;
+- the 251 partner organizations of its landscape survey.
+
+See [`docs/genni.md`](docs/genni.md).
 
 ## Repository layout
 
@@ -53,12 +63,14 @@ Refresh from the registries:
 ```bash
 python scripts/fetch_deims.py && python scripts/fetch_neon.py && python scripts/fetch_icos.py
 python scripts/fetch_ozflux.py && python scripts/fetch_saeon_stations.py && python scripts/fetch_geri_datastore.py
-python scripts/fetch_elter_dar.py
+python scripts/fetch_elter_dar.py && python scripts/fetch_ausplots.py && python scripts/fetch_mexflux.py
+python scripts/fetch_landscape_survey.py && python scripts/fetch_geri_papers.py
 python scripts/summarize_harmonized.py --download   # only when the harmonized products change (~1 GB)
 python scripts/load_geri_sites.py
 python scripts/apply_facility_fixes.py
 python scripts/check_endpoints.py                    # requests every data-access URL (after import_lto_archives.py if lto changed)
 python scripts/load_geri_archives.py
+python scripts/load_geri_paper.py
 python scripts/qa.py
 python scripts/export_parquet.py && python scripts/export_view_caches.py
 ```

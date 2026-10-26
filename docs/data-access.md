@@ -17,6 +17,8 @@ Every site links to its research infrastructure's archive, with a per-site entry
 | eLTER Digital Asset Register | eLTER datasets, 3,330 records naming 674 DEIMS sites | REST (`dar.elter-ri.eu/api`) | Public |
 | TERN Data Access Platform | OzFlux and other TERN netCDF | THREDDS, OPeNDAP, HTTP download | Public (CC BY 4.0) |
 | TERN Data Discovery Portal | TERN metadata | OGC CSW 2.0.2 (XML) | Public |
+| TERN AusPlots API | TERN surveillance plots: sites, visits, vegetation, soils (820 plots) | REST (PostgREST, `swarmapi.ausplots.aekos.org.au`, http only) | Public, no key |
+| AmeriFlux | Flux towers of the Americas, including 14 MexFlux towers | REST site list (`amfcdn.lbl.gov/api/v1/site_display/AmeriFlux`), site pages | Site list public; mostly CC BY 4.0 data, downloads log the intended use (account need not checked) |
 | SAEON Open Data Platform | SAEON / EFTEON station records | REST (ODP API 2.4) | **API needs an ODP client (OAuth2)**; landing pages public |
 | CNERN resource service | CERN station data | Web | **Account required** |
 | GERI collection, CyVerse Data Store | GERI source and harmonized data | WebDAV (anonymous), iRODS | Read public; **iRODS needs a CyVerse account** |
@@ -34,6 +36,8 @@ Each archive and endpoint row carries `access_mode` (from `schema/vocab/access_m
 - **DEIMS-SDR site:** its DEIMS record. Every DEIMS site; this is a secondary link when the site's RI has its own archive.
 - **eLTER Digital Asset Register:** a search for the site's DEIMS id (`q=metadata.siteReferences.siteID:"<uuid>"`), with the record count and a sample DOI. 558 sites have records: 531 eLTER sites (primary link) and 27 others, mostly ICOS stations (secondary). `scripts/fetch_elter_dar.py` reads every DAR record and counts them per site, into `data/raw/J-GERI/dar_site_records.json`. The DAR also names 116 DEIMS sites outside the six networks (ICP Forests, national LTER networks, sites with no network); those aren't in geri-kmap.
 - **OzFlux tower:** its THREDDS catalog.
+- **TERN surveillance plot:** its AusPlots API record (`/site?site_location_name=eq.<plot>`).
+- **MexFlux tower registered in AmeriFlux:** its AmeriFlux site page. The other 19 MexFlux towers have no archive link; MexFlux says their data are with the PI.
 - **SAEON/EFTEON station:** its ODP landing page (the URL DataCite holds for its DOI).
 - **CERN station:** CNERN, which has no per-station page.
 - **GERI harmonized site:** the GERI Data Store collection.

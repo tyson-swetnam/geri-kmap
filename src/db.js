@@ -285,6 +285,9 @@ export async function initDB() {
       // stats.js reads it.)
       'person_validation',
       'coauthor_edges', 'coauthor_candidates',
+      // Loescher et al. (2026): RI profiles (Table 1) and the partner-
+      // organization survey (Table 3). SQL tab only.
+      'ri_profiles', 'network_organizations',
     ];
     _pendingLazyTables = lazyTables;
     // Register parquet views in parallel across N extra connections.
@@ -343,7 +346,7 @@ export async function initDB() {
        SELECT f.facility_id, f.canonical_name, f.facility_type, f.country,
               f.hq_lat, f.hq_lng,
               list(DISTINCT n.network_id ORDER BY n.network_id)
-                  FILTER (WHERE n.level = 'continental-ri')                    AS ris,
+                  FILTER (WHERE n.level IN ('continental-ri', 'environmental-network')) AS ris,
               bool_or(si.scheme = 'geri-harmonized-id')                        AS geri_harmonized,
               max(si.value) FILTER (WHERE si.scheme = 'deims-id')              AS deims_id,
               list(DISTINCT si.scheme || ':' || si.value ORDER BY si.scheme || ':' || si.value)
@@ -664,14 +667,15 @@ export async function query(filterState) {
            list(DISTINCT ra.label)       AS areas,
            list(DISTINCT n.label)        AS networks,
            list(DISTINCT n.network_id ORDER BY n.network_id)
-             FILTER (WHERE n.level = 'continental-ri') AS ris,
+             FILTER (WHERE n.level IN ('continental-ri', 'environmental-network')) AS ris,
            EXISTS (SELECT 1 FROM site_identifiers si
                    WHERE si.facility_id = f.facility_id
                      AND si.scheme = 'geri-harmonized-id') AS geri_harmonized,
            -- Same as export_parquet.py's GeoJSON: the RI whose label
            -- load_geri_sites.py wrote to parent_org. Drives RI colouring.
            (SELECT n2.network_id FROM networks n2
-             WHERE n2.label = f.parent_org AND n2.level = 'continental-ri') AS primary_ri,
+             WHERE n2.label = f.parent_org
+               AND n2.level IN ('continental-ri', 'environmental-network')) AS primary_ri,
            list(DISTINCT r.name)         AS regions,
            list(DISTINCT r.kind)         AS region_kinds
     FROM facilities f

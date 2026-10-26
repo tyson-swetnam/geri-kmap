@@ -6,6 +6,10 @@ Inputs (committed, written by the fetchers):
   data/raw/R-GERI-DEIMS/sites_deims.json   fetch_deims.py  -- the backbone
   data/raw/R-GERI-NEON/sites_neon.json     fetch_neon.py
   data/raw/R-GERI-ICOS/stations_icos.json  fetch_icos.py
+  data/raw/R-GERI-TERN/sites_ozflux.json   fetch_ozflux.py
+  data/raw/R-GERI-TERN/sites_ausplots.json fetch_ausplots.py   -- TERN surveillance plots
+  data/raw/R-GERI-SAEON/stations_saeon.json fetch_saeon_stations.py
+  data/raw/R-GENNI-MEXFLUX/sites_mexflux.json fetch_mexflux.py -- not GERI: see below
 
 Identity
 --------
@@ -22,7 +26,15 @@ A DEIMS site lists every network it belongs to, so co-location across RIs
   it are different stations, and a reviewed pair goes through
   merge_facilities.py instead.
 
-The run owns every facility whose provenance agent starts ``R-GERI-``: it
+TERN's surveillance plots (AusPlots) are one facility each,
+``sha1("ausplots:" + site_location_name)``. MexFlux towers are one facility
+each, ``sha1("mexflux:" + site id)``: MexFlux is not a GERI member but the
+environmental network of the GENNI use case in Loescher et al. (2026,
+doi:10.1002/ecs2.70789), so its towers are members of ``mexflux`` and
+``genni``, never of ``geri``.
+
+The run owns every facility whose provenance agent starts ``R-GERI-`` or
+``R-GENNI-``: it
 upserts them (``created_at`` survives) and replaces their child rows, and
 removes any such facility no input names any more. One transaction, one
 snapshot; ``assert_integrity`` runs before COMMIT.
@@ -56,6 +68,8 @@ ICOS_JSON = RAW / "R-GERI-ICOS" / "stations_icos.json"
 OZFLUX_JSON = RAW / "R-GERI-TERN" / "sites_ozflux.json"
 HARM_DIR = RAW / "R-GERI-HARMONIZED"
 SAEON_JSON = RAW / "R-GERI-SAEON" / "stations_saeon.json"
+AUSPLOTS_JSON = RAW / "R-GERI-TERN" / "sites_ausplots.json"
+MEXFLUX_JSON = RAW / "R-GENNI-MEXFLUX" / "sites_mexflux.json"
 CERN_SEED = ROOT / "data" / "seed" / "cern_stations.csv"
 HARM_CSV = HARM_DIR / "geri_harmonized_sites.csv"
 HARM_URL = "https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv"
@@ -65,7 +79,9 @@ MERGE_SEED = ROOT / "data" / "seed" / "facility_merge_seed.csv"
 COUNTRY_NAMES = ROOT / "schema" / "vocab" / "country_names.csv"
 COUNTRY_BBOX = ROOT / "schema" / "vocab" / "country_bbox.csv"
 
-AGENT_PREFIX = "R-GERI-"
+AGENT_PREFIXES = ("R-GERI-", "R-GENNI-")
+TERN_SURVEILLANCE = ("https://www.tern.org.au/tern-observatory/"
+                     "ecosystem-surveillance-and-environmental-monitoring/")
 # DEIMS network uuid -> our continental-ri slug (the GERI network itself is
 # membership in `geri`). Same ids as fetch_deims.NETWORKS.
 DEIMS_NETWORK = {
@@ -78,9 +94,9 @@ DEIMS_NETWORK = {
     "4dac034d-92d5-4c06-8e4e-aabafdbcedff": "cern",
 }
 RI_LABEL = {"neon": "NEON", "elter": "eLTER", "icos": "ICOS", "tern": "TERN",
-            "saeon": "SAEON", "efteon": "EFTEON", "cern": "CERN"}
+            "saeon": "SAEON", "efteon": "EFTEON", "cern": "CERN", "mexflux": "MexFlux"}
 # Precedence when a facility belongs to several RIs: which one names its type.
-RI_ORDER = ["neon", "icos", "tern", "cern", "efteon", "saeon", "elter"]
+RI_ORDER = ["neon", "icos", "tern", "cern", "efteon", "saeon", "elter", "mexflux"]
 # EFTEON landscape as SAEON's DataCite subjects name it -> networks.csv slug.
 # (EFTEON's six landscapes: https://efteon.saeon.ac.za/landscapes/)
 EFTEON_LANDSCAPE = {
@@ -462,6 +478,65 @@ def from_cern_seed(row: dict) -> Site:
     return s
 
 
+def from_ausplots(p: dict, retrieved: str, api: str) -> Site:
+    """A TERN Ecosystem Surveillance plot (fetch_ausplots.py): one per site_location_name."""
+    code = p["site_location_name"]
+    s = Site(fid("ausplots:" + code))
+    s.name = f"AusPlots {code}"
+    s.country = "AU"
+    s.lat, s.lng = num(p["latitude"]), num(p["longitude"])
+    # The plot's location text starts with its place ("Litchfield National Park. 30km ...").
+    place = (p.get("description") or "").split(". ")[0].strip(" .") or s.name
+    s.locations.append({"label": f"{code}: {place}"[:200], "lat": s.lat, "lng": s.lng,
+                        "role": "surveillance-plot"})
+    s.ris.add("tern")
+    s.networks.update({"tern", "tern-surveillance"})
+    s.ftype = "surveillance-plot"
+    s.primary_sphere = "terrestrial"
+    record = f"{api}?site_location_name=eq.{code}"
+    s.ids[("ausplots-site", code)] = record
+    s.url = TERN_SURVEILLANCE
+    first, last = (p.get("first_visit") or "")[:4], (p.get("last_visit") or "")[:4]
+    s.established = int(first) if first.isdigit() else None
+    # The record is the span of its visits: a plot surveyed once has none.
+    s.retrieved_year = int(last) if last.isdigit() else int(retrieved[:4])
+    s.prov.append((record, retrieved, "R-GERI-TERN"))
+    return s
+
+
+# MexFlux vegetation (its site table) -> primary sphere, when not terrestrial.
+MEXFLUX_SPHERE = {"Ocean": "ocean-estuarine", "Coastal lagoon": "ocean-estuarine"}
+
+
+def from_mexflux(r: dict, retrieved: str, source: str) -> Site:
+    """A MexFlux eddy-covariance tower (fetch_mexflux.py). The table types
+    some ids 'Mx-'; the id is written 'MX-' everywhere else."""
+    sid = "MX-" + r["site_id"][3:]
+    s = Site(fid("mexflux:" + sid))
+    s.name = r["name"]
+    s.acronym = sid
+    s.country = "MX"
+    s.lat, s.lng = num(r["lat"]), num(r["lng"])
+    s.locations.append({"label": f"MexFlux {sid} flux tower", "lat": s.lat, "lng": s.lng,
+                        "role": "flux-tower"})
+    s.ris.add("mexflux")
+    s.networks.update({"mexflux", "genni"})
+    s.ftype = "flux-tower"
+    s.primary_sphere = MEXFLUX_SPHERE.get(r.get("vegetation"), "terrestrial")
+    s.spheres.add("atmosphere")
+    if "mangrove" in (r.get("vegetation") or "").lower():
+        s.spheres.add("ocean-estuarine")
+    s.ids[("mexflux-site", sid)] = source
+    if r.get("ameriflux_url"):
+        s.ids[("ameriflux-id", sid)] = r["ameriflux_url"]
+    s.url = r.get("ameriflux_url") or source
+    s.established = r.get("first_year")
+    # Record length runs to the last year of data for a tower that stopped.
+    s.retrieved_year = r.get("last_year") or int(retrieved[:4])
+    s.prov.append((source, retrieved, "R-GENNI-MEXFLUX"))
+    return s
+
+
 def read_harmonized() -> list[dict]:
     """geri_harmonized_sites.csv as written; its bytes are Latin-1."""
     text = HARM_CSV.read_bytes().decode("latin-1")
@@ -639,6 +714,18 @@ def build_sites() -> tuple[list[Site], dict]:
                 n_cern += 1
     stats["cern_seed"] = n_cern
 
+    ap = json.loads(AUSPLOTS_JSON.read_text())
+    for p in ap["sites"]:
+        s = from_ausplots(p, ap["retrieved_at"], ap["source"])
+        sites[s.facility_id] = s
+    stats["ausplots"] = len(ap["sites"])
+
+    mx = json.loads(MEXFLUX_JSON.read_text())
+    for r in mx["sites"]:
+        s = from_mexflux(r, mx["retrieved_at"], mx["source"])
+        sites[s.facility_id] = s
+    stats["mexflux"] = len(mx["sites"])
+
     # Reviewed merges: one field site recorded twice (an ICOS station and
     # the DEIMS site that hosts it, ICOS ES and AS stations at one site).
     stats["merged"] = merge_sites(sites, read_merge_seed())
@@ -719,10 +806,11 @@ def main() -> int:
             prov_rows.append(("facility", s.facility_id, src, retrieved, "high", agent))
 
     con = geri_db.connect(catalog=args.catalog, data=args.lake_data)
-    with geri_db.transaction(con, f"load_geri_sites: {len(fac_rows)} GERI RI sites "
+    with geri_db.transaction(con, f"load_geri_sites: {len(fac_rows)} sites "
                                   f"(DEIMS {stats['deims']}, NEON {stats['neon']}, "
                                   f"ICOS {stats['icos']}, OzFlux {stats['ozflux']}, "
-                                  f"SAEON {stats['saeon_stations']}; harmonized "
+                                  f"SAEON {stats['saeon_stations']}, AusPlots {stats['ausplots']}, "
+                                  f"MexFlux {stats['mexflux']}; harmonized "
                                   f"{stats['harmonized'] - stats['harmonized_unresolved']}"
                                   f"/{stats['harmonized']})"):
         for change in geri_db.ensure_schema(con):
@@ -734,8 +822,9 @@ def main() -> int:
                              "established INTEGER", "record_length_years INTEGER",
                              "long_term_threshold_met BOOLEAN", "data_portal_url VARCHAR"], fac_rows)
         owned = geri_db.rows(con, "SELECT DISTINCT record_id FROM provenance "
-                                  "WHERE record_type = 'facility' AND starts_with(agent, ?)",
-                             [AGENT_PREFIX])
+                                  "WHERE record_type = 'facility' "
+                                  "AND (starts_with(agent, ?) OR starts_with(agent, ?))",
+                             list(AGENT_PREFIXES))
         keep = {r[0] for r in fac_rows}
         stale = sorted({r[0] for r in owned} - keep)
         touched = sorted(keep | set(stale))

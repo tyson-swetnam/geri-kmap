@@ -66,7 +66,10 @@ function sphereColorExpr() {
 // most separated hues (all-pairs CVD ΔE 24.7). NEON, TERN and SAEON fall
 // under 3:1 on the light basemap, so RI mode draws a dark stroke and the
 // legend, popups and scope lens name the RI. EFTEON is part of SAEON and
-// shares its colour.
+// shares its colour. MexFlux (the GENNI network of Loescher et al. 2026,
+// not a GERI member) takes slot 6, green: its only neighbour on the map
+// is NEON, and green vs NEON's aqua passes the validator (CVD ΔE 15.2,
+// normal-vision ΔE 15.6) where red, the other free slot, does not.
 export const RI_COLORS = {
   icos:   '#2a78d6', // blue
   elter:  '#eb6834', // orange
@@ -75,10 +78,11 @@ export const RI_COLORS = {
   saeon:  '#e87ba4', // magenta
   efteon: '#e87ba4',
   cern:   '#6250d6', // violet
+  mexflux: '#008300', // green
 };
 const RI_LEGEND = [
   ['icos', 'ICOS'], ['elter', 'eLTER'], ['neon', 'NEON'], ['tern', 'TERN'],
-  ['saeon', 'SAEON / EFTEON'], ['cern', 'CERN'],
+  ['saeon', 'SAEON / EFTEON'], ['cern', 'CERN'], ['mexflux', 'MexFlux (GENNI)'],
 ];
 const NO_RI_COLOR = '#94a3b8';   // GERI network only, no RI
 
@@ -449,12 +453,17 @@ function popupHtml(p) {
     ${regions ? `<div class="popup-row"><em>Inside:</em> ${regions}</div>` : ''}
     ${funders ? `<div class="popup-row"><em>Funders:</em> ${funders}</div>` : ''}
     <div class="popup-geri" data-id="${esc(p.id)}"></div>
-    ${p.url ? `<a class="popup-source" href="${esc(p.url)}" target="_blank" rel="noopener">Visit website</a>` : ''}
+    <div class="popup-actions">
+      <a class="popup-source" href="#/browse/${encodeURIComponent(p.id)}" title="This site's card in the Browse tab">Browse card</a>
+      ${p.url ? `<a class="popup-source popup-source-alt" href="${esc(p.url)}" target="_blank" rel="noopener">Visit website</a>` : ''}
+    </div>
   </div>`;
 }
 
-// The GERI part of a popup: harmonized coverage (one line per variable)
-// and the site's registry ids, from its Browse card.
+// The GERI part of a popup: harmonized coverage (one line per variable),
+// the site's registry ids and the archives that hold its data, from its
+// Browse card. Each archive links to its card in the Data tab
+// (#/data/<archive_id>); the arrow opens the site's own page there.
 function popupGeriHtml(card) {
   const { registry, harmonized } = splitIdentifiers(card);
   const cov = card.coverage || [];
@@ -473,7 +482,15 @@ function popupGeriHtml(card) {
         return `<span class="popup-id"><b>${esc(schemeLabel(i.scheme))}</b> ${val}</span>`;
       }).join(' ')}${registry.length > shown.length ? ` <span class="popup-more">+${registry.length - shown.length}</span>` : ''}</div>`
     : '';
-  return covHtml + idsHtml;
+  const seen = new Set();
+  const archives = (card.archive_list || []).filter((a) => !seen.has(a.archive_id) && seen.add(a.archive_id));
+  const dataHtml = archives.length
+    ? `<div class="popup-row popup-data"><em>Data:</em> ${archives.map((a) =>
+        `<span class="popup-archive"><a href="#/data/${encodeURIComponent(a.archive_id)}" title="${esc(a.name)}: Data card">${esc(a.name)}</a>${
+          a.scope_url ? ` <a class="popup-ext" href="${esc(a.scope_url)}" target="_blank" rel="noopener" title="This site at ${esc(a.name)}" aria-label="This site at ${esc(a.name)}">↗</a>` : ''}</span>`,
+      ).join(' · ')}</div>`
+    : '';
+  return covHtml + idsHtml + dataHtml;
 }
 
 function esc(s) {

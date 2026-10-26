@@ -1,91 +1,97 @@
 kind,archive_id,key,checked_url,http_status,verdict,detail,checked_at
-archive,cnern,base_url:http://www.cnern.org.cn/,http://www.cnern.org.cn/,200,ok,,2026-10-25
-archive,datacite,api_url:https://api.datacite.org/,https://api.datacite.org/,200,ok,,2026-10-25
-archive,datacite,base_url:https://datacite.org/,https://datacite.org/,202,ok,,2026-10-25
-archive,deims-sdr,api_url:https://deims.org/api,https://deims.org/api,200,ok,,2026-10-25
-archive,deims-sdr,base_url:https://deims.org/,https://deims.org/,200,ok,,2026-10-25
-archive,elter-dar,api_url:https://dar.elter-ri.eu/api/records,https://dar.elter-ri.eu/api/records,200,ok,,2026-10-25
-archive,elter-dar,base_url:https://dar.elter-ri.eu/,https://dar.elter-ri.eu/,200,ok,,2026-10-25
-archive,gbif,api_url:https://api.gbif.org/v1/,https://api.gbif.org/v1/,200,ok,,2026-10-25
-archive,gbif,base_url:https://www.gbif.org/,https://www.gbif.org/,200,ok,,2026-10-25
-archive,geri-cyverse,api_url:https://data.cyverse.org/dav-anon/iplant/projects/geri/,https://data.cyverse.org/dav-anon/iplant/projects/geri/,200,ok,,2026-10-25
-archive,geri-cyverse,base_url:https://data.cyverse.org/dav-anon/iplant/projects/geri/,https://data.cyverse.org/dav-anon/iplant/projects/geri/,200,ok,,2026-10-25
-archive,geri-dataone,api_url:https://cn.dataone.org/cn/v2/query/solr/,https://cn.dataone.org/cn/v2/query/solr/,200,ok,,2026-10-25
-archive,geri-dataone,base_url:https://geri.dataone.org/,https://geri.dataone.org/,200,ok,,2026-10-25
-archive,icos-cp,api_url:https://meta.icos-cp.eu/sparql,https://meta.icos-cp.eu/sparql,200,ok,POSTed a 1-row query,2026-10-25
-archive,icos-cp,base_url:https://data.icos-cp.eu/portal/,https://data.icos-cp.eu/portal/,200,ok,,2026-10-25
-archive,knb,api_url:https://knb.ecoinformatics.org/knb/d1/mn/v2/,https://knb.ecoinformatics.org/knb/d1/mn/v2/,200,ok,,2026-10-25
-archive,knb,base_url:https://knb.ecoinformatics.org/,https://knb.ecoinformatics.org/,200,ok,,2026-10-25
-archive,nasa-earthdata,api_url:https://cmr.earthdata.nasa.gov/search/,https://cmr.earthdata.nasa.gov/search/,200,ok,,2026-10-25
-archive,nasa-earthdata,base_url:https://search.earthdata.nasa.gov/,https://search.earthdata.nasa.gov/,200,ok,,2026-10-25
-archive,neon-data-portal,api_url:https://data.neonscience.org/api/v0/,https://data.neonscience.org/api/v0/,404,alive,root path returns 404; the host answers,2026-10-25
-archive,neon-data-portal,base_url:https://data.neonscience.org/,https://data.neonscience.org/,200,ok,,2026-10-25
-archive,obis,api_url:https://api.obis.org/v3,https://api.obis.org/v3,500,error,,2026-10-25
-archive,obis,base_url:https://obis.org/,https://obis.org/,200,ok,,2026-10-25
-archive,ornl-daac,api_url:https://cmr.earthdata.nasa.gov/search/,https://cmr.earthdata.nasa.gov/search/,200,ok,,2026-10-25
-archive,ornl-daac,base_url:https://daac.ornl.gov/,https://daac.ornl.gov/,200,ok,,2026-10-25
-archive,ozflux-portal,base_url:https://data.ozflux.org.au/,https://data.ozflux.org.au/,200,ok,,2026-10-25
-archive,saeon-odp,api_url:https://api.odp.saeon.ac.za/,https://api.odp.saeon.ac.za/,404,alive,root path returns 404; the host answers,2026-10-25
-archive,saeon-odp,base_url:https://catalogue.saeon.ac.za/,https://catalogue.saeon.ac.za/,200,ok,,2026-10-25
-archive,tern-dap,api_url:https://dap.tern.org.au/thredds/,https://dap.tern.org.au/thredds/,200,ok,,2026-10-25
-archive,tern-dap,base_url:https://dap.tern.org.au/thredds/catalog.html,https://dap.tern.org.au/thredds/catalog.html,200,ok,,2026-10-25
-archive,tern-portal,api_url:https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,200,ok,,2026-10-25
-archive,tern-portal,base_url:https://portal.tern.org.au/,https://portal.tern.org.au/,200,ok,,2026-10-25
-bucket,nasa-earthdata,s3:asf-ngap2w-p-s1-slc-7b420b89,https://asf-ngap2w-p-s1-slc-7b420b89.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,403,auth,anonymous listing denied,2026-10-25
-bucket,nasa-earthdata,s3:podaac-ops-cumulus-public,https://podaac-ops-cumulus-public.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,403,auth,anonymous listing denied,2026-10-25
-endpoint,cnern,http://passport2.cern.ac.cn/reg,http://passport2.cern.ac.cn/reg,200,ok,,2026-10-25
-endpoint,cnern,http://www.cnern.org.cn/data/initDRsearch,http://www.cnern.org.cn/data/initDRsearch,200,ok,,2026-10-25
-endpoint,datacite,https://api.datacite.org/dois,https://api.datacite.org/dois?prefix=10.15493&page[size]=1,200,ok,,2026-10-25
-endpoint,deims-sdr,https://deims.org/api/activities,https://deims.org/api/activities,200,ok,,2026-10-25
-endpoint,deims-sdr,https://deims.org/api/locations/{resource_id},,,unchecked,"templated, no example URL",2026-10-25
-endpoint,deims-sdr,https://deims.org/api/sensors,https://deims.org/api/sensors,200,ok,,2026-10-25
-endpoint,deims-sdr,https://deims.org/api/sites,https://deims.org/api/sites,200,ok,,2026-10-25
-endpoint,deims-sdr,https://deims.org/api/sites/{deims_id},https://deims.org/api/sites/663dac80-211d-4c19-a356-04ee0da0f0eb,200,ok,,2026-10-25
-endpoint,elter-dar,https://dar.elter-ri.eu/api/external-datasets,https://dar.elter-ri.eu/api/external-datasets?size=1,200,ok,,2026-10-25
-endpoint,elter-dar,https://dar.elter-ri.eu/api/records,https://dar.elter-ri.eu/api/records?size=1,200,ok,,2026-10-25
-endpoint,elter-dar,"https://dar.elter-ri.eu/api/records?q=metadata.siteReferences.siteID:""{deims-uuid}""",https://dar.elter-ri.eu/api/records?size=1&q=metadata.siteReferences.siteID:%22f30007c4-8a6e-4f11-ab87-569db54638fe%22,200,ok,,2026-10-25
-endpoint,gbif,https://api.gbif.org/v1/dataset/{uuid},https://api.gbif.org/v1/dataset/7175660d-a6a4-4ecd-91fd-d3d86515c5c3,200,ok,,2026-10-25
-endpoint,gbif,https://api.gbif.org/v1/occurrence/download/request,,,unchecked,POST call; not sent,2026-10-25
-endpoint,gbif,https://api.gbif.org/v1/occurrence/search,https://api.gbif.org/v1/occurrence/search?taxonKey=2476674&limit=20,200,ok,,2026-10-25
-endpoint,geri-cyverse,https://data.cyverse.org/dav-anon/iplant/projects/geri/{folder}/,,,unchecked,PROPFIND call; not sent,2026-10-25
-endpoint,geri-cyverse,https://data.cyverse.org/dav-anon/iplant/projects/geri/{path},https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv,200,ok,,2026-10-25
-endpoint,geri-cyverse,i:/iplant/home/shared/geri,,,unchecked,iRODS call; not sent,2026-10-25
-endpoint,geri-dataone,https://cn.dataone.org/cn/v2/query/solr/,https://cn.dataone.org/cn/v2/query/solr/?q=*:*&rows=0&wt=json,200,ok,,2026-10-25
-endpoint,icos-cp,https://data.icos-cp.eu/objects/{object_id},https://data.icos-cp.eu/objects/dKrOtUfAGpdr0Gqx4kp9dLQ9,200,auth,redirected to https://data.icos-cp.eu/licence?ids=%5B%22dKrOtUfAGpdr0Gqx4kp9dLQ9%22%5D,2026-10-25
-endpoint,icos-cp,https://meta.icos-cp.eu/objects/{object_id}/meta.json,https://meta.icos-cp.eu/objects/dKrOtUfAGpdr0Gqx4kp9dLQ9/meta.json,200,ok,,2026-10-25
-endpoint,icos-cp,https://meta.icos-cp.eu/resources/stations/{station},https://meta.icos-cp.eu/resources/stations/ES_FI-Hyy,200,ok,,2026-10-25
-endpoint,icos-cp,https://meta.icos-cp.eu/sparql,https://meta.icos-cp.eu/sparql,200,ok,POSTed a 1-row query,2026-10-25
-endpoint,icos-cp,https://pypi.org/project/icoscp/,https://pypi.org/project/icoscp/,200,ok,,2026-10-25
-endpoint,knb,https://knb.ecoinformatics.org/knb/d1/mn/v2/object/{pid},https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi%3A10.5063%2FAA%2Fnrs.541.1,200,ok,,2026-10-25
-endpoint,knb,"https://knb.ecoinformatics.org/knb/d1/mn/v2/query/solr/?q={query}&fl=identifier,title,origin,pubDate&rows=100","https://knb.ecoinformatics.org/knb/d1/mn/v2/query/solr/?q=title%3Aforest&rows=20&fl=identifier,title",200,ok,,2026-10-25
-endpoint,knb,https://knb.ecoinformatics.org/view/{pid},https://knb.ecoinformatics.org/view/doi:10.5063/F1XW4H1F,200,ok,,2026-10-25
-endpoint,nasa-earthdata,https://cmr.earthdata.nasa.gov/search/collections.json,https://cmr.earthdata.nasa.gov/search/collections.json?keyword=sea+ice&data_center=NSIDC_CPRD&page_size=50,200,ok,,2026-10-25
-endpoint,nasa-earthdata,https://cmr.earthdata.nasa.gov/search/granules.json,"https://cmr.earthdata.nasa.gov/search/granules.json?short_name=ATL06&version=007&temporal=2024-01-01T00:00:00Z,2024-01-31T23:59:59Z&bounding_box=-180,60,180,90&page_size=100",200,ok,,2026-10-25
-endpoint,nasa-earthdata,https://urs.earthdata.nasa.gov/oauth/authorize,https://urs.earthdata.nasa.gov/oauth/authorize,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/data/query,https://data.neonscience.org/api/v0/data/query?productCode=DP1.10003.001&siteCode=HARV&startDateMonth=2019-01&endDateMonth=2019-12&package=basic&release=RELEASE-2024,403,auth,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/data/{productCode}/{siteCode}/{year-month},https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2019-06,403,auth,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/locations/{namedLocation},https://data.neonscience.org/api/v0/locations/HARV_001.basePlot.bgc,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/products,https://data.neonscience.org/api/v0/products,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/products/{productCode},https://data.neonscience.org/api/v0/products/DP1.10003.001,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/releases,https://data.neonscience.org/api/v0/releases,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/samples/supportedClasses,https://data.neonscience.org/api/v0/samples/supportedClasses,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/sites,https://data.neonscience.org/api/v0/sites,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/sites/{siteCode},https://data.neonscience.org/api/v0/sites/HARV,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/api/v0/taxonomy,https://data.neonscience.org/api/v0/taxonomy?taxonTypeCode=BIRD,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://data.neonscience.org/data-products/explore?siteCodes={siteCode},https://data.neonscience.org/data-products/explore?siteCodes=HARV,200,ok,,2026-10-25
-endpoint,neon-data-portal,https://www.neonscience.org/resources/learning-hub/tutorials/neon-api-tokens-tutorial,https://www.neonscience.org/resources/learning-hub/tutorials/neon-api-tokens-tutorial,200,ok,,2026-10-25
-endpoint,obis,https://api.obis.org/v3/dataset/{dataset_id},https://api.obis.org/v3/dataset/5422689c-d83d-44e8-87f4-a4b0a5117181,200,ok,,2026-10-25
-endpoint,obis,https://api.obis.org/v3/occurrence,https://api.obis.org/v3/occurrence?scientificname=Dermochelys%20coriacea&size=10,200,ok,,2026-10-25
-endpoint,ornl-daac,https://cmr.earthdata.nasa.gov/search/collections.json?provider=ORNL_CLOUD&keyword={query}&page_size=100,https://cmr.earthdata.nasa.gov/search/collections.json?provider=ORNL_CLOUD&keyword=ABoVE&page_size=50,200,ok,,2026-10-25
-endpoint,ornl-daac,https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id={id}&page_size=2000,https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2769857263-ORNL_CLOUD&page_size=200,200,ok,,2026-10-25
-endpoint,ornl-daac,https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id={dataset_id},https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=2056,200,ok,,2026-10-25
-endpoint,ornl-daac,https://daac.ornl.gov/daacdata/{program}/{dataset_short_name}/data/{file},https://daac.ornl.gov/daacdata/above/ABoVE_Boreal_Biomass_Map/data/ABoVE_Boreal_Biomass_Map.tif,401,auth,redirected to https://urs.earthdata.nasa.gov/oauth/authorize?app_type=401&client_id=QyeRbBJg8YuY_WBh-KBztA&respons,2026-10-25
-endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/go/{doi},https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/obs.monitor.50074678,200,ok,,2026-10-25
-endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/records,https://api.odp.saeon.ac.za/catalog/SAEON/records?size=1,401,auth,,2026-10-25
-endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/records/{record_id_or_doi},,,unchecked,"templated, no example URL",2026-10-25
-endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/search,,,unchecked,"templated, no example URL",2026-10-25
-endpoint,tern-dap,https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/catalog.xml,https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/catalog.xml,200,ok,,2026-10-25
-endpoint,tern-dap,https://dap.tern.org.au/thredds/dodsC/{path}.nc,https://dap.tern.org.au/thredds/dodsC/ecosystem_process/ozflux/HowardSprings/2025_v2/L3/default/HowardSprings_L3.nc.das,200,ok,,2026-10-25
-endpoint,tern-dap,https://dap.tern.org.au/thredds/fileServer/{path}.nc,https://dap.tern.org.au/thredds/fileServer/ecosystem_process/ozflux/HowardSprings/2025_v2/L3/default/HowardSprings_L3.nc,200,ok,,2026-10-25
-endpoint,tern-portal,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw?service=CSW&version=2.0.2&request=GetRecords&typeNames=csw:Record&resultType=hits,200,ok,,2026-10-25
-endpoint,tern-portal,https://linkeddata.tern.org.au/,https://linkeddata.tern.org.au/,200,ok,,2026-10-25
+archive,ameriflux,api_url:https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux,https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux,200,ok,,2026-10-26
+archive,ameriflux,base_url:https://ameriflux.lbl.gov/,https://ameriflux.lbl.gov/,200,ok,,2026-10-26
+archive,cnern,base_url:http://www.cnern.org.cn/,http://www.cnern.org.cn/,200,ok,,2026-10-26
+archive,datacite,api_url:https://api.datacite.org/,https://api.datacite.org/,200,ok,,2026-10-26
+archive,datacite,base_url:https://datacite.org/,https://datacite.org/,202,ok,,2026-10-26
+archive,deims-sdr,api_url:https://deims.org/api,https://deims.org/api,200,ok,,2026-10-26
+archive,deims-sdr,base_url:https://deims.org/,https://deims.org/,200,ok,,2026-10-26
+archive,elter-dar,api_url:https://dar.elter-ri.eu/api/records,https://dar.elter-ri.eu/api/records,200,ok,,2026-10-26
+archive,elter-dar,base_url:https://dar.elter-ri.eu/,https://dar.elter-ri.eu/,200,ok,,2026-10-26
+archive,gbif,api_url:https://api.gbif.org/v1/,https://api.gbif.org/v1/,200,ok,,2026-10-26
+archive,gbif,base_url:https://www.gbif.org/,https://www.gbif.org/,200,ok,,2026-10-26
+archive,geri-cyverse,api_url:https://data.cyverse.org/dav-anon/iplant/projects/geri/,https://data.cyverse.org/dav-anon/iplant/projects/geri/,200,ok,,2026-10-26
+archive,geri-cyverse,base_url:https://data.cyverse.org/dav-anon/iplant/projects/geri/,https://data.cyverse.org/dav-anon/iplant/projects/geri/,200,ok,,2026-10-26
+archive,geri-dataone,api_url:https://cn.dataone.org/cn/v2/query/solr/,https://cn.dataone.org/cn/v2/query/solr/,200,ok,,2026-10-26
+archive,geri-dataone,base_url:https://geri.dataone.org/,https://geri.dataone.org/,200,ok,,2026-10-26
+archive,icos-cp,api_url:https://meta.icos-cp.eu/sparql,https://meta.icos-cp.eu/sparql,200,ok,POSTed a 1-row query,2026-10-26
+archive,icos-cp,base_url:https://data.icos-cp.eu/portal/,https://data.icos-cp.eu/portal/,200,ok,,2026-10-26
+archive,knb,api_url:https://knb.ecoinformatics.org/knb/d1/mn/v2/,https://knb.ecoinformatics.org/knb/d1/mn/v2/,200,ok,,2026-10-26
+archive,knb,base_url:https://knb.ecoinformatics.org/,https://knb.ecoinformatics.org/,200,ok,,2026-10-26
+archive,nasa-earthdata,api_url:https://cmr.earthdata.nasa.gov/search/,https://cmr.earthdata.nasa.gov/search/,200,ok,,2026-10-26
+archive,nasa-earthdata,base_url:https://search.earthdata.nasa.gov/,https://search.earthdata.nasa.gov/,200,ok,,2026-10-26
+archive,neon-data-portal,api_url:https://data.neonscience.org/api/v0/,https://data.neonscience.org/api/v0/,404,alive,root path returns 404; the host answers,2026-10-26
+archive,neon-data-portal,base_url:https://data.neonscience.org/,https://data.neonscience.org/,200,ok,,2026-10-26
+archive,obis,api_url:https://api.obis.org/v3,https://api.obis.org/v3,500,error,,2026-10-26
+archive,obis,base_url:https://obis.org/,https://obis.org/,200,ok,,2026-10-26
+archive,ornl-daac,api_url:https://cmr.earthdata.nasa.gov/search/,https://cmr.earthdata.nasa.gov/search/,200,ok,,2026-10-26
+archive,ornl-daac,base_url:https://daac.ornl.gov/,https://daac.ornl.gov/,200,ok,,2026-10-26
+archive,ozflux-portal,base_url:https://data.ozflux.org.au/,https://data.ozflux.org.au/,200,ok,,2026-10-26
+archive,saeon-odp,api_url:https://api.odp.saeon.ac.za/,https://api.odp.saeon.ac.za/,404,alive,root path returns 404; the host answers,2026-10-26
+archive,saeon-odp,base_url:https://catalogue.saeon.ac.za/,https://catalogue.saeon.ac.za/,200,ok,,2026-10-26
+archive,tern-ausplots,api_url:http://swarmapi.ausplots.aekos.org.au/,http://swarmapi.ausplots.aekos.org.au/,200,ok,,2026-10-26
+archive,tern-ausplots,base_url:https://www.tern.org.au/tern-observatory/ecosystem-surveillance-and-environmental-monitoring/,https://www.tern.org.au/tern-observatory/ecosystem-surveillance-and-environmental-monitoring/,200,ok,,2026-10-26
+archive,tern-dap,api_url:https://dap.tern.org.au/thredds/,https://dap.tern.org.au/thredds/,200,ok,,2026-10-26
+archive,tern-dap,base_url:https://dap.tern.org.au/thredds/catalog.html,https://dap.tern.org.au/thredds/catalog.html,200,ok,,2026-10-26
+archive,tern-portal,api_url:https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,200,ok,,2026-10-26
+archive,tern-portal,base_url:https://portal.tern.org.au/,https://portal.tern.org.au/,200,ok,,2026-10-26
+bucket,nasa-earthdata,s3:asf-ngap2w-p-s1-slc-7b420b89,https://asf-ngap2w-p-s1-slc-7b420b89.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,403,auth,anonymous listing denied,2026-10-26
+bucket,nasa-earthdata,s3:podaac-ops-cumulus-public,https://podaac-ops-cumulus-public.s3.us-west-2.amazonaws.com/?list-type=2&max-keys=1,403,auth,anonymous listing denied,2026-10-26
+endpoint,ameriflux,https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux,https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux,200,ok,,2026-10-26
+endpoint,cnern,http://passport2.cern.ac.cn/reg,http://passport2.cern.ac.cn/reg,200,ok,,2026-10-26
+endpoint,cnern,http://www.cnern.org.cn/data/initDRsearch,http://www.cnern.org.cn/data/initDRsearch,200,ok,,2026-10-26
+endpoint,datacite,https://api.datacite.org/dois,https://api.datacite.org/dois?prefix=10.15493&page[size]=1,200,ok,,2026-10-26
+endpoint,deims-sdr,https://deims.org/api/activities,https://deims.org/api/activities,200,ok,,2026-10-26
+endpoint,deims-sdr,https://deims.org/api/locations/{resource_id},,,unchecked,"templated, no example URL",2026-10-26
+endpoint,deims-sdr,https://deims.org/api/sensors,https://deims.org/api/sensors,200,ok,,2026-10-26
+endpoint,deims-sdr,https://deims.org/api/sites,https://deims.org/api/sites,200,ok,,2026-10-26
+endpoint,deims-sdr,https://deims.org/api/sites/{deims_id},https://deims.org/api/sites/663dac80-211d-4c19-a356-04ee0da0f0eb,200,ok,,2026-10-26
+endpoint,elter-dar,https://dar.elter-ri.eu/api/external-datasets,https://dar.elter-ri.eu/api/external-datasets?size=1,200,ok,,2026-10-26
+endpoint,elter-dar,https://dar.elter-ri.eu/api/records,https://dar.elter-ri.eu/api/records?size=1,200,ok,,2026-10-26
+endpoint,elter-dar,"https://dar.elter-ri.eu/api/records?q=metadata.siteReferences.siteID:""{deims-uuid}""",https://dar.elter-ri.eu/api/records?size=1&q=metadata.siteReferences.siteID:%22f30007c4-8a6e-4f11-ab87-569db54638fe%22,200,ok,,2026-10-26
+endpoint,gbif,https://api.gbif.org/v1/dataset/{uuid},https://api.gbif.org/v1/dataset/7175660d-a6a4-4ecd-91fd-d3d86515c5c3,200,ok,,2026-10-26
+endpoint,gbif,https://api.gbif.org/v1/occurrence/download/request,,,unchecked,POST call; not sent,2026-10-26
+endpoint,gbif,https://api.gbif.org/v1/occurrence/search,https://api.gbif.org/v1/occurrence/search?taxonKey=2476674&limit=20,200,ok,,2026-10-26
+endpoint,geri-cyverse,https://data.cyverse.org/dav-anon/iplant/projects/geri/{folder}/,,,unchecked,PROPFIND call; not sent,2026-10-26
+endpoint,geri-cyverse,https://data.cyverse.org/dav-anon/iplant/projects/geri/{path},https://data.cyverse.org/dav-anon/iplant/projects/geri/geri-harmonized/geri_harmonized_sites.csv,200,ok,,2026-10-26
+endpoint,geri-cyverse,i:/iplant/home/shared/geri,,,unchecked,iRODS call; not sent,2026-10-26
+endpoint,geri-dataone,https://cn.dataone.org/cn/v2/query/solr/,https://cn.dataone.org/cn/v2/query/solr/?q=*:*&rows=0&wt=json,200,ok,,2026-10-26
+endpoint,icos-cp,https://data.icos-cp.eu/objects/{object_id},https://data.icos-cp.eu/objects/dKrOtUfAGpdr0Gqx4kp9dLQ9,200,auth,redirected to https://data.icos-cp.eu/licence?ids=%5B%22dKrOtUfAGpdr0Gqx4kp9dLQ9%22%5D,2026-10-26
+endpoint,icos-cp,https://meta.icos-cp.eu/objects/{object_id}/meta.json,https://meta.icos-cp.eu/objects/dKrOtUfAGpdr0Gqx4kp9dLQ9/meta.json,200,ok,,2026-10-26
+endpoint,icos-cp,https://meta.icos-cp.eu/resources/stations/{station},https://meta.icos-cp.eu/resources/stations/ES_FI-Hyy,200,ok,,2026-10-26
+endpoint,icos-cp,https://meta.icos-cp.eu/sparql,https://meta.icos-cp.eu/sparql,200,ok,POSTed a 1-row query,2026-10-26
+endpoint,icos-cp,https://pypi.org/project/icoscp/,https://pypi.org/project/icoscp/,200,ok,,2026-10-26
+endpoint,knb,https://knb.ecoinformatics.org/knb/d1/mn/v2/object/{pid},https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi%3A10.5063%2FAA%2Fnrs.541.1,200,ok,,2026-10-26
+endpoint,knb,"https://knb.ecoinformatics.org/knb/d1/mn/v2/query/solr/?q={query}&fl=identifier,title,origin,pubDate&rows=100","https://knb.ecoinformatics.org/knb/d1/mn/v2/query/solr/?q=title%3Aforest&rows=20&fl=identifier,title",200,ok,,2026-10-26
+endpoint,knb,https://knb.ecoinformatics.org/view/{pid},https://knb.ecoinformatics.org/view/doi:10.5063/F1XW4H1F,200,ok,,2026-10-26
+endpoint,nasa-earthdata,https://cmr.earthdata.nasa.gov/search/collections.json,https://cmr.earthdata.nasa.gov/search/collections.json?keyword=sea+ice&data_center=NSIDC_CPRD&page_size=50,200,ok,,2026-10-26
+endpoint,nasa-earthdata,https://cmr.earthdata.nasa.gov/search/granules.json,"https://cmr.earthdata.nasa.gov/search/granules.json?short_name=ATL06&version=007&temporal=2024-01-01T00:00:00Z,2024-01-31T23:59:59Z&bounding_box=-180,60,180,90&page_size=100",200,ok,,2026-10-26
+endpoint,nasa-earthdata,https://urs.earthdata.nasa.gov/oauth/authorize,https://urs.earthdata.nasa.gov/oauth/authorize,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/data/query,https://data.neonscience.org/api/v0/data/query?productCode=DP1.10003.001&siteCode=HARV&startDateMonth=2019-01&endDateMonth=2019-12&package=basic&release=RELEASE-2024,403,auth,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/data/{productCode}/{siteCode}/{year-month},https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2019-06,403,auth,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/locations/{namedLocation},https://data.neonscience.org/api/v0/locations/HARV_001.basePlot.bgc,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/products,https://data.neonscience.org/api/v0/products,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/products/{productCode},https://data.neonscience.org/api/v0/products/DP1.10003.001,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/releases,https://data.neonscience.org/api/v0/releases,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/samples/supportedClasses,https://data.neonscience.org/api/v0/samples/supportedClasses,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/sites,https://data.neonscience.org/api/v0/sites,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/sites/{siteCode},https://data.neonscience.org/api/v0/sites/HARV,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/api/v0/taxonomy,https://data.neonscience.org/api/v0/taxonomy?taxonTypeCode=BIRD,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://data.neonscience.org/data-products/explore?siteCodes={siteCode},https://data.neonscience.org/data-products/explore?siteCodes=HARV,200,ok,,2026-10-26
+endpoint,neon-data-portal,https://www.neonscience.org/resources/learning-hub/tutorials/neon-api-tokens-tutorial,https://www.neonscience.org/resources/learning-hub/tutorials/neon-api-tokens-tutorial,200,ok,,2026-10-26
+endpoint,obis,https://api.obis.org/v3/dataset/{dataset_id},https://api.obis.org/v3/dataset/5422689c-d83d-44e8-87f4-a4b0a5117181,200,ok,,2026-10-26
+endpoint,obis,https://api.obis.org/v3/occurrence,https://api.obis.org/v3/occurrence?scientificname=Dermochelys%20coriacea&size=10,200,ok,,2026-10-26
+endpoint,ornl-daac,https://cmr.earthdata.nasa.gov/search/collections.json?provider=ORNL_CLOUD&keyword={query}&page_size=100,https://cmr.earthdata.nasa.gov/search/collections.json?provider=ORNL_CLOUD&keyword=ABoVE&page_size=50,200,ok,,2026-10-26
+endpoint,ornl-daac,https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id={id}&page_size=2000,https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2769857263-ORNL_CLOUD&page_size=200,200,ok,,2026-10-26
+endpoint,ornl-daac,https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id={dataset_id},https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=2056,200,ok,,2026-10-26
+endpoint,ornl-daac,https://daac.ornl.gov/daacdata/{program}/{dataset_short_name}/data/{file},https://daac.ornl.gov/daacdata/above/ABoVE_Boreal_Biomass_Map/data/ABoVE_Boreal_Biomass_Map.tif,401,auth,redirected to https://urs.earthdata.nasa.gov/oauth/authorize?app_type=401&client_id=QyeRbBJg8YuY_WBh-KBztA&respons,2026-10-26
+endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/go/{doi},https://api.odp.saeon.ac.za/catalog/SAEON/go/10.15493/obs.monitor.50074678,200,ok,,2026-10-26
+endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/records,https://api.odp.saeon.ac.za/catalog/SAEON/records?size=1,401,auth,,2026-10-26
+endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/records/{record_id_or_doi},,,unchecked,"templated, no example URL",2026-10-26
+endpoint,saeon-odp,https://api.odp.saeon.ac.za/catalog/{catalog_id}/search,,,unchecked,"templated, no example URL",2026-10-26
+endpoint,tern-ausplots,http://swarmapi.ausplots.aekos.org.au/site?site_location_name=eq.{ausplots-site},"http://swarmapi.ausplots.aekos.org.au/site?site_location_name=eq.NTADAC0001&select=site_location_name,latitude,longitude",200,ok,,2026-10-26
+endpoint,tern-dap,https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/catalog.xml,https://dap.tern.org.au/thredds/catalog/ecosystem_process/ozflux/catalog.xml,200,ok,,2026-10-26
+endpoint,tern-dap,https://dap.tern.org.au/thredds/dodsC/{path}.nc,https://dap.tern.org.au/thredds/dodsC/ecosystem_process/ozflux/HowardSprings/2025_v2/L3/default/HowardSprings_L3.nc.das,200,ok,,2026-10-26
+endpoint,tern-dap,https://dap.tern.org.au/thredds/fileServer/{path}.nc,https://dap.tern.org.au/thredds/fileServer/ecosystem_process/ozflux/HowardSprings/2025_v2/L3/default/HowardSprings_L3.nc,200,ok,,2026-10-26
+endpoint,tern-portal,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw,https://geonetwork.tern.org.au/geonetwork/srv/eng/csw?service=CSW&version=2.0.2&request=GetRecords&typeNames=csw:Record&resultType=hits,200,ok,,2026-10-26
+endpoint,tern-portal,https://linkeddata.tern.org.au/,https://linkeddata.tern.org.au/,200,ok,,2026-10-26

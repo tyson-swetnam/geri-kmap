@@ -10,7 +10,7 @@ import {
 import { initFilters, DEFAULT_SCOPE } from './filters.js';
 import { initOverlays, activeOverlays, syncOverlaysToFilters } from './overlays.js';
 import { initDB, loadFallback, query } from './db.js';
-import { initListView, renderList } from './views/list.js';
+import { initListView, renderList, focusCard } from './views/list.js';
 import { initStatsView, renderStats } from './views/stats.js';
 import { initDocsView, renderDocsView } from './views/docs.js';
 import { initDatasetsView, renderDatasetsView } from './views/datasets.js';
@@ -234,10 +234,13 @@ initRouter({
     setDrawer(false);
     renderFacilities(state.lastFeatures);
   },
-  '/browse': () => {
+  '/browse': (path) => {
     showView('/browse');
     document.body.classList.remove('no-sidebar');
     setDrawer(false);
+    // /browse/<facility_id> (the map popup's link) scrolls to that card.
+    const m = path.match(/^\/browse\/(.+)$/);
+    if (m) focusCard(decodeURIComponent(m[1]));
     renderList(state.lastFeatures);
   },
   '/data': (path) => {

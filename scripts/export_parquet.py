@@ -116,6 +116,9 @@ TABLES = [
     # GERI site cross-walk and harmonized-product coverage.
     "site_identifiers",
     "harmonized_coverage",
+    # Loescher et al. (2026): RI profiles and the partner-organization survey.
+    "ri_profiles",
+    "network_organizations",
     # Wave J data-archive layer.
     "archive_types",
     "data_formats",
@@ -295,7 +298,8 @@ def main() -> int:
                       -- its label to parent_org (RI_ORDER). src/db.js query()
                       -- derives primary_ri the same way.
                       (SELECT n.network_id FROM networks n
-                        WHERE n.label = f.parent_org AND n.level = 'continental-ri') AS primary_ri
+                        WHERE n.label = f.parent_org
+                          AND n.level IN ('continental-ri', 'environmental-network')) AS primary_ri
                FROM v_facility_map v
                JOIN facilities f ON f.facility_id = v.id
                JOIN v_facility_geri g ON g.facility_id = v.id

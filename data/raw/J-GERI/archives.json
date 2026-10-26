@@ -166,6 +166,35 @@
    "source_url": "https://geri.dataone.org/data",
    "notes": "Where the Data Store README says the harmonized datasets are published and discoverable; searchable through the DataONE coordinating-node Solr API.",
    "retrieved_at": "2026-10-25"
+  },
+  {
+   "archive_id": "tern-ausplots",
+   "name": "TERN AusPlots API",
+   "organization": "Terrestrial Ecosystem Research Network (TERN)",
+   "archive_type": "api",
+   "base_url": "https://www.tern.org.au/tern-observatory/ecosystem-surveillance-and-environmental-monitoring/",
+   "api_url": "http://swarmapi.ausplots.aekos.org.au/",
+   "api_doc_url": "http://swarmapi.ausplots.aekos.org.au/",
+   "api_type": "rest",
+   "access_mode": "public-read",
+   "source_url": "http://swarmapi.ausplots.aekos.org.au/",
+   "notes": "PostgREST service over TERN's Ecosystem Surveillance (AusPlots) plots: sites and visits (/site), vegetation point-intercept (/veg_pi), basal area, vouchers, soils. No key needed; the root returns an OpenAPI description. The ausplotsR R package reads it. Plain http only (https does not answer).",
+   "retrieved_at": "2026-10-26"
+  },
+  {
+   "archive_id": "ameriflux",
+   "name": "AmeriFlux",
+   "organization": "AmeriFlux Management Project (Lawrence Berkeley National Laboratory)",
+   "archive_type": "network",
+   "base_url": "https://ameriflux.lbl.gov/",
+   "api_url": "https://amfcdn.lbl.gov/api/v1/site_display/AmeriFlux",
+   "api_doc_url": null,
+   "api_type": "rest",
+   "license_slug": "ameriflux-data-policy",
+   "access_mode": "unknown",
+   "source_url": "https://ameriflux.lbl.gov/data/data-policy/",
+   "notes": "Flux-tower registry and data for the Americas; 14 MexFlux towers are registered here. The site list (site_display API) and site pages are public. Per the data policy, most sites share data under CC BY 4.0 (the rest under the Legacy policy), and the download portal asks each user how they plan to use the data, which is sent to the site PIs; whether that needs an account was not checked.",
+   "retrieved_at": "2026-10-26"
   }
  ],
  "archive_overrides": [

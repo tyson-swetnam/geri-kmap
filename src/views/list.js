@@ -30,6 +30,10 @@ let _searchTerm = '';
 
 const PAGE_SIZE = 60;
 let _renderLimit = PAGE_SIZE;
+// A site to bring into view on the next render: '#/browse/<facility_id>',
+// which the map popup's "Browse card" link opens.
+let _focusId = null;
+export function focusCard(id) { _focusId = id || null; }
 
 const SORT_OPTIONS = [
   { key: 'composite',    label: 'Most-developed first' },
@@ -615,8 +619,17 @@ function header(visible, total, hidden) {
 
 function renderInternal(rows) {
   if (!_container) return;
+  // A focused card the search box hides: clear the search. One past the
+  // rendered pages: render enough pages to reach it.
+  const focusing = _focusId && rows.some((r) => r.id === _focusId);
+  if (_focusId && !focusing) _focusId = null;   // not in this set (scope lens)
+  if (focusing && !applySearch(rows, _searchTerm).some((r) => r.id === _focusId)) _searchTerm = '';
   const filtered = applySearch(rows, _searchTerm);
   const sorted = sortFacilities(filtered, _sortKey);
+  if (focusing) {
+    const i = sorted.findIndex((r) => r.id === _focusId);
+    if (i >= _renderLimit) _renderLimit = Math.ceil((i + 1) / PAGE_SIZE) * PAGE_SIZE;
+  }
   const visible = sorted.slice(0, _renderLimit);
   const hidden = rows.length - filtered.length;
 
@@ -659,6 +672,14 @@ function renderInternal(rows) {
       _renderLimit += PAGE_SIZE;
       renderInternal(rows);
     });
+  }
+  if (focusing) {
+    const el = _container.querySelector(`.brw-card[data-id="${CSS.escape(_focusId)}"]`);
+    if (el) {
+      _focusId = null;
+      el.classList.add('brw-card-active');
+      requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
   }
 }
 

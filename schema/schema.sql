@@ -30,7 +30,8 @@ CREATE OR REPLACE TABLE research_areas (
 CREATE OR REPLACE TABLE networks (
     network_id   VARCHAR PRIMARY KEY,   -- slug
     label        VARCHAR NOT NULL,
-    level        VARCHAR,               -- global-ri-federation | continental-ri | ri-component
+    level        VARCHAR,               -- global-ri-federation | continental-ri | ri-component |
+                                        -- network-of-networks (GENNI) | environmental-network (MexFlux)
     url          VARCHAR,
     parent_id    VARCHAR                -- soft reference to networks.network_id (eLTER -> GERI, ICOS ES -> ICOS)
 );
@@ -419,6 +420,46 @@ CREATE OR REPLACE TABLE harmonized_coverage (
     PRIMARY KEY (facility_id, product_id, variable)
 );
 
+-- Organizations that could partner with GERI: the "nearest neighbor"
+-- landscape survey of Loescher et al. (2026, Ecosphere,
+-- doi:10.1002/ecs2.70789, Table 3), published as Ceron Castano et al.,
+-- doi:10.5281/zenodo.17717896, plus the Mexican networks of the paper's
+-- GENNI use case (Box 1). Organizations, not sites: they have no point.
+-- Loaded by load_genni.py from data/raw/J-GENNI/landscape_orgs.json.
+CREATE OR REPLACE TABLE network_organizations (
+    org_id         VARCHAR PRIMARY KEY,     -- sha1('org:' || name || '|' || url)[:16]
+    name           VARCHAR NOT NULL,        -- as the source writes it
+    name_en        VARCHAR,                 -- the source's English translation
+    acronym        VARCHAR,
+    url            VARCHAR,
+    scope          VARCHAR,                 -- domestic | regional | international | global
+    region         VARCHAR,                 -- Americas | Europe | Oceania | East Asia | ...
+    country        VARCHAR,                 -- ISO-2 when the source names one country
+    country_label  VARCHAR NOT NULL,        -- as the source writes it ('Global', 'Regional - Europe')
+    functions      VARCHAR[],               -- observation | aggregation | network
+    description    VARCHAR,
+    genni_case     BOOLEAN NOT NULL,        -- one of the five Mexican networks of the GENNI use case
+    network_id     VARCHAR REFERENCES networks(network_id),  -- the catalogue network it is, if any
+    source         VARCHAR NOT NULL,        -- 'zenodo.17717896' | 'ecs2.70789-box1'
+    source_url     VARCHAR NOT NULL,
+    CHECK (scope IN ('domestic', 'regional', 'international', 'global'))
+);
+
+-- Each GERI research infrastructure as Loescher et al. (2026, Table 1 and
+-- Figure 1) describe it: data held, yearly growth, variety and products,
+-- and the site count the paper maps (its own count, not the catalogue's).
+CREATE OR REPLACE TABLE ri_profiles (
+    network_id          VARCHAR PRIMARY KEY REFERENCES networks(network_id),
+    data_volume_tib     DOUBLE,             -- total data held, TiB, to 2025-01-31
+    data_rate_tib_year  DOUBLE,             -- data acquired per year, TiB ("voracity")
+    data_variety        INTEGER,            -- distinct data types by file prefix
+    n_data_products     INTEGER,
+    paper_site_count    INTEGER,            -- sites in the paper's Figure 1 map
+    notes               VARCHAR,            -- approximations and the table's footnotes
+    as_of               DATE NOT NULL,
+    source_doi          VARCHAR NOT NULL
+);
+
 CREATE OR REPLACE TABLE ecosystem_types (
     slug         VARCHAR PRIMARY KEY,
     label        VARCHAR NOT NULL,
@@ -571,7 +612,8 @@ GROUP BY f.facility_id, f.canonical_name, f.acronym, f.facility_type,
          f.established, f.record_length_years,
          f.long_term_threshold_met, f.data_portal_url;
 
--- One row per facility with its GERI research infrastructures, whether the
+-- One row per facility with its GERI research infrastructures (and MexFlux,
+-- the GENNI environmental network: level environmental-network), whether the
 -- GERI harmonized products cover it, and every registry id it carries.
 -- Also re-created in the browser by src/db.js (keep the two identical).
 CREATE OR REPLACE VIEW v_facility_geri AS
@@ -583,7 +625,7 @@ SELECT
     f.hq_lat,
     f.hq_lng,
     list(DISTINCT n.network_id ORDER BY n.network_id)
-        FILTER (WHERE n.level = 'continental-ri')                    AS ris,
+        FILTER (WHERE n.level IN ('continental-ri', 'environmental-network')) AS ris,
     bool_or(si.scheme = 'geri-harmonized-id')                        AS geri_harmonized,
     max(si.value) FILTER (WHERE si.scheme = 'deims-id')              AS deims_id,
     list(DISTINCT si.scheme || ':' || si.value ORDER BY si.scheme || ':' || si.value)

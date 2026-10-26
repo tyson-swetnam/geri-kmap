@@ -8,10 +8,11 @@ GERI's six research infrastructures, as they appear in the catalogue. A site bel
 | ICOS | 180 | ICOS Carbon Portal (169 classified stations), DEIMS-SDR, GERI products |
 | NEON | 81 | NEON Data API, joined to DEIMS-SDR by the DEIMS id NEON publishes |
 | CERN | 43 | DEIMS-SDR (42) + CERN's own station list (Daya Bay) |
-| TERN | 62 | DEIMS-SDR (27 SuperSites and plot networks) + 47 OzFlux towers from TERN's THREDDS server, 12 of them at a SuperSite |
+| TERN | 882 | DEIMS-SDR (27 SuperSites and plot networks) + 47 OzFlux towers from TERN's THREDDS server, 12 of them at a SuperSite + 820 Ecosystem Surveillance plots from the AusPlots API |
 | SAEON | 46 | DEIMS-SDR (22) + every SAEON Terrestrial Observations Monitor station (DataCite) + GERI products |
 | EFTEON | 17 | SAEON DataCite station records + GERI products |
 | GERI (the DEIMS GERI network) | 561 | DEIMS-SDR |
+| MexFlux (GENNI; not GERI) | 33 | MexFlux's site table and map, AmeriFlux for the 14 towers it registers |
 
 ICOS stations are split by kind:
 
@@ -22,6 +23,14 @@ ICOS stations are split by kind:
 Only stations with an ICOS station class (1, 2 or Associated) are included. The Carbon Portal also lists about 300 stations that never entered ICOS labelling.
 
 NEON sites are split into terrestrial (47) and aquatic (34) by NEON's own `HABITAT` location property.
+
+## TERN surveillance plots
+
+TERN's Ecosystem Surveillance program revisits permanent plots across Australia's bioregions, most of them 1 ha (100 × 100 m). The AusPlots API (`http://swarmapi.ausplots.aekos.org.au/site`, no key) serves one row per published visit. `scripts/fetch_ausplots.py` reduces those visits to one record per plot (`ausplots-site` id = the plot's `site_location_name`), with the point of its latest visit. That gives 820 plots (network `tern-surveillance`, type `surveillance-plot`), close to the 800 TERN sites in Loescher et al. (2026, Figure 1). Observer ids and visit notes are not kept. A plot's `established` is its first visit and its record length runs to its last visit. 561 plots have been surveyed once, so they have no record length yet. A plot that sits inside a SuperSite is kept as its own record, because plots and the SuperSite are separate registrations.
+
+## MexFlux and GENNI
+
+MexFlux is the Mexican flux-tower network in the GENNI use case of Loescher et al. (2026). It is not a GERI member, so its 33 towers are in the networks `mexflux` and `genni` and never in `geri` (see [GERI & GENNI](genni.md)). A tower's record length runs from its first year to its last year of data, taken from MexFlux's site table; for a tower still running, it runs to today.
 
 ## SAEON and EFTEON stations
 
